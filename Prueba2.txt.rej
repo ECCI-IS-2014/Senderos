@@ -1,0 +1,11 @@
+diff a/Prueba2.txt b/Prueba2.txt	(rejected hunks)
+@@ -1 +0,7 @@
+-Todo va saliendo bien :D
+\ No newline at end of file
++<<<<<<< HEAD
++Todo va saliendo bien :D
++=======
++Hola
++
++He creado otra línea.
++>>>>>>> master
