@@ -23,6 +23,30 @@ class ProductsController extends AppController
         $this->set('product', $product);
     }
 
+	public function edit($id = null) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+
+        $product = $this->Product->findById($id);
+        if (!$product) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+
+        if ($this->request->is(array('product', 'put'))) {
+            $this->Product->id = $id;
+            if ($this->Product->save($this->request->data)) {
+                $this->Session->setFlash(__('Your post has been updated.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to update your post.'));
+        }
+
+        if (!$this->request->data) {
+            $this->request->data = $product;
+        }
+    }
+	
     public function delete($id)
     {
         if ($this->request->is('get'))
