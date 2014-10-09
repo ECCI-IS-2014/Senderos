@@ -16,6 +16,11 @@
         <td><?php echo $product['Product']['name']; ?></td>
         <td><?php echo $product['Product']['genre']; ?></td>
         <td><?php echo $product['Product']['price']; ?></td>
+        <td>
+        <?php
+            echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => 'Are you sure?'));
+        ?>
+        </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($product); ?>
