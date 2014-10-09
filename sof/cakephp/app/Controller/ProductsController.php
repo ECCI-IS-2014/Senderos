@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Erick
- * Date: 09/10/14
- * Time: 12:44 AM
- */
 
 class ProductsController extends AppController
 {
@@ -27,6 +21,22 @@ class ProductsController extends AppController
             throw new NotFoundException(__('Invalid product'));
         }
         $this->set('product', $product);
+    }
+
+    public function delete($id)
+    {
+        if ($this->request->is('get'))
+        {
+            throw new MethodNotAllowedException();
+        }
+
+        if ($this->Product->delete($id))
+        {
+            /*$this->Session->setFlash(
+                __('The post with id: %s has been deleted.', h($id))
+            );*/
+            return $this->redirect(array('action' => 'index'));
+        }
     }
 }
 
