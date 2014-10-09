@@ -16,6 +16,14 @@
         <td><?php echo $product['Product']['name']; ?></td>
         <td><?php echo $product['Product']['genre']; ?></td>
         <td><?php echo $product['Product']['price']; ?></td>
+		 <td>
+            <?php
+                echo $this->Html->link(
+                    'Edit',
+                    array('action' => 'edit', $product['Product']['id'])
+                );
+            ?>
+        </td>
         <td>
         <?php
             echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => 'Are you sure?'));
