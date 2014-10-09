@@ -3,6 +3,7 @@
 class ProductsController extends AppController
 {
     public $helpers = array('Html', 'Form');
+	var $components = array('Session');
 
     public function index()
     {
