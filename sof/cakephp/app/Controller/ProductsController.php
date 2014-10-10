@@ -48,6 +48,17 @@ class ProductsController extends AppController
         }
     }
 	
+	public function add() {
+        if ($this->request->is('post')) {
+            $this->Product->create();
+            if ($this->Product->save($this->request->data)) {
+                $this->Session->setFlash(__('Your product has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add your product.'));
+        }
+    }
+	
     public function delete($id)
     {
         if ($this->request->is('get'))
