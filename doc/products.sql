@@ -4,7 +4,7 @@ CREATE TABLE products(
 	name VARCHAR(100) NOT NULL,
     genre VARCHAR(100) NOT NULL,
 	console VARCHAR(100) NOT NULL,
-	relase_year YEAR(4) NOT NULL,
+	release_year YEAR(4) NOT NULL,
 	price DOUBLE NOT NULL,
 	description TEXT NOT NULL,
 	image TEXT,
