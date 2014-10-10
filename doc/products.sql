@@ -1,4 +1,3 @@
-
 CREATE TABLE products(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
@@ -7,6 +6,7 @@ CREATE TABLE products(
 	release_year YEAR(4) NOT NULL,
 	price DOUBLE NOT NULL,
 	description TEXT NOT NULL,
+	amount INT NOT NULL, 
 	image TEXT,
 	video TEXT
 );
