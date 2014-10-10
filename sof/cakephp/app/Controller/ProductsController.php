@@ -12,16 +12,16 @@ class ProductsController extends AppController
         ),
         'genre' => array(
             'rule' => 'notEmpty'
-        )
+        ),
 		'console' => array(
             'rule' => 'notEmpty'
-        )
+        ),
 		'release_year' => array(
             'rule' => 'notEmpty'
-        )
+        ),
 		'price' => array(
             'rule' => 'notEmpty'
-        )
+        ),
 		'description' => array(
             'rule' => 'notEmpty'
         )
