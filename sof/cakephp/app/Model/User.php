@@ -10,18 +10,36 @@ class User extends AppModel {
         'message' => 'A username is required'
         )
     ),
-    'password' => array(
-    'required' => array(
-    'rule' => array('notEmpty'),
-    'message' => 'A password is required'
-    )
+		'password' => array(
+		'required' => array(
+		'rule' => array('notEmpty'),
+		'message' => 'A password is required'
+		)
     ),
-    'role' => array(
-    'valid' => array(
-    'rule' => array('inList', array('admin', 'author')),
-    'message' => 'Please enter a valid role',
-    'allowEmpty' => false
-    )
+		'name' => array(
+		'required' => array(
+		'rule' => array('notEmpty'),
+		'message' => 'A name is required'
+		)
+	),
+		'lastname' => array(
+		'required' => array(
+		'rule' => array('notEmpty'),
+		'message' => 'A lastname is required'
+		)
+    ),
+		'country' => array(
+		'required' => array(
+		'rule' => array('notEmpty'),
+		'message' => 'A country is required'
+		)
+    ),
+		'role' => array(
+		'valid' => array(
+		'rule' => array('inList', array('admin', 'cust')),
+		'message' => 'Please enter a valid role',
+		'allowEmpty' => false
+		)
     )
     );
 
