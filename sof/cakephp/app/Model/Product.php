@@ -27,6 +27,9 @@ class Product extends AppModel
         ),
 		'description' => array(
             'rule' => 'notEmpty'
+        ),
+		'amount' => array(
+            'rule' => 'notEmpty'
         )
     );
 }

@@ -22,6 +22,7 @@ echo $this->Form->input('release_year', array(
 						 'name' => 'data[Products][release_year]', )); 
 echo $this->Form->input('price', array('label'=>'Price in dollars'));
 echo $this->Form->input('description', array('rows' => '3'));
+echo $this->Form->input('amount', array('label'=>'Amount of product (units):'));
 echo $this->Form->input('image', array('rows' => '1', 'label'=>'Image link'));
 echo $this->Form->input('video', array('rows' => '1', 'label'=>'Video link'));
 /*The $this->Form->end() call generates a submit button and ends the form. If a string is supplied as the first parameter to end(), the 
