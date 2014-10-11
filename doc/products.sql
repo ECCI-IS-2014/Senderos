@@ -1,12 +1,12 @@
-
 CREATE TABLE products(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
     genre VARCHAR(100) NOT NULL,
 	console VARCHAR(100) NOT NULL,
 	release_year YEAR(4) NOT NULL,
-	price DOUBLE NOT NULL,
+	price DOUBLE UNSIGNED NOT NULL,
 	description TEXT NOT NULL,
+	amount INT UNSIGNED NOT NULL, 
 	image TEXT,
 	video TEXT
 );
