@@ -71,12 +71,13 @@ class UsersController extends AppController {
     $this->Session->setFlash(__('User was not deleted'));
     return $this->redirect(array('action' => 'index'));
     }
-
+	
+	/*
     public function beforeFilter() {
         parent::beforeFilter();
         // Allow users to register and logout.
         $this->Auth->allow('add', 'logout');
-    }
+    }*/
 
     public function login() {
         if ($this->request->is('post')) {
