@@ -5,42 +5,49 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
     public $validate = array(
         'username' => array(
-        'required' => array(
-        'rule' => array('notEmpty'),
-        'message' => 'A username is required'
-        )
-    ),
+			'required' => array(
+			'rule' => array('notEmpty'),
+			'message' => 'A username is required',
+			'rule' => 'isUnique',
+			'message' => 'The username is not available'
+			)
+		),
 		'password' => array(
-		'required' => array(
-		'rule' => array('notEmpty'),
-		'message' => 'A password is required'
+			'required' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'A password is required',
+				'rule' => array('minLength', '6'),
+				'message' => 'Minimum 6 characters long',
+				'rule'     => 'alphaNumeric',
+                'required' => true,
+                'message'  => 'Letters and numbers only'
+			),
+		),
+			'name' => array(
+				'required' => array(
+					'rule' => array('notEmpty'),
+					'message' => 'A name is required'
+			)
+		),
+			'lastname' => array(
+				'required' => array(
+					'rule' => array('notEmpty'),
+					'message' => 'A lastname is required'
+			)
+		),
+			'country' => array(
+				'required' => array(
+					'rule' => array('notEmpty'),
+					'message' => 'A country is required'
+			)
+		),
+			'role' => array(
+				'valid' => array(
+					'rule' => array('inList', array('admin', 'cust')),
+					'message' => 'Please enter a valid role',
+					'allowEmpty' => false
+			)
 		)
-    ),
-		'name' => array(
-		'required' => array(
-		'rule' => array('notEmpty'),
-		'message' => 'A name is required'
-		)
-	),
-		'lastname' => array(
-		'required' => array(
-		'rule' => array('notEmpty'),
-		'message' => 'A lastname is required'
-		)
-    ),
-		'country' => array(
-		'required' => array(
-		'rule' => array('notEmpty'),
-		'message' => 'A country is required'
-		)
-    ),
-		'role' => array(
-		'valid' => array(
-		'rule' => array('inList', array('admin', 'cust')),
-		'message' => 'Please enter a valid role',
-		'allowEmpty' => false
-		)
-    )
     );
 
     public function beforeSave($options = array()) {
