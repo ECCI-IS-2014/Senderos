@@ -45,7 +45,6 @@ class UsersController extends AppController {
     }
 
     public function delete($id = null) {
-<<<<<<< HEAD
 		$this->request->onlyAllow('post');
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
@@ -58,27 +57,12 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted'));
 		return $this->redirect(array('action' => 'index'));
     }
-=======
-    $this->request->onlyAllow('post');
 
-    $this->User->id = $id;
-    if (!$this->User->exists()) {
-    throw new NotFoundException(__('Invalid user'));
-    }
-    if ($this->User->delete()) {
-    $this->Session->setFlash(__('User deleted'));
-    return $this->redirect(array('action' => 'index'));
-    }
-    $this->Session->setFlash(__('User was not deleted'));
-    return $this->redirect(array('action' => 'index'));
-    }
-	
-	/*
     public function beforeFilter() {
         parent::beforeFilter();
         // Allow users to register and logout.
         $this->Auth->allow('add', 'logout');
-    }*/
+    }
 
     public function login() {
         if ($this->request->is('post')) {
@@ -92,6 +76,4 @@ class UsersController extends AppController {
     public function logout() {
         return $this->redirect($this->Auth->logout());
     }
-
->>>>>>> 6db5ff2af3355d01b37ef9a5c9684eaf1588bde6
 }
