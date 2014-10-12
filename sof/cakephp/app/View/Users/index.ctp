@@ -1,23 +1,21 @@
-<h1>Users</h1>
+<?php echo $this->Html->link('Add New User',array('controller' => 'users', 'action' => 'add')); ?>
+<h1>Current Users</h1>
 <table>
     <tr>
         <th>Id</th>
         <th>Username</th>
-		<th>Name</th>
-        <th>Lastname</th>
-		<th>Country</th>
-		<th>Role</th>
+		<th>Actions</th>
     </tr>
 
     <?php foreach ($users as $users): ?>
     <tr>
         <td><?php echo $users['User']['id']; ?></td>
-		<td><?php echo $users['User']['username']; ?></td>
-		<td><?php echo $users['User']['name']; ?></td>
-		<td><?php echo $users['User']['lastname']; ?></td>
-		<td><?php echo $users['User']['country']; ?></td>
-		<td><?php echo $users['User']['role']; ?></td>
-        <td>
+		<td>
+		<?php echo $this->Html->link($users['User']['username'],
+		array('controller' => 'users', 'action' => 'view', $users['User']['id'])); ?>
+		<td>
+		<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $users['User']['id']), array('confirm' => 'Are you sure?'));?>
+        <?php echo $this->Html->link('Edit', array('action' => 'edit', $users['User']['id']));?>
    </tr>
     <?php endforeach; ?>
     <?php unset($user); ?>
