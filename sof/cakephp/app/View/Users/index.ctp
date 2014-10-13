@@ -1,4 +1,9 @@
-<?php echo $this->Html->link('Add New User',array('controller' => 'users', 'action' => 'add')); ?>
+<?php
+echo 'Conectado como: '.$this->Session->read('Auth.User.username').'<br>';
+echo $this->Html->link('Add New User',array('controller' => 'users', 'action' => 'add'));
+echo ('<br>');
+echo $this->Html->link('Login',array('controller' =>'users','action'=>'login'));
+?>
 <h1>Current Users</h1>
 <table>
     <tr>
