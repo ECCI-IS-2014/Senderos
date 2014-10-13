@@ -37,9 +37,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
@@ -53,11 +50,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
 				);
 			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
 		</div>
 	</div>
-	/**<?php echo $this->element('sql_dump'); ?>*/
 </body>
 </html>
