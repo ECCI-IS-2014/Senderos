@@ -1,4 +1,8 @@
-<?php echo $this->Html->link('Register New User',array('controller' => 'users', 'action' => 'add'));?>
+<?php
+echo $this->Html->link('Register New User',array('controller' => 'users', 'action' => 'add'));
+echo '<br>';
+echo $this->Html->link('Users',array('controller'=>'users','action'=>'index'));
+?>
 <div class="users form">
 <?php echo $this->Session->flash('auth'); ?>
 <?php echo $this->Form->create('User'); ?>
