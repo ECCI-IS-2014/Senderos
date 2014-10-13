@@ -46,6 +46,7 @@
 
 <body>
     <div id="nav">
+        <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
         <div class="inner">
           <ul>
             <li><a href=”#”>Inicio</a></li>
