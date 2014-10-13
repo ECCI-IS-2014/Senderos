@@ -1,5 +1,62 @@
-<h1>Catalogo</h1>
-<table>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Catálogo de la tienda</title>
+  <style type="text/css">
+  body
+  {
+    font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif;
+    color: gray;
+    background-color: #FFFFFF
+  }
+  table
+  {
+    font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif;
+    color: #1C1C1C;
+  }
+
+  #nav
+  {
+    padding: 0;
+  }
+  #nav li
+  {
+    display: inline;
+  }
+  #nav li a
+  {
+    font-family: Arial;
+    font-size:11px;
+    text-decoration: none;
+    float:left;
+    padding: 10px;
+    background-color: #2175bc;
+    color: #fff;
+  }
+  #nav li a:hover
+  {
+    background-color: #2586d7;
+    margin-top:-2px;
+    padding-bottom:12px;
+  }
+
+  </style>
+</head>
+
+<body>
+    <div id="nav">
+        <div class="inner">
+          <ul>
+            <li><a href=”#”>Inicio</a></li>
+            <li><a href=”#”>Clientes</a></li>
+            <li><a href=”#”>F.A.Q</a></li>
+            <li><a href=”#”>Ayuda</a></li>
+            <li><a href=”#”>Contáctenos</a></li>
+          </ul>
+        </div>
+    </div>
+    <table>
     <tr>
         <th>ID</th>
         <th>Nombre</th>
@@ -26,10 +83,12 @@
         </td>
         <td>
         <?php
-            echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => 'Are you sure?'));
+            echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
         ?>
         </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($product); ?>
-</table>
+    </table>
+</body>
+</html>
