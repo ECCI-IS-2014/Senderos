@@ -12,6 +12,7 @@
   }
   table
   {
+    padding: 10px;
     font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif;
     color: #1C1C1C;
   }
@@ -27,18 +28,22 @@
   #nav li a
   {
     font-family: Arial;
-    font-size:11px;
+    font-size:15px;
     text-decoration: none;
     float:left;
     padding: 10px;
-    background-color: #2175bc;
+    background-color: #04B486;
     color: #fff;
   }
   #nav li a:hover
   {
-    background-color: #2586d7;
+    background-color: #01DFA5;
     margin-top:-2px;
     padding-bottom:12px;
+  }
+  form {
+      width:200px;
+      margin:50px auto;
   }
 
   </style>
