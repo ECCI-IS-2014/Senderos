@@ -4,11 +4,61 @@
 <head>
     <title>Catálogo de la tienda</title>
     <style>
+
         body
         {
+            background-color: #151515
+        }
+
+        #contenedor
+        {
+            margin-left: auto;
+            margin-right: auto;
+            width:1000px;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
             background-color: #FFFFFF
+        }
+
+        #cabecera
+        {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #b0e0e6;
+        }
+
+        #derecha
+        {
+            float:right;
+            padding:10px;
+        }
+
+        #nav
+        {
+            float:left;
+            padding:10px;
+        }
+
+        #nav li
+        {
+            display: inline;
+        }
+
+        #nav li a
+        {
+            font-family: Helvetica, Geneva, sans-serif;
+            font-size:15px;
+            text-decoration: none;
+            width:100px;
+            float:left;
+            padding: 10px;
+            background-color: #04B486;
+            color: #fff;
+        }
+
+        #nav li a:hover
+        {
+            background-color: #01DFA5;
         }
 
         #simple
@@ -22,39 +72,19 @@
             padding-right:10px;
             padding-bottom:10px;
         }
-
-        #nav
-        {
-            padding:40px;
-        }
-
-        #nav li
-        {
-            display: inline;
-        }
-
-        #nav li a
-        {
-            font-family: Helvetica, Geneva, sans-serif;
-            font-size:15px;
-            text-decoration: none;
-            width:150px;
-            float:left;
-            padding: 10px;
-            background-color: #04B486;
-            color: #fff;
-        }
-
-        #nav li a:hover
-        {
-            background-color: #01DFA5;
-        }
     </style>
 </head>
 
 <body>
+<div id="contenedor">
+
+    <div id="cabecera">
+        <div id="imagen">
+            <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
+        </div>
+    </div>
+
     <div id="nav">
-        <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
         <ul>
             <li><a>Inicio</a></li>
             <li><a>Clientes</a></li>
@@ -62,6 +92,10 @@
             <li><a>Ayuda</a></li>
             <li><a>Contáctenos</a></li>
         </ul>
+    </div>
+
+    <div id="derecha">
+        <p>Texto derecha</p>
     </div>
 
     <div id="simple">
@@ -80,12 +114,14 @@
                  <?php
                     echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));?>
                  </td>
-                 <div class="cl">&nbsp;</div>
-                    <a class="small">Detalles</a> <a class="small">Añadir al carrito</a>
-                 <div class="cl">&nbsp;</div>
+                 <div>&nbsp;</div>
+                    <a>Detalles</a> <a>Añadir al carrito</a>
+                 <div>&nbsp;</div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>
     </div>
+
+</div>
 </body>
 </html>
