@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Busqueda</title>
     <style>
+
         body
         {
             background: #FFFFFF;
@@ -12,23 +14,15 @@
         {
             margin-left: auto;
             margin-right: auto;
-            width:1000px;
-            background-color: #151515;
+            background-color: #FFFFFF;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
         }
 
-        #cabecera
-        {
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #FFFFFF;
-        }
-
         #searchbar
         {
-            margin-left: auto;
-            margin-right: auto;
+            float:left;
+            width:700px;
             background-color: #FFFFFF;
         }
 
@@ -36,6 +30,8 @@
         {
             float:left;
             width:700px;
+            margin-left: auto;
+            margin-right: auto;
             background-color:#fff;
             border:solid 1px #dcdcdc;
             padding-top:10px;
@@ -69,11 +65,7 @@
 <body>
 <div id="container">
 
-    <div id="cabecera">
-        <div id="imagen">
-            <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
-        </div>
-    </div>
+    <?php include("header.ctp");?>
 
     <div id="searchbar">
         <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
@@ -106,6 +98,7 @@
         <?php endforeach; ?>
         <?php unset($product); ?>
     </div>
+
 </div>
 </body>
 </html>
