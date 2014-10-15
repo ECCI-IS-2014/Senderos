@@ -27,7 +27,7 @@
             background-color: #FFFFFF;
         }
 
-        #derecha
+        #rightside
         {
             float:right;
             padding:10px;
@@ -53,11 +53,13 @@
             display: inline;
             width:420px;
         }
+
         #info h3
         {
             font-family: Helvetica, Geneva;
             color: #56BBAC;
         }
+
         #info p
         {
             padding-bottom:10px
@@ -113,16 +115,18 @@
         </ul>
     </div>
 
-    <div id="derecha">
-    <?php
-        if($this->Session->read('Auth.User.username')==null){
-            echo '<p>'.$this->Html->link('Login',array('controller' =>'users','action'=>'login')).'</p><br>';
-            echo $this->Html->link('Create User',array('controller' => 'users', 'action' => 'add'));
-        }else{
-            echo '<p><b>'.$this->Session->read('Auth.User.username').'</b></p><br>';
-            echo $this->Html->link('Logout',array('controller' =>'users','action'=>'logout'));
-        }
-    ?>
+    <div id="rightside">
+        <?php   if($this->Session->read('Auth.User.username')==null)
+                {
+                    echo '<p>'.$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login')).'</p><br>';
+                    echo $this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add'));
+                }
+                else
+                {
+                    echo '<p>Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b></p><br>';
+                    echo $this->Html->link('Logout',array('controller' =>'users','action'=>'logout'));
+                }
+        ?>
     </div>
 
     <div id="simple">

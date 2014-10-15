@@ -3,52 +3,85 @@
 <head>
     <title>Busqueda</title>
     <style>
-    body
-     {
-          background: #151515;
-     }
-     #simple
-            {
-                float:left;
-                width:700px;
-                background-color:#fff;
-                border:solid 1px #dcdcdc;
-                padding-top:10px;
-                padding-left:10px;
-                padding-right:10px;
-                padding-bottom:10px;
-                font-family: Helvetica, Geneva, sans-serif;
-                color: black;
-            }
-     #info
-         {
+        body
+        {
+            background: #FFFFFF;
+        }
+
+        #container
+        {
+            margin-left: auto;
+            margin-right: auto;
+            width:1000px;
+            background-color: #151515;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: gray;
+        }
+
+        #cabecera
+        {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+        }
+
+        #searchbar
+        {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+        }
+
+        #simple
+        {
+            float:left;
+            width:700px;
+            background-color:#fff;
+            border:solid 1px #dcdcdc;
+            padding-top:10px;
+            padding-left:10px;
+            padding-right:10px;
+            padding-bottom:10px;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: black;
+        }
+
+        #info
+        {
             float: right;
             display: inline;
             width:420px;
         }
-     #info h3
-        {
-         font-family: Helvetica, Geneva;
-         color: #56BBAC;
-     }
-     #info p
-     {
-        padding-bottom:10px
-     }
-     </style>
-</head>
-<body>
-<div id="imagen">
-     <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
-</div>
-<div>
-    <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
-    <?php  echo $this->Form->input("q", array('label' => 'Busqueda')); ?>
-    <?php  echo $this->Form->end("Busqueda"); ?>
 
-</div>
-<!-- Here's where we loop through our $results array, printing out post info -->
- <div id="simple">
+        #info h3
+        {
+            font-family: Helvetica, Geneva;
+            color: #56BBAC;
+        }
+
+        #info p
+        {
+            padding-bottom:10px
+        }
+    </style>
+</head>
+
+<body>
+<div id="container">
+
+    <div id="cabecera">
+        <div id="imagen">
+            <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
+        </div>
+    </div>
+
+    <div id="searchbar">
+        <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
+        <?php  echo $this->Form->input("q", array('label' => 'Búsqueda')); ?>
+        <?php  echo $this->Form->end("Buscar"); ?>
+    </div>
+
+    <div id="simple">
         <?php foreach ($results as $product): ?>
             <tr>
                  <img width="200" height="200" src= "<?php echo $linkImagen = $product['Product']['image'] ?>" />
@@ -73,6 +106,6 @@
         <?php endforeach; ?>
         <?php unset($product); ?>
     </div>
-
+</div>
 </body>
 </html>
