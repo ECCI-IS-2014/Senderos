@@ -105,7 +105,7 @@
     <div id="nav">
         <ul>
             <li><a>Inicio</a></li>
-            <li><a>Clientes</a></li>
+            <li><a href="../Users/index">Clientes</a></li>
             <li><a>F.A.Q</a></li>
             <li><a>Ayuda</a></li>
             <li><a>Contáctenos</a></li>
@@ -113,7 +113,15 @@
     </div>
 
     <div id="derecha">
-        <p>Texto derecha</p>
+    <?php
+        if($this->Session->read('Auth.User.username')==null){
+            echo '<p><a href="../Users/login">Login</a></p>';
+            echo '<p><a href="../Users/add">Create User</a></p>';
+        }else{
+            echo '<p><b>'.$this->Session->read('Auth.User.username').'</b></p>';
+            echo '<p><a href="../Users/logout">Logout</a></p>';
+        }
+    ?>
     </div>
 
     <div id="simple">
