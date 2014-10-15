@@ -109,7 +109,7 @@
             <li><a>F.A.Q</a></li>
             <li><a>Ayuda</a></li>
             <li><a>Contáctenos</a></li>
-			<li><a  href='http://localhost/cakephp/products/search'>Buscar</a></li>
+			<li><?php echo $this->Form->postLink('Buscar',array('action' => 'search'));?></li>
         </ul>
     </div>
 
