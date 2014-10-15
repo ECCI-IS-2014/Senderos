@@ -116,11 +116,11 @@
     <div id="derecha">
     <?php
         if($this->Session->read('Auth.User.username')==null){
-            echo '<p><a href="../Users/login">Login</a></p>';
-            echo '<p><a href="../Users/add">Create User</a></p>';
+            echo '<p>'.$this->Html->link('Login',array('controller' =>'users','action'=>'login')).'</p><br>';
+            echo $this->Html->link('Create User',array('controller' => 'users', 'action' => 'add'));
         }else{
-            echo '<p><b>'.$this->Session->read('Auth.User.username').'</b></p>';
-            echo '<p><a href="../Users/logout">Logout</a></p>';
+            echo '<p><b>'.$this->Session->read('Auth.User.username').'</b></p><br>';
+            echo $this->Html->link('Logout',array('controller' =>'users','action'=>'logout'));
         }
     ?>
     </div>

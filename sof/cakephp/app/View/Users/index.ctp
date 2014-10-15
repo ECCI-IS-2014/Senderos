@@ -1,6 +1,6 @@
 <?php
 if($this->Session->read('Auth.User.username')==null){
-    echo $this->Html->link('Add New User',array('controller' => 'users', 'action' => 'add'));
+    echo $this->Html->link('Create New User',array('controller' => 'users', 'action' => 'add'));
     echo ('<br>');
     echo $this->Html->link('Login',array('controller' =>'users','action'=>'login'));
 }else{
@@ -9,7 +9,7 @@ if($this->Session->read('Auth.User.username')==null){
 }
 ?>
 <br><br>
-<a href="../../Products/index">Inicio</a>
+<?php echo $this->Html->link('Inicio',array('controller'=>'products','action'=>'index')); ?>
 <br><br>
 <h1>Current Users</h1>
 <table>
