@@ -10,16 +10,21 @@
     color: gray;
     background-color: #FFFFFF
   }
-  table
+
+  #simple
   {
-    padding: 10px;
-    font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif;
-    color: #1C1C1C;
+    float:left;
+    width:700px;
+    background:#fff;
+    border:solid 1px #dcdcdc;
+    padding-top:10px;
+    padding-left:10px;
+    padding-bottom:10px;
   }
 
   #nav
   {
-    padding: 0;
+    padding:40px;
   }
   #nav li
   {
@@ -41,10 +46,6 @@
     margin-top:-2px;
     padding-bottom:12px;
   }
-  form {
-      width:200px;
-      margin:50px auto;
-  }
 
   </style>
 </head>
@@ -62,39 +63,35 @@
           </ul>
         </div>
     </div>
-    <table>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Género</th>
-        <th>Precio</th>
-    </tr>
 
-    <?php foreach ($products as $product): ?>
-    <tr>
-        <td>
-            <?php echo $this->Html->link($product['Product']['id'],
-            array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
-        </td>
-        <td><?php echo $product['Product']['name']; ?></td>
-        <td><?php echo $product['Product']['genre']; ?></td>
-        <td><?php echo $product['Product']['price']; ?></td>
-		 <td>
-            <?php
-                echo $this->Html->link(
-                    'Edit',
-                    array('action' => 'edit', $product['Product']['id'])
-                );
-            ?>
-        </td>
-        <td>
-        <?php
-            echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
-        ?>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-    <?php unset($product); ?>
-    </table>
+    <div id="simple">
+       <?php foreach ($products as $product): ?>
+          <tr>
+             <img width="200" height="200" src= "<?php echo $linkImagen = $product['Product']['image'] ?>" />
+             <td>
+                <?php echo $this->Html->link($product['Product']['name'],array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
+                  </td>
+                  <td><?php echo $product['Product']['genre']; ?></td>
+                  <td><?php echo $product['Product']['price']; ?></td>
+          		 <td>
+                      <?php
+                          echo $this->Html->link(
+                              'Edit',
+                              array('action' => 'edit', $product['Product']['id'])
+                          );
+                      ?>
+                  </td>
+                  <td>
+                  <?php
+                      echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+                  ?>
+                  </td>
+                  <div class="cl">&nbsp;</div>
+                     <a href="#" class="small">Detalles</a> <a href="#" class="small">Añadir al carrito</a>
+                  <div class="cl">&nbsp;</div>
+          </tr>
+       <?php endforeach; ?>
+       <?php unset($product); ?>
+    </div>
 </body>
 </html>
