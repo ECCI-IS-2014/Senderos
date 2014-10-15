@@ -7,7 +7,7 @@
 
         body
         {
-            background: #FFFFFF;
+            background: #151515;
         }
 
         #container
