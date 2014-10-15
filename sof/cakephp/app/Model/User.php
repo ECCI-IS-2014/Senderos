@@ -5,15 +5,18 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
     public $validate = array(
         'username' => array(
-			'required' => array(
-			'rule' => array('notEmpty'),
-			'message' => 'A username is required',
-			'rule' => 'isUnique',
-			'message' => 'The username is not available',
-			'rule'    => array('minLength', '6'),
-			'message' => 'Minimum 6 characters long',
-			)
-		),
+			'rule1' => array(
+				'rule' => array('notEmpty')			
+			),
+			'rule2' => array(
+				'rule' => array('isUnique'),
+				'message' => 'The name is already used'			
+			),
+			'rule3' => array(
+				'rule'    => array('minLength', '6'),
+				'message' => 'Minimum 6 characters long'			
+			)			
+        ),
 		'password' => array(
 			'required' => array(
 				'rule' => array('notEmpty'),

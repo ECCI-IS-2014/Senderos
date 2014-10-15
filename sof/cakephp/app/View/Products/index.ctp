@@ -109,6 +109,7 @@
             <li><a>F.A.Q</a></li>
             <li><a>Ayuda</a></li>
             <li><a>Contáctenos</a></li>
+			<li><a  href='http://localhost/cakephp/products/search'>Buscar</a></li>
         </ul>
     </div>
 
