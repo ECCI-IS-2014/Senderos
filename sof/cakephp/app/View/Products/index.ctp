@@ -7,7 +7,7 @@
 
         body
         {
-            background-color: #151515
+            background: #151515;
         }
 
         #contenedor
@@ -15,22 +15,52 @@
             margin-left: auto;
             margin-right: auto;
             width:1000px;
+            background-color: #151515;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
-            background-color: #FFFFFF
         }
 
         #cabecera
         {
             margin-left: auto;
             margin-right: auto;
-            background-color: #b0e0e6;
+            background-color: #FFFFFF;
         }
 
         #derecha
         {
             float:right;
             padding:10px;
+        }
+
+        #simple
+        {
+            float:left;
+            width:700px;
+            background-color:#fff;
+            border:solid 1px #dcdcdc;
+            padding-top:10px;
+            padding-left:10px;
+            padding-right:10px;
+            padding-bottom:10px;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: black;
+        }
+
+        #info
+        {
+            float: right;
+            display: inline;
+            width:420px;
+        }
+        #info h3
+        {
+            font-family: Helvetica, Geneva;
+            color: #56BBAC;
+        }
+        #info p
+        {
+            padding-bottom:10px
         }
 
         #nav
@@ -52,25 +82,13 @@
             width:100px;
             float:left;
             padding: 10px;
-            background-color: #04B486;
+            background-color: #56BBAC;
             color: #fff;
         }
 
         #nav li a:hover
         {
-            background-color: #01DFA5;
-        }
-
-        #simple
-        {
-            float:left;
-            width:700px;
-            background:#fff;
-            border:solid 1px #dcdcdc;
-            padding-top:10px;
-            padding-left:10px;
-            padding-right:10px;
-            padding-bottom:10px;
+            background-color: #4C9E90;
         }
     </style>
 </head>
@@ -102,21 +120,23 @@
         <?php foreach ($products as $product): ?>
             <tr>
                  <img width="200" height="200" src= "<?php echo $linkImagen = $product['Product']['image'] ?>" />
-                 <td>
-                    <?php echo $this->Html->link($product['Product']['name'],array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
-                 </td>
-                 <td><?php echo $product['Product']['genre']; ?></td>
-                 <td><?php echo $product['Product']['price']; ?></td>
-          		 <td>
-                      <?php echo $this->Html->link('Edit',array('action' => 'edit', $product['Product']['id']));?>
-                 </td>
-                 <td>
-                 <?php
-                    echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));?>
-                 </td>
-                 <div>&nbsp;</div>
-                    <a>Detalles</a> <a>Añadir al carrito</a>
-                 <div>&nbsp;</div>
+                 <div id="info">
+                    <h3><?php echo $product['Product']['name']; ?></h3>
+                    <p><?php echo $product['Product']['genre']; ?></p>
+                    <p><?php echo $product['Product']['price']; ?></p>
+                    <div>&nbsp;</div>
+                    <td id="small">
+                        <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
+                    </td>
+                    <td id="small">Añadir al carrito</td>
+          		    <td id="small">
+                        <?php echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));?>
+                    </td>
+                    <td id="small">
+                        <?php echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));?>
+                    </td>
+                    <div>&nbsp;</div>
+                 </div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>
