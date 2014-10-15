@@ -13,8 +13,7 @@ class Product extends AppModel
         'name' => array(
             'rule' => 'notEmpty',
 			'rule' => 'isUnique',
-            'message' => 'The name is already used',
-			'rule' => array('minLength', 1)
+            'message' => 'The name is already used'
         ),
         'genre' => array(
             'rule' => 'notEmpty'
