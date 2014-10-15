@@ -92,6 +92,31 @@ class ProductsController extends AppController
             return $this->redirect(array('action' => 'index'));
         }
     }
+	
+	
+    function search() {
+        /*$this->set('results',$this->Post->find('all', array('conditions' => array(
+            'Post.title LIKE' => '%q%',
+            'Post.body LIKE' => '%q%'))));
+        */
+        if (isset($this->request->data['Products']['q'])) {
+            $con = $this->request->data['Products']['q'];
+        } else {
+            $con = "";
+        }
+
+        $this->set('results',$this->Product->find('all',array(
+            'conditions' =>  array (
+                'OR' => array(
+                    'Product.name LIKE' => '%'.$con.'%',
+                    'Product.genre LIKE' => '%'.$con.'%',
+                    'Product.description LIKE' => '%'.$con.'%',
+                    'Product.console LIKE' => '%'.$con.'%'
+                )
+
+            )
+        )));
+    }
 }
 
 ?>
