@@ -2,94 +2,146 @@
 <html>
 
 <head>
-  <title>Catálogo de la tienda</title>
-  <style type="text/css">
-  body
-  {
-    font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif;
-    color: gray;
-    background-color: #FFFFFF
-  }
-  table
-  {
-    font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif;
-    color: #1C1C1C;
-  }
+    <title>Catálogo de la tienda</title>
+    <style>
 
-  #nav
-  {
-    padding: 0;
-  }
-  #nav li
-  {
-    display: inline;
-  }
-  #nav li a
-  {
-    font-family: Arial;
-    font-size:11px;
-    text-decoration: none;
-    float:left;
-    padding: 10px;
-    background-color: #2175bc;
-    color: #fff;
-  }
-  #nav li a:hover
-  {
-    background-color: #2586d7;
-    margin-top:-2px;
-    padding-bottom:12px;
-  }
+        body
+        {
+            background: #151515;
+        }
 
-  </style>
+        #contenedor
+        {
+            margin-left: auto;
+            margin-right: auto;
+            width:1000px;
+            background-color: #151515;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: gray;
+        }
+
+        #cabecera
+        {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+        }
+
+        #derecha
+        {
+            float:right;
+            padding:10px;
+        }
+
+        #simple
+        {
+            float:left;
+            width:700px;
+            background-color:#fff;
+            border:solid 1px #dcdcdc;
+            padding-top:10px;
+            padding-left:10px;
+            padding-right:10px;
+            padding-bottom:10px;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: black;
+        }
+
+        #info
+        {
+            float: right;
+            display: inline;
+            width:420px;
+        }
+        #info h3
+        {
+            font-family: Helvetica, Geneva;
+            color: #56BBAC;
+        }
+        #info p
+        {
+            padding-bottom:10px
+        }
+
+        #nav
+        {
+            float:left;
+            padding:10px;
+        }
+
+        #nav li
+        {
+            display: inline;
+        }
+
+        #nav li a
+        {
+            font-family: Helvetica, Geneva, sans-serif;
+            font-size:15px;
+            text-decoration: none;
+            width:100px;
+            float:left;
+            padding: 10px;
+            background-color: #56BBAC;
+            color: #fff;
+        }
+
+        #nav li a:hover
+        {
+            background-color: #4C9E90;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="nav">
-        <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
-        <div class="inner">
-          <ul>
-            <li><a href=”#”>Inicio</a></li>
-            <li><a href=”#”>Clientes</a></li>
-            <li><a href=”#”>F.A.Q</a></li>
-            <li><a href=”#”>Ayuda</a></li>
-            <li><a href=”#”>Contáctenos</a></li>
-          </ul>
+<div id="contenedor">
+
+    <div id="cabecera">
+        <div id="imagen">
+            <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
         </div>
     </div>
-    <table>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Género</th>
-        <th>Precio</th>
-    </tr>
 
-    <?php foreach ($products as $product): ?>
-    <tr>
-        <td>
-            <?php echo $this->Html->link($product['Product']['id'],
-            array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
-        </td>
-        <td><?php echo $product['Product']['name']; ?></td>
-        <td><?php echo $product['Product']['genre']; ?></td>
-        <td><?php echo $product['Product']['price']; ?></td>
-		 <td>
-            <?php
-                echo $this->Html->link(
-                    'Edit',
-                    array('action' => 'edit', $product['Product']['id'])
-                );
-            ?>
-        </td>
-        <td>
-        <?php
-            echo $this->Form->postLink('Delete',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
-        ?>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-    <?php unset($product); ?>
-    </table>
+    <div id="nav">
+        <ul>
+            <li><a>Inicio</a></li>
+            <li><a>Clientes</a></li>
+            <li><a>F.A.Q</a></li>
+            <li><a>Ayuda</a></li>
+            <li><a>Contáctenos</a></li>
+        </ul>
+    </div>
+
+    <div id="derecha">
+        <p>Texto derecha</p>
+    </div>
+
+    <div id="simple">
+        <?php foreach ($products as $product): ?>
+            <tr>
+                 <img width="200" height="200" src= "<?php echo $linkImagen = $product['Product']['image'] ?>" />
+                 <div id="info">
+                    <h3><?php echo $product['Product']['name']; ?></h3>
+                    <p><?php echo $product['Product']['genre']; ?></p>
+                    <p><?php echo $product['Product']['price']; ?></p>
+                    <div>&nbsp;</div>
+                    <td id="small">
+                        <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
+                    </td>
+                    <td id="small">Añadir al carrito</td>
+          		    <td id="small">
+                        <?php echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));?>
+                    </td>
+                    <td id="small">
+                        <?php echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));?>
+                    </td>
+                    <div>&nbsp;</div>
+                 </div>
+            </tr>
+        <?php endforeach; ?>
+        <?php unset($product); ?>
+    </div>
+
+</div>
 </body>
 </html>

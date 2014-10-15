@@ -9,18 +9,17 @@ class User extends AppModel {
 			'rule' => array('notEmpty'),
 			'message' => 'A username is required',
 			'rule' => 'isUnique',
-			'message' => 'The username is not available'
+			'message' => 'The username is not available',
+			'rule'    => array('minLength', '6'),
+			'message' => 'Minimum 6 characters long',
 			)
 		),
 		'password' => array(
 			'required' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'A password is required',
-				'rule' => array('minLength', '6'),
-				'message' => 'Minimum 6 characters long',
-				'rule'     => 'alphaNumeric',
-                'required' => true,
-                'message'  => 'Letters and numbers only'
+				'rule'    => array('minLength', '8'),
+				'message' => 'Minimum 8 characters long'
 			),
 		),
 			'name' => array(

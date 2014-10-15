@@ -1,4 +1,13 @@
-<?php echo $this->Html->link('Add New User',array('controller' => 'users', 'action' => 'add')); ?>
+<?php
+if($this->Session->read('Auth.User.username')==null){
+    echo $this->Html->link('Add New User',array('controller' => 'users', 'action' => 'add'));
+    echo ('<br>');
+    echo $this->Html->link('Login',array('controller' =>'users','action'=>'login'));
+}else{
+    echo 'Logged in as: '.$this->Session->read('Auth.User.username').'<br>';
+    echo $this->Html->link('Logout',array('controller' =>'users','action'=>'logout'));
+}
+?>
 <h1>Current Users</h1>
 <table>
     <tr>
