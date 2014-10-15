@@ -18,34 +18,55 @@
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
         }
+
+        #product
+        {
+            float:left;
+            width:1000px;
+            margin-left: auto;
+            margin-right: auto;
+            border:solid 1px #dcdcdc;
+            padding-top:10px;
+            padding-left:10px;
+            padding-right:10px;
+            padding-bottom:10px;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
+
 <div id="container">
+
     <?php include("header.ctp");?>
 
-    <h1><?php echo "Nombre del videojuego: ". $product['Product']['name']; ?></h1>
+    <div id="product">
 
-    <p><?php echo "Género: ". $product['Product']['genre']; ?></p>
+        <h3><?php echo "Nombre del videojuego: ". $product['Product']['name']; ?></h3>
 
-    <p><?php echo "Consola: ". $product['Product']['console']; ?></p>
+        <p><b>Género: </b><?php echo $product['Product']['genre']; ?></p>
 
-    <p><?php echo "Año de lanzamiento: ". $product['Product']['release_year']; ?></p>
+        <p><b>Consola: </b><?php echo $product['Product']['console']; ?></p>
 
-    <p><?php echo "Precio: $". $product['Product']['price']; ?></p>
+        <p><b>Año de lanzamiento: </b><?php echo $product['Product']['release_year']; ?></p>
 
-    <p><?php echo "Descripción: ". $product['Product']['description']; ?></p>
+        <p><b>Precio: </b><?php echo $product['Product']['price']; ?></p>
 
-    <p><?php echo "Unidades disponibles: ". $product['Product']['amount']; ?></p>
+        <p><b>Descripción: </b><?php echo $product['Product']['description']; ?></p>
 
-    <p> <?php echo "Imagen:";$linkImagen = $product['Product']['image']; ?></p>
+        <p><b>Unidades disponibles: </b><?php echo $product['Product']['amount']; ?></p>
 
-    <img width="420" height="320" src= "<?php echo $linkImagen; ?>" />
+        <p> <?php $linkImagen = $product['Product']['image']; ?></p>
+        <img width="420" height="320" src= "<?php echo $linkImagen; ?>" />
 
-    <p> <?php echo "Video:"; $linkVideo = $product['Product']['video']; ?></p>
+        <p> <?php $linkVideo = $product['Product']['video']; ?></p>
+        <iframe width="420" height="320" src="<?php echo $linkVideo; ?>" frameborder="0" allowfullscreen></iframe>
 
-    <iframe width="420" height="320" src="<?php echo $linkVideo; ?>" frameborder="0" allowfullscreen></iframe>
+    </div>
+
 </div>
+
 </body>
 </html>
