@@ -73,6 +73,9 @@
         <?php  echo $this->Form->end("Buscar"); ?>
     </div>
 
+    <br><br><br>
+    <?php echo $this->Html->link('Añadir producto al catálogo',array('action' => 'add'));?>
+
     <div id="simple">
         <?php foreach ($results as $product): ?>
             <tr>
@@ -80,7 +83,7 @@
                  <div id="info">
                     <h3><?php echo $product['Product']['name']; ?></h3>
                     <p><?php echo $product['Product']['genre']; ?></p>
-                    <p><?php echo $product['Product']['price']; ?></p>
+                    <p><?php echo '$'.$product['Product']['price']; ?></p>
                     <div>&nbsp;</div>
                     <td id="small">
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>

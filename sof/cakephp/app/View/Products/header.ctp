@@ -7,7 +7,7 @@
 
         body
         {
-            background: #FFFFFF;
+            background: #151515;
         }
 
         #container
@@ -28,8 +28,19 @@
 
         #nav
         {
-            float:left;
+            margin:10px;
+            margin-left: auto;
+            margin-right: auto;
+            height:50px;
             padding:10px;
+            background-color: #FFFFFF;
+        }
+
+        #nav ul
+        {
+            float:left;
+            margin:0px;
+            width:1000px;
         }
 
         #nav li
@@ -42,7 +53,7 @@
             font-family: Helvetica, Geneva, sans-serif;
             font-size:15px;
             text-decoration: none;
-            width:100px;
+            width:120px;
             float:left;
             padding: 10px;
             background-color: #56BBAC;
@@ -58,6 +69,8 @@
         {
             float:right;
             padding:10px;
+            height:17px;
+            color: #151515;
         }
 
     </style>
@@ -68,33 +81,31 @@
 
     <div id="cabecera">
         <div id="imagen">
-            <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:228px;height:128px"));?>
+            <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:240px;height:128px;padding:10px;"));?>
         </div>
     </div>
 
     <div id="nav">
         <ul>
-            <li><?php echo $this->Form->postLink('Inicio',array('action' => 'index'));?></li>
-            <li><a href="../Users/index">Clientes</a></li>
-            <li><a>F.A.Q</a></li>
-            <li><a>Ayuda</a></li>
-            <li><a>Contáctenos</a></li>
-			<li><?php echo $this->Form->postLink('Buscar',array('action' => 'search'));?></li>
+            <li align=center><?php echo $this->Form->postLink('Inicio',array('action' => 'index'));?></li>
+            <li align=center><?php echo $this->Form->postLink('Clientes',array('controller'=>'users','action' => 'index'));?></li>
+            <li align=center><a>F.A.Q</a></li>
+            <li align=center><a>Ayuda</a></li>
+            <li align=center><a>Contáctenos</a></li>
+			<li align=center><?php echo $this->Form->postLink('Buscar',array('action' => 'search'));?></li>
         </ul>
-    </div>
 
-    <div id="rightside">
-        <?php   if($this->Session->read('Auth.User.username')==null)
-                {
-                    echo '<p>'.$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login')).'</p><br>';
-                    echo $this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add'));
-                }
-                else
-                {
-                    echo '<p>Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b></p><br>';
-                    echo $this->Html->link('Logout',array('controller' =>'users','action'=>'logout'));
-                }
-        ?>
+        <div id="rightside">
+            <?php   if($this->Session->read('Auth.User.username')==null)
+                    {
+                        echo '<p>'.$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
+                    }
+                    else
+                    {
+                        echo '<p>Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
+                    }
+            ?>
+        </div>
     </div>
 
 </div>
