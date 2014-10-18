@@ -58,8 +58,12 @@
 
         <p><b>Unidades disponibles: </b><?php echo $product['Product']['amount']; ?></p>
 
-        <p> <?php $linkImagen = $product['Product']['image']; ?></p>
-        <img width="420" height="320" src= "<?php echo $linkImagen; ?>" />
+        <!--
+        <p> <?php //$linkImagen = $product['Product']['image']; ?></p>
+        <img width="420" height="320" src= "<?php //echo $linkImagen; ?>" />
+		-->
+		
+		<?php echo $this->Html->image($product['Product']['image'], array('style'=> "width:240px;height:128px;padding:10px;"));?>
 
         <p> <?php $linkVideo = $product['Product']['video']; ?></p>
         <iframe width="420" height="320" src="<?php echo $linkVideo; ?>" frameborder="0" allowfullscreen></iframe>
