@@ -1,7 +1,9 @@
+<?php include("header.ctp");?>
+
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
-        <legend><?php echo __('Edit User'); ?></legend>
+        <legend><?php echo __('Editar usuario'); ?></legend>
         <?php echo $this->Form->input('username');
         echo $this->Form->input('password');
 		echo $this->Form->input('name');
@@ -12,5 +14,5 @@
         ));
     ?>
     </fieldset>
-<?php echo $this->Form->end(__('Save Changes')); ?>
+<?php echo $this->Form->end(__('Guardar cambios')); ?>
 </div>

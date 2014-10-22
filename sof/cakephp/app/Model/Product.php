@@ -34,6 +34,22 @@ class Product extends AppModel
             'rule' => 'notEmpty'
         )
     );
+	
+	public function bringAllRegisters() {
+        return $this->find('all');
+    }
+	
+	public function editField() {
+        $data = array('id' => 1, 'name' => 'RE5');
+		// This will update Recipe with id 10
+		$this->save($data);
+		return $this->bringAllRegisters();
+    }
+	
+	public function removeRegister() {
+		$this->delete(1,false);
+		return $this->bringAllRegisters();
+    }
 }
 
 ?>

@@ -50,29 +50,34 @@ class ProductsController extends AppController
         }
     }
 	
-	public function add() {
-		/*$this->request->is() takes a single argument, which can be the request METHOD (get, put, post, delete) 
-		or some request identifier (ajax). It is not a way to check for specific posted data. For instance, 
-		$this->request->is('book')will not return true if book data was posted.*/
+	/* public function add() {
         if ($this->request->is('post')) { 
-			/*We call the create() method first in order to reset the model state for saving new information. 
-			It does not actually create a record in the database, 
-			but clears Model::$id and sets Model::$data based on your database field defaults.*/
             $this->Product->create();
-			/*if the HTTP method of the request was POST, it tries to save the data using the Post model.*/
-			/*When a user uses a form to POST data to your application, that information is available in $this->request->data. 
-			You can use the pr() or debug() functions to print it out if you want to see what it looks like.*/
             if ($this->Product->save($this->request->data)) {
-				/*We use the SessionComponent’s SessionComponent::setFlash() method to set a message to a session variable to be displayed 
-				on the page after redirection. In the layout we have SessionHelper::flash which displays the message and clears the corresponding 
-				session variable. The controller’s Controller::redirect function redirects to another URL. The param array('action' => 'index') 
-				translates to URL /posts (that is, the index action of the posts controller). You can refer to Router::url() function on the API to see the 
-				formats in which you can specify a URL for various CakePHP functions*/
-				/*Calling the save() method will check for validation errors and abort the save if any occur.*/
                 $this->Session->setFlash(__('Your product has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
-			/*If for some reason it doesn’t save, it just renders the view. This gives us a chance to show the user validation errors or other warnings*/
+            $this->Session->setFlash(__('Unable to add your product.'));
+        }
+    } */
+	
+	public function add() {
+        if ($this->request->is('post')) { 
+            $this->Product->create();
+            if ($this->Product->save($this->request->data)) {
+				if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
+				  // Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
+				  //$destino = WWW_ROOT.'uploads'.DS;
+				  $destino = WWW_ROOT.'img'.DS;
+				  move_uploaded_file($this->request->data['Product']['archivo']['tmp_name'], $destino.$this->request->data['Product']['archivo']['name']);
+				  $id = $this->request->data['Product']['id'];
+				  $this->Product->read(null, $id);
+				  $this->Product->set('image', $this->request->data['Product']['archivo']['name']);
+				  $this->Product->save();
+				}
+                $this->Session->setFlash(__('Your product has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
             $this->Session->setFlash(__('Unable to add your product.'));
         }
     }
@@ -91,6 +96,31 @@ class ProductsController extends AppController
             );*/
             return $this->redirect(array('action' => 'index'));
         }
+    }
+	
+	
+    function search() {
+        /*$this->set('results',$this->Post->find('all', array('conditions' => array(
+            'Post.title LIKE' => '%q%',
+            'Post.body LIKE' => '%q%'))));
+        */
+        if (isset($this->request->data['Products']['q'])) {
+            $con = $this->request->data['Products']['q'];
+        } else {
+            $con = "";
+        }
+
+        $this->set('results',$this->Product->find('all',array(
+            'conditions' =>  array (
+                'OR' => array(
+                    'Product.name LIKE' => '%'.$con.'%',
+                    'Product.genre LIKE' => '%'.$con.'%',
+                    'Product.description LIKE' => '%'.$con.'%',
+                    'Product.console LIKE' => '%'.$con.'%'
+                )
+
+            )
+        )));
     }
 }
 
