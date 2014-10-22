@@ -104,6 +104,10 @@
                     {
                         echo '<p>Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
                     }
+
+                    echo 'En carrito: '.$this->Carrito->calcularCarrito().'$';
+
+
             ?>
         </div>
     </div>
