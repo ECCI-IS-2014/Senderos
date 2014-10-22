@@ -32,7 +32,7 @@ CREATE TABLE products(
 	release_year YEAR(4) NOT NULL, -- debe ser entre 1990-actualidad
 	price DOUBLE UNSIGNED NOT NULL, -- debe ser en dólares
 	description TEXT NOT NULL, -- no hay restricciones
-	amount INT UNSIGNED NOT NULL, -- cantidad actual del producto, en unidades
+	--amount INT UNSIGNED NOT NULL, -- cantidad actual del producto, en unidades
 	presentation VARCHAR(100) NOT NULL, -- se refiere a si es digital o física
 	requirement TEXT, -- no hay restricciones, requerimientos específicos del videojuego
 	rated TEXT, -- se refiere al público del jeugo, no hay restricciones 
@@ -40,6 +40,25 @@ CREATE TABLE products(
 	image TEXT, -- nombre.extensión
 	video TEXT -- link válido de un vídeo
 );
+
+-- ESTO LO ESTOY HACIENDO NUEVO 
+CREATE TABLE stocks(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	product_id INT UNSIGNED NOT NULL, 
+	amount INT UNSIGNED NOT NULL
+);
+
+CREATE TABLE wishlists(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_id INT UNSIGNED NOT NULL
+);
+
+CREATE TABLE products_wishlists(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	wishlist_id INT UNSIGNED NOT NULL,
+	product_id INT UNSIGNED NOT NULL
+);
+-- HASTA AQUÍ LO ESTOY HACIENDO NUEVO 
 
 CREATE TABLE platforms(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -49,7 +68,7 @@ CREATE TABLE platforms(
 CREATE TABLE categories(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
-	id_category INT UNSIGNED -- hace referencia al padre de la subcategoría, puede no tener padre
+	parent_id INT UNSIGNED -- hace referencia al padre de la subcategoría, puede no tener padre
 );
 
 CREATE TABLE categories_products(
