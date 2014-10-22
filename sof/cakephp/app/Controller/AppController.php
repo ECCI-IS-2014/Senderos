@@ -32,6 +32,7 @@ App::uses('Controller', 'Controller');
  */
  
 class AppController extends Controller {
+    public $helpers = array('Carrito');
     public $components = array(
         'Session',
         'Auth' => array(
@@ -40,7 +41,7 @@ class AppController extends Controller {
                 'action' => 'index'
             ),
             'logoutRedirect' => array(
-                'controller' => 'users',
+                'controller' => 'products',
                 'action' => 'index',
                 'home'
             ),
@@ -54,4 +55,5 @@ class AppController extends Controller {
     public function beforeFilter() {
         $this->Auth->allow('index', 'view');
     }
+
 }
