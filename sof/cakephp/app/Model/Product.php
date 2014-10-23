@@ -23,22 +23,7 @@ class Product extends AppModel{
                 'offset' => '',
                 'finderQuery' => '',
                 'with' => '' */
-            ),/*
-        'Bargain' =>
-            array(
-                'className' => 'Bargain',
-                'joinTable' => 'bargains_products',
-                'foreignKey' => 'product_id',
-                'associationForeignKey' => 'bargain_id',
-                'unique' => true /*,
-                'conditions' => '',
-                'fields' => '',
-                'order' => '',
-                'limit' => '',
-                'offset' => '',
-                'finderQuery' => '',
-                'with' => '' */
-            )*/
+            )
     );
 	/*The $validate array tells CakePHP how to validate your data when the save() method is called.*/
 	public $validate = array(
