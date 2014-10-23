@@ -6,7 +6,8 @@ class ProductsController extends AppController
 {
     public $helpers = array('Html', 'Form');
 	var $components = array('Session');
-
+	var $uses = array('Platform', 'Category', 'Product');
+	
     public function index()
     {
         $this->set('products', $this->Product->find('all'));
@@ -61,7 +62,31 @@ class ProductsController extends AppController
         }
     } */
 	
+	/*public function add() {
+        if ($this->request->is('post')) { 
+            $this->Product->create();
+            if ($this->Product->save($this->request->data)) {
+				if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
+				  // Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
+				  //$destino = WWW_ROOT.'uploads'.DS;
+				  $destino = WWW_ROOT.'img'.DS;
+				  move_uploaded_file($this->request->data['Product']['archivo']['tmp_name'], $destino.$this->request->data['Product']['archivo']['name']);
+				  $id = $this->request->data['Product']['id'];
+				  $this->Product->read(null, $id);
+				  $this->Product->set('image', $this->request->data['Product']['archivo']['name']);
+				  $this->Product->save();
+				}
+                $this->Session->setFlash(__('Your product has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add your product.'));
+        }
+    }*/
+	
 	public function add() {
+        $this->set('platforms', $this->Platform->find('list'));
+        $this->set('categories', $this->Category->find('list'));
+
         if ($this->request->is('post')) { 
             $this->Product->create();
             if ($this->Product->save($this->request->data)) {
