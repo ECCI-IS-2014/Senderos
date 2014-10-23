@@ -23,9 +23,9 @@
 
 /** General Style Info **/
 body {
-	background: #003d4c;
+	background: #fff;
 	color: #fff;
-	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-family:'lucida grande',helvetica,arial,sans-serif;
 	font-size:90%;
 	margin: 0;
 }
@@ -101,7 +101,7 @@ p {
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 10px 20px 40px 20px;
+	padding: 0px 0px 0px 0px;
 	overflow: auto;
 }
 #footer {
