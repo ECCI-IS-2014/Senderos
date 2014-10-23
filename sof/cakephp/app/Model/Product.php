@@ -23,7 +23,7 @@ class Product extends AppModel{
                 'offset' => '',
                 'finderQuery' => '',
                 'with' => '' */
-            ),
+            ),/*
         'Bargain' =>
             array(
                 'className' => 'Bargain',
@@ -38,7 +38,7 @@ class Product extends AppModel{
                 'offset' => '',
                 'finderQuery' => '',
                 'with' => '' */
-            )
+            )*/
     );
 	/*The $validate array tells CakePHP how to validate your data when the save() method is called.*/
 	public $validate = array(
