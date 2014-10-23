@@ -2,9 +2,10 @@
 <html>
 
 <head>
-    <title>Catálogo de la tienda</title>
+    <title>Busqueda</title>
     <style>
 
+<<<<<<< HEAD
 	#header
 	{
 		text-align: center;
@@ -105,12 +106,83 @@
         padding:10px;
         color: #151515;
     }
+=======
+        body
+        {
+            background: #151515;
+        }
+
+        #container
+        {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: gray;
+        }
+
+        #cabecera
+        {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+        }
+
+        #nav
+        {
+            margin:10px;
+            margin-left: auto;
+            margin-right: auto;
+            height:50px;
+            padding:10px;
+            background-color: #FFFFFF;
+        }
+
+        #nav ul
+        {
+            float:left;
+            margin:0px;
+            width:1000px;
+        }
+
+        #nav li
+        {
+            display: inline;
+        }
+
+        #nav li a
+        {
+            font-family: Helvetica, Geneva, sans-serif;
+            font-size:15px;
+            text-decoration: none;
+            width:120px;
+            float:left;
+            padding: 10px;
+            background-color: #56BBAC;
+            color: #fff;
+        }
+
+        #nav li a:hover
+        {
+            background-color: #4C9E90;
+        }
+
+        #rightside
+        {
+            float:right;
+            padding:10px;
+            height:17px;
+            color: #151515;
+        }
+>>>>>>> 91f8b1dc9d2efad0cc612e281b554c99211b9f52
 
     </style>
 </head>
 
 <body>
+<div id="container">
 
+<<<<<<< HEAD
     <div id="header">
 		    <nav id="nav">
 		    <?php echo $this->Html->image('tiendaweb.png', array('style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;"));?>
@@ -140,16 +212,37 @@
         <div id="right_side">
             <?php
                     if($this->Session->read('Auth.User.username')==null)
+=======
+    <div id="cabecera">
+        <div id="imagen">
+            <?php echo $this->Html->image('tiendaweb.png', array('style'=> "width:240px;height:128px;padding:10px;"));?>
+        </div>
+    </div>
+
+    <div id="nav">
+        <ul>
+            <li align=center><?php echo $this->Form->postLink('Inicio',array('action' => 'index'));?></li>
+            <li align=center><?php echo $this->Form->postLink('Clientes',array('controller'=>'users','action' => 'index'));?></li>
+            <li align=center><a>F.A.Q</a></li>
+            <li align=center><a>Ayuda</a></li>
+            <li align=center><a>Contáctenos</a></li>
+			<li align=center><?php echo $this->Form->postLink('Buscar',array('action' => 'search'));?></li>
+        </ul>
+
+        <div id="rightside">
+            <?php   if($this->Session->read('Auth.User.username')==null)
+>>>>>>> 91f8b1dc9d2efad0cc612e281b554c99211b9f52
                     {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'users','action'=>'wishlist'))."&nbsp&nbsp&nbsp".$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
+                        echo '<p>'.$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
                     }
                     else
                     {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'users','action'=>'wishlist'))."&nbsp&nbsp&nbsp".'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
+                        echo '<p>Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
                     }
             ?>
         </div>
-	</div>
+    </div>
 
+</div>
 </body>
 </html>
