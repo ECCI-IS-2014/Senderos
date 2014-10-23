@@ -21,13 +21,11 @@
         #simple
         {
             float:left;
-            width:700px;
+            width:60%;
             background-color:#fff;
             border:solid 1px #dcdcdc;
-            padding-top:10px;
-            padding-left:10px;
-            padding-right:10px;
-            padding-bottom:10px;
+            padding:10px;
+            margin:10px;
             font-family: Helvetica, Geneva, sans-serif;
             color: black;
         }
