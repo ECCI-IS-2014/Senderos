@@ -56,7 +56,11 @@
 
     <?php include("header.ctp");?>
 
-    <?php echo $this->Html->link('Añadir producto al catálogo',array('action' => 'add'));?>
+    <?php
+        if($this->Session->read('Auth.User.username')!=null && $this->Session->read('Auth.User.role')=='admin'){
+            echo $this->Html->link('Añadir producto al catálogo',array('action' => 'add'));
+        }
+    ?>
     <br><br>
 
     <div id="simple">
@@ -73,12 +77,16 @@
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
                     </td>
                     <td id="small">Añadir al carrito</td>
-          		    <td id="small">
-                        <?php echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));?>
-                    </td>
-                    <td id="small">
-                        <?php echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));?>
-                    </td>
+                    <?php
+                    if($this->Session->read('Auth.User.username')!=null && $this->Session->read('Auth.User.role')=='admin'){
+          		        echo '<td id="small">';
+                        echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));
+                        echo ' </td>';
+                        echo '<td id="small">';
+                        echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+                        echo '</td>';
+                    }
+                    ?>
                     <div>&nbsp;</div>
                  </div>
             </tr>
