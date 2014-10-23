@@ -73,9 +73,6 @@
         <?php  echo $this->Form->end("Buscar"); ?>
     </div>
 
-    <br><br><br>
-    <?php echo $this->Html->link('Añadir producto al catálogo',array('action' => 'add'));?>
-
     <div id="simple">
         <?php foreach ($results as $product): ?>
             <tr>

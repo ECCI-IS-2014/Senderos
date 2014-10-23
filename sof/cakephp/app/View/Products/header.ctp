@@ -80,7 +80,7 @@
         font-family: Helvetica, sans-serif;
         font-size:9px;
         color:#000000;
-        width:500px;
+        width:30%;
         float:left;
         text-align:left;
         padding:0.5em;
@@ -95,8 +95,7 @@
         margin-top:0.4em;
         color:#000000;
         text-align:center;
-        padding:0.5em;
-        margin-top:0.4em;
+        padding:0.3em;
     }
 
     #right_side
@@ -118,7 +117,7 @@
 		        <ul>
                     <li align=center><?php echo $this->Form->postLink('Inicio',array('controller' => 'products','action' => 'index'));?></li>
                     <li align=center><a>Ofertas</a></li>
-                    <li align=center><a>Ventas</a></li>
+                    <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
                     <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
         			<li align=center><?php echo $this->Form->postLink('Buscar',array('controller' => 'products','action' => 'search'));?></li>
@@ -131,11 +130,11 @@
         <?php echo $this->Html->image('search.png', array('style'=> "float:left;width:20px;height:20px;padding:10px;"));?>
 
         <div id="s_field">
-            <input id="input" type="text"/>
+            <input name="input" type="text" placeholder="Búsqueda"/>
         </div>
 
         <div id="u15" class="ax_html_button">
-            <input id="input" type="submit" value="Ir"/>
+            <input name="input" type="submit" value="Ir"/>
         </div>
 
         <div id="right_side">
