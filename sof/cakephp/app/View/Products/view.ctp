@@ -33,6 +33,17 @@
             font-family: Helvetica, Geneva, sans-serif;
             color: black;
         }
+		#wl{
+        	float: right;
+        	border: 1px solid #CCC;
+        	padding-left: 10px;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            margin-left: auto;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -43,6 +54,10 @@
     <?php include("header.ctp");?>
 
     <div id="product">
+	
+		<div id="wl">
+			<?php echo $this->Html->link("Añadir a WishList",array('controller'=>'products', 'action' =>'view',$product['Product']['id']))?>
+        </div>
 
         <h3><?php echo "Nombre del videojuego: ". $product['Product']['name']; ?></h3>
 
