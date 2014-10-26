@@ -55,8 +55,7 @@ CREATE TABLE categories(
 	parent_id INT UNSIGNED -- hace referencia al padre de la subcategoría, puede no tener padre
 );
 
-CREATE TABLE categories_products(
-	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE category_products(
 	product_id INT UNSIGNED NOT NULL,
 	category_id INT UNSIGNED NOT NULL
 );
