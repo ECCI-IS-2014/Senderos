@@ -2,8 +2,8 @@
 App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
-class User extends AppModel
-{
+class User extends AppModel{
+	public $hasOne = 'Wishlist'; //un ususario tiene una wishlist que le pertenece
     public $validate = array
     (
         'username' => array

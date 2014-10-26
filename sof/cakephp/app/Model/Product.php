@@ -9,6 +9,24 @@
 class Product extends AppModel
 {
 /*The $validate array tells CakePHP how to validate your data when the save() method is called.*/
+	public $hasAndBelongsToMany = array(
+        //todo producto puede estar asociado a varias wishlist (solo una vez)
+		'Wishlist' =>
+			array(
+				'className' => 'Wishlist',
+				'joinTable' => 'product_wishlists',
+				'foreignKey' => 'product_id',
+				'associationForeignKey' => 'wishlist_id',
+				'unique' => true /*,
+				'conditions' => '',
+				'fields' => '',
+				'order' => '',
+				'limit' => '',
+				'offset' => '',
+				'finderQuery' => '',
+				'with' => '' */
+			)
+    );
 	public $validate = array(
         'name' => array(
             'rule' => 'notEmpty',
