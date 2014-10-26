@@ -25,15 +25,16 @@
 -- Bargain hasAndBelongsToMany Product
 -- porque en la tabla, los ids no son exclusivos
 
+
 CREATE TABLE products(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL, -- no hay restricciones, pueden repetirse nombres 
-    --genre VARCHAR(100) NOT NULL, -- no hay restricciones
+    -- genre VARCHAR(100) NOT NULL, -- no hay restricciones
 	platform_id INT UNSIGNED NOT NULL, -- solo se vale una plataforma por producto
 	release_year YEAR(4) NOT NULL, -- debe ser entre 1990-actualidad
 	price DOUBLE UNSIGNED NOT NULL, -- debe ser en dólares
 	description TEXT NOT NULL, -- no hay restricciones
-	--amount INT UNSIGNED NOT NULL, -- cantidad actual del producto, en unidades
+	-- amount INT UNSIGNED NOT NULL, -- cantidad actual del producto, en unidades
 	presentation VARCHAR(100) NOT NULL, -- se refiere a si es digital o física
 	requirement TEXT, -- no hay restricciones, requerimientos específicos del videojuego
 	rated TEXT, -- se refiere al público del juego, no hay restricciones 
@@ -47,6 +48,7 @@ CREATE TABLE platforms(
 	name VARCHAR(100) NOT NULL -- nombre de la plataforma
 );
 
+-- las categorías son los géneros 
 CREATE TABLE categories(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
@@ -58,6 +60,32 @@ CREATE TABLE categories_products(
 	product_id INT UNSIGNED NOT NULL,
 	category_id INT UNSIGNED NOT NULL
 );
+
+CREATE TABLE stocks(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	product_id INT UNSIGNED NOT NULL, 
+	amount INT UNSIGNED NOT NULL
+);
+
+-- ESTO LO ESTOY HACIENDO NUEVO 
+CREATE TABLE stocks(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	product_id INT UNSIGNED NOT NULL, 
+	amount INT UNSIGNED NOT NULL
+);
+
+-- 
+CREATE TABLE wishlists(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_id INT UNSIGNED NOT NULL
+);
+
+CREATE TABLE product_wishlists(
+	-- id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	wishlist_id INT UNSIGNED NOT NULL,
+	product_id INT UNSIGNED NOT NULL
+);
+
 
 -- TABLA DE PROMOCIONES, UNO O UN CONJUNTO DE PRODUCTOS QUE SI SE LLEVAN JUNTOS SE APLICA % DESCUENTO
 CREATE TABLE bargains(
@@ -74,26 +102,6 @@ CREATE TABLE bargains_products(
 	bargain_id INT UNSIGNED NOT NULL,
 	product_id INT UNSIGNED NOT NULL
 );
-
-
--- ESTO LO ESTOY HACIENDO NUEVO 
-CREATE TABLE stocks(
-	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	product_id INT UNSIGNED NOT NULL, 
-	amount INT UNSIGNED NOT NULL
-);
-
-CREATE TABLE wishlists(
-	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	user_id INT UNSIGNED NOT NULL
-);
-
-CREATE TABLE products_wishlists(
-	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	wishlist_id INT UNSIGNED NOT NULL,
-	product_id INT UNSIGNED NOT NULL
-);
-
 -- HASTA AQUÍ LO ESTOY HACIENDO NUEVO 
 --CREATE TABLE platforms_products(
 	--id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
