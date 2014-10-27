@@ -25,7 +25,9 @@ CREATE TABLE platforms(
 CREATE TABLE categories(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
-	parent_id INT UNSIGNED -- hace referencia al padre de la subcategoría, puede no tener padre
+	parent_id INT UNSIGNED DEFAULT NULL, -- hace referencia al padre de la subcategoría, puede no tener padre
+	lft INT UNSIGNED DEFAULT NULL, -- Almacena al hermano izquierdo de la categoría
+	rght INT UNSIGNED DEFAULT NULL -- Almacena al hermano derecho de la categoría
 );
 
 CREATE TABLE category_products(
