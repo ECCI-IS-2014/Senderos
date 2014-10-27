@@ -9,6 +9,7 @@
 class Category extends AppModel{
     //public $belongsTo = 'Category';
     //public $hasMany = 'Category';
+    public $actsAs = array('Tree');
 
     public $belongsTo = array(
         'Parent' => array(
