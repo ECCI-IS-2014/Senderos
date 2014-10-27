@@ -9,6 +9,8 @@
 class Product extends AppModel
 {
 /*The $validate array tells CakePHP how to validate your data when the save() method is called.*/
+	public $belongsTo = array('Platform');//, 'Stock');
+	public $hasOne = array('Stock');//, 'Stock');
 	public $hasAndBelongsToMany = array(
         //todo producto puede estar asociado a varias wishlist (solo una vez)
 		'Wishlist' =>
@@ -25,7 +27,22 @@ class Product extends AppModel
 				'offset' => '',
 				'finderQuery' => '',
 				'with' => '' */
-			)
+			),
+		'Category' =>
+            array(
+                'className' => 'Category',
+                'joinTable' => 'category_products',
+                'foreignKey' => 'product_id',
+                'associationForeignKey' => 'category_id',
+                'unique' => true /*,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'finderQuery' => '',
+                'with' => '' */
+            )
     );
 	public $validate = array(
         'name' => array(
@@ -33,10 +50,7 @@ class Product extends AppModel
 			'rule' => 'isUnique',
             'message' => 'The name is already used'
         ),
-        'genre' => array(
-            'rule' => 'notEmpty'
-        ),
-		'console' => array(
+		'platform_id' => array(
             'rule' => 'notEmpty'
         ),
 		'release_year' => array(
@@ -46,9 +60,6 @@ class Product extends AppModel
             'rule' => 'notEmpty'
         ),
 		'description' => array(
-            'rule' => 'notEmpty'
-        ),
-		'amount' => array(
             'rule' => 'notEmpty'
         )
     );
