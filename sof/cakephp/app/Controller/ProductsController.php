@@ -6,6 +6,7 @@ class ProductsController extends AppController
 {
     public $helpers = array('Html', 'Form');
 	var $components = array('Session');
+	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock');
 
     public function index()
     {
@@ -61,7 +62,7 @@ class ProductsController extends AppController
         }
     } */
 	
-	public function add() {
+	/*public function add() {
         if ($this->request->is('post')) { 
             $this->Product->create();
             if ($this->Product->save($this->request->data)) {
@@ -74,6 +75,36 @@ class ProductsController extends AppController
 				  $this->Product->read(null, $id);
 				  $this->Product->set('image', $this->request->data['Product']['archivo']['name']);
 				  $this->Product->save();
+				}
+                $this->Session->setFlash(__('Your product has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add your product.'));
+        }
+    }*/
+	
+	//necesito recibir la plataforma, la categoría y la cantidad.
+    //meto una entrada en stocks con la cantidad
+    //recibo un array con la lista de categorías a las q pertenece el producto y meto por cada entrada en el array, una nueva entrada en categories_products
+    //en amount viene la cantidad
+    //en category viene el array de categorías
+	public function add() {
+		$this->set('platforms', $this->Platform->find('list'));
+        $this->set('categories', $this->Category->find('list'));
+        if ($this->request->is('post')) { 
+            $this->Product->create();
+            if ($this->Product->save($this->request->data)) {
+                $this->Product->Stock->save(['product_id'=>$this->Product->id, 'amount'=>$this->request->data['Product']['amount']]);
+				if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
+				  // Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
+				  //$destino = WWW_ROOT.'uploads'.DS;
+				  $destino = WWW_ROOT.'img'.DS;
+				  move_uploaded_file($this->request->data['Product']['archivo']['tmp_name'], $destino.$this->request->data['Product']['archivo']['name']);
+				  $id = $this->request->data['Product']['id'];
+				  $this->Product->read(null, $id);
+				  $this->Product->set('image', $this->request->data['Product']['archivo']['name']);
+				  $this->Product->save();
+
 				}
                 $this->Session->setFlash(__('Your product has been saved.'));
                 return $this->redirect(array('action' => 'index'));
