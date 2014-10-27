@@ -11,6 +11,13 @@ class CategoryController extends AppController {
     var $components = array('Session');
     public function index(){
         $this->set('categories', $this->Category->find('all'));
+        $data = $this->Category->generateTreeList(
+            null,
+            null,
+            null,
+            '&nbsp;&nbsp;&nbsp;'
+        );
+        debug($data); die;
     }
     public function add() {
         //tengo que modificar que no me traiga la categoría actual y que me permita la opción de sin categoría
