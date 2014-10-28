@@ -22,11 +22,13 @@
 		            echo $this->Html->link('Editar', array('action' => 'edit', $users['User']['id']));
 		            echo '  ';
                     echo $this->Form->postLink('Eliminar', array('action' => 'delete', $users['User']['id']), array('confirm' => 'Are you sure?'));
-                }else
+                }
+                else
                 {
                     if($this->Session->read('Auth.User.id')==$users['User']['id']){
                     echo $this->Html->link('Edit', array('action' => 'edit', $users['User']['id']));
-                    }else
+                    }
+                    else
                     {
                         echo 'None';
                     }

@@ -15,30 +15,10 @@ class UsersController extends AppController {
         $this->set('users', $this->User->read(null, $id));
     }
 
-	/*
     public function add() {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
-                return $this->redirect(array('action' => 'index'));
-            }
-            $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-        }
-    }*/
-	
-	//le puse para que se agregue la entrada correspondiente en la tabla wishlists
-    public function add() {
-        if ($this->request->is('post')) {
-            $this->User->create();
-            if ($this->User->save($this->request->data)) {
-				if (!empty($this->request->data)) {
-					$user = $this->User->save($this->request->data);
-					if (!empty($user)) {
-						$this->request->data['Wishlist']['user_id'] = $this->User->id;
-						$this->User->Wishlist->save($this->request->data);
-					}
-				}
                 $this->Session->setFlash(__('The user has been saved'));
                 return $this->redirect(array('action' => 'index'));
             }
