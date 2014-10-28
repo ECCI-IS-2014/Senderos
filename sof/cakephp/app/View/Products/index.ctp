@@ -30,11 +30,19 @@
             color: black;
         }
 
+        #product
+        {
+            width:40%;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
         #info
         {
-            float: right;
-            display: inline;
-            width:420px;
+            width:100%;
+            text-align: center;
+
         }
 
         #info h3
@@ -58,11 +66,12 @@
 
     <div id="simple">
         <?php foreach ($products as $product): ?>
+            <div id="product">
             <tr>
-				 <?php echo $this->Html->image($product['Product']['image'], array('style'=> "width:200px;height:200px;"));?>
                  <div id="info">
+                    <?php echo $this->Html->image($product['Product']['image'], array('style'=> "height:60%;width:60%;"));?>
                     <h3><?php echo $product['Product']['name']; ?></h3>
-                    <p><?php echo '$'.$product['Product']['price']; ?></p>
+                    <p><?php echo 'Precio: $'.$product['Product']['price']; ?></p>
                     <div>&nbsp;</div>
                     <td id="small">
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
@@ -78,6 +87,7 @@
                     </td>
                     <div>&nbsp;</div>
                  </div>
+            </div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>

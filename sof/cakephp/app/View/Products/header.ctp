@@ -113,9 +113,13 @@
 
     <div id="header">
 		    <nav id="nav">
-		    <?php echo $this->Html->image('tiendaweb.png', array('style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;"));?>
+		        <?php echo $this->Html->link(
+            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;")),
+            					array('controller' => 'products', 'action' => 'index'),
+            					array('target' => '_self', 'escape' => false)
+            				);
+            	?>
 		        <ul>
-                    <li align=center><?php echo $this->Form->postLink('Inicio',array('controller' => 'products','action' => 'index'));?></li>
                     <li align=center><a>Ofertas</a></li>
                     <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
                     <li align=center><a>F.A.Q</a></li>
