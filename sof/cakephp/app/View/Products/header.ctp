@@ -87,18 +87,6 @@
         padding:0.8em;
     }
 
-    #ax_html_button
-    {
-        font-family: Helvetica, sans-serif;
-        font-size:10px;
-        float:left;
-        margin-left:0.4em;
-        margin-top:0.4em;
-        color:#000000;
-        text-align:center;
-        padding:0.3em;
-    }
-
     #right_side
     {
         float:right;
@@ -136,7 +124,7 @@
 
         <div id="s_field">
             <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
-            <?php  echo $this->Form->input("q", array('label' => 'Búsqueda')); ?>
+            <?php  echo $this->Form->input("q", array('label' => '')); ?>
             <?php  echo $this->Form->end("Buscar"); ?>
         </div>
 
