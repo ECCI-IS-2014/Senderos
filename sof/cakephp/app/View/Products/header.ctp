@@ -103,7 +103,7 @@
     <div id="header">
 		    <nav id="nav">
 		        <?php echo $this->Html->link(
-            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;")),
+            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;")),
             					array('controller' => 'products', 'action' => 'index'),
             					array('target' => '_self', 'escape' => false)
             				);
@@ -113,7 +113,6 @@
                     <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
                     <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
-        			<li align=center><?php echo $this->Form->postLink('Buscar',array('controller' => 'products','action' => 'search'));?></li>
                 </ul>
 			</nav>
 	</div>
@@ -124,19 +123,19 @@
 
         <div id="s_field">
             <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
-            <?php  echo $this->Form->input("q", array('label' => '')); ?>
-            <?php  echo $this->Form->end("Buscar"); ?>
+            <?php  echo $this->Form->input("q", array('label' => '', 'title' => 'Búsqueda', 'placeholder' => 'Busque su juego')); ?>
+            <?php  echo $this->Form->end("Ir"); ?>
         </div>
 
         <div id="right_side">
             <?php
                     if($this->Session->read('Auth.User.username')==null)
                     {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp".$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
+                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'users','action'=>'wishlist'))."&nbsp&nbsp&nbsp".$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
                     }
                     else
                     {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp".'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
+                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'users','action'=>'wishlist'))."&nbsp&nbsp&nbsp".'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
                     }
             ?>
         </div>
