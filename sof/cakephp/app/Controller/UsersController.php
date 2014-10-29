@@ -19,6 +19,10 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
+
+                $this->request->data['Wishlist']['user_id'] = $this->User->id;
+                $this->User->Wishlist->save($this->request->data);
+
                 $this->Session->setFlash(__('The user has been saved'));
                 return $this->redirect(array('action' => 'index'));
             }
