@@ -1,15 +1,16 @@
 ARREGLOS PENDIENTES:
 
+PARTE DE IVA: 
+
 arreglar la inserción de año en el producto
 la plataforma del producto debe ser una consulta por id y mostrarse como hilera, no como número
 las categorías del producto deben mostrarse en el view
-
 cambiar la etiqueta de eliminar a deshabilitar, lo que debe hacerse es no mostrarse en el index
 al editar la cant del producto, no se está modificando la tabla stocks
-
 arreglar el árbol de categorías para q muestre los productos
 agregar la opción de eliminar categoría
 agregar la opción de eliminar plataforma
-
 eliminar producto de la wishlist
+
+SI ALGUIEN MÁS QUIERE ORGANIZARSE, PUEDE PONERLO ABAJO .___.
 
