@@ -7,16 +7,25 @@ class ProductWishlistController extends AppController{
 	var $components = array('Session');
 	var $uses = array('ProductWishlist', 'Product', 'Wishlist');
 
+	
 	public function index() {
         $user =  $this->Session->read("Auth.User.id");
         $wish = $this->Wishlist->field('id', array('user_id ' => $user));
 
-        $products = $this->ProductWishlist->field('product_id',array('wishlist_id' =>$wish));
-
-        $this->set(
-             'ProductWishlistList',
-             $this->Product->find('all',array('conditions' =>  array ('Product.id' =>$products)))
+        $options['joins'] = array(
+            array('table' => 'product_wishlists',
+                'alias' => 'ProductWishlist',
+                'type' => 'right',
+                'conditions' => array(
+                    'ProductWishlist.wishlist_id' => $wish,
+                    'ProductWishlist.product_id = Product.id'
+                )
+            )
         );
+
+        $consult = $this->Product->find('all',$options);
+
+        $this->set('ProductWishlistList',$consult);
     }
 
     public function add($product_id = null){
