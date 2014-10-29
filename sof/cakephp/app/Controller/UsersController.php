@@ -3,6 +3,9 @@
 App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
+
+    var $uses = array('Country', 'User');
+
     public function index(){
         $this->set('users',$this->User->find('all'));
     }
@@ -16,6 +19,7 @@ class UsersController extends AppController {
     }
 
     public function add() {
+        $this->set('countries', $this->Country->find('list', array('fields' => array('Country.country_name'))));
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
