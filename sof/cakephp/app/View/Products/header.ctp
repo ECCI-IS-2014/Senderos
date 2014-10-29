@@ -77,16 +77,17 @@
 
     #s_field
     {
+        display:inline;
         font-family: Helvetica, sans-serif;
-        font-size:9px;
+        font-size:12px;
         color:#000000;
-        width:30%;
+        width:50%;
         float:left;
         text-align:left;
-        padding:0.5em;
+        padding:0.8em;
     }
 
-    .ax_html_button
+    #ax_html_button
     {
         font-family: Helvetica, sans-serif;
         font-size:10px;
@@ -134,11 +135,9 @@
         <?php echo $this->Html->image('search.png', array('style'=> "float:left;width:20px;height:20px;padding:10px;"));?>
 
         <div id="s_field">
-            <input name="input" type="text" placeholder="Búsqueda"/>
-        </div>
-
-        <div id="u15" class="ax_html_button">
-            <input name="input" type="submit" value="Ir"/>
+            <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
+            <?php  echo $this->Form->input("q", array('label' => 'Búsqueda')); ?>
+            <?php  echo $this->Form->end("Buscar"); ?>
         </div>
 
         <div id="right_side">

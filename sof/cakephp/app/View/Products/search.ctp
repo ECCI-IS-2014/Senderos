@@ -29,24 +29,28 @@
         #simple
         {
             float:left;
-            width:700px;
-            margin-left: auto;
-            margin-right: auto;
+            width:60%;
             background-color:#fff;
             border:solid 1px #dcdcdc;
-            padding-top:10px;
-            padding-left:10px;
-            padding-right:10px;
-            padding-bottom:10px;
+            padding:10px;
+            margin:10px;
             font-family: Helvetica, Geneva, sans-serif;
             color: black;
         }
 
+        #product
+        {
+            width:40%;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
         #info
         {
-            float: right;
-            display: inline;
-            width:420px;
+            width:100%;
+            text-align: center;
+
         }
 
         #info h3
@@ -67,25 +71,21 @@
 
     <?php include("header.ctp");?>
 
-    <div id="searchbar">
-        <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
-        <?php  echo $this->Form->input("q", array('label' => 'Búsqueda')); ?>
-        <?php  echo $this->Form->end("Buscar"); ?>
-    </div>
-
     <div id="simple">
         <?php foreach ($results as $product): ?>
+            <div id="product">
             <tr>
-                 <img width="200" height="200" src= "<?php echo $linkImagen = $product['Product']['image'] ?>" />
                  <div id="info">
+                    <?php echo $this->Html->image($product['Product']['image'], array('style'=> "height:60%;width:60%;"));?>
                     <h3><?php echo $product['Product']['name']; ?></h3>
-                    <p><?php echo $product['Product']['genre']; ?></p>
-                    <p><?php echo '$'.$product['Product']['price']; ?></p>
+                    <p><?php echo 'Precio: $'.$product['Product']['price']; ?></p>
                     <div>&nbsp;</div>
                     <td id="small">
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
                     </td>
-                    <td id="small">Añadir al carrito</td>
+                    <td id="small">
+                        <?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id']));?>
+                    </td>
           		    <td id="small">
                         <?php echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));?>
                     </td>
@@ -94,6 +94,7 @@
                     </td>
                     <div>&nbsp;</div>
                  </div>
+            </div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>
