@@ -5,34 +5,32 @@
     <title>Busqueda</title>
     <style>
 
-        body
-        {
-            background: #151515;
-        }
-
         #container
         {
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #FFFFFF;
+            width:100%;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
-        }
-
-        #searchbar
-        {
-            float:left;
-            width:700px;
-            background-color: #FFFFFF;
         }
 
         #product
         {
             width:70%;
-            height:500px;
-            margin:10px;
+            display:inline;
+            float: left;
+            margin:5px;
             background-color: #fff;
-            border:solid 0px #dcdcdc;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
+        #categories
+        {
+            width:25%;
+            display:inline;
+            float: right;
+            margin:5px;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
             padding:10px;
         }
 
@@ -42,7 +40,7 @@
             width:250px;
             height:350px;
             background-color:#fff;
-            border:solid 1px #dcdcdc;
+            border:solid 0px #dcdcdc;
             padding:10px;
             margin:10px;
             font-family: Helvetica, Geneva, sans-serif;
@@ -70,9 +68,9 @@
 </head>
 
 <body>
-<div id="container">
+<?php include("header.ctp");?>
 
-    <?php include("header.ctp");?>
+<div id="container">
 
     <div id="product">
         <?php foreach ($results as $product): ?>
@@ -98,9 +96,13 @@
                     <div>&nbsp;</div>
                  </div>
             </tr>
-            </div>
+        </div>
         <?php endforeach; ?>
         <?php unset($product); ?>
+    </div>
+
+    <div id="categories">
+        <p>Categorías</p>
     </div>
 
 </div>
