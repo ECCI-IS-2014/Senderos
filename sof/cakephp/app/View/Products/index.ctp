@@ -18,24 +18,27 @@
             color: gray;
         }
 
+        #product
+        {
+            width:70%;
+            height:500px;
+            margin:10px;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
         #simple
         {
             float:left;
-            width:60%;
+            width:250px;
+            height:350px;
             background-color:#fff;
             border:solid 1px #dcdcdc;
             padding:10px;
             margin:10px;
             font-family: Helvetica, Geneva, sans-serif;
             color: black;
-        }
-
-        #product
-        {
-            width:40%;
-            background-color: #fff;
-            border:solid 1px #dcdcdc;
-            padding:10px;
         }
 
         #info
@@ -64,9 +67,9 @@
 
     <?php include("header.ctp");?>
 
-    <div id="simple">
+    <div id="product">
         <?php foreach ($products as $product): ?>
-            <div id="product">
+        <div id="simple">
             <tr>
                  <div id="info">
                     <?php echo $this->Html->image($product['Product']['image'], array('style'=> "height:60%;width:60%;"));?>
@@ -87,8 +90,8 @@
                     </td>
                     <div>&nbsp;</div>
                  </div>
-            </div>
             </tr>
+            </div>
         <?php endforeach; ?>
         <?php unset($product); ?>
     </div>
