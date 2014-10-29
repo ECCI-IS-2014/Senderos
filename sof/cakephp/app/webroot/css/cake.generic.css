@@ -25,13 +25,13 @@
 body {
 	background: #fff;
 	color: #fff;
-	font-family:'lucida grande',helvetica,arial,sans-serif;
+	font-family:helvetica,arial,sans-serif;
 	font-size:90%;
 	margin: 0;
 }
 a {
 	color: #003d4c;
-	text-decoration: underline;
+	text-decoration: none;
 	font-weight: bold;
 }
 a:hover {
@@ -58,7 +58,7 @@ h2 {
 }
 h3 {
 	color: #2c6877;
-	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-family: helvetica, arial, sans-serif;
 	font-size: 165%;
 }
 h4 {
@@ -99,7 +99,6 @@ p {
 }
 #content{
 	background: #fff;
-	clear: both;
 	color: #333;
 	padding: 0px 0px 0px 0px;
 	overflow: auto;

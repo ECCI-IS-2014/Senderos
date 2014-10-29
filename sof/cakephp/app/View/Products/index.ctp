@@ -5,15 +5,9 @@
     <title>Catálogo de la tienda</title>
     <style>
 
-        body
+        #container
         {
-            background: #151515;
-        }
-
-        #contenedor
-        {
-            margin-left: auto;
-            margin-right: auto;
+            width:100%;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
         }
@@ -21,8 +15,20 @@
         #product
         {
             width:70%;
-            height:500px;
-            margin:10px;
+            display:inline;
+            float: left;
+            margin:5px;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
+        #categories
+        {
+            width:25%;
+            display:inline;
+            float: right;
+            margin:5px;
             background-color: #fff;
             border:solid 1px #dcdcdc;
             padding:10px;
@@ -34,7 +40,7 @@
             width:250px;
             height:350px;
             background-color:#fff;
-            border:solid 1px #dcdcdc;
+            border:solid 0px #dcdcdc;
             padding:10px;
             margin:10px;
             font-family: Helvetica, Geneva, sans-serif;
@@ -63,16 +69,18 @@
 </head>
 
 <body>
-<div id="contenedor">
 
-    <?php include("header.ctp");?>
+<?php include("header.ctp");?>
+
+<div id="container">
 
     <div id="product">
+        <h3><?php echo "Catálogo de nuestra tienda";?></h3>
         <?php foreach ($products as $product): ?>
         <div id="simple">
             <tr>
                  <div id="info">
-                    <?php echo $this->Html->image($product['Product']['image'], array('style'=> "height:60%;width:60%;"));?>
+                    <?php echo $this->Html->image($product['Product']['image'], array('title' => $product['Product']['name'],'style'=> "height:60%;width:60%;"));?>
                     <h3><?php echo $product['Product']['name']; ?></h3>
                     <p><?php echo 'Precio: $'.$product['Product']['price']; ?></p>
                     <div>&nbsp;</div>
@@ -91,11 +99,16 @@
                     <div>&nbsp;</div>
                  </div>
             </tr>
-            </div>
+        </div>
         <?php endforeach; ?>
         <?php unset($product); ?>
     </div>
 
+    <div id="categories">
+        <p>Categorías</p>
+    </div>
+
 </div>
+
 </body>
 </html>

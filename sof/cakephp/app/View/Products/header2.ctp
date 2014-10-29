@@ -77,14 +77,25 @@
 
     #s_field
     {
-        display:inline;
         font-family: Helvetica, sans-serif;
-        font-size:12px;
+        font-size:9px;
         color:#000000;
-        width:50%;
+        width:30%;
         float:left;
         text-align:left;
-        padding:0.8em;
+        padding:0.5em;
+    }
+
+    .ax_html_button
+    {
+        font-family: Helvetica, sans-serif;
+        font-size:10px;
+        float:left;
+        margin-left:0.4em;
+        margin-top:0.4em;
+        color:#000000;
+        text-align:center;
+        padding:0.3em;
     }
 
     #right_side
@@ -102,17 +113,14 @@
 
     <div id="header">
 		    <nav id="nav">
-		        <?php echo $this->Html->link(
-            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;")),
-            					array('controller' => 'products', 'action' => 'index'),
-            					array('target' => '_self', 'escape' => false)
-            				);
-            	?>
+		    <?php echo $this->Html->image('tiendaweb.png', array('style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;"));?>
 		        <ul>
+                    <li align=center><?php echo $this->Form->postLink('Inicio',array('controller' => 'products','action' => 'index'));?></li>
                     <li align=center><a>Ofertas</a></li>
                     <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
                     <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
+        			<li align=center><?php echo $this->Form->postLink('Buscar',array('controller' => 'products','action' => 'search'));?></li>
                 </ul>
 			</nav>
 	</div>
@@ -122,20 +130,23 @@
         <?php echo $this->Html->image('search.png', array('style'=> "float:left;width:20px;height:20px;padding:10px;"));?>
 
         <div id="s_field">
-            <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
-            <?php  echo $this->Form->input("q", array('label' => '', 'title' => 'Búsqueda', 'placeholder' => 'Busque su juego')); ?>
-            <?php  echo $this->Form->end("Ir"); ?>
+            <input name="input" type="text" placeholder="Búsqueda"/>
+        </div>
+
+        <div id="u15" class="ax_html_button">
+            <input name="input" type="submit" value="Ir"/>
         </div>
 
         <div id="right_side">
             <?php
+                    echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'products','action'=>'carrito')).": ".$this->Carrito->calcularCarrito($this->Session->read('Cart'),$this->Session->read('CartQty'))."$&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp";
                     if($this->Session->read('Auth.User.username')==null)
                     {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp".$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
+                        echo $this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
                     }
                     else
                     {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp".'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
+                        echo 'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
                     }
             ?>
         </div>

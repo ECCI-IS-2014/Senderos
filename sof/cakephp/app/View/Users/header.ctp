@@ -87,18 +87,6 @@
         padding:0.8em;
     }
 
-    #ax_html_button
-    {
-        font-family: Helvetica, sans-serif;
-        font-size:10px;
-        float:left;
-        margin-left:0.4em;
-        margin-top:0.4em;
-        color:#000000;
-        text-align:center;
-        padding:0.3em;
-    }
-
     #right_side
     {
         float:right;
@@ -115,7 +103,7 @@
     <div id="header">
 		    <nav id="nav">
 		        <?php echo $this->Html->link(
-            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;")),
+            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;")),
             					array('controller' => 'products', 'action' => 'index'),
             					array('target' => '_self', 'escape' => false)
             				);
@@ -125,7 +113,6 @@
                     <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
                     <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
-        			<li align=center><?php echo $this->Form->postLink('Buscar',array('controller' => 'products','action' => 'search'));?></li>
                 </ul>
 			</nav>
 	</div>
@@ -136,8 +123,8 @@
 
         <div id="s_field">
             <?php  echo $this->Form->create("Products",array('action' => 'search')); ?>
-            <?php  echo $this->Form->input("q", array('label' => 'Búsqueda')); ?>
-            <?php  echo $this->Form->end("Buscar"); ?>
+            <?php  echo $this->Form->input("q", array('label' => '', 'title' => 'Búsqueda', 'placeholder' => 'Busque su juego')); ?>
+            <?php  echo $this->Form->end("Ir"); ?>
         </div>
 
         <div id="right_side">

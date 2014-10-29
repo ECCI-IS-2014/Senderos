@@ -11,6 +11,7 @@ class Product extends AppModel
 /*The $validate array tells CakePHP how to validate your data when the save() method is called.*/
 	public $belongsTo = array('Platform');//, 'Stock');
 	public $hasOne = array('Stock');//, 'Stock');
+	public $belongsToMany = array('ProductWishlist');
 	public $hasAndBelongsToMany = array(
         //todo producto puede estar asociado a varias wishlist (solo una vez)
 		'Wishlist' =>

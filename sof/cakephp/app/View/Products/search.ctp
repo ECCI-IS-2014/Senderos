@@ -5,45 +5,46 @@
     <title>Busqueda</title>
     <style>
 
-        body
-        {
-            background: #151515;
-        }
-
         #container
         {
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #FFFFFF;
+            width:100%;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
         }
 
-        #searchbar
+        #product
         {
-            float:left;
-            width:700px;
-            background-color: #FFFFFF;
+            width:70%;
+            display:inline;
+            float: left;
+            margin:5px;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
+        #categories
+        {
+            width:25%;
+            display:inline;
+            float: right;
+            margin:5px;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
+            padding:10px;
         }
 
         #simple
         {
             float:left;
-            width:60%;
+            width:250px;
+            height:350px;
             background-color:#fff;
-            border:solid 1px #dcdcdc;
+            border:solid 0px #dcdcdc;
             padding:10px;
             margin:10px;
             font-family: Helvetica, Geneva, sans-serif;
             color: black;
-        }
-
-        #product
-        {
-            width:40%;
-            background-color: #fff;
-            border:solid 1px #dcdcdc;
-            padding:10px;
         }
 
         #info
@@ -67,16 +68,16 @@
 </head>
 
 <body>
+<?php include("header.ctp");?>
+
 <div id="container">
 
-    <?php include("header.ctp");?>
-
-    <div id="simple">
+    <div id="product">
         <?php foreach ($results as $product): ?>
-            <div id="product">
+        <div id="simple">
             <tr>
                  <div id="info">
-                    <?php echo $this->Html->image($product['Product']['image'], array('style'=> "height:60%;width:60%;"));?>
+                    <?php echo $this->Html->image($product['Product']['image'], array('title' => $product['Product']['name'],'style'=> "height:60%;width:60%;"));?>
                     <h3><?php echo $product['Product']['name']; ?></h3>
                     <p><?php echo 'Precio: $'.$product['Product']['price']; ?></p>
                     <div>&nbsp;</div>
@@ -94,10 +95,14 @@
                     </td>
                     <div>&nbsp;</div>
                  </div>
-            </div>
             </tr>
+        </div>
         <?php endforeach; ?>
         <?php unset($product); ?>
+    </div>
+
+    <div id="categories">
+        <p>Categorías</p>
     </div>
 
 </div>
