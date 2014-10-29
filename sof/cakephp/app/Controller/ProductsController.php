@@ -6,7 +6,7 @@ class ProductsController extends AppController
 {
     public $helpers = array('Html', 'Form');
 	var $components = array('Session');
-	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock');
+	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock','Wishlist','ProductWishlist');
 
     public function index()
     {
@@ -25,6 +25,17 @@ class ProductsController extends AppController
             throw new NotFoundException(__('Invalid product'));
         }
         $this->set('product', $product);
+		
+		$user =  $this->Session->read("Auth.User.id");
+        $wish = $this->Wishlist->field('id', array('user_id ' => $user));
+
+        if($this->ProductWishlist->field('id',array('wishlist_id'=>$wish,'product_id'=>$id)) != null){
+            $this->set('in_list','1');
+        }
+        else{
+            $this->set('in_list','0');
+        }
+
     }
 
 	/*public function edit($id = null) {
