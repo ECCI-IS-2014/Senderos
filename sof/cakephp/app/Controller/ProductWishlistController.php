@@ -32,6 +32,14 @@ class ProductWishlistController extends AppController{
 
       return $this->redirect(array('action' => 'index'));
     }
+	
+	public function delete($product_id = null){
+        $user =  $this->Session->read("Auth.User.id");
+        $wish = $this->Wishlist->field('id', array('user_id ' => $user));
+
+        $this->ProductWishlist->deleteAll(array('wishlist_id'=>$wish,'product_id'=>$product_id));
+        return $this->redirect(array('action' => 'index'));
+    }
 }
 
 ?>

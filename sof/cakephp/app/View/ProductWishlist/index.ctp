@@ -72,6 +72,9 @@
                     <td id="small">
                         <?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$pw['Product']['id']));?>
                     </td>
+					<td id="small">
+                        <?php echo $this->Form->postLink('Eliminar de la Lista',array('controller'=>'productwishlist','action' => 'delete',$pw['Product']['id']));?>
+                    </td>
           		    <div>&nbsp;</div>
                  </div>
             </div>
