@@ -27,7 +27,7 @@ class ProductsController extends AppController
         $this->set('product', $product);
     }
 
-	public function edit($id = null) {
+	/*public function edit($id = null) {
         if (!$id) {
             throw new NotFoundException(__('Invalid product'));
         }
@@ -44,6 +44,44 @@ class ProductsController extends AppController
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('Unable to update your product.'));
+        }
+
+        if (!$this->request->data) {
+            $this->request->data = $product;
+        }
+    }*/
+	
+	public function edit($id = null) {
+        $this->set('platforms', $this->Platform->find('list'));
+        $this->set('categories', $this->Category->find('list'));
+        if (!$id) {
+            throw new NotFoundException(__('Invalid product'));
+        }
+
+        $product = $this->Product->findById($id);
+        if (!$product) {
+            throw new NotFoundException(__('Invalid product'));
+        }
+
+        if ($this->request->is(array('product', 'put'))) {
+            $this->Product->id = $id;
+            if ($this->Product->save($this->request->data)) {
+                //$this->Product->Stock->save(['product_id'=>$this->Product->id, 'amount'=>$this->request->data['Product']['amount']]);
+                if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
+                    // Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
+                    //$destino = WWW_ROOT.'uploads'.DS;
+                    $destino = WWW_ROOT.'img'.DS;
+                    move_uploaded_file($this->request->data['Product']['archivo']['tmp_name'], $destino.$this->request->data['Product']['archivo']['name']);
+                    $id = $this->request->data['Product']['id'];
+                    $this->Product->read(null, $id);
+                    $this->Product->set('image', $this->request->data['Product']['archivo']['name']);
+                    $this->Product->save();
+
+                }
+                $this->Session->setFlash(__('El producto se ha actualizado.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('No se pudo guardar los cambios.'));
         }
 
         if (!$this->request->data) {
@@ -129,6 +167,14 @@ class ProductsController extends AppController
         }
     }
 	
+	public function removecp($productId, $categoryId){
+        if(empty($productId) || empty($categoryId)) return false;
+
+        $this->Product->CategoryProduct->deleteAll(array(
+            'product_id' => $productId,
+            'CategoryProduct.category_id' => $categoryId
+        ));
+    }
 	
     function search() {
         /*$this->set('results',$this->Post->find('all', array('conditions' => array(
