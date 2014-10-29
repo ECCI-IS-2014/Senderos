@@ -5,26 +5,32 @@
     <title>Catálogo de la tienda</title>
     <style>
 
-        body
+        #container
         {
-            background: #151515;
-        }
-
-        #contenedor
-        {
-            width:70%;
+            width:100%;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
         }
 
         #product
         {
-            width:100%;
-            height:100%;
-            margin:10px;
-            margin-left:10px;
+            width:70%;
+            display:inline;
+            float: left;
+            margin:5px;
             background-color: #fff;
-            border:solid 0px #dcdcdc;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
+        #categories
+        {
+            width:25%;
+            display:inline;
+            float: right;
+            margin:5px;
+            background-color: #fff;
+            border:solid 1px #dcdcdc;
             padding:10px;
         }
 
@@ -34,7 +40,7 @@
             width:250px;
             height:350px;
             background-color:#fff;
-            border:solid 1px #dcdcdc;
+            border:solid 0px #dcdcdc;
             padding:10px;
             margin:10px;
             font-family: Helvetica, Geneva, sans-serif;
@@ -66,9 +72,10 @@
 
 <?php include("header.ctp");?>
 
-<div id="contenedor">
+<div id="container">
+
     <div id="product">
-    <h3><?php echo "Catálogo de nuestra tienda";?></h3>
+        <h3><?php echo "Catálogo de nuestra tienda";?></h3>
         <?php foreach ($products as $product): ?>
         <div id="simple">
             <tr>
@@ -92,10 +99,15 @@
                     <div>&nbsp;</div>
                  </div>
             </tr>
-            </div>
+        </div>
         <?php endforeach; ?>
         <?php unset($product); ?>
     </div>
+
+    <div id="categories">
+        <p>Categorías</p>
+    </div>
+
 </div>
 
 </body>
