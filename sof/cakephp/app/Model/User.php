@@ -100,7 +100,7 @@ class User extends AppModel
             'rule1' => array
             (
                 'rule' => array('notEmpty')
-            )
+            ),
 		),
 		'role' => array
         (
