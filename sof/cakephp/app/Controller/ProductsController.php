@@ -191,9 +191,9 @@ class ProductsController extends AppController
             'conditions' =>  array (
                 'OR' => array(
                     'Product.name LIKE' => '%'.$con.'%',
-                    'Product.genre LIKE' => '%'.$con.'%',
+                    'Product.release_year LIKE' => '%'.$con.'%',
                     'Product.description LIKE' => '%'.$con.'%',
-                    'Product.console LIKE' => '%'.$con.'%'
+                    'Platform.name LIKE' => '%'.$con.'%',
                 )
 
             )
