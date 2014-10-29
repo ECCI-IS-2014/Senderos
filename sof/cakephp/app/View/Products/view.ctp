@@ -56,7 +56,7 @@
     <div id="product">
 	
 		<div id="wl">
-			<?php echo $this->Html->link("Añadir a WishList",array('controller'=>'products', 'action' =>'view',$product['Product']['id']))."<br>";?>
+			<?php echo $this->Html->link("Añadir a WishList",array('controller'=>'productwishlist', 'action' =>'add',$product['Product']['id']))."<br>";?>
 			<?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id']));?>
         </div>
 
