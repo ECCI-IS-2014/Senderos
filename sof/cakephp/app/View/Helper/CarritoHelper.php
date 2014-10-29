@@ -2,18 +2,20 @@
 App::uses('AppHelper','View/Helper');
 
 class CarritoHelper extends AppHelper{
-    public function calcularCarrito(){
+    public function calcularCarrito($productsInCart,$qty){
         $valor = 0;
-        if(isset($_CarritoCantidad)){
-            for($i=0;$i<$_CarritoCantidad;$i++){
-                // Calculamos valor de carrito
-                $valor = $valor + 1;
+        $number=0;
+        if(isset($productsInCart)){
+            foreach ($productsInCart as $productInCart) {
+                //$valor=$valor + $qty.$number;
+
+                $number++;
             }
-        }else{
-            $_CarritoCantidad=0;
         }
+
         return $valor;
     }
+
 }
 
 ?>
