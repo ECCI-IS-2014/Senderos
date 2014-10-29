@@ -8,6 +8,10 @@
 class ProductWishlist extends AppModel{
     //no era necesario el modelo, sin embargo, tuve que hacerlo para poder validar que no me repitan tuplas en la tabla
     //de link entre wishlist y producto
+	
+	
+    public $hasToMany = array('Product');
+	
     var $validate = array(
         'wishlist_id' => array('rule' => 'uniqueCombi', 'message' => 'Combinación ya registrada'),
         'product_id'  => array('rule' => 'uniqueCombi', 'message' => 'Combinación ya registrada')
