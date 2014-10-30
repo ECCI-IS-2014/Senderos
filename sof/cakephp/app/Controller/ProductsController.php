@@ -304,7 +304,7 @@ class ProductsController extends AppController
             $this->Session->delete('CartPrc.'.$id);
             $cartprc = $this->Session->read('CartPrc');
             sort($cartprc);
-            $this->Session->write('CartQty',$cartprc);
+            $this->Session->write('CartPrc',$cartprc);
 
         }
         return $this->redirect(array('action' => 'carrito'));
