@@ -12,7 +12,11 @@ class ProductsController extends AppController
     {
         $this->set('products', $this->Product->find('all'));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  if($this->Session->read("Auth.User.role") == 'admin'){
+=======
+		if($this->Session->read("Auth.User.role") == 'admin'){
+>>>>>>> 887d7e2d78705918fb812c7de4107c0c06caaec3
 =======
 		if($this->Session->read("Auth.User.role") == 'admin'){
 >>>>>>> 887d7e2d78705918fb812c7de4107c0c06caaec3
