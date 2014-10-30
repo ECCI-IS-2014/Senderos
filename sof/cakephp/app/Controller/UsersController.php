@@ -35,6 +35,7 @@ class UsersController extends AppController {
     }
 
     public function edit($id = null) {
+        $this->set('countries', $this->Country->find('list', array('fields' => array('Country.country_name'))));
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
