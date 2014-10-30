@@ -75,15 +75,6 @@
 <div id="container">
 
     <div id="product">
-		<h3><?php echo "¿Quiénes somos?"."<br><br>";?></h3>
-        <object width="300" height="42">
-            <param name="src" value="http://localhost/cakephp/app/webroot/files/audio.mp3">
-            <param name="autoplay" value="false">
-            <param name="controller" value="true">
-            <param name="bgcolor" value="#FFFFFF">
-            <embed src="http://localhost/cakephp/app/webroot/files/audio.mp3" autostart="false" loop="false" width="300" height="42" controller="true" bgcolor="#FFFFFF">
-        </object>
-        <h3><?php echo "<br><br>";?></h3>
 		
         <h3><?php echo "Catálogo de nuestra tienda";?></h3>
         <?php foreach ($products as $product): ?>
@@ -147,7 +138,7 @@
                 'action' => 'add',
                 'full_base' => true
                 )
-                )."<br><br>";
+                )."<br>";
                 echo $this->Html->link(
                 'Ver plataformas',
                 array(
@@ -165,6 +156,15 @@
                 )
                 );
         ?>
+        <h3><?php echo "<br>";?></h3>
+        <h3><?php echo "¿Quiénes somos?"."<br>";?></h3>
+                <object width="100" height="100">
+                    <param name="src" value="http://localhost/cakephp/app/webroot/files/audio.mp3">
+                    <param name="autoplay" value="false">
+                    <param name="controller" value="true">
+                    <param name="bgcolor" value="#FFFFFF">
+                    <embed src="http://localhost/cakephp/app/webroot/files/audio.mp3" autostart="false" loop="false" width="50" height="50" controller="true" bgcolor="#FFFFFF">
+        </object>
     </div>
 
 </div>
