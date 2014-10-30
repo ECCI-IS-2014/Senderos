@@ -67,7 +67,7 @@
                  <div id="info">
                     <h3><?php echo $product['Product']['name']; ?></h3>
                     <p><?php echo $product['Product']['genre']; ?></p>
-                    <p><?php echo '$'.$product['Product']['price']; ?></p>
+                    <p><?php echo 'Precio: '.$product['Product']['price'].'$'; ?></p>
                     <div>&nbsp;</div>
                     <td id="small">
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>

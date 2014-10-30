@@ -219,8 +219,9 @@ class ProductsController extends AppController
             foreach ($productsInCart as $productInCart) {
                 if ($productInCart['Product']['id'] == $id) {
                     $alreadyIn = true;
-                    // aumentar cantidad del objeto actual
+                    // aumentar cantidad del objeto actual y actualizar el precio
                     $this->Session->write('CartQty.'.$number , $this->Session->read('CartQty.'.$number) + 1 );
+                    $this->Session->write('CartPrc.'.$number, $this->Product->read('price',$id));
                     /* CHEQUEAR SI HAY EN STOCK*/
                 }
                 $number++;
@@ -228,8 +229,8 @@ class ProductsController extends AppController
             if(!$alreadyIn){
                 // agregar al carrito
                 $this->Session->write('Cart.' . $number, $this->Product->read(null, $id));
-                $this->Session->write('CartQty.'. $number,1);
-                //$this->Session->write('CartPrc.'.$number,);
+                $this->Session->write('CartQty.'.$number, 1);
+                $this->Session->write('CartPrc.'.$number, $this->Product->read('price',$id));
                 /* CHEQUEAR SI HAY EN STOCK*/
             }
         }
@@ -260,6 +261,11 @@ class ProductsController extends AppController
             sort($cartqty);
             $this->Session->write('CartQty',$cartqty);
 
+            $this->Session->delete('CartPrc.'.$id);
+            $cartprc = $this->Session->read('CartPrc');
+            sort($cartprc);
+            $this->Session->write('CartQty',$cartprc);
+
         }
         return $this->redirect(array('action' => 'carrito'));
     }
@@ -267,6 +273,7 @@ class ProductsController extends AppController
     public function vaciar(){
         $this->Session->delete('Cart');
         $this->Session->delete('CartQty');
+        $this->Session->delete('CartPrc');
         return $this->redirect(array('action'=>'index'));
     }
 
