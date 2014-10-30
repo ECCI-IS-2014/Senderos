@@ -11,6 +11,12 @@ class ProductsController extends AppController
     public function index()
     {
         $this->set('products', $this->Product->find('all'));
+		if($this->Session->read("Auth.User.role") == 'admin'){
+            $this->set('role','admin');
+        }
+        else{
+            $this->set('role','cust');
+        }
     }
 
     public function view($id = null)
