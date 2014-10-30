@@ -304,7 +304,11 @@ input, textarea {
 select {
 	clear: both;
 	font-size: 120%;
-	vertical-align: text-bottom;
+    width: 61%;
+    color:gray;
+    font-size: 100%;
+    vertical-align: middle;
+    float:right;
 }
 select[multiple=multiple] {
 	width: 100%;

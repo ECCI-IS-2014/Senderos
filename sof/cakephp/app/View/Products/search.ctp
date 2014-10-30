@@ -87,13 +87,15 @@
                     <td id="small">
                         <?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id']));?>
                     </td>
-          		    <td id="small">
-                        <?php echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));?>
-                    </td>
-                    <td id="small">
-                        <?php echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));?>
-                    </td>
-                    <div>&nbsp;</div>
+                    <?php
+                        if($this->Session->read('Auth.User.administrator')!=null)
+                        {
+                                echo "<br>";
+                                echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));
+                                echo " ";
+                                echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+                        }
+                    ?>
                  </div>
             </tr>
         </div>
