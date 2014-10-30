@@ -38,7 +38,7 @@
     <div class="usersform">
         <?php echo $this->Form->create('User'); ?>
         <fieldset id="registro">
-            <legend><?php echo __('Registro de usuarios'); ?></legend>
+            <legend><?php echo __('Registro de Usuarios'); ?></legend>
             <?php   echo $this->Form->input('username', array('title' => 'Nombre de usuario', 'label' => 'Nombre de usuario '));
                     echo "<br>";
                     echo "<br>";

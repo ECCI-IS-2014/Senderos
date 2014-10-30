@@ -5,17 +5,15 @@
     <?php include("header.ctp");?>
 
     <br><br>
-    <h1>Usuarios</h1>
+    <h1>Listado de Usuarios</h1>
     <table>
         <tr>
-            <th>Id</th>
             <th>Nombre de usuario</th>
 		    <th>Acciones</th>
         </tr>
         <?php foreach ($users as $users): ?>
         <tr>
-            <td><?php echo $users['User']['id']; ?></td>
-		    <td><?php echo $this->Html->link($users['User']['username'], array('controller' => 'users', 'action' => 'view', $users['User']['id'])); ?></td>
+            <td><?php echo $this->Html->link($users['User']['username'], array('controller' => 'users', 'action' => 'view', $users['User']['id'])); ?></td>
 		    <td><?php
 		        if($this->Session->read('Auth.User.role')=='admin')
 		        {

@@ -50,7 +50,7 @@
 		        echo "<br><br>";
 		        echo $this->Form->input('email',array('title' => 'Correo electrónico', 'label' => 'Correo electrónico '));
 		        echo "<br><br>";
-		        echo $this->Form->input('country',array('title' => 'País', 'label' => 'País '));
+		        echo $this->Form->input('country', array('title' => 'País', 'type' => 'select', 'options' => $countries, 'empty' => 'Seleccione su país', 'label' => 'País '));
 		        echo "<br><br>";
                 echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Customer'), 'title'=>'Rol', 'label'=>'Rol '));
             ?>
