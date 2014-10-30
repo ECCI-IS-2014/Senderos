@@ -15,10 +15,10 @@ class ProductWishlistController extends AppController{
         $options['joins'] = array(
             array('table' => 'product_wishlists',
                 'alias' => 'ProductWishlist',
-                'type' => 'right',
+                'type' => 'left',
                 'conditions' => array(
                     'ProductWishlist.wishlist_id' => $wish,
-                    'ProductWishlist.product_id = Product.id'
+                    'ProductWishlist.product_id' => 'Product.id'
                 )
             )
         );

@@ -8,24 +8,35 @@ class ProductsController extends AppController
 	var $components = array('Session');
 	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock','Wishlist','ProductWishlist');
 
-    public function index()
+	
+	public function index()
     {
         $this->set('products', $this->Product->find('all'));
-<<<<<<< HEAD
-<<<<<<< HEAD
-		  if($this->Session->read("Auth.User.role") == 'admin'){
-=======
+
 		if($this->Session->read("Auth.User.role") == 'admin'){
->>>>>>> 887d7e2d78705918fb812c7de4107c0c06caaec3
-=======
-		if($this->Session->read("Auth.User.role") == 'admin'){
->>>>>>> 887d7e2d78705918fb812c7de4107c0c06caaec3
             $this->set('role','admin');
         }
         else{
             $this->set('role','cust');
         }
     }
+	
+	/*
+    public function index()
+    {
+        $this->set('products', $this->Product->find('all'));
+		  if($this->Session->read("Auth.User.role") == 'admin'){
+		if($this->Session->read("Auth.User.role") == 'admin'){
+		887d7e2d78705918fb812c7de4107c0c06caaec3
+
+		if($this->Session->read("Auth.User.role") == 'admin'){
+		887d7e2d78705918fb812c7de4107c0c06caaec3
+            $this->set('role','admin');
+        }
+        else{
+            $this->set('role','cust');
+        }
+    }*/
 
     public function view($id = null)
     {
