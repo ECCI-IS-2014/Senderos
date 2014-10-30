@@ -101,10 +101,18 @@
                         <?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id']));?>
                     </td>
           		    <td id="small">
-                        <?php echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));?>
+                        <?php
+                            if($role == 'admin'){
+                                echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));
+                            }
+                        ?>
                     </td>
                     <td id="small">
-                        <?php echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));?>
+                        <?php
+                            if($role == 'admin'){
+                                echo $this->Form->postLink('Eliminar',array('action' => 'delete', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+                            }
+                         ?>
                     </td>
                     <div>&nbsp;</div>
                  </div>
