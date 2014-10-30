@@ -6,17 +6,11 @@ class ProductsController extends AppController
 {
     public $helpers = array('Html', 'Form');
 	var $components = array('Session');
-	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock','Wishlist','ProductWishlist');
+	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock');
 
     public function index()
     {
         $this->set('products', $this->Product->find('all'));
-		  if($this->Session->read("Auth.User.role") == 'admin'){
-            $this->set('role','admin');
-        }
-        else{
-            $this->set('role','cust');
-        }
     }
 
     public function view($id = null)
@@ -30,24 +24,10 @@ class ProductsController extends AppController
         if (!$product) {
             throw new NotFoundException(__('Invalid product'));
         }
-		$this->set('platform', $this->Product->Platform->find('first', array('conditions' => array('Platform.id' == $product['Product']['platform_id']))));
-		$this->set('categories', $this->Product->Category->find('list'));
-		$this->set('cant', $this->Product->Stock->find('first', array('conditions' => array('Stock.product_id' == $product['Product']['id']))));
         $this->set('product', $product);
-		
-		$user =  $this->Session->read("Auth.User.id");
-        $wish = $this->Wishlist->field('id', array('user_id ' => $user));
-
-        if($this->ProductWishlist->field('id',array('wishlist_id'=>$wish,'product_id'=>$id)) != null){
-            $this->set('in_list','1');
-        }
-        else{
-            $this->set('in_list','0');
-        }
-
     }
 
-	/*public function edit($id = null) {
+	public function edit($id = null) {
         if (!$id) {
             throw new NotFoundException(__('Invalid product'));
         }
@@ -68,50 +48,6 @@ class ProductsController extends AppController
 
         if (!$this->request->data) {
             $this->request->data = $product;
-        }
-    }*/
-	
-	public function edit($id = null) {
-		if($this->Session->read("Auth.User.role") == 'admin') {
-			$this->set('platforms', $this->Platform->find('list'));
-			$this->set('categories', $this->Category->find('list'));
-			if (!$id) {
-				throw new NotFoundException(__('Invalid product'));
-			}
-
-			$product = $this->Product->findById($id);
-			if (!$product) {
-				throw new NotFoundException(__('Invalid product'));
-			}
-
-			if ($this->request->is(array('product', 'put'))) {
-				$this->Product->id = $id;
-				if ($this->Product->save($this->request->data)) {
-					$stock_id = $this->Stock->find('first', array('conditions' => array('Stock.product_id' == $id)));
-					$this->Stock->id = $stock_id; 
-					$this->Stock->saveField('amount', $this->request->data['Product']['amount']);
-					if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
-						// Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
-						//$destino = WWW_ROOT.'uploads'.DS;
-						$destino = WWW_ROOT.'img'.DS;
-						move_uploaded_file($this->request->data['Product']['archivo']['tmp_name'], $destino.$this->request->data['Product']['archivo']['name']);
-						$id = $this->request->data['Product']['id'];
-						$this->Product->read(null, $id);
-						$this->Product->set('image', $this->request->data['Product']['archivo']['name']);
-						$this->Product->save();
-					}
-					$this->Session->setFlash(__('El producto se ha actualizado.'));
-					return $this->redirect(array('action' => 'index'));
-				}
-				$this->Session->setFlash(__('No se pudo guardar los cambios.'));
-			}
-
-			if (!$this->request->data) {
-				$this->request->data = $product;
-			}
-		}else{
-            $this->Session->setFlash(__('Acceso no permitido.'));
-            return $this->redirect(array('action' => 'index'));
         }
     }
 	
@@ -153,52 +89,42 @@ class ProductsController extends AppController
     //en amount viene la cantidad
     //en category viene el array de categorías
 	public function add() {
-		if($this->Session->read("Auth.User.role") == 'admin') {
-			$this->set('platforms', $this->Platform->find('list'));
-			$this->set('categories', $this->Category->find('list'));
-			if ($this->request->is('post')) { 
-				$this->Product->create();
-				if ($this->Product->save($this->request->data)) {
-					$this->Product->Stock->save(['product_id'=>$this->Product->id, 'amount'=>$this->request->data['Product']['amount']]);
-					if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
-					  // Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
-					  //$destino = WWW_ROOT.'uploads'.DS;
-					  $destino = WWW_ROOT.'img'.DS;
-					  move_uploaded_file($this->request->data['Product']['archivo']['tmp_name'], $destino.$this->request->data['Product']['archivo']['name']);
-					  $id = $this->request->data['Product']['id'];
-					  $this->Product->read(null, $id);
-					  $this->Product->set('image', $this->request->data['Product']['archivo']['name']);
-					  $this->Product->save();
+		$this->set('platforms', $this->Platform->find('list'));
+        $this->set('categories', $this->Category->find('list'));
+        if ($this->request->is('post')) { 
+            $this->Product->create();
+            if ($this->Product->save($this->request->data)) {
+                $this->Product->Stock->save(['product_id'=>$this->Product->id, 'amount'=>$this->request->data['Product']['amount']]);
+				if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
+				  // Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
+				  //$destino = WWW_ROOT.'uploads'.DS;
+				  $destino = WWW_ROOT.'img'.DS;
+				  move_uploaded_file($this->request->data['Product']['archivo']['tmp_name'], $destino.$this->request->data['Product']['archivo']['name']);
+				  $id = $this->request->data['Product']['id'];
+				  $this->Product->read(null, $id);
+				  $this->Product->set('image', $this->request->data['Product']['archivo']['name']);
+				  $this->Product->save();
 
-					}
-					$this->Session->setFlash(__('Your product has been saved.'));
-					return $this->redirect(array('action' => 'index'));
 				}
-				$this->Session->setFlash(__('Unable to add your product.'));
-			}
-		}else{
-            $this->Session->setFlash(__('Acceso no permitido.'));
-            return $this->redirect(array('action' => 'index'));
+                $this->Session->setFlash(__('Your product has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add your product.'));
         }
     }
 	
     public function delete($id)
     {
-		if($this->Session->read("Auth.User.role") == 'admin') {
-			if ($this->request->is('get'))
-			{
-				throw new MethodNotAllowedException();
-			}
+        if ($this->request->is('get'))
+        {
+            throw new MethodNotAllowedException();
+        }
 
-			if ($this->Product->delete($id))
-			{
-				/*$this->Session->setFlash(
-					__('The post with id: %s has been deleted.', h($id))
-				);*/
-				return $this->redirect(array('action' => 'index'));
-			}
-		}else{
-            $this->Session->setFlash(__('Acceso no permitido.'));
+        if ($this->Product->delete($id))
+        {
+            /*$this->Session->setFlash(
+                __('The post with id: %s has been deleted.', h($id))
+            );*/
             return $this->redirect(array('action' => 'index'));
         }
     }
@@ -219,85 +145,14 @@ class ProductsController extends AppController
             'conditions' =>  array (
                 'OR' => array(
                     'Product.name LIKE' => '%'.$con.'%',
-                    'Product.genre LIKE' => '%'.$con.'%',
+                    'Product.release_year LIKE' => '%'.$con.'%',
                     'Product.description LIKE' => '%'.$con.'%',
-                    'Product.console LIKE' => '%'.$con.'%'
+                    'Platform.name LIKE' => '%'.$con.'%',
                 )
 
             )
         )));
     }
-
-    public function agregarCarrito($id){
-
-        $this->Product->id = $id;
-        if (!$this->Product->exists()) {
-            throw new NotFoundException(__('Invalid product'));
-        }else{
-            $productsInCart = $this->Session->read('Cart');
-            $number = 0;
-            $alreadyIn = false;
-            foreach ($productsInCart as $productInCart) {
-                if ($productInCart['Product']['id'] == $id) {
-                    $alreadyIn = true;
-                    // aumentar cantidad del objeto actual y actualizar el precio
-                    $this->Session->write('CartQty.'.$number , $this->Session->read('CartQty.'.$number) + 1 );
-                    $this->Session->write('CartPrc.'.$number, $this->Product->read('price',$id));
-                    /* CHEQUEAR SI HAY EN STOCK*/
-                }
-                $number++;
-            }
-            if(!$alreadyIn){
-                // agregar al carrito
-                $this->Session->write('Cart.' . $number, $this->Product->read(null, $id));
-                $this->Session->write('CartQty.'.$number, 1);
-                $this->Session->write('CartPrc.'.$number, $this->Product->read('price',$id));
-                /* CHEQUEAR SI HAY EN STOCK*/
-            }
-        }
-        return $this->redirect(array('action' => 'index'));
-    }
-
-    public function carrito(){
-        $cart = array();
-
-        if ($this->Session->check('Cart')) {
-            $cart = $this->Session->read('Cart');
-        }
-
-        $this->set(compact('cart'));
-    }
-
-    public function eliminarCarrito($id){
-        if (is_null($id)) {
-            throw new NotFoundException(__('Invalid request'));
-        }
-        if ($this->Session->delete('Cart.' . $id)) {
-            $cart = $this->Session->read('Cart');
-            sort($cart);
-            $this->Session->write('Cart', $cart);
-
-            $this->Session->delete('CartQty.'.$id);
-            $cartqty = $this->Session->read('CartQty');
-            sort($cartqty);
-            $this->Session->write('CartQty',$cartqty);
-
-            $this->Session->delete('CartPrc.'.$id);
-            $cartprc = $this->Session->read('CartPrc');
-            sort($cartprc);
-            $this->Session->write('CartQty',$cartprc);
-
-        }
-        return $this->redirect(array('action' => 'carrito'));
-    }
-
-    public function vaciar(){
-        $this->Session->delete('Cart');
-        $this->Session->delete('CartQty');
-        $this->Session->delete('CartPrc');
-        return $this->redirect(array('action'=>'index'));
-    }
-
 }
 
 ?>
