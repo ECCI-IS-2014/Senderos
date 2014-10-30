@@ -123,7 +123,48 @@
     </div>
 
     <div id="categories">
-        <p>Categorías</p>
+        <?php
+                echo $this->Html->link(
+                'Agregar plataforma',
+                array(
+                'controller' => 'platform',
+                'action' => 'add',
+                'full_base' => true
+                )
+                )."<br>";
+                echo $this->Html->link(
+                'Agregar categoría',
+                array(
+                'controller' => 'category',
+                'action' => 'add',
+                'full_base' => true
+                )
+                )."<br>";
+                echo $this->Html->link(
+                'Asociar producto con categoría',
+                array(
+                'controller' => 'categoryproduct',
+                'action' => 'add',
+                'full_base' => true
+                )
+                )."<br><br>";
+                echo $this->Html->link(
+                'Ver plataformas',
+                array(
+                'controller' => 'platform',
+                'action' => 'index',
+                'full_base' => true
+                )
+                )."<br>";
+                echo $this->Html->link(
+                'Ver categorías',
+                array(
+                'controller' => 'category',
+                'action' => 'index',
+                'full_base' => true
+                )
+                );
+        ?>
     </div>
 
 </div>
