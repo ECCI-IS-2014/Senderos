@@ -66,7 +66,6 @@
 				 <?php echo $this->Html->image($product['Product']['image'], array('style'=> "width:200px;height:200px;")); ?>
                  <div id="info">
                     <h3><?php echo $product['Product']['name']; ?></h3>
-                    <p><?php echo $product['Product']['genre']; ?></p>
                     <p><?php echo 'Precio: '.$product['Product']['price'].'$'; ?></p>
                     <div>&nbsp;</div>
                     <td id="small">
