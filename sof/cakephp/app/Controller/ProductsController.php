@@ -224,10 +224,6 @@ class ProductsController extends AppController
 	
 	
     function search() {
-        /*$this->set('results',$this->Post->find('all', array('conditions' => array(
-            'Post.title LIKE' => '%q%',
-            'Post.body LIKE' => '%q%'))));
-        */
         if (isset($this->request->data['Products']['q'])) {
             $con = $this->request->data['Products']['q'];
         } else {
@@ -238,16 +234,16 @@ class ProductsController extends AppController
             'conditions' =>  array (
                 'OR' => array(
                     'Product.name LIKE' => '%'.$con.'%',
-                    'Product.genre LIKE' => '%'.$con.'%',
+                    'Product.release_year LIKE' => '%'.$con.'%',
                     'Product.description LIKE' => '%'.$con.'%',
-                    'Product.console LIKE' => '%'.$con.'%'
+                    'Platform.name LIKE' => '%'.$con.'%',
                 )
 
             )
         )));
     }
 
-    public function agregarCarrito($id){
+    public function agregarCarrito($id,$price){
 
         $this->Product->id = $id;
         if (!$this->Product->exists()) {
@@ -261,7 +257,7 @@ class ProductsController extends AppController
                     $alreadyIn = true;
                     // aumentar cantidad del objeto actual y actualizar el precio
                     $this->Session->write('CartQty.'.$number , $this->Session->read('CartQty.'.$number) + 1 );
-                    $this->Session->write('CartPrc.'.$number, $this->Product->read('price',$id));
+                    $this->Session->write('CartPrc.'.$number, $price);
                     /* CHEQUEAR SI HAY EN STOCK*/
                 }
                 $number++;
@@ -270,11 +266,12 @@ class ProductsController extends AppController
                 // agregar al carrito
                 $this->Session->write('Cart.' . $number, $this->Product->read(null, $id));
                 $this->Session->write('CartQty.'.$number, 1);
-                $this->Session->write('CartPrc.'.$number, $this->Product->read('price',$id));
+                $this->Session->write('CartPrc.'.$number, $price);
                 /* CHEQUEAR SI HAY EN STOCK*/
             }
         }
-        return $this->redirect(array('action' => 'index'));
+        //return $this->redirect(array('action' => 'index'));
+        return $this->redirect(Controller::referer());
     }
 
     public function carrito(){

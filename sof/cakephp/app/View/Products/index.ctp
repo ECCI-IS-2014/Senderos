@@ -89,7 +89,7 @@
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
                     </td>
                     <td id="small">
-                        <?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id']));?>
+                        <?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id'],$product['Product']['price']));?>
                     </td>
           		    <td id="small">
                         <?php

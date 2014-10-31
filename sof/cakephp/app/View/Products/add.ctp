@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        #container
+        {
+            width:100%;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: gray;
+        }
+
+        .productsform
+        {
+            width:50%;
+            margin:0 auto;
+            margin-top:2%;
+            background-color: #fff;
+            color: black;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
+        #registro input
+        {
+            float:right;
+        }
+
+        #registro textarea
+        {
+             float:right;
+        }
+    </style>
+</head>
+
 <body>
 
-    <?php include("header.ctp");?>
+<?php include("header.ctp");?>
 
-    <h5>Añadir nuevo producto</h5>
+<div id="container">
+    <div class="productsform">
+    <fieldset id="registro">
+        <legend><?php echo __('Añadir producto'); ?></legend>
     <?php
         echo $this->Form->create('Product', array('type' => 'file'));
         echo $this->Form->input('id', array('type' => 'hidden'));
-		echo "<br><br>".$this->Form->input('name', array('label' => 'Nombre del videojuego:'))."<br><br>";
-		echo $this->Form->input('platform_id', array('type' => 'select', 'options' => $platforms, 'empty' => 'no seleccionada', 'label' => 'Plataforma:'))."<br><br>";
+		echo $this->Form->input('name', array('label' => 'Nombre del videojuego:'));
+		echo "<br><br>";
+		echo $this->Form->input('platform_id', array('type' => 'select', 'options' => $platforms, 'empty' => 'no seleccionada', 'label' => 'Plataforma:'));
+        echo "<br><br>";
         echo $this->Form->input('Product.release_year', array(
             'type' => 'date',
             'dateFormat' => 'Y',
@@ -18,35 +55,29 @@
             'label' => 'Año de lanzamiento:',
             'empty' => 'no seleccionado',
 			'name'=>"data[Product][release_year]"
-        ))."<br><br>";
-        echo $this->Form->input('price', array('label'=>'Price in dollars', 'default' => '0'))."<br><br>";
-        echo $this->Form->input('description', array('rows' => '3', 'label'=>'Descripción del videojuego:'))."<br><br>";
-        //amount es para insertar en stock
-        echo $this->Form->input('amount', array('label'=>'Cantidad de producto (unidades):', 'type' => 'number', 'default' => '0'))."<br><br>";
-        echo $this->Form->input('presentation', array('type' => 'select', 'options' => array('Físico', 'Digital'), 'label' => 'Formato de entrega:', 'empty' => 'no seleccionado'))."<br><br>";
-        echo $this->Form->input('requirement', array('rows' => '3', 'label'=>'Requerimientos específicos:'))."<br><br>";
-        echo $this->Form->input('rated', array('type' => 'select', 'label'=>'Público:', 'options' => array('early childhood', 'everyone', 'everyone 10+','teen','mature','adults only','rating pending','kids to adults'), 'empty' => 'no seleccionado'))."<br><br>";
-        //desplegar lista de categorías -- puede no tener, se pueden seleccionar varias
-        //echo $this->Form->input('category', array('type' => 'select', 'multiple' => true, 'options' => $categories, 'empty' => 'ninguna seleccionada', 'label' => 'Categorías:'))."<br><br>";
-        echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Seleccione un archivo de imagen:'))."<br><br>";
-        echo $this->Form->input('video', array('rows' => '1', 'label'=>'Link de un vídeo:'))."<br><br>";
-        echo $this->Form->end('Guardar');
-        /*
-            EL ARRAY DEL RATED FUNCIONA ASÍ:
-            0- early childhood
-            1- everyone
-            2- everyone 10+
-            3- teen
-            4- mature
-            5- adults only
-            6- rating pending
-            7- kids to adults
-            EL ARRAY DEL FORMATO FUNCIONA ASÍ:
-            0- físico
-            1- digital
-        */
-
+        ));
+        echo "<br><br>";
+        echo $this->Form->input('price', array('label'=>'Price in dollars', 'default' => '0'));
+        echo "<br><br>";
+        echo $this->Form->input('description', array('rows' => '3', 'label'=>'Descripción del videojuego:'));
+        echo "<br><br><br><br>";
+        echo $this->Form->input('amount', array('label'=>'Cantidad de producto (unidades):', 'type' => 'number', 'default' => '0'));
+        echo "<br><br>";
+        echo $this->Form->input('presentation', array('type' => 'select', 'options' => array('Físico', 'Digital'), 'label' => 'Formato de entrega:', 'empty' => 'no seleccionado'));
+        echo "<br><br>";
+        echo $this->Form->input('requirement', array('rows' => '3', 'label'=>'Requerimientos específicos:'));
+        echo "<br><br><br><br>";
+        echo $this->Form->input('rated', array('type' => 'select', 'label'=>'Público:', 'options' => array('early childhood', 'everyone', 'everyone 10+','teen','mature','adults only','rating pending','kids to adults'), 'empty' => 'no seleccionado'));
+        echo "<br><br>";
+        echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Seleccione un archivo de imagen:'));
+        echo "<br><br>";
+        echo $this->Form->input('video', array('rows' => '1', 'label'=>'Link de un vídeo:'));
+        echo "<br><br>";
     ?>
+    </fieldset>
+    <?php echo $this->Form->end('Guardar'); ?>
+    </div>
+</div>
 
 </body>
 </html>

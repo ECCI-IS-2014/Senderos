@@ -58,6 +58,7 @@
     <?php echo '<br>'.$this->Html->link("Vaciar carrito",array('controller'=>'products','action'=>'vaciar')).'<br>' ;?>
     <div id="simple">
         <?php $number=0;
+        $total=0;
         foreach ($cart as $key => $product ):
             $cantidad=$this->Session->read('CartQty.'.$number);
             $number++;
@@ -66,7 +67,6 @@
 				 <?php echo $this->Html->image($product['Product']['image'], array('style'=> "width:200px;height:200px;")); ?>
                  <div id="info">
                     <h3><?php echo $product['Product']['name']; ?></h3>
-                    <p><?php echo 'Precio: '.$product['Product']['price'].'$'; ?></p>
                     <div>&nbsp;</div>
                     <td id="small">
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
@@ -78,12 +78,18 @@
                          ?>
                     </td>
                     <div>&nbsp;</div>
+                    <p><?php echo 'Precio: '.$product['Product']['price'].'$'; ?></p>
                         <?php
-                        echo 'Cantidad: '.$cantidad.'<br>Precio total: '.$cantidad*$product['Product']['price'].'$'; ?>
+                        $subtotal=$cantidad*$product['Product']['price'];
+                        $total=$total+$subtotal;
+                        echo 'Cantidad: '.$cantidad.'<br>Precio subtotal: '.$subtotal.'$'; ?>
                  </div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>
+        <?php
+            echo '<b>Precio total de la compra: </b>'.$total.'$<br><br>';
+        ?>
     </div>
 
 </div>
