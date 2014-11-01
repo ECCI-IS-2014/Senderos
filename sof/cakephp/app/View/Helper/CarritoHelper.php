@@ -7,7 +7,7 @@ class CarritoHelper extends AppHelper{
         $number=0;
         if(isset($productsInCart)){
             foreach ($productsInCart as $productInCart) {
-                $valor=$valor + ( $qty[$number] /* * $price[$number] */);
+                $valor=$valor + ( $qty[$number] * $price[$number] );
                 $number++;
             }
         }
