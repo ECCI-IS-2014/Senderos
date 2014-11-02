@@ -26,6 +26,16 @@ class Wishlist extends AppModel {
             'rule' => 'isUnique'
         )
     );
+	
+	public function bringAllRegisters() {
+        return $this->find('all');
+    }
+
+
+    public function removeRegister() {
+        $this->delete(1);
+        return $this->bringAllRegisters();
+    }
 }
 
 ?>

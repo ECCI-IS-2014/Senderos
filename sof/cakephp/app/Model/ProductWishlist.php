@@ -23,4 +23,14 @@ class ProductWishlist extends AppModel{
         );
         return $this->isUnique($combi, false);
     }
+	
+	 public function bringAllRegisters() {
+        return $this->find('all');
+    }
+
+
+    public function removeRegister() {
+        $this->delete(1);
+        return $this->bringAllRegisters();
+    }
 }
