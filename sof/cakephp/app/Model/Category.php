@@ -47,5 +47,17 @@ class Category extends AppModel{
             'message' => 'Esta categoría ya existe.'
         )
     );
+	
+	public function bringOneRegister($id) {
+		return $this->query("SELECT * FROM categories WHERE id =".$id.";");
+    }
+	
+	public function bringAllRegisters() {
+		return $this->query("SELECT * FROM categories order by id;");
+    }
+	
+	public function bringParent($id) {
+		return $this->query("SELECT parent_id FROM categories where id=".$id.";");
+    }
 }
 ?>
