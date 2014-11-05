@@ -10,7 +10,8 @@ CREATE TABLE products(
 	presentation INT UNSIGNED NOT NULL, -- se refiere a si es digital o física
 	enabled BOOLEAN NOT NULL DEFAULT TRUE,
 	requirement TEXT, -- no hay restricciones, requerimientos específicos del videojuego
-	rated INT UNSIGNED, -- se refiere al público del juego, no hay restricciones 
+	rated INT UNSIGNED, -- se refiere al público del juego, no hay restricciones
+	discount INT UNSIGNED, -- se refiere al descuento del juego, debe ser menor a 100
 	rating DOUBLE UNSIGNED, -- se va a calcular un promedio del puntaje asignado por los ususarios cliente
 	image TEXT, -- nombre.extensión
 	video TEXT -- link válido de un vídeo

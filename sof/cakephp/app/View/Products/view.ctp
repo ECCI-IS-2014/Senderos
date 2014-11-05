@@ -77,6 +77,12 @@
 
         <p><b>Precio: $ </b><?php echo $product['Product']['price']; ?></p>
 
+        <?php
+             if($product['Product']['discount']!=0){
+                echo '<p><b>Descuento: </b>'.$product['Product']['discount'].'%</p>';
+             }
+        ?>
+
         <p><b>Descripción: </b><?php echo $product['Product']['description']; ?></p>
 
         <p><b>Formato: </b>
