@@ -69,6 +69,8 @@
         echo "<br><br><br><br>";
         echo $this->Form->input('rated', array('type' => 'select', 'label'=>'Público:', 'options' => array('early childhood', 'everyone', 'everyone 10+','teen','mature','adults only','rating pending','kids to adults'), 'empty' => 'no seleccionado'));
         echo "<br><br>";
+        echo $this->Form->input('discount',array('label'=>'Descuento de producto en %:','type'=>'number','default'=>'0'));
+        echo "<br><br>";
         echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Seleccione un archivo de imagen:'));
         echo "<br><br>";
         echo $this->Form->input('video', array('rows' => '1', 'label'=>'Link de un vídeo:'));

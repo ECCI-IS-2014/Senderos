@@ -83,7 +83,12 @@
                  <div id="info">
                     <?php echo $this->Html->image($product['Product']['image'], array('title' => $product['Product']['name'],'style'=> "height:60%;width:60%;"));?>
                     <h3><?php echo $product['Product']['name']; ?></h3>
-                    <p><?php echo 'Precio: $'.$product['Product']['price']; ?></p>
+                    <p><?php echo 'Precio: $'.$product['Product']['price']; ?>
+                    <?php
+                        if($product['Product']['discount']!=0){
+                            echo '<br>Descuento: '.$product['Product']['discount'].'%';
+                        }
+                    ?></p>
                     <div>&nbsp;</div>
                     <td id="small">
                         <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
