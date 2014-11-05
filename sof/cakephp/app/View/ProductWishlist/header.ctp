@@ -143,14 +143,16 @@
 
         <div id="right_side">
             <?php
-                    if($this->Session->read('Auth.User.username')==null)
-                    {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp".$this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
-                    }
-                    else
-                    {
-                        echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'users','action'=>'cart'))."&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp".'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
-                    }
+                   echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'products','action'=>'carrito')).": ".$this->Carrito->calcularCarrito($this->Session->read('Cart'),$this->Session->read('CartQty'),$this->Session->read('CartPrc'))."$&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp";
+
+                   if($this->Session->read('Auth.User.username')==null)
+                   {
+                       echo $this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';
+                   }
+                   else
+                   {
+                       echo 'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
+                   }
             ?>
         </div>
 	</div>
