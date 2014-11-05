@@ -7,9 +7,10 @@ CREATE TABLE products(
 	price DOUBLE UNSIGNED NOT NULL, -- debe ser en dólares
 	description TEXT NOT NULL, -- no hay restricciones
 	-- amount INT UNSIGNED NOT NULL, -- cantidad actual del producto, en unidades
-	presentation VARCHAR(100) NOT NULL, -- se refiere a si es digital o física
+	presentation INT UNSIGNED NOT NULL, -- se refiere a si es digital o física
+	enabled BOOLEAN NOT NULL DEFAULT TRUE,
 	requirement TEXT, -- no hay restricciones, requerimientos específicos del videojuego
-	rated TEXT, -- se refiere al público del juego, no hay restricciones 
+	rated INT UNSIGNED, -- se refiere al público del juego, no hay restricciones 
 	rating DOUBLE UNSIGNED, -- se va a calcular un promedio del puntaje asignado por los ususarios cliente
 	image TEXT, -- nombre.extensión
 	video TEXT -- link válido de un vídeo
