@@ -12,18 +12,18 @@ class ProductWishlistController extends AppController{
         $user =  $this->Session->read("Auth.User.id");
         $wish = $this->Wishlist->field('id', array('user_id ' => $user));
 
-        $options['joins'] = array(
-            array('table' => 'product_wishlists',
+        $consult = $this->Product->find('all', array('joins' => array(
+            array(
+                'table' => 'product_wishlists',
                 'alias' => 'ProductWishlist',
-                'type' => 'left',
-                'conditions' => array(
-                    'ProductWishlist.wishlist_id' => $wish,
-                    'ProductWishlist.product_id' => 'Product.id'
+                'type' => 'inner',
+                'foreignKey' => false,
+                'conditions'=> array(
+                    'Product.id = ProductWishlist.product_id',
+                    'ProductWishlist.wishlist_id' => $wish
                 )
             )
-        );
-
-        $consult = $this->Product->find('all',$options);
+        )));
 
         $this->set('ProductWishlistList',$consult);
     }

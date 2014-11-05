@@ -59,6 +59,7 @@
     <div id="simple">
         <?php $number=0;
         $total=0;
+        $totalConDesc=0;
         foreach ($cart as $key => $product ):
             $cantidad=$this->Session->read('CartQty.'.$number);
             $number++;
@@ -82,13 +83,18 @@
                         <?php
                         $subtotal=$cantidad*$product['Product']['price'];
                         $total=$total+$subtotal;
-                        echo 'Cantidad: '.$cantidad.'<br>Precio subtotal: '.$subtotal.'$'; ?>
+                        echo 'Cantidad: '.$cantidad.'<br>Precio subtotal: '.$subtotal.'$';
+                        if($product['Product']['discount']!=0){
+                            $subtotal=$subtotal*(100-$product['Product']['discount'])/100;
+                            echo '<br>Descuento: '.$product['Product']['discount'].'%<br>Precio con Descuento: '.$subtotal.'$<br>';
+                        }
+                        $totalConDesc = $totalConDesc+$subtotal;  ?>
                  </div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>
         <?php
-            echo '<b>Precio total de la compra: </b>'.$total.'$<br><br>';
+            echo '<br><br><b>Precio total de la compra: </b>'.$total.'$<br><br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><br>';
         ?>
     </div>
 

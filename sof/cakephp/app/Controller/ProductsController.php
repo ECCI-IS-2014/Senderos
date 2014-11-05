@@ -65,6 +65,28 @@ class ProductsController extends AppController
         }
 
     }
+	
+	// added in sprint 3
+	public function enableOrDisable($id = null) {
+		if($this->Session->read("Auth.User.role") == 'admin') {
+			if (!$id) {
+				throw new NotFoundException(__('Invalid product'));
+			}
+
+			$product = $this->Product->findById($id);
+			if (!$product) {
+				throw new NotFoundException(__('Invalid product'));
+			}
+
+			$this->Product->read(null, $id);
+			$this->Product->set('enabled', !$this->Product->enabled);
+			$this->Product->save();
+				
+		}else{
+            $this->Session->setFlash(__('Acceso no permitido.'));
+            return $this->redirect(array('action' => 'index'));
+        }
+    }
 
 	/*public function edit($id = null) {
         if (!$id) {
