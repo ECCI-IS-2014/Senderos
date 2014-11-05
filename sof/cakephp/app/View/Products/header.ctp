@@ -136,7 +136,7 @@
                     }
                     else
                     {
-                        echo 'Conectado como: <b>'.$this->Session->read('Auth.User.username').'</b>'."&nbsp&nbsp(".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).")".'</p>';
+                        echo 'Conectado como <b>'.$this->Session->read('Auth.User.username').': '.$this->Html->link('Ver perfil',array('controller' =>'users','action'=>'view',$this->Session->read('Auth.User.id'))).'</b>'."&nbsp&nbsp".$this->Html->link('Salir',array('controller' =>'users','action'=>'logout')).'</p>';
                     }
             ?>
         </div>

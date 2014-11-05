@@ -52,7 +52,10 @@
 		        echo "<br><br>";
 		        echo $this->Form->input('country', array('title' => 'País', 'type' => 'select', 'options' => $countries, 'empty' => 'Seleccione su país', 'label' => 'País '));
 		        echo "<br><br>";
-                echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Customer'), 'title'=>'Rol', 'label'=>'Rol '));
+		        if($this->Session->read('Auth.User.role')== 'admin')
+		        {
+                    echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Customer'), 'title'=>'Rol', 'label'=>'Rol '));
+                }
             ?>
         </fieldset>
         <?php echo $this->Form->end(__('Guardar cambios')); ?>

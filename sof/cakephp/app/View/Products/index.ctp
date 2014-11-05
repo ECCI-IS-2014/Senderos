@@ -80,7 +80,7 @@
         <?php foreach ($products as $product): ?>
         <div id="simple">
             <tr>
-                 <div id="info">
+                <div id="info">
                     <?php echo $this->Html->image($product['Product']['image'], array('title' => $product['Product']['name'],'style'=> "height:60%;width:60%;"));?>
                     <h3><?php echo $product['Product']['name']; ?></h3>
                     <p><?php echo 'Precio: $'.$product['Product']['price']; ?></p>
@@ -94,6 +94,7 @@
           		    <td id="small">
                         <?php
                             if($role == 'admin'){
+                                echo "<br>";
                                 echo $this->Html->link('Editar',array('action' => 'edit', $product['Product']['id']));
                             }
                         ?>
@@ -106,7 +107,7 @@
                          ?>
                     </td>
                     <div>&nbsp;</div>
-                 </div>
+                </div>
             </tr>
         </div>
         <?php endforeach; ?>

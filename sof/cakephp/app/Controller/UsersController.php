@@ -28,7 +28,7 @@ class UsersController extends AppController {
                 $this->User->Wishlist->save($this->request->data);
 
                 $this->Session->setFlash(__('The user has been saved'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'login'));
             }
             $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
         }
@@ -43,7 +43,7 @@ class UsersController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The changes have been saved'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $this->User->id));
 			}
 			$this->Session->setFlash(__('The changes could not be saved. Please, try again.'));
         }
