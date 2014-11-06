@@ -111,6 +111,13 @@
                             }
                          ?>
                     </td>
+					<td id="small">
+                        <?php
+                            if($role == 'admin'){
+                                echo $this->Form->postLink('Deshabilitar',array('action' => 'enableOrDisable', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+                            }
+                         ?>
+                    </td>
                     <div>&nbsp;</div>
                 </div>
             </tr>

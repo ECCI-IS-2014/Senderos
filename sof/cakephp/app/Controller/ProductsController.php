@@ -87,6 +87,7 @@ class ProductsController extends AppController
 				$this->Product->set('enabled', 0);
 			}
 			$this->Product->save();
+			return $this->redirect(array('action' => 'index'));
 				
 		}else{
             $this->Session->setFlash(__('Acceso no permitido.'));
