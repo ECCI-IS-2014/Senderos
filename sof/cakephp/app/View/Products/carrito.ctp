@@ -89,12 +89,16 @@
                             echo '<br>Descuento: '.$product['Product']['discount'].'%<br>Precio con Descuento: '.$subtotal.'$<br>';
                         }
                         $totalConDesc = $totalConDesc+$subtotal;  ?>
+                        <br>
                  </div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>
         <?php
-            echo '<br><br><b>Precio total de la compra: </b>'.$total.'$<br><br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><br>';
+            echo '<p><div align="right"><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><br>';
+            echo $this->Form->create("Products",array('action' => 'factura'));
+            echo $this->Form->end("Realizar compra");
+            echo '</div></p>';
         ?>
     </div>
 
