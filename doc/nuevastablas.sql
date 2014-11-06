@@ -74,7 +74,8 @@ CREATE TABLE debitcard(
 	nip VARCHAR(4) NOT NULL,
 	csc VARCHAR(4) NOT NULL, -- Código de seguridad
 	expiration_date DATE NOT NULL,
-	balance DOUBLE UNSIGNED NOT NULL,	
+	balance DOUBLE UNSIGNED NOT NULL
+)
 
 -- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
 CREATE TABLE finantial_entitiy(
