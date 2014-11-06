@@ -11,13 +11,16 @@ class ProductsController extends AppController
 	
 	public function index()
     {
-        $this->set('products', $this->Product->find('all'));
+        //$this->set('products', $this->Product->find('all'));
+		$this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1"))));
 
 		if($this->Session->read("Auth.User.role") == 'admin'){
             $this->set('role','admin');
+			$this->set('products', $this->Product->find("all"));
         }
         else{
             $this->set('role','cust');
+			$this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1"))));
         }
     }
 	
@@ -86,6 +89,7 @@ class ProductsController extends AppController
 				$this->Product->set('enabled', 0);
 			}
 			$this->Product->save();
+			return $this->redirect(array('action' => 'index'));
 				
 		}else{
             $this->Session->setFlash(__('Acceso no permitido.'));
