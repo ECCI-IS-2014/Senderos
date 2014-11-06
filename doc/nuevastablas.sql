@@ -75,6 +75,12 @@ CREATE TABLE debitcard(
 	csc VARCHAR(4) NOT NULL, -- Código de seguridad
 	expiration_date DATE NOT NULL,
 	balance DOUBLE UNSIGNED NOT NULL,	
+
+-- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
+CREATE TABLE finantial_entitiy(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	card_id INT NOT NULL
 );
 
 -- Este SCRIPT no fue creado por ninguno de nuestros miembros,
