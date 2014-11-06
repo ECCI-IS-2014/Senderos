@@ -16,9 +16,11 @@ class ProductsController extends AppController
 
 		if($this->Session->read("Auth.User.role") == 'admin'){
             $this->set('role','admin');
+			$this->set('products', $this->Product->find("all"));
         }
         else{
             $this->set('role','cust');
+			$this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1"))));
         }
     }
 	
