@@ -66,7 +66,7 @@
             }
 
 			?>
-			<?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id'],$product['Product']['price']));?>
+			<?php echo $this->Form->postLink('Añadir al carrito',array('action' => 'agregarCarrito',$product['Product']['id'],$product['Product']['price']*(100-$product['Product']['discount'])/100));?>
         </div>
 
         <h3><?php echo "Nombre del videojuego: ". $product['Product']['name']; ?></h3>
