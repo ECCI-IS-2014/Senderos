@@ -79,7 +79,12 @@ class ProductsController extends AppController
 			}
 
 			$this->Product->read(null, $id);
-			$this->Product->set('enabled', !$this->Product->enabled);
+			if( $product['Product']['enabled'] == FALSE){
+				$this->Product->set('enabled', 1);
+			}
+			if( $product['Product']['enabled'] == TRUE){
+				$this->Product->set('enabled', 0);
+			}
 			$this->Product->save();
 				
 		}else{
