@@ -114,7 +114,12 @@
 					<td id="small">
                         <?php
                             if($role == 'admin'){
-                                echo $this->Form->postLink('Deshabilitar',array('action' => 'enableOrDisable', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+                                if($product['Product']['enabled']==TRUE){
+									echo $this->Form->postLink('Deshabilitar',array('action' => 'enableOrDisable', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+								}
+								if($product['Product']['enabled']==FALSE){
+									echo $this->Form->postLink('Habilitar',array('action' => 'enableOrDisable', $product['Product']['id']),array('confirm' => '¿Está seguro?'));
+								}
                             }
                          ?>
                     </td>
