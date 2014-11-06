@@ -65,6 +65,13 @@ CREATE TABLE users(
 	role TEXT NOT NULL
 );
 
+-- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
+CREATE TABLE finantial_entitiy(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	card_id INT NOT NULL
+);
+
 -- Este SCRIPT no fue creado por ninguno de nuestros miembros,
 -- dado lo mecánico y tedioso de digitar toda esta información
 -- decidimos tomar lo que ya estaba hecho de un foro.
