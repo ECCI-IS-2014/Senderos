@@ -65,6 +65,18 @@ CREATE TABLE users(
 	role TEXT NOT NULL
 );
 
+-- SCRIPT para el medio de pago
+CREATE TABLE debitcard(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_name VARCHAR(100) NOT NULL,
+	user_lastname VARCHAR(100) NOT NULL,
+	card_number VARCHAR(16) NOT NULL,
+	nip VARCHAR(4) NOT NULL,
+	csc VARCHAR(4) NOT NULL, -- Código de seguridad
+	expiration_date DATE NOT NULL,
+	balance DOUBLE UNSIGNED NOT NULL,	
+);
+
 -- Este SCRIPT no fue creado por ninguno de nuestros miembros,
 -- dado lo mecánico y tedioso de digitar toda esta información
 -- decidimos tomar lo que ya estaba hecho de un foro.
