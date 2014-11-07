@@ -1,10 +1,11 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('DebitcardsController', 'Controller');
 
 class UsersController extends AppController {
 
-    var $uses = array('Country', 'User');
+    var $uses = array('Country', 'User', 'Debitcard');
 
     public function index(){
         $this->set('users',$this->User->find('all'));
@@ -26,6 +27,9 @@ class UsersController extends AppController {
 
                 $this->request->data['Wishlist']['user_id'] = $this->User->id;
                 $this->User->Wishlist->save($this->request->data);
+				
+				$Debits = new DebitcardsController();
+                $Debits->add($this->User->id);
 
                 $this->Session->setFlash(__('The user has been saved'));
                 return $this->redirect(array('action' => 'login'));
