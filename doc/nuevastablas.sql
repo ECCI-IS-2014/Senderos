@@ -84,12 +84,15 @@ CREATE TABLE debitcards_user(
 );
 
 -- trigger para cuando un producto está outofstock
+drop trigger out_of_stock1;
+drop trigger out_of_stock2;
+
 DELIMITER $$
 CREATE TRIGGER out_of_stock1 
    AFTER INSERT ON stocks
 		FOR EACH ROW
 		BEGIN
-			IF NEW.amount < 0 THEN
+			IF NEW.amount <= 0 THEN
 				UPDATE products set outofstock = TRUE WHERE id = NEW.product_id;
 			ELSEIF NEW.amount > 0 THEN
 				UPDATE products set outofstock = FALSE WHERE id = NEW.product_id;
@@ -102,7 +105,7 @@ CREATE TRIGGER out_of_stock2
    AFTER UPDATE ON stocks
 		FOR EACH ROW
 		BEGIN
-			IF NEW.amount < 0 THEN
+			IF NEW.amount <= 0 THEN
 				UPDATE products set outofstock = TRUE WHERE id = NEW.product_id;
 			ELSEIF NEW.amount > 0 THEN
 				UPDATE products set outofstock = FALSE WHERE id = NEW.product_id;
