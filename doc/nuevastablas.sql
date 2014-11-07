@@ -66,7 +66,7 @@ CREATE TABLE users(
 );
 
 -- SCRIPT para el medio de pago
-CREATE TABLE debitcard(
+CREATE TABLE debitcards(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	card_number VARCHAR(16) NOT NULL,
 	nip VARCHAR(4) NOT NULL,
@@ -76,10 +76,10 @@ CREATE TABLE debitcard(
 );
 
 -- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
-CREATE TABLE finantial_entitiy(
+CREATE TABLE debitcards_user(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT NOT NULL,
-	card_id INT NOT NULL
+	debitcard_id INT NOT NULL
 );
 
 -- Este SCRIPT no fue creado por ninguno de nuestros miembros,
