@@ -123,6 +123,13 @@
                             }
                          ?>
                     </td>
+					<td id="small">
+                        <?php
+                                if($product['Product']['outofstock']==TRUE){
+                                    echo '<br>'.'*Out of stock*';
+                                }
+                         ?>
+                    </td>
                     <div>&nbsp;</div>
                 </div>
             </tr>
