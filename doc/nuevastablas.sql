@@ -13,6 +13,7 @@ CREATE TABLE products(
 	rated INT UNSIGNED, -- se refiere al público del juego, no hay restricciones
 	discount INT UNSIGNED, -- se refiere al descuento del juego, debe ser menor a 100
 	rating DOUBLE UNSIGNED, -- se va a calcular un promedio del puntaje asignado por los ususarios cliente
+	outofstock BOOLEAN NOT NULL DEFAULT FALSE,
 	image TEXT, -- nombre.extensión
 	video TEXT -- link válido de un vídeo
 );
@@ -81,6 +82,34 @@ CREATE TABLE debitcards_user(
 	user_id INT NOT NULL,
 	debitcard_id INT NOT NULL
 );
+
+-- trigger para cuando un producto está outofstock
+DELIMITER $$
+CREATE TRIGGER out_of_stock1 
+   AFTER INSERT ON stocks
+		FOR EACH ROW
+		BEGIN
+			IF NEW.amount < 0 THEN
+				UPDATE products set outofstock = TRUE WHERE id = NEW.product_id;
+			ELSEIF NEW.amount > 0 THEN
+				UPDATE products set outofstock = FALSE WHERE id = NEW.product_id;
+			END IF;
+		END;
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER out_of_stock2
+   AFTER UPDATE ON stocks
+		FOR EACH ROW
+		BEGIN
+			IF NEW.amount < 0 THEN
+				UPDATE products set outofstock = TRUE WHERE id = NEW.product_id;
+			ELSEIF NEW.amount > 0 THEN
+				UPDATE products set outofstock = FALSE WHERE id = NEW.product_id;
+			END IF;
+		END;
+$$
+DELIMITER ;
 
 -- Este SCRIPT no fue creado por ninguno de nuestros miembros,
 -- dado lo mecánico y tedioso de digitar toda esta información
