@@ -133,6 +133,8 @@ class ProductsController extends AppController
 			if (!$product) {
 				throw new NotFoundException(__('Invalid product'));
 			}
+			
+			$this->set('cant', $this->Product->Stock->find('first', array('conditions' => array('Stock.product_id' == $product['Product']['id']))));
 
 			if ($this->request->is(array('product', 'put'))) {
 				$this->Product->id = $id;
