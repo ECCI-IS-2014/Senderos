@@ -28,8 +28,8 @@ class UsersController extends AppController {
                 $this->request->data['Wishlist']['user_id'] = $this->User->id;
                 $this->User->Wishlist->save($this->request->data);
 				
-				$Debits = new DebitcardsController();
-                $Debits->add($this->User->id);
+				//$Debits = new DebitcardsController();
+                //$Debits->add($this->User->id);
 
                 $this->Session->setFlash(__('The user has been saved'));
                 return $this->redirect(array('action' => 'login'));
