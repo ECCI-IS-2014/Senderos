@@ -11,9 +11,9 @@
             color: gray;
         }
 
-        .usersform
+        .categoryform
         {
-            width:50%;
+            width:30%;
             margin:0 auto;
             margin-top:2%;
             background-color: #fff;
@@ -32,8 +32,8 @@
 <body>
 
 <div id="container">
-
-    <div class="usersform">
+    <?php echo $this->Html->link('Volver',array('action'=>'index')); ?>
+    <div class="categoryform">
     <?php echo $this->Form->create('Category'); ?>
         <fieldset id="registro">
             <legend><?php echo __('Editar Categoría'); ?></legend>
