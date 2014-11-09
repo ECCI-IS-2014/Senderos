@@ -11,15 +11,15 @@
             color: gray;
         }
 
-        .usersform
+        .categoryform
         {
-            width:50%;
+            width:30%;
             margin:0 auto;
             margin-top:2%;
             background-color: #fff;
             color: black;
             border:solid 1px #dcdcdc;
-            padding:10px;
+            padding:5px;
         }
 
         #registro input
@@ -30,13 +30,15 @@
 </head>
 
 <div id="container">
+        <?php echo $this->Html->link('Volver',array('action'=>'index')); ?>
 <body>
-    <div class="usersform">
+    <div class="categoryform">
         <?php echo $this->Form->create('Cat'); ?>
-        <fieldset>
+        <fieldset id="registro">
             <legend><?php echo __('Añadir Categoría'); ?></legend>
             <?php
                 echo $this->Form->create('Category');
+                echo "<br>";
                 echo $this->Form->input('id', array('type' => 'hidden'));
                 echo $this->Form->input('name', array('label' => 'Nombre:'));
                 echo "<br>";
@@ -44,7 +46,7 @@
                 echo $this->Form->input('parent_id', array('type' => 'select', 'options' => $categories, 'empty' => 'Ninguna', 'label' => 'Categoría Padre:'));
             ?>
         </fieldset>
-        <?php echo $this->Form->end(__('Save')); ?>
+        <?php echo $this->Form->end(__('Guardar')); ?>
     </div>
 </body>
 </html>
