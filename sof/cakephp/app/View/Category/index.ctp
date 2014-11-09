@@ -1,48 +1,33 @@
 <!DOCTYPE html>
 <html>
 <body>
+
     <br><br>
-    <h1>Lista de Categorías</h1>
+    <h1>Listado de Categorías</h1>
     <table>
         <tr>
-            <th>Categoría</th>
+            <th>Nombre de la Categoría</th>
 		    <th>Acciones</th>
         </tr>
-        <?php foreach ($data as $categories): ?>
+        <?php foreach ($categorylist as $key => $value): ?>
         <tr>
-            <td><?php echo $this->Html->link($categories['Category']['name'], array('controller' => 'category', 'action' => 'view', $categories['Category']['id'])); ?></td>
+            <td><?php echo $this->Html->link($value, array('controller' => 'Category', 'action' => 'view', $key)); ?></td>
 		    <td><?php
 		        if($this->Session->read('Auth.User.role')=='admin')
 		        {
-		            echo $this->Html->link('Editar', array('action' => 'edit', $categories['Category']['id']));
+		            echo $this->Html->link('Editar', array('action' => 'edit', $key));
 		            echo '  ';
-                    echo $this->Form->postLink('Eliminar', array('action' => 'delete', $categories['Category']['id']), array('confirm' => '¿Está seguro?'));
-                }
-                else
-                {
-
+                    echo $this->Form->postLink('Eliminar', array('action' => 'delete', $key), array('confirm' => 'Seguro?'));
+                    echo '  ';
+                    echo $this->Html->link('Subir', array('action' => 'moveup', $key));
+                    echo '  ';
+                    echo $this->Html->link('Bajar', array('action' => 'movedown', $key));
                 }
             ?></td>
-            <?php foreach ($categories['children'] as $categories): ?>
-                    <tr>
-                        <td><?php echo $this->Html->link($categories['Category']['name'], array('controller' => 'category', 'action' => 'view', $categories['Category']['id'])); ?></td>
-            		    <td><?php
-            		        if($this->Session->read('Auth.User.role')=='admin')
-            		        {
-            		            echo $this->Html->link('Editar', array('action' => 'edit', $categories['Category']['id']));
-            		            echo '  ';
-                                echo $this->Form->postLink('Eliminar', array('action' => 'delete', $categories['Category']['id']), array('confirm' => '¿Está seguro?'));
-                            }
-                            else
-                            {
-
-                            }
-                        ?></td>
-                    </tr>
-                    <?php endforeach; ?>
         </tr>
         <?php endforeach; ?>
-        <?php unset($category); ?>
+        <?php unset($categorylist); ?>
     </table>
+
 </body>
 </html>
