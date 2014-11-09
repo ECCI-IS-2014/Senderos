@@ -17,6 +17,9 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         $this->set('users', $this->User->read(null, $id));
+        $user = $this->User->findById($id);
+        $coun = $this->Country->findById($user['User']['country']);
+        $this->set('country', $coun['Country']['country_name']);
     }
 
     public function add() {
