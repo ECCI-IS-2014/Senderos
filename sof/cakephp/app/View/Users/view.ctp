@@ -39,7 +39,7 @@
         <h3><?php echo "Nombre de usuario: ".h($users['User']['username'])." "; ?></h3>
         <h3><?php echo "Nombre: ".h($users['User']['name'])." ".h($users['User']['lastname'])." "; ?></h3>
         <h3><?php echo "Correo electrónico: ".h($users['User']['email'])." "; ?></h3>
-        <h3><?php echo "País: ".h($users['User']['country'])." "; ?></h3>
+        <h3><?php echo "País: ".$country." "; ?></h3>
         <h3><?php if($this->Session->read('Auth.User.role')== 'admin')
         {
             echo "Rol: ".h($users['User']['role'])." ";
