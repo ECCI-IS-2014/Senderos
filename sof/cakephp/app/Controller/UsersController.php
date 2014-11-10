@@ -74,8 +74,7 @@ class UsersController extends AppController {
     public function beforeFilter()
     {
         parent::beforeFilter();
-        // Allow users to register and logout.
-        $this->Auth->allow('add', 'logout', 'first_login');
+        $this->Auth->allow('add', 'logout','help', 'first_login');
     }
 
     public function first_login()
@@ -107,7 +106,12 @@ class UsersController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
 	
+<<<<<<< HEAD
 	public function wishlist()
     {
+=======
+    public  function help(){
+
+>>>>>>> f7743edac65fa56daf4bcf1077b039dccb620f2b
     }
 }
