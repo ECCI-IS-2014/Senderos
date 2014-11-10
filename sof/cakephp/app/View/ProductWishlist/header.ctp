@@ -124,6 +124,7 @@
                     <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
                     <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
+                    <li align=center><?php echo $this->Html->link('Ayuda',array('controller'=>'users','action' => 'help'));?></li>
         			<li align=center><?php echo $this->Form->postLink('Buscar',array('controller' => 'products','action' => 'search'));?></li>
                 </ul>
 			</nav>
