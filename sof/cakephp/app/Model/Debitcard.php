@@ -7,6 +7,7 @@
  */
 
 class Debitcard extends AppModel{
+	public $belongsTo = 'Check';
     public $hasAndBelongsToMany = array(
         'User' =>
             array(
