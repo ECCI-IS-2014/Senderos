@@ -2,7 +2,7 @@
 App::uses('Wishlist', 'Model');
 
 class WishlistTest extends CakeTestCase {
-    public $fixtures = array('app.wishlist');
+    public $fixtures = array('app.wishlist','app.productwishlist');
 
 	public function setUp() {
         parent::setUp();
