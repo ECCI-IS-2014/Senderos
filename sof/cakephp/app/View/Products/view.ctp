@@ -74,6 +74,8 @@
 		<p><b>Plataforma: </b><?php echo $platform['Platform']['name']; ?></p>
 
         <p><b>Año de lanzamiento: </b><?php echo $product['Product']['release_year']; ?></p>
+		
+		<p><b>Requerimientos: </b><?php echo $platform['Product']['requirement']; ?></p>
 
         <p><b>Precio: $ </b><?php echo $product['Product']['price']; ?></p>
 
