@@ -179,15 +179,7 @@
                 'action' => 'index',
                 'full_base' => true
                 )
-                )."<br>";
-                                 echo $this->Html->link(
-                                 'Registrar tarjeta',
-                                 array(
-                                 'controller' => 'debitcard',
-                                 'action' => 'register',
-                                 'full_base' => true
-                                 )
-                                 );
+                );
         ?>
         <h3><?php echo "<br>";?></h3>
         <h3><?php echo "¿Quiénes somos?"."<br>";?></h3>

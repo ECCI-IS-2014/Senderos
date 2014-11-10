@@ -24,6 +24,13 @@ class ProductsController extends AppController
         }
     }
 	
+	public function beforeFilter()
+    {
+        parent::beforeFilter();
+        // Permite a usuarios no registrados buscar.
+        $this->Auth->allow('search');
+    }
+	
 	/*
     public function index()
     {

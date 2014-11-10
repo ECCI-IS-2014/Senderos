@@ -31,11 +31,8 @@ class UsersController extends AppController {
                 $this->request->data['Wishlist']['user_id'] = $this->User->id;
                 $this->User->Wishlist->save($this->request->data);
 				
-				//$Debits = new DebitcardsController();
-                //$Debits->add($this->User->id);
-
                 $this->Session->setFlash(__('The user has been saved'));
-                return $this->redirect(array('action' => 'login'));
+                return $this->redirect(array('action' => 'first_login'));
             }
             $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
         }
@@ -74,25 +71,43 @@ class UsersController extends AppController {
 		return $this->redirect(array('action' => 'index'));
     }
 
-
-    public function beforeFilter() {
+    public function beforeFilter()
+    {
         parent::beforeFilter();
         // Allow users to register and logout.
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('add', 'logout', 'first_login');
     }
-    public function login() {
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
+
+    public function first_login()
+    {
+        if ($this->request->is('post'))
+        {
+            if ($this->Auth->login())
+            {
+                return $this->redirect(array('controller' => 'debitcard', 'action' => 'register'));
+            }
+            $this->Session->setFlash(__('Usuario o contraseña inválidas, intente de nuevo'));
+        }
+    }
+
+    public function login()
+    {
+        if ($this->request->is('post'))
+        {
+            if ($this->Auth->login())
+            {
                 return $this->redirect($this->Auth->redirect());
             }
             $this->Session->setFlash(__('Invalid username or password, try again'));
         }
     }
-    public function logout() {
+
+    public function logout()
+    {
         return $this->redirect($this->Auth->logout());
     }
 	
-	public function wishlist(){
-
+	public function wishlist()
+    {
     }
 }
