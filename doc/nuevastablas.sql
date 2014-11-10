@@ -83,6 +83,23 @@ CREATE TABLE debitcards_user(
 	debitcard_id INT NOT NULL
 );
 
+CREATE TABLE checks(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    debitcard_id INT UNSIGNED,
+	amount INT UNSIGNED NOT NULL,
+	general_discount INT UNSIGNED NOT NULL,
+    sold_the DATE NOT NULL
+);
+
+CREATE TABLE check_products(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	check_id INT UNSIGNED,
+	product_id INT UNSIGNED,
+	discount INT UNSIGNED,
+	prize INT UNSIGNED,
+	quantity INT UNSIGNED
+);
+
 -- trigger para cuando un producto está outofstock
 drop trigger out_of_stock1;
 drop trigger out_of_stock2;
