@@ -43,6 +43,21 @@ class Product extends AppModel
                 'offset' => '',
                 'finderQuery' => '',
                 'with' => '' */
+            ),
+		'Check' =>
+            array(
+                'className' => 'Check',
+                'joinTable' => 'check_products',
+                'foreignKey' => 'product_id',
+                'associationForeignKey' => 'check_id',
+                'unique' => true /*,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'finderQuery' => '',
+                'with' => '' */
             )
     );
 	public $validate = array(
