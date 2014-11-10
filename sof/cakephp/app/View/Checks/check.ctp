@@ -55,7 +55,7 @@
 <div id="contenedor">
 
     <?php include("header.ctp");?>
-    <?php echo '<br>'.$this->Html->link("Vaciar carrito",array('controller'=>'products','action'=>'vaciar')).'<br>' ;?>
+    <br><div align="center"><H3>Ítemes a comprar: </H3></div>
     <div id="simple">
         <?php $number=0;
         $total=0;
@@ -69,15 +69,6 @@
                  <div id="info">
                     <h3><?php echo $product['Product']['name']; ?></h3>
                     <div>&nbsp;</div>
-                    <td id="small">
-                        <?php echo $this->Html->link("Detalles",array('controller' => 'products', 'action' => 'view', $product['Product']['id'])); ?>
-                    </td>
-                    <td>
-                         <?php
-                             //remove product from a cart
-                             echo $this->Html->link('Eliminar del carrito', array('action' => 'eliminarCarrito',$key));
-                         ?>
-                    </td>
                     <div>&nbsp;</div>
                     <p><?php echo 'Precio: '.$product['Product']['price'].'$'; ?></p>
                         <?php
@@ -96,8 +87,9 @@
         <?php unset($product); ?>
         <?php
             echo '<p><div align="right"><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><br>';
-            echo $this->Form->create("Checks",array('action' => 'check'));
-            echo $this->Form->end("Realizar compra");
+            echo $this->Form->create();
+            echo $this->Form->input('country', array('title' => 'Pago', 'type' => 'select', 'options' => $countries, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
+            echo $this->Form->end("COMPRAR");
             echo '</div></p>';
         ?>
     </div>
