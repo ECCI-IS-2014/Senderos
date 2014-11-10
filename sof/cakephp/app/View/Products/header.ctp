@@ -113,6 +113,7 @@
                     <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
                     <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
+                    <li align=center><?php echo $this->Html->link('Ayuda',array('controller'=>'users','action' => 'help'));?></li>
                 </ul>
 			</nav>
 	</div>
