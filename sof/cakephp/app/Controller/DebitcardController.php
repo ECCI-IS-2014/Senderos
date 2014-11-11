@@ -19,15 +19,23 @@ class DebitcardController extends AppController
 
     public function add()
     {
-        if ($this->request->is('post'))
+        if($this->Session->read("Auth.User.role") == 'admin')
         {
-            $this->Debitcard->create();
-            if ($this->Debitcard->save($this->request->data))
+            if ($this->request->is('post'))
             {
-                $this->Session->setFlash(__('La tarjeta ha sido creada'));
-                return $this->redirect(array('controller' => 'product', 'action' => 'login'));
+                $this->Debitcard->create();
+                if ($this->Debitcard->save($this->request->data))
+                {
+                    $this->Session->setFlash(__('La tarjeta ha sido creada'));
+                    return $this->redirect(array('controller' => 'products', 'action' => 'index'));
+                }
+                $this->Session->setFlash(__('La tarjeta no ha podido ser creada'));
             }
-            $this->Session->setFlash(__('La tarjeta no ha podido ser creada'));
+        }
+        else
+        {
+            $this->Session->setFlash(__('Acceso no permitido.'));
+            return $this->redirect(array('controller' => 'products', 'action' => 'index'));
         }
     }
 
