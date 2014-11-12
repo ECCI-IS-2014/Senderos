@@ -13,7 +13,7 @@
 
         .categoryform
         {
-            width:30%;
+            width:50%;
             margin:0 auto;
             margin-top:2%;
             background-color: #fff;
@@ -29,13 +29,16 @@
     </style>
 </head>
 
-<div id="container">
-        <?php echo $this->Html->link('Volver',array('action'=>'index')); ?>
 <body>
+
+<?php include("header.ctp");?>
+
+<div id="container">
     <div class="categoryform">
+        <?php echo $this->Html->link('Volver',array('action'=>'index')); ?>
         <?php echo $this->Form->create('Cat'); ?>
         <fieldset id="registro">
-            <legend><?php echo __('Añadir Categoría'); ?></legend>
+            <h3><?php echo __('Añadir Categoría'); ?></h3>
             <?php
                 echo $this->Form->create('Category');
                 echo "<br>";
@@ -48,5 +51,6 @@
         </fieldset>
         <?php echo $this->Form->end(__('Guardar')); ?>
     </div>
+</div>
 </body>
 </html>

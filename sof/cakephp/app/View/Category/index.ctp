@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+    <style>
+        #container
+        {
+            width:100%;
+            font-family: Helvetica, Geneva, sans-serif;
+            color: gray;
+        }
 
-    <br><br>
-    <h1>Listado de Categorías</h1>
-    <table>
+        .productsform
+        {
+            width:50%;
+            margin:0 auto;
+            margin-top:2%;
+            background-color: #fff;
+            color: black;
+            border:solid 1px #dcdcdc;
+            padding:10px;
+        }
+
+        #registro input
+        {
+            float:right;
+        }
+
+        #registro textarea
+        {
+             float:right;
+        }
+
+        table, td {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<?php include("header.ctp");?>
+
+<div id="container">
+    <div class="productsform">
+
+    <h3>Listado de Categorías</h3>
+
+    <table style="width:100%">
         <tr>
             <th>Nombre de la Categoría</th>
-		    <th>Acciones</th>
+		    <th colspan="4">Acciones</th>
         </tr>
         <?php foreach ($categorylist as $key => $value): ?>
         <tr>
@@ -22,12 +67,18 @@
                     echo $this->Html->link('Subir', array('action' => 'moveup', $key));
                     echo '  ';
                     echo $this->Html->link('Bajar', array('action' => 'movedown', $key));
-                }
-            ?></td>
+                }?>
+            </td>
         </tr>
         <?php endforeach; ?>
         <?php unset($categorylist); ?>
     </table>
+
+    <br>
+    <h1><?php echo $this->Html->link('Agregar categoría', array('action' => 'add'));?></h1>
+
+    </div>
+</div>
 
 </body>
 </html>

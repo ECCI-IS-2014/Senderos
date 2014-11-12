@@ -13,7 +13,7 @@
 
         .categoryform
         {
-            width:30%;
+            width:50%;
             margin:0 auto;
             margin-top:2%;
             background-color: #fff;
@@ -31,16 +31,20 @@
 
 <body>
 
+<?php include("header.ctp");?>
+
 <div id="container">
-    <?php echo $this->Html->link('Volver',array('action'=>'index')); ?>
     <div class="categoryform">
+    <?php echo $this->Html->link('Volver',array('action'=>'index')); ?>
+    <br>
     <?php echo $this->Form->create('Category'); ?>
         <fieldset id="registro">
-            <legend><?php echo __('Editar Categoría'); ?></legend>
+            <h3><?php echo __('Editar Categoría'); ?></h3>
+            <br>
             <?php
                 echo $this->Form->input('name',array('label' => 'Nombre nuevo:'));
                 echo '<br><br>';
-                echo $this->Form->input('parent_id', array('type' => 'select', 'options' => $categories, 'empty' => 'None', 'label' => 'Categoría Padre:'));
+                echo $this->Form->input('parent_id', array('type' => 'select', 'options' => $categories, 'empty' => 'Ninguna', 'label' => 'Categoría Padre:'));
                 ?>
         </fieldset>
         <?php echo $this->Form->end(__('Guardar cambios')); ?>
