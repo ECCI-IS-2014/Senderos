@@ -25,7 +25,12 @@ class ChecksController extends AppController
         }
 
         $this->set(compact('cart'));
-    }
+
+        if ($this->request->is('post')) {
+            // pasar datos a receipt
+        }
+
+        }
 	
 	public function receipt($idDebit,$total){
         // Guardar factura: IDCHECK, idDebit, total,GENERAL_DISCOUNT,DATE
