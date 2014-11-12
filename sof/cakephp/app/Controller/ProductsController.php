@@ -291,6 +291,13 @@ class ProductsController extends AppController
 
             )
         )));
+		
+		$this->set('categorylist',$this->Category->generateTreeList(
+            null,
+            null,
+            null,
+            ' • '
+        ));
     }
 
     public function agregarCarrito($id,$price){
