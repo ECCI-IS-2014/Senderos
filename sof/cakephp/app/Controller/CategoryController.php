@@ -61,7 +61,7 @@ class CategoryController extends AppController
             null,
             null,
             null,
-            '---'
+            '___'
         ));
         $this->Category->id = $id;
         if (!$this->Category->exists())

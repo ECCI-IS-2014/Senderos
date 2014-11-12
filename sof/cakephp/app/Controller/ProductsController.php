@@ -22,6 +22,13 @@ class ProductsController extends AppController
             $this->set('role','cust');
 			$this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1"))));
         }
+		
+		$this->set('categorylist',$this->Category->generateTreeList(
+            null,
+            null,
+            null,
+            ' • '
+        ));
     }
 	
 	public function beforeFilter()
