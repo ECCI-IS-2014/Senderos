@@ -15,6 +15,7 @@
         #product
         {
             width:70%;
+            height:1000px;
             display:inline;
             float: left;
             margin:5px;
@@ -82,6 +83,7 @@
 <div id="container">
 
     <div id="product">
+		<h1><?php echo $this->Html->link('Solo en stock', array('controller' => 'products', 'action' => 'filterStock', 'full_base' => true)) ?></h1>
         <?php foreach ($results as $product): ?>
         <div id="simple">
             <tr>
@@ -116,9 +118,9 @@
     <table id='categorytree' style="width:100%">
         <h1>Categorías</h1>
         <?php foreach ($categorylist as $key => $value): ?>
-            <tr>
-                <td><?php echo $this->Html->link($value, array('controller' => 'products', 'action' => 'search', $value)); ?></td>
-            </tr>
+            <p>
+                <a><?php echo $this->Html->link($value, array('controller' => 'products', 'action' => 'search', $value)); ?></a>
+            </p>
             <?php endforeach; ?>
             <?php unset($categorylist); ?>
         </table>

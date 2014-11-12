@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <title>Busqueda</title>
+    <title>Catálogo de la tienda</title>
     <style>
 
         #container
         {
             width:100%;
+            height:100%;
             font-family: Helvetica, Geneva, sans-serif;
             color: gray;
         }
@@ -15,6 +16,7 @@
         #product
         {
             width:70%;
+            height:1000px;
             display:inline;
             float: left;
             margin:5px;
@@ -23,10 +25,10 @@
             padding:10px;
         }
 
-        #categories
+        .categories
         {
             width:25%;
-            display:inline;
+            display:block;
             float: right;
             margin:5px;
             background-color: #fff;
@@ -64,6 +66,15 @@
         {
             padding-bottom:10px
         }
+
+        table tr td
+        {
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom:0px solid #ddd;
+        }
+
     </style>
 </head>
 
@@ -103,8 +114,16 @@
         <?php unset($product); ?>
     </div>
 
-    <div id="categories">
-        <p>Categorías</p>
+    <div class="categories">
+    <table id='categorytree' style="width:100%">
+        <h1>Categorías</h1>
+        <?php foreach ($categorylist as $key => $value): ?>
+            <p>
+                <a><?php echo $this->Html->link($value, array('controller' => 'products', 'action' => 'search', $value)); ?></a>
+            </p>
+            <?php endforeach; ?>
+            <?php unset($categorylist); ?>
+        </table>
     </div>
 
 </div>
