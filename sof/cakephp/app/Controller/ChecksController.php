@@ -18,6 +18,10 @@ class ChecksController extends AppController
 
         $this->set(compact('cart'));
     }
+	
+	public function receipt(){
+		$idCheck = 1337;
+	}
 
 }
 
