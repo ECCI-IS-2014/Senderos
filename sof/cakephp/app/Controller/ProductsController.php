@@ -28,7 +28,7 @@ class ProductsController extends AppController
     {
         parent::beforeFilter();
         // Permite a usuarios no registrados buscar.
-        $this->Auth->allow('search');
+        $this->Auth->allow('search', 'filterStock');
     }
 	
 	/*
