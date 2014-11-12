@@ -138,18 +138,6 @@
         <?php unset($product); ?>
     </div>
 
-	<div class="categories">
-    <table id='categorytree' style="width:100%">
-            <h1>Categorías</h1>
-            <?php foreach ($categorylist as $key => $value): ?>
-            <tr>
-                <td><?php echo $this->Html->link($value, array('controller' => 'products', 'action' => 'search', $value)); ?></td>
-            </tr>
-            <?php endforeach; ?>
-            <?php unset($categorylist); ?>
-        </table>
-    </div>
-	
     <div id="categories">
         <?php
                 echo $this->Html->link(

@@ -60,6 +60,7 @@
         <?php $number=0;
         $total=0;
         $totalConDesc=0;
+		$totalConImp = 0;
         foreach ($cart as $key => $product ):
             $cantidad=$this->Session->read('CartQty.'.$number);
             $number++;
@@ -79,16 +80,23 @@
                             $subtotal=$subtotal*(100-$product['Product']['discount'])/100;
                             echo '<br>Descuento: '.$product['Product']['discount'].'%<br>Precio con Descuento: '.$subtotal.'$<br>';
                         }
-                        $totalConDesc = $totalConDesc+$subtotal;  ?>
-                        <br>
+                        $totalConDesc = $totalConDesc+$subtotal; ?>
+                       <br>
+					   <?php
+						if($product['Product']['tax']!=0){
+                            $subtotal=$subtotal*(100+$product['Product']['tax'])/100;
+                            echo '<br>Impuesto: '.$product['Product']['tax'].'%<br>Precio con Impuesto: '.$subtotal.'$<br>';
+                        }
+						$totalConImp = $totalConImp + $subtotal;
+						?>
                  </div>
             </tr>
         <?php endforeach; ?>
         <?php unset($product); ?>
         <?php
-            echo '<p><div align="right"><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><br>';
+            echo '<p><div align="right"><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><b>Precio total con impuestos: </b>'.$totalConImp.'$<br><br>';
             echo $this->Form->create();
-            echo $this->Form->input('country', array('title' => 'Pago', 'type' => 'select', 'options' => $debitcards, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
+            echo $this->Form->input('country', array('title' => 'Pago', 'type' => 'select', 'options' => $countries, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
             echo $this->Form->end("COMPRAR");
             echo '</div></p>';
         ?>

@@ -73,6 +73,8 @@
         echo "<br><br>";
         echo $this->Form->input('discount',array('label'=>'Descuento de producto en %:','type'=>'number','default'=>$cant['Stock']['amount']));
         echo "<br><br>";
+		echo $this->Form->input('tax',array('label'=>'Impuesto de producto en %:','type'=>'number','default'=>$cant['Stock']['amount']));
+        echo "<br><br>";
         echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Seleccione un archivo de imagen:'));
         echo "<br><br>";
         echo $this->Form->input('video', array('rows' => '1', 'label'=>'Link de un vídeo:'));

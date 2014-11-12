@@ -83,6 +83,14 @@ class Product extends AppModel
             ),
             'rule3' => 'numeric'
         ),
+		'tax'=>array(
+            'rule1' => 'notEmpty',
+            'rule2' => array(
+                'rule' => array('between', 1, 2),
+                'message' => 'Debe ser un valor entre 0 y 99'
+            ),
+            'rule3' => 'numeric'
+        ),
 		'description' => array(
             'rule' => 'notEmpty'
         )
