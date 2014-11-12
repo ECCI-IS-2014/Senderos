@@ -85,6 +85,7 @@
     <div id="product">
 		
         <h3><?php echo "Catálogo de nuestra tienda";?></h3>
+		<h1><?php echo $this->Html->link('Solo en stock', array('controller' => 'products', 'action' => 'filterStock', 'full_base' => true)) ?></h1>
         <?php foreach ($products as $product): ?>
         <div id="simple">
             <tr>
