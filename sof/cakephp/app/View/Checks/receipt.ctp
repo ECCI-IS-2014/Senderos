@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Catálogo de la tienda</title>
+    <title>Catï¿½logo de la tienda</title>
     <style>
 
         body
@@ -55,7 +55,7 @@
 <div id="contenedor">
 
     <?php include("header.ctp");
-    echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3></div>';
+    echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3><H3>Total facturado: '.$finalPrice.'$</H3><br><H4>Â¡Gracias por su compra!</H4></div>';
 	?>
     <div id="simple">
         
