@@ -23,7 +23,7 @@
             padding:10px;
         }
 
-        #categories
+        .categories
         {
             width:25%;
             display:inline;
@@ -63,6 +63,14 @@
         #info p
         {
             padding-bottom:10px
+        }
+
+        table tr td
+        {
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom:0px solid #ddd;
         }
 
     </style>
@@ -138,7 +146,7 @@
         <?php unset($product); ?>
     </div>
 
-	<div class="categories">
+    <div class="categories">
     <table id='categorytree' style="width:100%">
             <h1>Categorías</h1>
             <?php foreach ($categorylist as $key => $value): ?>
@@ -149,8 +157,8 @@
             <?php unset($categorylist); ?>
         </table>
     </div>
-	
-    <div id="categories">
+
+    <div class="categories">
         <?php
                 echo $this->Html->link(
                 'Agregar plataforma',
@@ -193,15 +201,6 @@
                 )
                 );
         ?>
-        <h3><?php echo "<br>";?></h3>
-        <h3><?php echo "¿Quiénes somos?"."<br>";?></h3>
-                <object width="100" height="100">
-                    <param name="src" value="http://localhost/cakephp/app/webroot/files/audio.mp3">
-                    <param name="autoplay" value="false">
-                    <param name="controller" value="true">
-                    <param name="bgcolor" value="#FFFFFF">
-                    <embed src="http://localhost/cakephp/app/webroot/files/audio.mp3" autostart="false" loop="false" width="50" height="50" controller="true" bgcolor="#FFFFFF">
-        </object>
     </div>
 
 </div>
