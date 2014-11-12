@@ -84,6 +84,12 @@
                 echo '<p><b>Descuento: </b>'.$product['Product']['discount'].'%</p>';
              }
         ?>
+		
+		 <?php
+             if($product['Product']['tax']!=0){
+                echo '<p><b>Impuesto: </b>'.$product['Product']['tax'].'%</p>';
+             }
+        ?>
 
         <p><b>Descripción: </b><?php echo $product['Product']['description']; ?></p>
 

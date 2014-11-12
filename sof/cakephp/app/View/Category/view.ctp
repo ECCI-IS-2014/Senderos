@@ -13,13 +13,13 @@
 
         .categoryform
         {
-            width:50%;
+            width:30%;
             margin:0 auto;
             margin-top:2%;
             background-color: #fff;
             color: black;
             border:solid 1px #dcdcdc;
-            padding:10px;
+            padding:2px;
         }
 
         #registro input
@@ -31,39 +31,31 @@
 
 <body>
 
-<?php include("header.ctp");?>
-
 <div id="container">
-    <div class="categoryform">
-
-    <br>
     <?php echo $this->Html->link('Volver',array('action'=>'index')); ?>
-
+    <div class="categoryform">
     <fieldset id="registro">
-        <h3><?php echo "Información de la Categoría" ?></h3>
-
-        <h1><?php echo "Nombre: ".h($category['Category']['name'])." "; ?></h1>
-        <h1><?php
+            <legend><?php echo "Información de la Categoría" ?></legend>
+            <h1><?php echo "Nombre: ".h($category['Category']['name'])." "; ?></h1>
+            <h1><?php
                 if($category['Category']['parent_id'] != '')
                 {
                     echo "Categoría Padre: ".h($parent['Category']['name'])." ";
                 }
-            ?>
-        </h1>
+            ?></h1>
             <h1><?php
                 if($child != null)
                 {
                     echo "Subcategorías: ";
                     foreach ($child as $children):
-                        echo '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$children;
+                        echo '<br>'.$children;
                     endforeach;
                 }
 
             ?></h1>
-        <?php unset($child); ?>
-    </fieldset>
-    </div>
+    <?php unset($child); ?>
+</fieldset>
 </div>
-
+</div>
 </body>
 </html>
