@@ -88,7 +88,7 @@
         <?php
             echo '<p><div align="right"><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><br>';
             echo $this->Form->create();
-            echo $this->Form->input('country', array('title' => 'Pago', 'type' => 'select', 'options' => $countries, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
+            echo $this->Form->input('country', array('title' => 'Pago', 'type' => 'select', 'options' => $debitcards, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
             echo $this->Form->end("COMPRAR");
             echo '</div></p>';
         ?>
