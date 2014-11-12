@@ -262,6 +262,9 @@ class ProductsController extends AppController
         }
     }
 	
+	function filterStock() {
+       $this->set('results', $this->Product->find("all", array('conditions' => array("Product.outofstock != 1"))));
+    }
 	
     function search() {
         if (isset($this->request->data['Products']['q'])) {
