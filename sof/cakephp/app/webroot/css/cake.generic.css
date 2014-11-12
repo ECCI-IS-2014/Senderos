@@ -127,7 +127,6 @@ div.actions h3 {
 
 }
 
-
 /** Tables **/
 table {
 	border-right:0;
@@ -154,7 +153,6 @@ th a.desc:after {
 	content: ' ⇡';
 }
 table tr td {
-    display:inline;
 	padding: 6px;
 	text-align: left;
 	vertical-align: top;
