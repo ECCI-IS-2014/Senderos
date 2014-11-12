@@ -106,12 +106,8 @@ class UsersController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
 	
-<<<<<<< HEAD
-	public function wishlist()
-    {
-=======
+	public function wishlist(){
+	}
     public  function help(){
-
->>>>>>> f7743edac65fa56daf4bcf1077b039dccb620f2b
     }
 }

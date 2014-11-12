@@ -63,7 +63,7 @@
         echo $this->Form->input('description', array('rows' => '3', 'label'=>'Descripción del videojuego:'));
         echo "<br><br><br><br>";
         //amount es para insertar en stock
-        echo $this->Form->input('amount', array('label'=>'Cantidad de producto (unidades):', 'type' => 'number', 'default' => '0'));
+        echo $this->Form->input('amount', array('label'=>'Cantidad de producto (unidades):', 'type' => 'number', 'default'=>$cant['Stock']['amount']));
         echo "<br><br>";
         echo $this->Form->input('presentation', array('type' => 'select', 'options' => array('Físico', 'Digital'), 'label' => 'Formato de entrega:', 'empty' => 'no seleccionado'));
         echo "<br><br>";
