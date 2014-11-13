@@ -55,7 +55,7 @@
 <div id="contenedor">
 
     <?php include("header.ctp");
-		echo $this->Form->create('Check');
+		$idCheck=rand(7,8);
         echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3><H4>Total facturado: '.$finalPrice.'$</H4></div>';
 	?>
     <div id="simple">
