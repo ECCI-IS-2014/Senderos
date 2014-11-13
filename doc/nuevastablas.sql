@@ -15,7 +15,8 @@ CREATE TABLE products(
 	rating DOUBLE UNSIGNED, -- se va a calcular un promedio del puntaje asignado por los ususarios cliente
 	outofstock BOOLEAN NOT NULL DEFAULT FALSE,
 	image TEXT, -- nombre.extensión
-	video TEXT -- link válido de un vídeo
+	video TEXT, -- link válido de un vídeo
+	tax INT unsigned NOT NULL
 );
 
 CREATE TABLE platforms(
