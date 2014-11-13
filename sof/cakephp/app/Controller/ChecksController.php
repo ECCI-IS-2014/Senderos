@@ -32,12 +32,30 @@ class ChecksController extends AppController
 
         }
 	
-	public function receipt($idDebit,$total){
+	public function receipt(){
         // Guardar factura: IDCHECK, idDebit, total,GENERAL_DISCOUNT,DATE
         $this->set('idCheck',1337);
         $this->set('finalPrice',$total);
 
-
+		//Aquí van las variables que se pasan al formulario
+        $idUser = $this->Session->read("Auth.User.id");
+        $this->set('debitcards', $this->Debitcard->DebitcardsUser->find('list', array(
+                'fields' => array('DebitcardsUser.debitcard_id'),
+                'conditions' => array('DebitcardsUser.user_id =' => $idUser)
+         )) );
+        $total = 0; //Aquí ves de dónde sacas el valor de total
+        $this->set('total', $total);
+		
+		// Aquí se guarda la factura, trayendo los datos del formulario
+        if ($this->request->is('post')) {
+            $this->Check->create();
+            if ($this->Check->save($this->request->data)) {
+                $id = $this->request->data['Check']['id'];
+                $this->Check->read(null, $id);
+                $this->Check->set(['debitcard_id'=>0, 'amount'=>0, 'general_discount'=> 0, 'sold_the'=>0]);
+                $this->Check->save();
+            }
+        }
 
         $cart = array();
         if ($this->Session->check('Cart')) {
