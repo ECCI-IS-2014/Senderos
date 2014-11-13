@@ -102,8 +102,8 @@ CREATE TABLE check_products(
 );
 
 -- trigger para cuando un producto está outofstock
-drop trigger out_of_stock1;
-drop trigger out_of_stock2;
+-- drop trigger out_of_stock1;
+-- drop trigger out_of_stock2;
 
 DELIMITER $$
 CREATE TRIGGER out_of_stock1 
