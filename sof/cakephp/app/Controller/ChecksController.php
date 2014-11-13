@@ -62,6 +62,7 @@ class ChecksController extends AppController
             $cart = $this->Session->read('Cart');
         }
         $this->set(compact('cart'));
+		$number = 0;
         foreach($cart as $key => $product ){
             $discount = $product['Product']['discount'];
             $price = $product['Product']['price']*(100-$discount)/100;
