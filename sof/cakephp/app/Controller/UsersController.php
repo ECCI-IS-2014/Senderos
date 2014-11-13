@@ -5,7 +5,7 @@ App::uses('DebitcardsController', 'Controller');
 
 class UsersController extends AppController {
 
-    var $uses = array('Country', 'User', 'Debitcard');
+    var $uses = array('Country', 'User', 'Debitcard','DebitcardsUser');
 
     public function index(){
         $this->set('users',$this->User->find('all'));
@@ -20,6 +20,12 @@ class UsersController extends AppController {
         $user = $this->User->findById($id);
         $coun = $this->Country->findById($user['User']['country']);
         $this->set('country', $coun['Country']['country_name']);
+		
+		$idUser = $this->Session->read("Auth.User.id");
+        $this->set('debitcards', $this->Debitcard->DebitcardsUser->find('list', array(
+            'fields' => array('DebitcardsUser.debitcard_id'),
+            'conditions' => array('DebitcardsUser.user_id =' => $idUser)
+        )) );
     }
 
     public function add() {

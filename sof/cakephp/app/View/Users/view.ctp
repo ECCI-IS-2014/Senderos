@@ -44,6 +44,8 @@
         {
             echo "Rol: ".h($users['User']['role'])." ";
         } ?></h3>
+		<h3><?php echo $this->Form->input('debcard', array('title' => 'Pago', 'type' => 'select', 'options' => $debitcards, 'empty' => 'ID por el momento', 'label' => 'Tarjetas registradas')); ?></h3>
+        <br><br>
         <h3><?php echo $this->Html->link('Editar mi perfil',array('controller' =>'users','action'=>'edit',$this->Session->read('Auth.User.id'))); ?>
     </div>
 </div>
