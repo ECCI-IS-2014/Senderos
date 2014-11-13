@@ -110,7 +110,7 @@
             	?>
 		        <ul>
                     <li align=center><a>Ofertas</a></li>
-                    <li align=center><?php echo $this->Html->link('Ventas',array('action' => 'add'));?></li>
+                    <li align=center><?php echo $this->Html->link('Ventas',array('controller'=>'checkproduct','action' => 'sales'));?></li>
                     <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
                 </ul>
