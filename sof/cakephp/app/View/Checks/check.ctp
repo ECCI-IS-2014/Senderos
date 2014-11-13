@@ -96,6 +96,7 @@
         <?php
             echo '<p><div align="right"><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><b>Precio total con impuestos: </b>'.$totalConImp.'$<br><br>';
             echo $this->Form->create('Check',array('action'=>'receipt'));
+			echo $this->Form->input('id', array('type' => 'hidden'));
             echo $this->Form->input('debcard', array('title' => 'Pago', 'type' => 'select', 'options' => $debitcards, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
 			echo $this->Form->input('amount', array('type' => 'hidden', 'default' => $totalConImp));
             echo $this->Form->end("COMPRAR");
