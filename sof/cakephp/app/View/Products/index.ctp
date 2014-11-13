@@ -15,6 +15,7 @@
         #product
         {
             width:70%;
+			height:1000px;
             display:inline;
             float: left;
             margin:5px;
