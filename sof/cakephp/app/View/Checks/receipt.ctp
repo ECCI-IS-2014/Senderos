@@ -56,14 +56,7 @@
 
     <?php include("header.ctp");
 		echo $this->Form->create('Check');
-        echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3></div>';
-        echo $this->Form->input('id', array('type' => 'hidden'));
-        echo $this->Form->input('debitcard_id', array('title' => 'Pago', 'type' => 'select', 'options' => $debitcards, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
-        echo "<br><br>";
-        echo $this->Form->input('amount', array('type' => 'hidden', 'default' => $total));
-        echo $this->Form->input('general_discount', array('type' => 'hidden', 'default' => 0));
-        echo $this->Form->input('sold_the', array('type' => 'hidden', 'default' => 0));
-        echo $this->Form->end('Guardar');
+        echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3><H4>Total facturado: '.$finalPrice.'$</H4></div>';
 	?>
     <div id="simple">
         
