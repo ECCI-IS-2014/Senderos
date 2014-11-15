@@ -2,6 +2,16 @@
 <html>
 <body>
 
+<?php if($this->Session->read("Auth.User.role") == 'admin')
+      {
+        include("headeradmin.ctp");
+      }
+      else
+      {
+        include("header.ctp");
+      }
+?>
+
 <h5>Añadir una nueva plataforma a la lista</h5>
 <h1></h1>
 <?php

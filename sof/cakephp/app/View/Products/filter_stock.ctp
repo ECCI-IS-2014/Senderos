@@ -79,7 +79,16 @@
 </head>
 
 <body>
-<?php include("header.ctp");?>
+
+<?php if($this->Session->read("Auth.User.role") == 'admin')
+      {
+        include("headeradmin.ctp");
+      }
+      else
+      {
+        include("header.ctp");
+      }
+?>
 
 <div id="container">
 

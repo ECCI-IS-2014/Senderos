@@ -52,9 +52,19 @@
 </head>
 
 <body>
+
+<?php if($this->Session->read("Auth.User.role") == 'admin')
+      {
+        include("headeradmin.ctp");
+      }
+      else
+      {
+        include("header.ctp");
+      }
+?>
+
 <div id="contenedor">
 
-    <?php include("header.ctp");?>
     <?php echo '<br>'.$this->Html->link("Vaciar carrito",array('controller'=>'products','action'=>'vaciar')).'<br>' ;?>
     <div id="simple">
         <?php $number=0;

@@ -52,9 +52,19 @@
 </head>
 
 <body>
+
+<?php if($this->Session->read("Auth.User.role") == 'admin')
+      {
+        include("headeradmin.ctp");
+      }
+      else
+      {
+        include("header.ctp");
+      }
+?>
+
 <div id="contenedor">
 
-    <?php include("header.ctp");
 		$idCheck=rand(7,8);
         echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3><H4>Total facturado: '.$finalPrice.'$</H4></div>';
 	?>

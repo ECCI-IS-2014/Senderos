@@ -52,9 +52,19 @@
 </head>
 
 <body>
+
+<?php if($this->Session->read("Auth.User.role") == 'admin')
+      {
+        include("headeradmin.ctp");
+      }
+      else
+      {
+        include("header.ctp");
+      }
+?>
+
 <div id="contenedor">
 
-    <?php include("header.ctp");?>
     <br><div align="center"><H3>Ítemes a comprar: </H3></div>
     <div id="simple">
         <?php $number=0;

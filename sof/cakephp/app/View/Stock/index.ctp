@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html>
+
+<?php if($this->Session->read("Auth.User.role") == 'admin')
+      {
+        include("headeradmin.ctp");
+      }
+      else
+      {
+        include("header.ctp");
+      }
+?>
+
 <?php foreach ($stock as $amount): ?>
 <tr>
     <div id="info">
