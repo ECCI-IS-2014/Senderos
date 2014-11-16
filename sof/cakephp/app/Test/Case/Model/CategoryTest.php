@@ -24,19 +24,34 @@ class CategoryTest extends CakeTestCase {
 		$result = $this->Category->bringAllRegisters();
         $expected = array(
             array('categories' => array('id' => 1, 'name' => 'AVENTURA', 'parent_id' => NULL, 'lft' => 1, 'rght' => 2)),
-			array('categories' => array('id' => 2, 'name' => 'SUB-AVENTURA', 'parent_id' => 1, 'lft' => 2, 'rght' => 3)),
-            array('categories' => array('id' => 3, 'name' => 'HORROR', 'parent_id' => NULL, 'lft' => 5, 'rght' => 6))
-        );
+       );
         $this->assertEquals($expected, $result);
     }
 	
-	public function testBringParent() {
+	/*public function testBringParent()
+    {
 		$this->loadFixtures('Category');
 		$result = $this->Category->bringParent(2);
 		$expected = array(
             array('categories' => array('parent_id' => 1))
 		);
 		$this->assertEquals($expected, $result);
-	}
+	}*/
+
+    public function testRemoveRegister()
+    {
+        $this->loadFixtures('Category');
+        $result = $this->Category->removeRegister();
+        $expected = array();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testEditRegister()
+    {
+        $this->loadFixtures('Category');
+        $result = $this->Category->editRegister()['Category']['name'];
+        $expected = 'GUERRA';
+        $this->assertEquals($expected, $result);
+    }
 }
 ?>

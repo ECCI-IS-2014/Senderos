@@ -59,5 +59,18 @@ class Category extends AppModel{
 	public function bringParent($id) {
 		return $this->query("SELECT parent_id FROM categories where id=".$id.";");
     }
+
+    public function removeRegister()
+    {
+        $this->delete(1);
+        return $this->find('first');
+    }
+
+    public function editRegister()
+    {
+        $this->id = 1;
+        $this->saveField('name', 'GUERRA');
+        return $this->find('first');
+    }
 }
 ?>
