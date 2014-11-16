@@ -65,11 +65,11 @@
 
 <div id="contenedor">
 
-		$idCheck=rand(7,8);
+    <?php
         echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3><H4>Total facturado: '.$finalPrice.'$</H4></div>';
 	?>
     <div id="simple">
-        
+        <br><br><div align="center">¡GRACIAS POR SU COMPRA!</div><br><br>
     </div>
 
 </div>
