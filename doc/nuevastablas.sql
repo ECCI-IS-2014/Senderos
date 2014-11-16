@@ -1,4 +1,4 @@
-CREATE TABLE products(
+CREATE TABLE IF NOT EXISTS products(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL, -- no hay restricciones, pueden repetirse nombres 
     -- genre VARCHAR(100) NOT NULL, -- no hay restricciones
@@ -19,13 +19,13 @@ CREATE TABLE products(
 	tax INT unsigned NOT NULL
 );
 
-CREATE TABLE platforms(
+CREATE TABLE IF NOT EXISTS platforms(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL -- nombre de la plataforma
 );
 
 -- las categorías son los géneros 
-CREATE TABLE categories(
+CREATE TABLE IF NOT EXISTS categories(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
 	parent_id INT UNSIGNED DEFAULT NULL,	-- hace referencia al padre de la subcategoría, puede no tener padre
@@ -33,30 +33,30 @@ CREATE TABLE categories(
     rght INT UNSIGNED DEFAULT NULL
 );
 
-CREATE TABLE category_products(
+CREATE TABLE IF NOT EXISTS category_products(
 	product_id INT UNSIGNED NOT NULL,
 	category_id INT UNSIGNED NOT NULL
 );
 
-CREATE TABLE stocks(
+CREATE TABLE IF NOT EXISTS stocks(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	product_id INT UNSIGNED NOT NULL, 
 	amount INT UNSIGNED NOT NULL
 );
 
-CREATE TABLE wishlists(
+CREATE TABLE IF NOT EXISTS wishlists(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT UNSIGNED NOT NULL
 );
 
 -- TABLA DE LA RELACIÓN HASANDBELONGSTOMANY ENTRE WISHLIST Y PRODUCTO 
-CREATE TABLE product_wishlists(
+CREATE TABLE IF NOT EXISTS product_wishlists(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	wishlist_id INT UNSIGNED NOT NULL, 
 	product_id INT UNSIGNED NOT NULL
 );
 
-CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE users(
 );
 
 -- SCRIPT para el medio de pago
-CREATE TABLE debitcards(
+CREATE TABLE IF NOT EXISTS debitcards(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	card_number VARCHAR(16) NOT NULL,
 	nip VARCHAR(4) NOT NULL,
@@ -79,13 +79,13 @@ CREATE TABLE debitcards(
 );
 
 -- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
-CREATE TABLE debitcards_user(
+CREATE TABLE IF NOT EXISTS debitcards_user(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT NOT NULL,
 	debitcard_id INT NOT NULL
 );
 
-CREATE TABLE checks(
+CREATE TABLE IF NOT EXISTS checks(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     debitcard_id INT UNSIGNED,
 	amount INT UNSIGNED NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE checks(
     sold_the DATE NOT NULL
 );
 
-CREATE TABLE check_products(
+CREATE TABLE IF NOT EXISTS check_products(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	check_id INT UNSIGNED,
 	product_id INT UNSIGNED,
@@ -104,14 +104,14 @@ CREATE TABLE check_products(
 
 -- Tablas de beneficios
 
-CREATE TABLE benefits(
+CREATE TABLE IF NOT EXISTS benefits(
    id INT unsigned NOT NULL AUTO_INCREMENT,
    name varchar(15) NOT NULL,
    discount INT unsigned NOT NULL,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE benefits_user(
+CREATE TABLE IF NOT EXISTS benefits_user(
    id INT unsigned NOT NULL AUTO_INCREMENT,
    user_id INT NOT NULL,
    benefit_id INT NOT NULL,
@@ -153,7 +153,7 @@ DELIMITER ;
 -- dado lo mecánico y tedioso de digitar toda esta información
 -- decidimos tomar lo que ya estaba hecho de un foro.
 
-CREATE TABLE `countries` 
+CREATE TABLE IF NOT EXISTS `countries` 
 (
 `id` int(11) NOT NULL auto_increment,
 `country_code` varchar(2) NOT NULL default '',
