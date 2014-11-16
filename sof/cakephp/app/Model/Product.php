@@ -111,6 +111,49 @@ class Product extends AppModel
 		$this->delete(1,false);
 		return $this->bringAllRegisters();
     }
+	
+	public function getProductStock() {
+        /*$data = array(
+                    'id' => 1,
+                    'name' => 'RE4',
+                    'platform_id' => 2,
+                    'release_year' => '2004', //no estoy segura si va en comillas
+                    'price' => 5,
+                    'description' => 'a really nice game',
+                    'presentation' => 1,
+                    'enabled' => 1,
+                    'requirement' => '',
+                    'rated' => 0,
+                    'discount' => 0,
+                    'rating' => 0,
+                    'image' => null,
+                    'video' => null,
+                    'outofstock' => 0,
+                    'tax' => 0
+        );
+        $this->save($data);
+        $this->Stock->save(['id'=>1, 'product_id'=>1, 'amount'=>5]); */
+        return $this->Stock->find('first');
+    }
+
+    public function delProductStock() {
+        $this->Stock->delete(1);
+        return $this->Stock->find('first');
+    }
+
+    public function enable() {
+        $this->id = 1;
+        $this->saveField('enabled', 1);
+        return $this->find('first');
+    }
+
+    public function disable() {
+        //$data = array('enabled' => 0);
+        // This will update Recipe with id 10
+        $this->id = 1;
+        $this->saveField('enabled', 0);
+        return $this->find('first');
+    }
 }
 
 ?>
