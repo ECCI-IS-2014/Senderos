@@ -6,9 +6,22 @@ class CategoryControllerTest extends ControllerTestCase {
         $result = $this->testAction('/category/index');
         debug($result);
     }
-	public function testAdd() {
+
+	public function testAdd()
+    {
         $result = $this->testAction('/products/add');
         debug($result);
+    }
+
+    public function testDelete()
+    {
+        $data = $this->testAction('/category/delete/1');
+        debug($data);
+    }
+
+    public function testEdit() {
+        $data = $this->testAction('/category/edit/1');
+        debug($data);
     }
 	
 	public function testAddGetRenderedHtml() {
@@ -44,5 +57,4 @@ class CategoryControllerTest extends ControllerTestCase {
         debug($result);
     }
 }
-
 ?>

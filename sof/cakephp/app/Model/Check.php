@@ -25,5 +25,14 @@ class Check extends AppModel{
                 'with' => '' */
             )
     );
+	
+	public function bringAllRegisters() {
+        return $this->find('all');
+    }
+
+    public function removeRegister() {
+        $this->delete(1,false);
+        return $this->bringAllRegisters();
+    }
 }
 ?>

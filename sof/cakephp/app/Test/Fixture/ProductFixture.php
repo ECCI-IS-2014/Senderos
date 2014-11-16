@@ -1,6 +1,29 @@
 <?php
 class ProductFixture extends CakeTestFixture {
 
+	 public $import = array('model' => 'Product'); //, 'records' => true);
+
+	  public $records = array(
+        array(
+                    'id' => 1,
+                    'name' => 'RE4',
+                    'platform_id' => 2,
+                    'release_year' => '2004', //no estoy segura si va en comillas
+                    'price' => 5,
+                    'description' => 'a really nice game',
+                    'presentation' => 1,
+                    'enabled' => 1,
+                    'requirement' => '',
+                    'rated' => 0,
+                    'discount' => 0,
+                    'rating' => 0,
+                    'image' => null,
+                    'video' => null,
+                    'outofstock' => 0,
+                    'tax' => 0
+        )
+     );
+	/*
       // Optional.
       // Set this property to load fixtures to a different test datasource
       //public $useDbConfig = 'test';
