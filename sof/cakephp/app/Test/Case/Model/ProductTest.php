@@ -42,6 +42,7 @@ class ProductTest extends CakeTestCase {
                             'tax' => 0
              )
         );
+		$this->assertEquals($expected, $result);
     }
         public function testDelProductStock() {
             $this->loadFixtures('Product', 'Stock');
