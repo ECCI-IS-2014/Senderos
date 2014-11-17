@@ -66,11 +66,15 @@
 <div id="contenedor">
 
     <?php
-        echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3><H4>Total facturado: '.$finalPrice.'$</H4></div>';
+        if(isset($idCheck)){
+			echo '<br><div align="center"><H3>FACTURA #: '.$idCheck.'</H3><H4>Total facturado: '.$finalPrice.'$</H4></div>';
+			echo '<div id="simple">
+					<br><br><div align="center">¡GRACIAS POR SU COMPRA!</div><br><br>
+				</div>';
+		}else{
+			echo '<br><div align="center"><H3>LO SENTIMOS!</H3><br><b>FONDOS INSUFICIENTES O LA TARJETA HA EXPIRADO!</b></div><br>';
+		}
 	?>
-    <div id="simple">
-        <br><br><div align="center">¡GRACIAS POR SU COMPRA!</div><br><br>
-    </div>
 
 </div>
 </body>
