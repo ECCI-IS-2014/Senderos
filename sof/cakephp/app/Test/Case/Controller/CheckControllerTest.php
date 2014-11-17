@@ -13,5 +13,10 @@ class CheckControllerTest extends ControllerTestCase
         $result = $this->testAction('checks/check');
         debug($result);
     }
+	
+	public function testReceipt(){
+		$result = $this->testAction('checks/receipt');
+		debug($result);
+	}
 }
 ?>
