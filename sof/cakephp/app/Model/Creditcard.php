@@ -1,7 +1,7 @@
 <?php
 
 class Debitcard extends AppModel{
-	public $belongsTo = 'Check';
+    public $belongsTo = 'Check';
     public $hasAndBelongsToMany = array(
         'User' =>
             array(
@@ -14,8 +14,8 @@ class Debitcard extends AppModel{
     );
     public $validate = array(
         'id' => array(
-        'rule' => 'notEmpty',
-        'rule' => 'isUnique'
+            'rule' => 'notEmpty',
+            'rule' => 'isUnique'
         ),
         'card_number' => array(
             'rule' => 'notEmpty',
@@ -31,11 +31,12 @@ class Debitcard extends AppModel{
         ),
         'expiration_date' => array(
             'rule' => 'notEmpty',
+            'rule' => 'isUnique'
         ),
         'brand' => array(
             'rule' => 'notEmpty',
         ),
-        'balance' => array(
+        'card_limit' => array(
             'rule' => 'notEmpty',
         )
     );

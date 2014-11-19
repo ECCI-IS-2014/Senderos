@@ -34,7 +34,7 @@
 <div id="container">
 
     <div class="usersform">
-    <?php echo $this->Form->create('Debitcard'); ?>
+    <?php echo $this->Form->create('Creditcard'); ?>
         <fieldset id="registro">
             <legend><?php echo __('Crear una tarjeta'); ?></legend>
             <?php
@@ -54,7 +54,7 @@
                 echo "<br><br><br><br><br>";
                 echo $this->Form->input('brand',array('title' => 'Marca', 'label' => 'Marca '));
                 echo "<br><br>";
-                echo $this->Form->input('balance',array('title' => 'Saldo', 'label' => 'Saldo '));
+                echo $this->Form->input('card_limit',array('title' => 'Límite de crédito', 'label' => 'Límite '));
                 echo "<br><br>";
             ?>
         </fieldset>

@@ -1,16 +1,16 @@
 <?php
 
-class DebitcardsUser extends AppModel{
+class CardUser extends AppModel{
 
     var $validate = array(
         'user_id' => array('rule' => 'uniqueCombi', 'message' => 'Combinación ya registrada'),
-        'debitcard_id'  => array('rule' => 'uniqueCombi', 'message' => 'Combinación ya registrada')
+        'card_id'  => array('rule' => 'uniqueCombi', 'message' => 'Combinación ya registrada')
     );
     function uniqueCombi()
     {
         $combi = array(
             "{$this->alias}.user_id" => $this->data[$this->alias]['user_id'],
-            "{$this->alias}.debitcard_id"  => $this->data[$this->alias]['debitcard_id']
+            "{$this->alias}.card_id"  => $this->data[$this->alias]['card_id']
         );
         return $this->isUnique($combi, false);
     }

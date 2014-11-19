@@ -1,18 +1,18 @@
 <?php
 
 App::uses('AppController', 'Controller');
-class DebitcardController extends AppController
+class CreditcardController extends AppController
 {
     public $helpers = array('Html', 'Form');
     var $components = array('Session');
-    var $uses = array('User', 'Debitcard', 'CardUsers');
+    var $uses = array('User', 'Creditcard', 'CardUsers');
 
     public function index()
     {
         $user =  $this->Session->read("Auth.User.id");
-        $debcard =  $this->Debitcard->CardUsers->field('card_id', array('user_id ' => $user));
+        $crecard =  $this->Creditcard->CardUsers->field('card_id', array('user_id ' => $user));
 
-        $this->set('data', $this->Debitcard->find('all',array('conditions' => array('Debitcard.id'=> $debcard))));
+        $this->set('data', $this->Creditcard->find('all',array('conditions' => array('Creditcard.id'=> $crecard))));
     }
 
     public function add()
@@ -21,8 +21,8 @@ class DebitcardController extends AppController
         {
             if ($this->request->is('post'))
             {
-                $this->Debitcard->create();
-                if ($this->Debitcard->save($this->request->data))
+                $this->Creditcard->create();
+                if ($this->Creditcard->save($this->request->data))
                 {
                     $this->Session->setFlash(__('La tarjeta ha sido creada'));
                     return $this->redirect(array('controller' => 'products', 'action' => 'index'));
@@ -42,13 +42,13 @@ class DebitcardController extends AppController
         $user =  $this->Session->read("Auth.User.id");
         if ($this->request->is('post'))
         {
-            $cardnumber = $this->request->data['Debitcard']['card_number'];
-            $cardcsc = $this->request->data['Debitcard']['csc'];
-            $card = $this->Debitcard->findByCardNumber($cardnumber);
+            $cardnumber = $this->request->data['Creditcard']['card_number'];
+            $cardcsc = $this->request->data['Creditcard']['csc'];
+            $card = $this->Creditcard->findByCardNumber($cardnumber);
 
-            if(($cardnumber == $card['Debitcard']['card_number']) && ($cardcsc == $card['Debitcard']['csc']))
+            if(($cardnumber == $card['Creditcard']['card_number']) && ($cardcsc == $card['Creditcard']['csc']))
             {
-                $this->Debitcard->CardUsers->saveAll(['user_id'=>$user, 'card_id'=>$card['Debitcard']['id']]);
+                $this->Creditcard->CardUsers->saveAll(['user_id'=>$user, 'card_id'=>$card['Creditcard']['id']]);
                 $this->Session->setFlash(__('Se ha registrado su tarjeta'));
                 return $this->redirect(array('controller' => 'products', 'action' => 'index'));
             }
