@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS creditcards(
 );
 
 -- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
-CREATE TABLE IF NOT EXISTS cards_user(
+CREATE TABLE IF NOT EXISTS card_users(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT NOT NULL,
 	card_id INT NOT NULL
