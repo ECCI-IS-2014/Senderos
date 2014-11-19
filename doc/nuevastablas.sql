@@ -95,7 +95,8 @@ CREATE TABLE IF NOT EXISTS creditcards(
 CREATE TABLE IF NOT EXISTS card_users(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT NOT NULL,
-	card_id INT NOT NULL
+	card_id INT NOT NULL,
+	card_type INT NOT NULL -- Para diferenciar los id iguales de dos tipos de tarjetas diferentes
 );
 
 CREATE TABLE IF NOT EXISTS checks(
