@@ -32,7 +32,7 @@
 	{
 	    height: 10em;
 		cursor: default;
-		background-image: url("../img/banner.jpg");
+		background-image: url('http://s12.postimg.org/85kx5f8wt/Abstract_Background_Wallpaper_053.jpg');
 		padding: 0;
 	}
 

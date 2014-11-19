@@ -31,7 +31,7 @@
 	    height:70px;
 		cursor: default;
 		background-color: #333;
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url('../img/bg01.png');
+		background-image: url('http://s12.postimg.org/85kx5f8wt/Abstract_Background_Wallpaper_053.jpg');
 		padding: 0;
 	}
 
