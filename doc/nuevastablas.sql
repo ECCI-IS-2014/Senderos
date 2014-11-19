@@ -103,7 +103,8 @@ CREATE TABLE IF NOT EXISTS checks(
     debitcard_id INT UNSIGNED,
 	amount INT UNSIGNED NOT NULL,
 	general_discount INT UNSIGNED NOT NULL,
-    sold_the DATETIME NOT NULL
+    sold_the DATETIME NOT NULL,
+	dstatus INT UNSIGNED
 );
 
 CREATE TABLE IF NOT EXISTS check_products(
