@@ -4,41 +4,43 @@
 <head>
     <title>Catálogo de la tienda</title>
     <style>
+    @import url(http://fonts.googleapis.com/css?family=Raleway);
 
 	#header
 	{
 		text-align: center;
+		font-family: 'Raleway';
 		padding: 0 0 0 0;
-		background-color: #fff;
+		height: 10em;
 	}
 
 	#header h1
 	{
-	    padding: 0 0 2.75em 0;
+	    padding: 0 0 2.75sem 0;
 		margin: 0;
 	}
 
 	#header h1 a
 	{
 	    font-family: Helvetica, sans-serif;
-	    font-size: 1.5em;
+	    font-size: 3.5em;
 		letter-spacing: -0.025em;
 		border: 0;
 	}
 
 	#nav
 	{
-	    height:70px;
+	    height: 10em;
 		cursor: default;
-		background-color: #333;
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url('../img/bg01.png');
+		background-image: url("../img/banner.jpg");
 		padding: 0;
 	}
 
 	#nav > ul
 	{
 	    margin: 10;
-	    margin-top:9px;
+	    margin-top:3em;
+	    margin-left:4em;
 	    float:left;
 	}
 
@@ -46,27 +48,29 @@
 	{
 	    position: relative;
 		display: inline-block;
-		margin-left: 1em;
+		margin-left: 2em;
 	}
 
 	#nav > ul > li a
 	{
-	    color: #c0c0c0;
-		text-decoration: none;
-		border: 0;
-		display: block;
-		padding: 1.5em 0.5em 1.35em 0.5em;
+	    color: #fff;
+        text-decoration: none;
+        font-size: 1.2em;
+        border: 0;
+        display: block;
+        padding: 1.5em 0.5em 1.35em 0.5em;
 	}
 
     #nav > ul > li:hover a
     {
-	    color: #fff;
+	    color: #81F7D8;
 	}
 
 	#search_bar
     {
-        height:40px;
+        height:50px;
         text-align: center;
+        background-color: #151515;
         padding: 0 0 0 0;
     	background-image: url('../img/bg02.png'), url('../img/bg02.png'), url('../img/bg01.png');
     	background-position: top left, top left, top left;
@@ -90,9 +94,21 @@
     #right_side
     {
         float:right;
+        font-family: 'Raleway';
         margin-right:0.4em;
+        margin-top:0.4em;
         padding:10px;
-        color: #151515;
+        color: #fff;
+    }
+
+    #right_side a
+    {
+        color: #fff;
+    }
+
+    #right_side a:hover
+    {
+        color: #BCBCBC;
     }
 
     </style>
@@ -103,7 +119,7 @@
     <div id="header">
 		    <nav id="nav">
 		        <?php echo $this->Html->link(
-            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:10px;float:left;width:240px;height:55px;padding:7px;")),
+            					$this->Html->image('tiendaweb.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:15px;margin-top:15px;float:left;width:150px;height:100px;padding:10px;")),
             					array('controller' => 'products', 'action' => 'index'),
             					array('target' => '_self', 'escape' => false)
             				);
