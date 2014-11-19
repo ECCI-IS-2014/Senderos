@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS checks(
 	amount INT UNSIGNED NOT NULL,
 	general_discount INT UNSIGNED NOT NULL,
     sold_the DATETIME NOT NULL,
-	dtatus INT UNSIGNED
+	dstatus INT UNSIGNED
 );
 
 CREATE TABLE IF NOT EXISTS check_products(
