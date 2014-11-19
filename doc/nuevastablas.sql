@@ -68,21 +68,34 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 -- SCRIPT para el medio de pago
+-- Sin especialización porque no sé como va a responder cake :P
 CREATE TABLE IF NOT EXISTS debitcards(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	card_number VARCHAR(16) NOT NULL,
 	nip VARCHAR(4) NOT NULL,
 	csc VARCHAR(4) NOT NULL, -- Código de seguridad
 	expiration_date DATE NOT NULL,
+	brand VARCHAR(20) NOT NULL,
 	balance DOUBLE UNSIGNED NOT NULL,
 	check_id INT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS creditcards(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	card_number VARCHAR(16) NOT NULL,
+	nip VARCHAR(4) NOT NULL,
+	csc VARCHAR(4) NOT NULL, -- Código de seguridad
+	expiration_date DATE NOT NULL,
+	brand VARCHAR(20) NOT NULL,
+	card_limit DOUBLE UNSIGNED NOT NULL,
+	check_id INT NOT NULL
+);
+
 -- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
-CREATE TABLE IF NOT EXISTS debitcards_user(
+CREATE TABLE IF NOT EXISTS cards_user(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT NOT NULL,
-	debitcard_id INT NOT NULL
+	card_id INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS checks(
