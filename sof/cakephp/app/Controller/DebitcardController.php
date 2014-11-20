@@ -45,10 +45,11 @@ class DebitcardController extends AppController
             $cardnumber = $this->request->data['Debitcard']['card_number'];
             $cardcsc = $this->request->data['Debitcard']['csc'];
             $card = $this->Debitcard->findByCardNumber($cardnumber);
+            $card_type = 1;
 
             if(($cardnumber == $card['Debitcard']['card_number']) && ($cardcsc == $card['Debitcard']['csc']))
             {
-                $this->Debitcard->CardUsers->saveAll(['user_id'=>$user, 'card_id'=>$card['Debitcard']['id']]);
+                $this->Debitcard->CardUser->saveAll(['user_id'=>$user, 'card_id'=>$card['Debitcard']['id'], 'card_type'=> $card_type]);
                 $this->Session->setFlash(__('Se ha registrado su tarjeta'));
                 return $this->redirect(array('controller' => 'products', 'action' => 'index'));
             }

@@ -52,7 +52,12 @@
                                         'label' => 'Fecha de vencimiento '
                                         ));
                 echo "<br><br><br><br><br>";
-                echo $this->Form->input('brand',array('title' => 'Marca', 'label' => 'Marca '));
+                echo "Marca";
+                echo $this->Form->select('brand', array(
+                                    'Visa' => 'Visa',
+                                    'Master Card' => 'Master Card',
+                                    'American Express' => 'American Express'
+                                ));
                 echo "<br><br>";
                 echo $this->Form->input('balance',array('title' => 'Saldo', 'label' => 'Saldo '));
                 echo "<br><br>";

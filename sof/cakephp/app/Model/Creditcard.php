@@ -1,6 +1,6 @@
 <?php
 
-class Debitcard extends AppModel{
+class Creditcard extends AppModel{
     public $belongsTo = 'Check';
     public $hasAndBelongsToMany = array(
         'User' =>
@@ -30,8 +30,7 @@ class Debitcard extends AppModel{
             'rule' => 'isUnique'
         ),
         'expiration_date' => array(
-            'rule' => 'notEmpty',
-            'rule' => 'isUnique'
+            'rule' => 'notEmpty'
         ),
         'brand' => array(
             'rule' => 'notEmpty',
