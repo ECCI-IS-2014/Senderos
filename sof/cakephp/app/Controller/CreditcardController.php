@@ -11,6 +11,9 @@ class CreditcardController extends AppController
     {
         $user =  $this->Session->read("Auth.User.id");
         $crecard =  $this->Creditcard->CardUser->field('card_id', array('user_id ' => $user));
+		
+		$this->set('name',$this->User->field('name',array('id'=> $user)));
+        $this->set('lastname',$this->User->field('lastname',array('id'=> $user)));
 
         $this->set('data', $this->Creditcard->find('all',array('conditions' => array('Creditcard.id'=> $crecard))));
     }
