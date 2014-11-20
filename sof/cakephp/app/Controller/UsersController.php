@@ -75,6 +75,26 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->read(null, $id);
 			unset($this->request->data['User']['password']);
         }
+		
+		$idUser = $this->Session->read("Auth.User.id");
+
+        $card = $this->CardUser->find('list', array(
+            'fields' => array('CardUser.card_id'),
+            'conditions' => array('CardUser.user_id =' => $idUser)));
+
+        /*$c_type = $this->CardUser->find('list', array(
+            'fields' => array('CardUser.card_type'),
+            'conditions' => array('CardUser.user_id =' => $idUser)));*/
+
+        $this->set('dcard_num', $this->Debitcard->find('list', array(
+                'fields' => array('Debitcard.card_number'),
+                'conditions' => array('Debitcard.id =' => $card)))
+        );
+
+        $this->set('ccard_num', $this->Creditcard->find('list', array(
+                'fields' => array('Creditcard.card_number'),
+                'conditions' => array('Creditcard.id =' => $card)))
+        );
     }
 
     public function delete($id = null) {
