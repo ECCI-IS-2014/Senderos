@@ -64,6 +64,11 @@
 		        {
                     echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Customer'), 'title'=>'Rol', 'label'=>'Rol '));
                 }
+				echo "<br><br>";
+				 if($this->Session->read('Auth.User.role')== 'admin')
+		        {
+                    echo $this->Form->input('type', array('title' => 'Tipo de Cliente', 'type' => 'select', 'options' => array('Estandar', 'VIP','Adulto Mayor ',' Adulto Mayor VIP') , 'empty' => 'Seleccione tipo', 'label' => 'Tipo de Usuario: '));
+                }
             ?>
         </fieldset>
         <?php echo $this->Form->end(__('Guardar cambios')); ?>
