@@ -9,9 +9,9 @@ class User extends AppModel
         'Debitcard' =>
             array(
                 'className' => 'Debitcard',
-                'joinTable' => 'debitcards_user',
+                'joinTable' => 'card_users',
                 'foreignKey' => 'user_id',
-                'associationForeignKey' => 'debitcard_id',
+                'associationForeignKey' => 'card_id',
                 'unique' => true
             )
      );
