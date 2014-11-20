@@ -5,7 +5,7 @@ class DebitcardController extends AppController
 {
     public $helpers = array('Html', 'Form');
     var $components = array('Session');
-    var $uses = array('User', 'Debitcard', 'CardUsers');
+    var $uses = array('User', 'Debitcard', 'CardUser');
 
     public function index()
     {
