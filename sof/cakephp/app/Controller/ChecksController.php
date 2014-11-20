@@ -8,13 +8,15 @@ class ChecksController extends AppController
 	var $components = array('Session');
 	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock','Wishlist','ProductWishlist');
     */
-	var $uses = array('Product','Check','CheckProduct','User', 'Debitcard', 'DebitcardsUser');
+	var $uses = array('Product','Check','CheckProduct','CardUser','User', 'Debitcard', 'DebitcardsUser');
 	public function check(){
 	
 		$idUser = $this->Session->read("Auth.User.id");
-        $this->set('debitcards', $this->Debitcard->DebitcardsUser->find('list', array(
-                        'fields' => array('DebitcardsUser.debitcard_id'),
-                        'conditions' => array('DebitcardsUser.user_id =' => $idUser)
+        // Extraer numeros de tarjetas tarjetas y pasarlas
+        // Debitcard->                Debitcard.card_number              'CardUser.card_id =' => 'Debitcard.id'
+        $this->set('debitcards', $this->CardUser->find('list', array(
+                        'fields' => array('CardUser.card_id'),
+                        'conditions' => array('CardUser.user_id =' => $idUser)
                    ))
         );
 		
@@ -34,7 +36,11 @@ class ChecksController extends AppController
 		$debCard = $this->request->data['Check']['debcard'];
         $this->set('finalPrice',$total);
 		
-		// Descuenta de la tarjeta
+		// Encuentra la tarjeta
+        $debCard = $this->CardUser->find('first',array('conditions'=>array('CardUser.id'=>$debCard)));
+        $debCard = $debCard['CardUser']['card_id'];
+
+        // Descuenta de la tarjeta
 		$transaction = $this->Debitcard->find('first',array('conditions'=>array('Debitcard.id'=>$debCard)));
 		if(($transaction['Debitcard']['balance'] - $total >= 0) && ($transaction['Debitcard']['expiration_date']>date("Y-m-d"))){
 			$this->Debitcard->id = $debCard;
@@ -65,7 +71,7 @@ class ChecksController extends AppController
 				$number = 0;
 				foreach($cart as $key => $product ){
 					$discount = $product['Product']['discount'];
-					$price = $product['Product']['price']*(100-$discount)/100;
+					$price = $product['Product']['price'];
 					$qty = $this->Session->read('CartQty.'.$number);
 					// Guardar items de factura: ID,IDCHECK,IDPRODUCT,DISCOUNT,PRICE,QTY
 					$this->CheckProduct->create();
@@ -85,6 +91,22 @@ class ChecksController extends AppController
 		}
 
 	}
+
+    public function index(){
+        // Obtiene el id de usuario
+        $idUser = $this->Session->read("Auth.User.id");
+        // Obtiene todas las tarjetas a nombre de este usuario
+        $debCard=array();
+        $debCard= $this->CardUser->find('all',array('conditions'=>array('user.id'=>$idUser)));
+
+        // Aqui deberian obtenerse todas las facturas hechas con esas tarjetas (codigo aun no funciona)
+        $checks = array();
+        $checks = $this->Check->find('all',array('conditions'=>array('Check.debitcard_id'=>$debCard)));
+
+        // Aqui deberian obtenerse todos los productos pertenecientes a esas facturas (codigo que aun no funciona)
+        $checksProducts = $this->CheckProduct->find('all',array('conditions'=>array('CheckProduct.check_id'=>$checks)));
+
+    }
 
 }
 

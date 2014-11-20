@@ -98,6 +98,7 @@
                             echo '<br>Impuesto: '.$product['Product']['tax'].'%<br>Precio con Impuesto: '.$subtotal.'$<br>';
                         }
 						$totalConImp = $totalConImp + $subtotal;
+						$valorFinal = $totalConImp;
 						?>
                  </div>
             </tr>
@@ -108,7 +109,7 @@
             echo $this->Form->create('Check',array('action'=>'receipt'));
 			echo $this->Form->input('id', array('type' => 'hidden'));
             echo $this->Form->input('debcard', array('title' => 'Pago', 'type' => 'select', 'options' => $debitcards, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
-			echo $this->Form->input('amount', array('type' => 'hidden', 'default' => $totalConImp));
+			echo $this->Form->input('amount', array('type' => 'hidden', 'default' => $valorFinal));
             echo $this->Form->end("COMPRAR");
             echo '</div></p>';
         ?>
