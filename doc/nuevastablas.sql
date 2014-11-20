@@ -120,21 +120,8 @@ CREATE TABLE IF NOT EXISTS check_products(
 	quantity INT UNSIGNED
 );
 
--- Tablas de beneficios
+-- Tablas de beneficios(ya no hacen falta XD)
 
-CREATE TABLE IF NOT EXISTS benefits(
-   id INT unsigned NOT NULL AUTO_INCREMENT,
-   name varchar(15) NOT NULL,
-   discount INT unsigned NOT NULL,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS benefits_user(
-   id INT unsigned NOT NULL AUTO_INCREMENT,
-   user_id INT NOT NULL,
-   benefit_id INT NOT NULL,
-   PRIMARY KEY (id)
-);
 
 -- trigger para cuando un producto está outofstock
 -- drop trigger out_of_stock1;
