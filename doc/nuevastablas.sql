@@ -1,3 +1,14 @@
+CREATE TABLE IF NOT EXISTS adress(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	country INT UNSIGNED NOT NULL DEFAULT 52 -- Costa Rica,
+	adress VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS adress_users(
+	adress_id INT UNSIGNED NOT NULL,
+	user_id INT UNSIGNED NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS products(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100) NOT NULL, -- no hay restricciones, pueden repetirse nombres 
@@ -56,19 +67,16 @@ CREATE TABLE IF NOT EXISTS product_wishlists(
 	product_id INT UNSIGNED NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `country` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `role` text NOT NULL,
-  `type` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-)
+CREATE TABLE IF NOT EXISTS users(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+	name VARCHAR(100) NOT NULL,
+	lastname VARCHAR(100) NOT NULL,
+	country VARCHAR(100) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	role TEXT NOT NULL
+);
 
 -- SCRIPT para el medio de pago
 -- Sin especialización porque no sé como va a responder cake :P
@@ -120,8 +128,21 @@ CREATE TABLE IF NOT EXISTS check_products(
 	quantity INT UNSIGNED
 );
 
--- Tablas de beneficios(ya no hacen falta XD)
+-- Tablas de beneficios
 
+CREATE TABLE IF NOT EXISTS benefits(
+   id INT unsigned NOT NULL AUTO_INCREMENT,
+   name varchar(15) NOT NULL,
+   discount INT unsigned NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS benefits_user(
+   id INT unsigned NOT NULL AUTO_INCREMENT,
+   user_id INT NOT NULL,
+   benefit_id INT NOT NULL,
+   PRIMARY KEY (id)
+);
 
 -- trigger para cuando un producto está outofstock
 -- drop trigger out_of_stock1;
