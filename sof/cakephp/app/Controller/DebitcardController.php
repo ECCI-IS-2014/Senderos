@@ -10,7 +10,7 @@ class DebitcardController extends AppController
     public function index()
     {
         $user =  $this->Session->read("Auth.User.id");
-        $debcard =  $this->Debitcard->CardUsers->field('card_id', array('user_id ' => $user));
+        $debcard =  $this->Debitcard->CardUser->field('card_id', array('user_id ' => $user));
 
         $this->set('data', $this->Debitcard->find('all',array('conditions' => array('Debitcard.id'=> $debcard))));
     }

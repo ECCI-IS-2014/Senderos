@@ -5,12 +5,12 @@ class CreditcardController extends AppController
 {
     public $helpers = array('Html', 'Form');
     var $components = array('Session');
-    var $uses = array('User', 'Creditcard', 'CardUsers');
+    var $uses = array('User', 'Creditcard', 'CardUser');
 
     public function index()
     {
         $user =  $this->Session->read("Auth.User.id");
-        $crecard =  $this->Creditcard->CardUsers->field('card_id', array('user_id ' => $user));
+        $crecard =  $this->Creditcard->CardUser->field('card_id', array('user_id ' => $user));
 
         $this->set('data', $this->Creditcard->find('all',array('conditions' => array('Creditcard.id'=> $crecard))));
     }
