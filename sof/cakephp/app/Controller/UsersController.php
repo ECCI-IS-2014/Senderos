@@ -1,11 +1,11 @@
 <?php
 
 App::uses('AppController', 'Controller');
-App::uses('DebitcardsController', 'Controller');
+App::uses('DebitcardController', 'CreditcardController','Controller');
 
 class UsersController extends AppController {
 
-    var $uses = array('Country', 'User', 'Debitcard','DebitcardsUser');
+    var $uses = array('Country', 'User', 'Debitcard', 'Creditcard', 'CardUser');
 
     public function index(){
         $this->set('users',$this->User->find('all'));
@@ -22,10 +22,24 @@ class UsersController extends AppController {
         $this->set('country', $coun['Country']['country_name']);
 		
 		$idUser = $this->Session->read("Auth.User.id");
-        $this->set('debitcards', $this->Debitcard->DebitcardsUser->find('list', array(
-            'fields' => array('DebitcardsUser.debitcard_id'),
-            'conditions' => array('DebitcardsUser.user_id =' => $idUser)
-        )) );
+        
+		$card = $this->CardUser->find('list', array(
+            'fields' => array('CardUser.card_id'),
+            'conditions' => array('CardUser.user_id =' => $idUser)));
+
+        /*$c_type = $this->CardUser->find('list', array(
+            'fields' => array('CardUser.card_type'),
+            'conditions' => array('CardUser.user_id =' => $idUser)));*/
+
+        $this->set('dcard_num', $this->Debitcard->find('list', array(
+                'fields' => array('Debitcard.card_number'),
+                'conditions' => array('Debitcard.id =' => $card)))
+        );
+
+        $this->set('ccard_num', $this->Creditcard->find('list', array(
+                'fields' => array('Creditcard.card_number'),
+                'conditions' => array('Creditcard.id =' => $card)))
+        );
     }
 
     public function add() {

@@ -5,12 +5,12 @@ class DebitcardController extends AppController
 {
     public $helpers = array('Html', 'Form');
     var $components = array('Session');
-    var $uses = array('User', 'Debitcard', 'CardUsers');
+    var $uses = array('User', 'Debitcard', 'CardUser');
 
     public function index()
     {
         $user =  $this->Session->read("Auth.User.id");
-        $debcard =  $this->Debitcard->CardUsers->field('card_id', array('user_id ' => $user));
+        $debcard =  $this->Debitcard->CardUser->field('card_id', array('user_id ' => $user));
 
         $this->set('data', $this->Debitcard->find('all',array('conditions' => array('Debitcard.id'=> $debcard))));
     }
@@ -45,10 +45,11 @@ class DebitcardController extends AppController
             $cardnumber = $this->request->data['Debitcard']['card_number'];
             $cardcsc = $this->request->data['Debitcard']['csc'];
             $card = $this->Debitcard->findByCardNumber($cardnumber);
+            $card_type = 1;
 
             if(($cardnumber == $card['Debitcard']['card_number']) && ($cardcsc == $card['Debitcard']['csc']))
             {
-                $this->Debitcard->CardUsers->saveAll(['user_id'=>$user, 'card_id'=>$card['Debitcard']['id']]);
+                $this->Debitcard->CardUser->saveAll(['user_id'=>$user, 'card_id'=>$card['Debitcard']['id'], 'card_type'=> $card_type]);
                 $this->Session->setFlash(__('Se ha registrado su tarjeta'));
                 return $this->redirect(array('controller' => 'products', 'action' => 'index'));
             }
