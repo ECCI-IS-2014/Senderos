@@ -56,16 +56,19 @@ CREATE TABLE IF NOT EXISTS product_wishlists(
 	product_id INT UNSIGNED NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS users(
-	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	username VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-	name VARCHAR(100) NOT NULL,
-	lastname VARCHAR(100) NOT NULL,
-	country VARCHAR(100) NOT NULL,
-	email VARCHAR(100) NOT NULL,
-	role TEXT NOT NULL
-);
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `country` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `role` text NOT NULL,
+  `type` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+)
 
 -- SCRIPT para el medio de pago
 -- Sin especialización porque no sé como va a responder cake :P
