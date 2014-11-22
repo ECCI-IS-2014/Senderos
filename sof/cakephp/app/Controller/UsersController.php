@@ -11,7 +11,8 @@ class UsersController extends AppController {
         $this->set('users',$this->User->find('all'));
     }
 
-    public function view($id = null) {
+    public function view($id = null)
+	{
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
@@ -21,25 +22,44 @@ class UsersController extends AppController {
         $coun = $this->Country->findById($user['User']['country']);
         $this->set('country', $coun['Country']['country_name']);
 		
-		$idUser = $this->Session->read("Auth.User.id");
+		// DE AQUI ABAJO ES PARA MEDIOS DE PAGO
+
+        $idUser = $this->Session->read("Auth.User.id");
         
-		$card = $this->CardUser->find('list', array(
+		$dcard = $this->CardUser->find('list', array(
             'fields' => array('CardUser.card_id'),
-            'conditions' => array('CardUser.user_id =' => $idUser)));
+            'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 1)));
 
-        /*$c_type = $this->CardUser->find('list', array(
-            'fields' => array('CardUser.card_type'),
-            'conditions' => array('CardUser.user_id =' => $idUser)));*/
+        $ccard = $this->CardUser->find('list', array(
+            'fields' => array('CardUser.card_id'),
+            'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 2)));
 
-        $this->set('dcard_num', $this->Debitcard->find('list', array(
-                'fields' => array('Debitcard.card_number'),
-                'conditions' => array('Debitcard.id =' => $card)))
-        );
+        if(empty($dcard))
+        {
+            $this->set('dcnull', 1);
+        } else $this->set('dcnull', 0);
+        if(empty($ccard))
+        {
+            $this->set('ccnull', 1);
+        } else $this->set('ccnull', 0);
 
-        $this->set('ccard_num', $this->Creditcard->find('list', array(
-                'fields' => array('Creditcard.card_number'),
-                'conditions' => array('Creditcard.id =' => $card)))
-        );
+        foreach($dcard as $card)
+        {
+            $cid = $card;
+            $this->set('dcard_num', $this->Debitcard->find('list', array(
+                       'fields' => array('Debitcard.card_number'),
+                       'conditions' => array('Debitcard.id =' => $cid)))
+            );
+        }
+
+        foreach($ccard as $card)
+        {
+            $cid = $card;
+            $this->set('ccard_num', $this->Creditcard->find('list', array(
+                       'fields' => array('Creditcard.card_number'),
+                       'conditions' => array('Creditcard.id =' => $cid)))
+            );
+        }
     }
 
     public function add() {
@@ -76,25 +96,45 @@ class UsersController extends AppController {
 			unset($this->request->data['User']['password']);
         }
 		
-		$idUser = $this->Session->read("Auth.User.id");
+		// DE AQUI ABAJO ES PARA MEDIOS DE PAGO
 
-        $card = $this->CardUser->find('list', array(
+        $idUser = $this->Session->read("Auth.User.id");
+
+        $dcard = $this->CardUser->find('list', array(
             'fields' => array('CardUser.card_id'),
-            'conditions' => array('CardUser.user_id =' => $idUser)));
+            'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 1)));
 
-        /*$c_type = $this->CardUser->find('list', array(
-            'fields' => array('CardUser.card_type'),
-            'conditions' => array('CardUser.user_id =' => $idUser)));*/
+        $ccard = $this->CardUser->find('list', array(
+            'fields' => array('CardUser.card_id'),
+            'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 2)));
 
-        $this->set('dcard_num', $this->Debitcard->find('list', array(
-                'fields' => array('Debitcard.card_number'),
-                'conditions' => array('Debitcard.id =' => $card)))
-        );
 
-        $this->set('ccard_num', $this->Creditcard->find('list', array(
-                'fields' => array('Creditcard.card_number'),
-                'conditions' => array('Creditcard.id =' => $card)))
-        );
+        if(empty($dcard))
+        {
+            $this->set('dcnull', 1);
+        } else $this->set('dcnull', 0);
+        if(empty($ccard))
+        {
+            $this->set('ccnull', 1);
+        } else $this->set('ccnull', 0);
+
+        foreach($dcard as $card)
+        {
+            $cid = $card;
+            $this->set('dcard_num', $this->Debitcard->find('list', array(
+                    'fields' => array('Debitcard.card_number'),
+                    'conditions' => array('Debitcard.id =' => $cid)))
+            );
+        }
+
+        foreach($ccard as $card)
+        {
+            $cid = $card;
+            $this->set('ccard_num', $this->Creditcard->find('list', array(
+                    'fields' => array('Creditcard.card_number'),
+                    'conditions' => array('Creditcard.id =' => $cid)))
+            );
+        }
     }
 
     public function delete($id = null) {

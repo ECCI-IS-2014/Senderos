@@ -62,9 +62,23 @@
         {
             echo "Rol: ".h($users['User']['role'])." ";
         } ?></h3>
-		<h3><?php echo $this->Form->input('card', array('title' => 'Pago1', 'type' => 'select', 'options' => $dcard_num, 'empty' => 'Sus tarjetas de débito', 'label' => 'Tarjetas registradas')); ?></h3>
-        <br><br>
-        <h3><?php echo $this->Form->input('card', array('title' => 'Pago2', 'type' => 'select', 'options' => $ccard_num, 'empty' => 'Sus tarjetas de crédito', 'label' => '')); ?></h3>
+        <h3><?php
+            if($dcnull == 1 && $ccnull == 1)
+            {
+                echo "Tarjetas registradas: No tiene tarjetas registradas hasta el momento";
+            }
+            else echo "Tarjetas registradas:";
+            if($dcnull == 0)
+            {
+                echo $this->Form->input('card', array('title' => 'Pago1', 'type' => 'select', 'options' => $dcard_num, 'empty' => 'Sus tarjetas de débito', 'label' => ''));
+                echo "<br><br>";
+            }
+            if($ccnull == 0)
+            {
+                echo $this->Form->input('card', array('title' => 'Pago2', 'type' => 'select', 'options' => $ccard_num, 'empty' => 'Sus tarjetas de crédito', 'label' => ''));
+                echo "<br><br>";
+            }
+		?></h3>
         <br><br>
         <h3><?php echo $this->Html->link('Editar mi perfil',array('controller' =>'users','action'=>'edit',$this->Session->read('Auth.User.id'))); ?>
     </div>
