@@ -60,44 +60,73 @@
 		        echo "<br><br>";
 		        echo $this->Form->input('country', array('title' => 'País', 'type' => 'select', 'options' => $countries, 'empty' => 'Seleccione su país', 'label' => 'País '));
 		        echo "<br><br><br>";
-		                        if($dcnull == 1 && $ccnull == 1)
+		        echo "Tarjetas registradas:";
+		        echo "<br><br>";
+                if($dcnull == 1 && $ccnull == 1)
                 {
-                    echo "Tarjetas registradas: No tiene tarjetas registradas hasta el momento";
-                    echo "<br><br>";
-                    echo $this->Html->link('Registrar nueva tarjeta de débito',array('controller' =>'debitcard','action'=>'register'));
-                    echo "<br><br>";
-                    echo $this->Html->link('Registrar nueva tarjeta de crédito',array('controller' =>'creditcard','action'=>'register'));
+                    echo "No tiene tarjetas registradas hasta el momento";
+                }
+                ?>
+                <table>
+                    <tr>
+                        <th>Número de tarjeta débito</th>
+                    </tr>
+                    <?php foreach ($dcard_num as $cardnum): ?>
+                    <tr>
+                        <td><?php echo $cardnum; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php unset($cardnum); ?>
+                </table>
+                <?php
+                echo $this->Html->link('Registrar nueva tarjeta de débito',array('controller' =>'debitcard','action'=>'register'));
+                echo "<br>";
+                if($dcnull == 0)
+                {
+                    echo $this->Html->link('Eliminar tarjeta de débito',array('controller' =>'carduser','action'=>'delete_debit'));
                     echo "<br><br>";
                 }
-                else
+                ?>
+                <table>
+                    <tr>
+                        <th>Número de tarjeta crédito</th>
+                    </tr>
+                    <?php foreach ($ccard_num as $cardnum): ?>
+                    <tr>
+                        <td><?php echo $cardnum; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php unset($cardnum); ?>
+                </table>
+                <?php
+                echo $this->Html->link('Registrar nueva tarjeta de crédito',array('controller' =>'debitcard','action'=>'register'));
+                echo "<br>";
+                if($ccnull == 0)
                 {
-                echo "Tarjetas registradas:";
-                    if($dcnull == 0)
-                    {
-                        echo $this->Form->input('card', array('title' => 'Pago1', 'type' => 'select', 'options' => $dcard_num, 'empty' => 'Sus tarjetas de débito', 'label' => ''));
-                        echo "<br><br>";
-                        echo $this->Html->link('Eliminar tarjeta de débito',array('controller' =>'carduser','action'=>'delete_debit'));
-                        echo "<br><br>";
-                    }
-                    if($ccnull == 0)
-                    {
-                        echo $this->Form->input('card', array('title' => 'Pago2', 'type' => 'select', 'options' => $ccard_num, 'empty' => 'Sus tarjetas de crédito', 'label' => ''));
-                        echo "<br><br>";
-                        echo $this->Html->link('Eliminar tarjeta de crédito',array('controller' =>'carduser','action'=>'delete_credit'));
-                        echo "<br><br>";
-                    }
-                    echo "<br>";
-                    echo $this->Html->link('Registrar nueva tarjeta de débito',array('controller' =>'debitcard','action'=>'register'));
-                    echo "<br>";
-                    echo $this->Html->link('Registrar nueva tarjeta de crédito',array('controller' =>'creditcard','action'=>'register'));
+                    echo $this->Html->link('Eliminar tarjeta de crédito',array('controller' =>'carduser','action'=>'delete_credit'));
                     echo "<br><br>";
                 }
+                ?>
+                <br>
+                <h3>Direcciones de envio</h3><br>
+                    <table>
+                	<tr>
+                        <th>Dirección</th>
+                    </tr>
+                    <?php foreach ($shipaddress as $address): ?>
+                    <tr>
+                        <td><?php echo $address; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php unset($address); ?>
+                    </table>
+                <?php
 		        if($this->Session->read('Auth.User.role')== 'admin')
 		        {
                     echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Customer'), 'title'=>'Rol', 'label'=>'Rol '));
                 }
 				echo "<br><br>";
-				 if($this->Session->read('Auth.User.role')== 'admin')
+				if($this->Session->read('Auth.User.role')== 'admin')
 		        {
                     echo $this->Form->input('type', array('title' => 'Tipo de Cliente', 'type' => 'select', 'options' => array('Estandar', 'VIP','Adulto Mayor ',' Adulto Mayor VIP') , 'empty' => 'Seleccione tipo', 'label' => 'Tipo de Usuario: '));
                 }
