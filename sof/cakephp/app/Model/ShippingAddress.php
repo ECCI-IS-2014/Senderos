@@ -2,8 +2,6 @@
 
 class ShippingAddress extends AppModel
 {
-    public $belongsTo = 'User';
-
     public $hasAndBelongsToMany = array(
         'User' =>
             array(

@@ -62,23 +62,48 @@
         {
             echo "Rol: ".h($users['User']['role'])." ";
         } ?></h3>
+<h3>Tarjetas registradas</h3>
         <h3><?php
             if($dcnull == 1 && $ccnull == 1)
             {
-                echo "Tarjetas registradas: No tiene tarjetas registradas hasta el momento";
+                echo "No tiene tarjetas registradas hasta el momento";
             }
-            else echo "Tarjetas registradas:";
-            if($dcnull == 0)
-            {
-                echo $this->Form->input('card', array('title' => 'Pago1', 'type' => 'select', 'options' => $dcard_num, 'empty' => 'Sus tarjetas de débito', 'label' => ''));
-                echo "<br><br>";
-            }
-            if($ccnull == 0)
-            {
-                echo $this->Form->input('card', array('title' => 'Pago2', 'type' => 'select', 'options' => $ccard_num, 'empty' => 'Sus tarjetas de crédito', 'label' => ''));
-                echo "<br><br>";
-            }
-		?></h3>
+        ?></h3>
+        <table>
+            <tr>
+                <th>Número de tarjeta débito</th>
+            </tr>
+            <?php foreach ($dcard_num as $cardnum): ?>
+            <tr>
+                <td><?php echo $cardnum; ?></td>
+            </tr>
+            <?php endforeach; ?>
+            <?php unset($cardnum); ?>
+        </table>
+        <table>
+            <tr>
+                <th>Número de tarjeta crédito</th>
+            </tr>
+            <?php foreach ($ccard_num as $cardnum): ?>
+            <tr>
+                <td><?php echo $cardnum; ?></td>
+            </tr>
+            <?php endforeach; ?>
+            <?php unset($cardnum); ?>
+        </table>
+		<br>
+		<h3>Direcciones de envio</h3><br>
+		    <table>
+		           <tr>
+                        <th>Dirección</th>
+                   </tr>
+                   <?php foreach ($shipaddress as $address): ?>
+                   <tr>
+                        <td><?php echo $address; ?></td>
+                   </tr>
+                   <?php endforeach; ?>
+                   <?php unset($address); ?>
+            </table>
         <br><br>
         <h3><?php echo $this->Html->link('Editar mi perfil',array('controller' =>'users','action'=>'edit',$this->Session->read('Auth.User.id'))); ?>
     </div>

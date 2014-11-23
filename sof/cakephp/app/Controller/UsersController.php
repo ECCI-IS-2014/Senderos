@@ -60,6 +60,28 @@ class UsersController extends AppController {
                        'conditions' => array('Creditcard.id =' => $cid)))
             );
         }
+		
+		// De aquí para abajo es para recuperar las direcciones de envio asociadas
+
+        $saddress = $this->SaddressUser->find('list', array(
+            'fields' => array('SaddressUser.address_id'),
+            'conditions' => array('SaddressUser.user_id =' => $idUser))
+        );
+
+        if(empty($saddress))
+        {
+            $this->set('sanull', 1);
+        }
+        else $this->set('sanull', 0);
+
+        foreach($saddress as $address)
+        {
+            $aid = $address;
+            $this->set('shipaddress', $this->ShippingAddress->find('list', array(
+                    'fields' => array('ShippingAddress.address'),
+                    'conditions' => array('ShippingAddress.id =' => $aid)))
+            );
+        }
     }
 
     public function add() {
