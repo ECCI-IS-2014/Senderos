@@ -108,14 +108,21 @@
                 }
                 ?>
                 <br>
-                <h3>Direcciones de envio</h3><br>
+                <?php echo "Direcciones de envio:"; ?><br><br>
                     <table>
                 	<tr>
                         <th>Dirección</th>
+                        <th colspan="2">Acciones</th>
                     </tr>
                     <?php foreach ($shipaddress as $address): ?>
                     <tr>
                         <td><?php echo $address; ?></td>
+                        <td><?php
+                        	echo $this->Html->link('Editar', array('controller' => 'ShippingAddress','action' => 'edit'));
+                        	echo '  ';
+                            echo $this->Form->postLink('Eliminar', array('controller' => 'ShippingAddress','action' => 'delete'), array('confirm' => '¿Seguro?'));
+                        ?>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                     <?php unset($address); ?>

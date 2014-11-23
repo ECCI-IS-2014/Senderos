@@ -41,5 +41,15 @@ class ShippingAddressController extends AppController
             return $this->redirect(array('controller' => 'products', 'action' => 'index'));
         }
     }
+	
+	public function edit()
+    {
+
+    }
+
+    public function delete()
+    {
+
+    }
 }
 ?>
