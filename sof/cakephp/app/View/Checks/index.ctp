@@ -66,7 +66,9 @@
 <div id="contenedor">
 
     <?php
-        echo('test<br>');
+        foreach($checks as $check){
+			echo $check['Check']['id'].'<br>';
+		}
     ?>
 
 </div>

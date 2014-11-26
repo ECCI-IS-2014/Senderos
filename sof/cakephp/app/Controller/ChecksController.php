@@ -74,13 +74,11 @@ class ChecksController extends AppController
 					$price = $product['Product']['price'];
 					$qty = $this->Session->read('CartQty.'.$number);
 					// Guardar items de factura: ID,IDCHECK,IDPRODUCT,DISCOUNT,PRICE,QTY
-					$this->CheckProduct->create();
-					if($this->CheckProduct->save($this->request->data)){
-						$id=$this->request->data['CheckProduct']['id'];
-						$this->CheckProduct->read(null,$id);
-						$this->CheckProduct->set(['check_id'=>$checkId,'product_id'=>$product['Product']['id'],'discount'=>$discount,'prize'=>$price,'quantity'=>$qty]);
-						$this->CheckProduct->save();
-					}
+					$id=$this->CheckProduct->id +1;
+					$this->CheckProduct->set(array(
+						'id' => $id,'check_id'=>$checkId,'product_id'=>$product['Product']['id'],'discount'=>$discount,'prize'=>$price,'quantity'=>$qty
+					));
+					$this->CheckProduct->save();
 					$number++;
 				}
 				$this->Session->delete('Cart');
@@ -97,16 +95,43 @@ class ChecksController extends AppController
         $idUser = $this->Session->read("Auth.User.id");
         // Obtiene todas las tarjetas a nombre de este usuario
         $debCard=array();
-        $debCard= $this->CardUser->find('all',array('conditions'=>array('user.id'=>$idUser)));
+        $debCard= $this->CardUser->find('all',array('conditions'=>array('CardUser.user_id'=>$idUser)));
 
         // Aqui deberian obtenerse todas las facturas hechas con esas tarjetas (codigo aun no funciona)
         $checks = array();
-        $checks = $this->Check->find('all',array('conditions'=>array('Check.debitcard_id'=>$debCard)));
-
+		foreach($debCard as $card){ 
+			//echo $card['CardUser']['card_id'].'<br>';
+			array_push($checks,$this->Check->find('all',array('conditions'=>array('debitcard_id'=>$card['CardUser']['card_id']))));
+		}
+		foreach($checks as $check){
+			echo $check['Check']['id'];
+		}
+		$this->set(compact('checks'));
+		
         // Aqui deberian obtenerse todos los productos pertenecientes a esas facturas (codigo que aun no funciona)
-        $checksProducts = $this->CheckProduct->find('all',array('conditions'=>array('CheckProduct.check_id'=>$checks)));
+        //$checksProducts = $this->CheckProduct->find('all',array('conditions'=>array('CheckProduct.check_id'=>$checks)));
 
     }
+	
+	public function view($id){
+		// Revisar si es el usuario dueño de la factura
+		
+		//FALTA CONTROLAR ACCESO
+		
+		$check = $this->Check->find('first',array('conditions'=>array('check.id'=>$id)));
+		//echo $check['Check']['debitcard_id'].'<br>';
+		
+		$items = $this->CheckProduct->find('all',array('conditions'=>array('check_id'=>$id)));
+		$products = array();
+		foreach($items as $item){
+			//echo $item['CheckProduct']['product_id'].'<br>';
+			array_push($products,$this->Product->find('first',array('conditions'=>array('Product.id'=>$item['CheckProduct']['product_id']))));
+		}
+		$this->set(compact('check'));
+		$this->set(compact('items'));
+		$this->set(compact('products'));
+		
+	}
 
 }
 
