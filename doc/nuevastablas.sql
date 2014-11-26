@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS card_users(
 CREATE TABLE IF NOT EXISTS checks(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     debitcard_id INT UNSIGNED,
-	amount INT UNSIGNED NOT NULL,
+	amount DOUBLE UNSIGNED NOT NULL,
 	general_discount INT UNSIGNED NOT NULL,
     sold_the DATETIME NOT NULL,
 	dstatus INT UNSIGNED
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS check_products(
 	check_id INT UNSIGNED,
 	product_id INT UNSIGNED,
 	discount INT UNSIGNED,
-	prize INT UNSIGNED,
+	prize DOUBLE UNSIGNED,
 	quantity INT UNSIGNED
 );
 
