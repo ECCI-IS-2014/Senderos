@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Catálogo de la tienda</title>
+    <title>Catï¿½logo de la tienda</title>
     <style>
 
         body
@@ -66,6 +66,7 @@
 <div id="contenedor">
 
     <?php $number=0;
+    if(isset($items)){
 	echo '<br>&nbsp'.$this->Html->link('Volver', array('controller' => 'checks', 'action' => 'index'));
 	echo '<br><br><div align="center"><H3>Factura #'.$check['Check']['id'].' &nbspTotal: $'.$check['Check']['amount'].' &nbspVendido el: '.$check['Check']['sold_the'].'</H3></div><br>';
 	foreach($products as $product){ ?>
@@ -91,7 +92,13 @@
             </tr>
         </div>
 	<?php $number++;
-	} ?>
+	}
+
+	}else{
+	     echo 'Acceso no autorizado<br>';
+	}
+
+	?>
 </div>
 
 </body>

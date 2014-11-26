@@ -66,9 +66,11 @@
 <div id="contenedor">
 
     <?php
+        echo '<div align="center"><table>';
         foreach($checks as $check){
-			echo $check['Check']['id'].'<br>';
+			echo '<tr><td>'.$this->Html->link('Factura #:'.$check['Check']['id'],array('controller'=>'checks','action'=>'view',$check['Check']['id'])).'<br>Monto total: '.$check['Check']['amount'].'$<br>Fecha de factura: '.$check['Check']['sold_the'].'</td></tr><br>';
 		}
+		echo '</table></div>'
     ?>
 
 </div>
