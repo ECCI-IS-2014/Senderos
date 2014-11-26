@@ -13,6 +13,7 @@ class UsersController extends AppController {
 
     public function view($id = null)
 	{
+       
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
@@ -22,36 +23,36 @@ class UsersController extends AppController {
         $coun = $this->Country->findById($user['User']['country']);
         $this->set('country', $coun['Country']['country_name']);
 		
-		// De aquí abajo es para medios de pago
+		// De aqu? abajo es para medios de pago
 
         $idUser = $this->Session->read("Auth.User.id");
 
         $dcard = $this->CardUser->find('list', array(
             'fields' => array('CardUser.card_id'),
-            'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 1)));
+            'conditions' => array('CardUser.user_id ' => $idUser, 'CardUser.card_type' => 1)));
 
         $ccard = $this->CardUser->find('list', array(
             'fields' => array('CardUser.card_id'),
-            'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 2)));
+            'conditions' => array('CardUser.user_id' => $idUser, 'CardUser.card_type' => 2)));
 
         $this->set('dcard_num', $this->Debitcard->find('list', array(
                 'fields' => array('Debitcard.card_number'),
-                'conditions' => array('Debitcard.id =' => $dcard)))
+                'conditions' => array('Debitcard.id' => $dcard)))
         );
 
         $this->set('ccard_num', $this->Creditcard->find('list', array(
                 'fields' => array('Creditcard.card_number'),
-                'conditions' => array('Creditcard.id =' => $ccard)))
+                'conditions' => array('Creditcard.id ' => $ccard)))
         );
-		// De aquí para abajo es para recuperar las direcciones de envio asociadas
+		// De aqu? para abajo es para recuperar las direcciones de envio asociadas
 
         $saddress = $this->SaddressUser->find('list', array(
             'fields' => array('SaddressUser.address_id'),
-            'conditions' => array('SaddressUser.user_id =' => $idUser)));
+            'conditions' => array('SaddressUser.user_id ' => $idUser)));
 
         $this->set('shipaddress', $this->ShippingAddress->find('list', array(
                 'fields' => array('ShippingAddress.address'),
-                'conditions' => array('ShippingAddress.id =' => $saddress)))
+                'conditions' => array('ShippingAddress.id ' => $saddress)))
         );
     }
 

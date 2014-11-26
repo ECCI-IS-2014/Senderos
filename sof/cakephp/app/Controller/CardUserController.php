@@ -5,11 +5,19 @@ class CardUserController extends AppController
 {
     public $helpers = array('Html', 'Form');
     var $components = array('Session');
-    var $uses = array('CardUser', 'Debitcard', 'Creditcard');
+    var $uses = array('CardUser', 'Debitcard', 'Creditcard','User');
+
 
     public function index()
     {
+        $user =  $this->Session->read("Auth.User.id");
+
+        $this->set('name',$this->User->field('name',array('id'=> $user)));
+        $this->set('lastname',$this->User->field('lastname',array('id'=> $user)));
+
         $this->set('CardUserList',$this->CardUser->find('all'));
+
+
     }
 
     public function delete_debit()
