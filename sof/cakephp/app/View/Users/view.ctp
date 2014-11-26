@@ -62,9 +62,9 @@
         {
             echo "Rol: ".h($users['User']['role'])." ";
         } ?></h3>
-<h3>Tarjetas registradas</h3>
+		<h3>Tarjetas registradas</h3>
         <h3><?php
-            if($dcnull == 1 && $ccnull == 1)
+            if(empty($dcard_num) && empty($ccard_num))
             {
                 echo "No tiene tarjetas registradas hasta el momento";
             }
@@ -92,7 +92,13 @@
             <?php unset($cardnum); ?>
         </table>
 		<br>
-		<h3>Direcciones de envio</h3><br>
+		<h3>Direcciones de envío</h3><br>
+		<h3><?php
+            if(empty($shipaddress))
+            {
+                echo "No tiene direcciones registradas hasta el momento";
+            }
+            ?></h3>
 		    <table>
 		           <tr>
                         <th>Dirección</th>
@@ -104,7 +110,7 @@
                    <?php endforeach; ?>
                    <?php unset($address); ?>
             </table>
-        <br><br>
+		<br><br>
         <h3><?php echo $this->Html->link('Editar mi perfil',array('controller' =>'users','action'=>'edit',$this->Session->read('Auth.User.id'))); ?>
     </div>
 </div>

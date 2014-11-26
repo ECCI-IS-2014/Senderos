@@ -60,9 +60,9 @@
 		        echo "<br><br>";
 		        echo $this->Form->input('country', array('title' => 'País', 'type' => 'select', 'options' => $countries, 'empty' => 'Seleccione su país', 'label' => 'País '));
 		        echo "<br><br><br>";
-		        echo "Tarjetas registradas:";
+				echo "Tarjetas registradas:";
 		        echo "<br><br>";
-                if($dcnull == 1 && $ccnull == 1)
+                if(empty($dcard_num) && empty($ccard_num))
                 {
                     echo "No tiene tarjetas registradas hasta el momento";
                 }
@@ -81,7 +81,7 @@
                 <?php
                 echo $this->Html->link('Registrar nueva tarjeta de débito',array('controller' =>'debitcard','action'=>'register'));
                 echo "<br>";
-                if($dcnull == 0)
+                if(empty($dcnull))
                 {
                     echo $this->Html->link('Eliminar tarjeta de débito',array('controller' =>'carduser','action'=>'delete_debit'));
                     echo "<br><br>";
@@ -101,7 +101,7 @@
                 <?php
                 echo $this->Html->link('Registrar nueva tarjeta de crédito',array('controller' =>'debitcard','action'=>'register'));
                 echo "<br>";
-                if($ccnull == 0)
+                if(empty($ccnull))
                 {
                     echo $this->Html->link('Eliminar tarjeta de crédito',array('controller' =>'carduser','action'=>'delete_credit'));
                     echo "<br><br>";

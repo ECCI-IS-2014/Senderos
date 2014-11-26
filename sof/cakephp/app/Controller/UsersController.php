@@ -22,11 +22,11 @@ class UsersController extends AppController {
         $coun = $this->Country->findById($user['User']['country']);
         $this->set('country', $coun['Country']['country_name']);
 		
-		// DE AQUI ABAJO ES PARA MEDIOS DE PAGO
+		// De aquí abajo es para medios de pago
 
         $idUser = $this->Session->read("Auth.User.id");
-        
-		$dcard = $this->CardUser->find('list', array(
+
+        $dcard = $this->CardUser->find('list', array(
             'fields' => array('CardUser.card_id'),
             'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 1)));
 
@@ -34,54 +34,25 @@ class UsersController extends AppController {
             'fields' => array('CardUser.card_id'),
             'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 2)));
 
-        if(empty($dcard))
-        {
-            $this->set('dcnull', 1);
-        } else $this->set('dcnull', 0);
-        if(empty($ccard))
-        {
-            $this->set('ccnull', 1);
-        } else $this->set('ccnull', 0);
+        $this->set('dcard_num', $this->Debitcard->find('list', array(
+                'fields' => array('Debitcard.card_number'),
+                'conditions' => array('Debitcard.id =' => $dcard)))
+        );
 
-        foreach($dcard as $card)
-        {
-            $cid = $card;
-            $this->set('dcard_num', $this->Debitcard->find('list', array(
-                       'fields' => array('Debitcard.card_number'),
-                       'conditions' => array('Debitcard.id =' => $cid)))
-            );
-        }
-
-        foreach($ccard as $card)
-        {
-            $cid = $card;
-            $this->set('ccard_num', $this->Creditcard->find('list', array(
-                       'fields' => array('Creditcard.card_number'),
-                       'conditions' => array('Creditcard.id =' => $cid)))
-            );
-        }
-		
+        $this->set('ccard_num', $this->Creditcard->find('list', array(
+                'fields' => array('Creditcard.card_number'),
+                'conditions' => array('Creditcard.id =' => $ccard)))
+        );
 		// De aquí para abajo es para recuperar las direcciones de envio asociadas
 
         $saddress = $this->SaddressUser->find('list', array(
             'fields' => array('SaddressUser.address_id'),
-            'conditions' => array('SaddressUser.user_id =' => $idUser))
+            'conditions' => array('SaddressUser.user_id =' => $idUser)));
+
+        $this->set('shipaddress', $this->ShippingAddress->find('list', array(
+                'fields' => array('ShippingAddress.address'),
+                'conditions' => array('ShippingAddress.id =' => $saddress)))
         );
-
-        if(empty($saddress))
-        {
-            $this->set('sanull', 1);
-        }
-        else $this->set('sanull', 0);
-
-        foreach($saddress as $address)
-        {
-            $aid = $address;
-            $this->set('shipaddress', $this->ShippingAddress->find('list', array(
-                    'fields' => array('ShippingAddress.address'),
-                    'conditions' => array('ShippingAddress.id =' => $aid)))
-            );
-        }
     }
 
     public function add() {
@@ -118,7 +89,7 @@ class UsersController extends AppController {
 			unset($this->request->data['User']['password']);
         }
 		
-		// DE AQUI ABAJO ES PARA MEDIOS DE PAGO
+		// De aquí abajo es para medios de pago
 
         $idUser = $this->Session->read("Auth.User.id");
 
@@ -126,59 +97,30 @@ class UsersController extends AppController {
             'fields' => array('CardUser.card_id'),
             'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 1)));
 
+        $this->set('dcard_num', $this->Debitcard->find('list', array(
+                'fields' => array('Debitcard.card_number'),
+                'conditions' => array('Debitcard.id =' => $dcard)))
+        );
+
         $ccard = $this->CardUser->find('list', array(
             'fields' => array('CardUser.card_id'),
             'conditions' => array('CardUser.user_id =' => $idUser, 'CardUser.card_type =' => 2)));
 
+        $this->set('ccard_num', $this->Creditcard->find('list', array(
+                'fields' => array('Creditcard.card_number'),
+                'conditions' => array('Creditcard.id =' => $ccard)))
+        );
 
-        if(empty($dcard))
-        {
-            $this->set('dcnull', 1);
-        } else $this->set('dcnull', 0);
-        if(empty($ccard))
-        {
-            $this->set('ccnull', 1);
-        } else $this->set('ccnull', 0);
-
-        foreach($dcard as $card)
-        {
-            $cid = $card;
-            $this->set('dcard_num', $this->Debitcard->find('list', array(
-                    'fields' => array('Debitcard.card_number'),
-                    'conditions' => array('Debitcard.id =' => $cid)))
-            );
-        }
-
-        foreach($ccard as $card)
-        {
-            $cid = $card;
-            $this->set('ccard_num', $this->Creditcard->find('list', array(
-                    'fields' => array('Creditcard.card_number'),
-                    'conditions' => array('Creditcard.id =' => $cid)))
-            );
-        }
-		
 		// De aquí para abajo es para recuperar las direcciones de envio asociadas
 
         $saddress = $this->SaddressUser->find('list', array(
             'fields' => array('SaddressUser.address_id'),
-            'conditions' => array('SaddressUser.user_id =' => $idUser))
+            'conditions' => array('SaddressUser.user_id =' => $idUser)));
+
+        $this->set('shipaddress', $this->ShippingAddress->find('list', array(
+                'fields' => array('ShippingAddress.address'),
+                'conditions' => array('ShippingAddress.id =' => $saddress)))
         );
-
-        if(empty($saddress))
-        {
-            $this->set('sanull', 1);
-        }
-        else $this->set('sanull', 0);
-
-        foreach($saddress as $address)
-        {
-            $aid = $address;
-            $this->set('shipaddress', $this->ShippingAddress->find('list', array(
-                    'fields' => array('ShippingAddress.address'),
-                    'conditions' => array('ShippingAddress.id =' => $aid)))
-            );
-        }
     }
 
     public function delete($id = null) {
