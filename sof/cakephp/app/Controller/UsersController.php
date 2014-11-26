@@ -5,7 +5,7 @@ App::uses('DebitcardController', 'CreditcardController','Controller');
 
 class UsersController extends AppController {
 
-    var $uses = array('Country', 'User', 'Debitcard', 'Creditcard', 'CardUser');
+    var $uses = array('Country', 'User', 'Debitcard', 'Creditcard', 'CardUser', 'SaddressUser', 'ShippingAddress');
 
     public function index(){
         $this->set('users',$this->User->find('all'));
