@@ -71,22 +71,22 @@
         ?></h3>
         <table>
             <tr>
-                <th>Número de tarjeta débito</th>
+                <th>Últimos cuatro dígitos de la tarjeta de débito</th>
             </tr>
             <?php foreach ($dcard_num as $cardnum): ?>
             <tr>
-                <td><?php echo $cardnum; ?></td>
+                <td><?php echo "------------".$cardnum[12].$cardnum[13].$cardnum[14].$cardnum[15]; ?></td>
             </tr>
             <?php endforeach; ?>
             <?php unset($cardnum); ?>
         </table>
         <table>
             <tr>
-                <th>Número de tarjeta crédito</th>
+                <th>Últimos cuatro dígitos de la tarjeta de crédito</th>
             </tr>
             <?php foreach ($ccard_num as $cardnum): ?>
             <tr>
-                <td><?php echo $cardnum; ?></td>
+                <td><?php echo "------------".$cardnum[12].$cardnum[13].$cardnum[14].$cardnum[15]; ?></td>
             </tr>
             <?php endforeach; ?>
             <?php unset($cardnum); ?>

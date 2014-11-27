@@ -69,12 +69,12 @@
                 ?>
                 <table>
                     <tr>
-                        <th>Número de tarjeta débito</th>
+                        <th>Últimos cuatro dígitos de la tarjeta de débito</th>
                         <th>Acciones</th>
                     </tr>
                     <?php foreach ($dcard_num as $dcardnum => $value): ?>
                     <tr>
-                        <td><?php echo $value; ?></td>
+                        <td><?php echo "------------".$value[12].$value[13].$value[14].$value[15]; ?></td>
                         <td>
                             <?php echo $this->Html->link('Eliminar', array('controller' => 'CardUser', 'action' => 'delete_debit', $dcardnum)); ?>
                         </td>
@@ -88,12 +88,12 @@
                 ?>
                 <table>
                     <tr>
-                        <th>Número de tarjeta crédito</th>
+                        <th>Últimos cuatro dígitos de la tarjeta de crédito</th>
                         <th>Acciones</th>
                     </tr>
                     <?php foreach ($ccard_num as $ccardnum => $value): ?>
                     <tr>
-                        <td><?php echo $value; ?></td>
+                        <td><?php echo "------------".$value[12].$value[13].$value[14].$value[15]; ?></td>
                         <td>
                             <?php echo $this->Html->link('Eliminar', array('controller' => 'CardUser', 'action' => 'delete_credit', $ccardnum)); ?>
                         </td>
