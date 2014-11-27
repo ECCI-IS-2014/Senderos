@@ -42,14 +42,45 @@ class ShippingAddressController extends AppController
         }
     }
 	
-	public function edit()
+	public function edit($id = null)
     {
-
+        $this->ShippingAddress->id = $id;
+        $this->set('countries', $this->Country->find('list', array('fields' => array('Country.country_name'))));
+        if (!$this->ShippingAddress->exists())
+        {
+            throw new NotFoundException(__('Dirección inexistente'));
+        }
+        if ($this->request->is('post') || $this->request->is('put'))
+        {
+            if ($this->ShippingAddress->save($this->request->data))
+            {
+                $this->Session->setFlash(__('Se han guardado los cambios'));
+                return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+            }
+            $this->Session->setFlash(__('No se pudo almacenar los cambios, inténtelo de nuevo'));
+        }
+        else
+        {
+            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+        }
     }
 
-    public function delete()
+    public function delete($id = null)
     {
-
+        $this->ShippingAddress->id = $id;
+        if (!$this->ShippingAddress->exists())
+        {
+            throw new NotFoundException(__('Dirección inexistente'));
+        }
+        if ($this->ShippingAddress->delete())
+        {
+            $address = $this->SaddressUser->field('id', array('address_id' => $id));
+            $this->SaddressUser->delete(array('id'=>$address, 'user_id'=>$this->User->id));
+            $this->Session->setFlash(__('Dirección borrada'));
+            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+        }
+        $this->Session->setFlash(__('La dirección no pudo eliminarse, intente de nuevo'));
+        return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
     }
 }
 ?>
