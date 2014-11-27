@@ -20,29 +20,45 @@ class CardUserController extends AppController
 
     }
 
-    public function delete_debit()
+    public function delete_debit($id = null)
     {
-        $user =  $this->Session->read("Auth.User.id");
-
-        if ($this->request->is('post'))
+        $this->Debitcard->id = $id;
+        $cardId = $this->Debitcard->id;
+        $card = $this->CardUser->field('id', array('card_id' => $cardId));
+        if (!$this->Debitcard->exists())
         {
-            $card_number = $this->request->data['Debitcard']['card_number'];
-            $card = $this->Debitcard->field('id', array('card_number ' => $card_number));
-            $this->CardUser->deleteAll(array('user_id'=>$user,'card_id'=>$card));
-            return $this->redirect(array('controller' => 'products' ,'action' => 'index'));
+            throw new NotFoundException(__('Tarjeta de débito inexistente'));
+        }
+        if ($this->CardUser->delete(array('id'=> $card, 'user_id'=>$this->User->id, 'card_type' => 1)))
+        {
+            $this->Session->setFlash(__('Tarjeta de débito borrada'));
+            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+        }
+        else
+        {
+            $this->Session->setFlash(__('La tarjeta de débito no pudo eliminarse, intente de nuevo'));
+            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
         }
     }
 
-    public function delete_credit()
+    public function delete_credit($id = null)
     {
-        $user =  $this->Session->read("Auth.User.id");
-
-        if ($this->request->is('post'))
+        $this->Creditcard->id = $id;
+        $cardId = $this->Creditcard->id;
+        $card = $this->CardUser->field('id', array('card_id' => $cardId));
+        if (!$this->Creditcard->exists())
         {
-            $card_number = $this->request->data['Creditcard']['card_number'];
-            $card = $this->Creditcard->field('id', array('card_number ' => $card_number));
-            $this->CardUser->deleteAll(array('user_id'=>$user,'card_id'=>$card));
-            return $this->redirect(array('controller' => 'products' ,'action' => 'index'));
+            throw new NotFoundException(__('Tarjeta de crédito inexistente'));
+        }
+        if ($this->CardUser->delete(array('id'=> $card, 'user_id'=>$this->User->id, 'card_type' => 2)))
+        {
+            $this->Session->setFlash(__('Tarjeta de crédito borrada'));
+            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+        }
+        else
+        {
+            $this->Session->setFlash(__('La tarjeta de crédito no pudo eliminarse, intente de nuevo'));
+            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
         }
     }
 }

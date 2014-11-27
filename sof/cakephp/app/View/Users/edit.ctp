@@ -70,42 +70,40 @@
                 <table>
                     <tr>
                         <th>Número de tarjeta débito</th>
+                        <th>Acciones</th>
                     </tr>
-                    <?php foreach ($dcard_num as $cardnum): ?>
+                    <?php foreach ($dcard_num as $dcardnum => $value): ?>
                     <tr>
-                        <td><?php echo $cardnum; ?></td>
+                        <td><?php echo $value; ?></td>
+                        <td>
+                            <?php echo $this->Html->link('Eliminar', array('controller' => 'CardUser', 'action' => 'delete_debit', $dcardnum)); ?>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
-                    <?php unset($cardnum); ?>
+                    <?php unset($dcardnum); ?>
                 </table>
                 <?php
                 echo $this->Html->link('Registrar nueva tarjeta de débito',array('controller' =>'debitcard','action'=>'register'));
-                echo "<br>";
-                if(empty($dcnull))
-                {
-                    echo $this->Html->link('Eliminar tarjeta de débito',array('controller' =>'carduser','action'=>'delete_debit'));
-                    echo "<br><br>";
-                }
+                echo "<br><br>";
                 ?>
                 <table>
                     <tr>
                         <th>Número de tarjeta crédito</th>
+                        <th>Acciones</th>
                     </tr>
-                    <?php foreach ($ccard_num as $cardnum): ?>
+                    <?php foreach ($ccard_num as $ccardnum => $value): ?>
                     <tr>
-                        <td><?php echo $cardnum; ?></td>
+                        <td><?php echo $value; ?></td>
+                        <td>
+                            <?php echo $this->Html->link('Eliminar', array('controller' => 'CardUser', 'action' => 'delete_credit', $ccardnum)); ?>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
-                    <?php unset($cardnum); ?>
+                    <?php unset($ccardnum); ?>
                 </table>
                 <?php
-                echo $this->Html->link('Registrar nueva tarjeta de crédito',array('controller' =>'debitcard','action'=>'register'));
-                echo "<br>";
-                if(empty($ccnull))
-                {
-                    echo $this->Html->link('Eliminar tarjeta de crédito',array('controller' =>'carduser','action'=>'delete_credit'));
-                    echo "<br><br>";
-                }
+                echo $this->Html->link('Registrar nueva tarjeta de crédito',array('controller' =>'creditcard','action'=>'register'));
+                echo "<br><br>";
                 ?>
                 <br>
                 <?php echo "Direcciones de envio:"; ?><br><br>
