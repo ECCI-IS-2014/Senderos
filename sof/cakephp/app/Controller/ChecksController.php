@@ -14,11 +14,21 @@ class ChecksController extends AppController
 		$idUser = $this->Session->read("Auth.User.id");
         // Extraer numeros de tarjetas tarjetas y pasarlas
         // Debitcard->                Debitcard.card_number              'CardUser.card_id =' => 'Debitcard.id'
-        $this->set('debitcards', $this->CardUser->find('list', array(
+
+        /*$this->set('debitcards', $this->CardUser->find('list', array(
                         'fields' => array('CardUser.card_id'),
                         'conditions' => array('CardUser.user_id =' => $idUser)
                    ))
-        );
+        );*/
+
+        $cards = $this->CardUser->find('all', array('conditions' => array('CardUser.user_id =' => $idUser)));
+        $debitcards = array();
+        foreach($cards as $card){
+            $debitcards = Hash::merge($debitcards,$this->Debitcard->find('list',array(
+                'fields'=>array('Debitcard.card_number'),
+                'conditions'=>array('Debitcard.id'=>$card['CardUser']['card_id']))));
+        }
+        $this->set(compact('debitcards'));
 		
         $cart = array();
 
@@ -35,10 +45,11 @@ class ChecksController extends AppController
 		$total = $this->request->data['Check']['amount'];
 		$debCard = $this->request->data['Check']['debcard'];
         $this->set('finalPrice',$total);
-		
+
+
 		// Encuentra la tarjeta
-        $debCard = $this->CardUser->find('first',array('conditions'=>array('CardUser.id'=>$debCard)));
-        $debCard = $debCard['CardUser']['card_id'];
+        //$debCard = $this->CardUser->find('first',array('conditions'=>array('CardUser.card_id'=>$debCard)));
+        //$debCard = $debCard['CardUser']['card_id'];
 
         // Descuenta de la tarjeta
 		$transaction = $this->Debitcard->find('first',array('conditions'=>array('Debitcard.id'=>$debCard)));
@@ -74,7 +85,8 @@ class ChecksController extends AppController
 					$price = $product['Product']['price'];
 					$qty = $this->Session->read('CartQty.'.$number);
 					// Guardar items de factura: ID,IDCHECK,IDPRODUCT,DISCOUNT,PRICE,QTY
-					$id=$this->CheckProduct->id +1;
+                    $this->CheckProduct->save();
+					$id=$this->CheckProduct->id;
 					$this->CheckProduct->set(array(
 						'id' => $id,'check_id'=>$checkId,'product_id'=>$product['Product']['id'],'discount'=>$discount,'prize'=>$price,'quantity'=>$qty
 					));
