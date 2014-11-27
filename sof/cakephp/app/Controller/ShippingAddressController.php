@@ -58,10 +58,7 @@ class ShippingAddressController extends AppController
                 return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
             }
             $this->Session->setFlash(__('No se pudo almacenar los cambios, inténtelo de nuevo'));
-        }
-        else
-        {
-            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+			return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
         }
     }
 

@@ -118,10 +118,9 @@
                     <tr>
                         <td><?php echo $value; ?></td>
                         <td><?php
-                        	echo $this->Html->link('Editar', array('controller' => 'shippingaddress', 'action' => 'edit', $address));
+                        	echo $this->Html->link('Editar', array('controller' => 'ShippingAddress', 'action' => 'edit', $address));
                         	echo '  ';
-                            //echo $this->Html->link('Eliminar', array('controller' => 'shippingaddress', 'action' => 'delete', $address), array('confirm' => '¿Seguro?'));
-                            echo $this->Form->postLink('Eliminar', array('action' => 'delete', $address), array('confirm' => '¿Seguro?'));
+                            echo $this->Html->link('Eliminar', array('controller' => 'ShippingAddress', 'action' => 'delete', $address), array('confirm' => '¿Seguro?'));
                         ?>
                         </td>
                     </tr>
