@@ -42,7 +42,7 @@ class ShippingAddressController extends AppController
         }
     }
 	
-	public function edit($id = null)
+    public function edit($id = null)
     {
         $this->ShippingAddress->id = $id;
         $this->set('countries', $this->Country->find('list', array('fields' => array('Country.country_name'))));
@@ -58,7 +58,11 @@ class ShippingAddressController extends AppController
                 return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
             }
             $this->Session->setFlash(__('No se pudo almacenar los cambios, inténtelo de nuevo'));
-			return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+            return $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Session->read("Auth.User.id")));
+        }
+        else
+        {
+            $this->request->data = $this->ShippingAddress->read(null, $id);
         }
     }
 
