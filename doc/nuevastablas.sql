@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS debitcards(
 );
 
 CREATE TABLE IF NOT EXISTS creditcards(
-	id INT UNSIGNED AUTO_INCREMENT = 100 PRIMARY KEY,
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	card_number VARCHAR(16) NOT NULL,
 	nip VARCHAR(4) NOT NULL,
 	csc VARCHAR(4) NOT NULL, -- Código de seguridad
@@ -114,6 +114,7 @@ CREATE TABLE IF NOT EXISTS creditcards(
 	card_limit DOUBLE UNSIGNED NOT NULL,
 	check_id INT NOT NULL
 );
+ALTER TABLE creditcards AUTO_INCREMENT = 100 -- Tiene que hacerse antes de ingresar alguna tupla 
 
 -- Aqui se modelan las tablas que corresponden a tarjetas y entidad financiera verificadora
 CREATE TABLE IF NOT EXISTS card_users(
