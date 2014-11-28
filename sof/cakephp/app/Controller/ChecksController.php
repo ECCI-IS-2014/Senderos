@@ -144,6 +144,32 @@ class ChecksController extends AppController
 		
 	}
 
+	// verifica cuanto tiempo ha pasado desde la compra y cambia el estado de la factura
+    // 0-Enviada --> al min después de la compra
+    // 1-EnProceso -->  a los 2min después de la compra
+    // 2-Entregada -->  después de los 2min de la compra
+    public function cstatus(){
+        $checks  = $this->Check->find('all');//, array('fields' => array('Check.id')));
+        foreach ($checks as $check):
+            if ( (time() - strtotime($check['Check']['sold_the'])) > 60 && (time() - strtotime($check['Check']['sold_the'])) <= 61 ){
+                $this->Check->read(null, $check['Check']['id']);
+                $this->Check->set('dstatus', 0);
+                $this->Check->save();
+            }
+            if( (time() - strtotime($check['Check']['sold_the'])) > 61 && (time() - strtotime($check['Check']['sold_the'])) <= 120){
+                $this->Check->read(null, $check['Check']['id']);
+                $this->Check->set('dstatus', 1);
+                $this->Check->save();
+            }
+            if ( (time() - strtotime($check['Check']['sold_the'])) > 120 ){
+                $this->Check->read(null, $check['Check']['id']);
+                $this->Check->set('dstatus', 2);
+                $this->Check->save();
+            }
+        endforeach;
+        unset($checks);
+        return $this->redirect(array('action' => 'index'));
+    }
 }
 
 ?>
