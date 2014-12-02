@@ -67,7 +67,7 @@
         ?></h3>
         <br>
         <h3><?php
-            echo $this->Html->link("Mis Compras",array('controller' => 'CheckProduct', 'action' => 'sales'));
+            echo $this->Html->link("Mis compras",array('controller' => 'CheckProduct', 'action' => 'sales'));
         ?></h3>
         <br>
 		<h3>Direcciones de envío</h3><br>
@@ -90,7 +90,7 @@
             </table>
 		<br><br>
 		<br>
-                		<h3>Dirección de Facturación</h3><br>
+                		<h3>Dirección de facturación</h3><br>
                 		<h3><?php
                             if(empty($billaddress))
                             {
