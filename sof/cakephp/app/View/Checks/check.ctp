@@ -104,14 +104,16 @@
         <?php unset($product); ?>
         <?php
 			$valorFinal = $valorFinal + $sendCost;
-            echo '<br><br><br><p><div align="right"><b>Costo de envío:</b> '.$countryName.' - '.$sendCost.'$<br><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><b>Precio total con impuestos: </b>'.$totalConImp.'$<br><b>Total con envio: </b>'.$valorFinal.'$<br><br>';
+            echo '<br><br><br><p><div align="right">Direccion de envio: '.$direccion.'<br>';
+			echo '<b>Costo de envío:</b> '.$countryName.' : '.$sendCost.'$<br><b>Precio total de la compra: </b>'.$total.'$<br><b>Precio total con descuentos: </b>'.$totalConDesc.'$<br><b>Precio total con impuestos: </b>'.$totalConImp.'$<br><b>Total con envio: </b>'.$valorFinal.'$<br><br>';
             echo $this->Form->create('Check',array('action'=>'receipt'));
 			echo $this->Form->input('id', array('type' => 'hidden'));
             echo $this->Form->input('debcard', array('title' => 'Pago', 'type' => 'select', 'options' => $debitcards, 'empty' => 'Seleccione su método de pago', 'label' => 'Método de pago: '));
 			echo '<br>';
-			echo $this->Form->input('address', array('title' => 'Direccion de Envio', 'type' => 'select', 'options' => $address, 'empty' => 'Seleccione su direccion de envio', 'label' => 'Direccion de envio: '));
-			echo '<br>';
+			//echo $this->Form->input('address', array('title' => 'Direccion de Envio', 'type' => 'select', 'options' => $address, 'empty' => 'Seleccione su direccion de envio', 'label' => 'Direccion de envio: '));
+			//echo '<br>';
 			echo $this->Form->input('amount', array('type' => 'hidden', 'default' => $valorFinal));
+			echo $this->Form->input('address', array('type' => 'hidden', 'default' => $address));
 			echo '<br><br>';
             echo $this->Form->end("COMPRAR");
             echo '</div></p>';
