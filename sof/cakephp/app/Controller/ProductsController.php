@@ -302,6 +302,27 @@ class ProductsController extends AppController
         $this->Session->delete('CartPrc');
         return $this->redirect(array('action'=>'index'));
     }
+	
+	public function discount(){
+        $this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1",'Product.discount > 0'))));
+
+        if($this->Session->read("Auth.User.role") == 'admin'){
+            $this->set('role','admin');
+            $this->set('products', $this->Product->find("all",array('conditions'=>array('Product.discount > 0'))));
+        }
+        else{
+            $this->set('role','cust');
+            $this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1",'Product.discount > 0'))));
+        }
+
+        $this->set('categorylist',$this->Category->generateTreeList(
+            null,
+            null,
+            null,
+            ' • '
+        ));
+
+    }
 
 }
 ?>
