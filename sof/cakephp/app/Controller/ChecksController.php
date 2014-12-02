@@ -8,10 +8,16 @@ class ChecksController extends AppController
 	var $components = array('Session');
 	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock','Wishlist','ProductWishlist');
     */
-	var $uses = array('Product','Check','CheckProduct','CardUser','User', 'Debitcard', 'DebitcardsUser');
+	var $uses = array('Product','Check','CheckProduct','CardUser','User', 'Debitcard', 'DebitcardsUser','Countries','SaddressUser','ShippingAddress');
 	public function check(){
 	
 		$idUser = $this->Session->read("Auth.User.id");
+		$userLocation = $this->Session->read("Auth.User.country");
+		$sendCost = $this->costoEnvio($userLocation);
+		$countryName = $this->Countries->find('first',array('conditions'=>array('Countries.id ='=>$userLocation)));
+		$countryName = $countryName['Countries']['country_name'];
+		$this->set(compact('sendCost'));
+		$this->set(compact('countryName'));
         // Extraer numeros de tarjetas tarjetas y pasarlas
         // Debitcard->                Debitcard.card_number              'CardUser.card_id =' => 'Debitcard.id'
 
@@ -37,6 +43,15 @@ class ChecksController extends AppController
         }
 
         $this->set(compact('cart'));
+		
+		$saddress = $this->SaddressUser->find('all',array('conditions' => array('user_id = '=>$idUser)));
+		$address = array();
+		
+		foreach($saddress as $sadres){
+			$address = Hash::merge($address, $this->ShippingAddress->find('first',array('conditions'=>array('id ='=>$sadres['SaddressUser']['address_id']))));
+		}
+		
+		$this->set(compact('address'));
 
         }
 	
@@ -170,6 +185,16 @@ class ChecksController extends AppController
         unset($checks);
         return $this->redirect(array('action' => 'index'));
     }
+	
+	public function costoEnvio($num){
+		switch($num){
+			case 52:
+				return 2.99;
+			default:
+				return 6.99;
+		}
+	}
+	
 }
 
 ?>
