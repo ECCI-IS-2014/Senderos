@@ -14,7 +14,14 @@ class BillingAddressController extends AppController {
 
     public function add()
     {
+        $id = $this->Session->read("Auth.User.id");
+        $address = $this->BillingAddress->BaddressUser->find("first", array('conditions' => array('user_id' => $id)));
         $this->set('countries', $this->Country->find('list', array('fields' => array('Country.country_name'))));
+        if($address != null)
+        {
+            $this->Session->setFlash(__('No puede agregarse otra dirección de facturación a su nombre.'));
+            return $this->redirect(array('controller' => 'products', 'action' => 'index'));
+        }
         if(($this->Session->read("Auth.User.role") == 'admin')||($this->Session->read("Auth.User.role") == 'cust'))
         {
             if ($this->request->is('post'))
