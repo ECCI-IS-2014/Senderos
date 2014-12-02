@@ -106,7 +106,7 @@
                 echo "<br><br>";
                 ?>
                 <br>
-                <?php echo "Direcciones de envio:"; ?><br><br>
+                <?php echo "Direcciones de envío:"; ?><br><br>
                     <table>
                 	<tr>
                         <th>Dirección</th>
@@ -125,6 +125,25 @@
                     <?php endforeach; ?>
                     <?php unset($address); ?>
                     </table>
+                <?php echo "Dirección de Facturación:"; ?><br><br>
+                    <table>
+                    <tr>
+                        <th>Dirección</th>
+                        <th colspan="2">Acciones</th>
+                        </tr>
+                        <?php foreach ($billaddress as $address => $value): ?>
+                        <tr>
+                            <td><?php echo $value; ?></td>
+                            <td><?php
+                                echo $this->Html->link('Editar', array('controller' => 'BillingAddress', 'action' => 'edit', $address));
+                                echo '  ';
+                                echo $this->Html->link('Eliminar', array('controller' => 'BillingAddress', 'action' => 'delete', $address), array('confirm' => '¿Seguro?'));
+                            ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php unset($address); ?>
+                        </table>
                 <?php
                 echo $this->Html->link('Registrar nueva dirección de envío',array('controller' =>'shippingaddress','action'=>'add'));
                 ?>
