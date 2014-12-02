@@ -5,7 +5,7 @@ App::uses('DebitcardController', 'CreditcardController','Controller');
 
 class UsersController extends AppController {
 
-    var $uses = array('Country', 'User', 'Debitcard', 'Creditcard', 'CardUser', 'SaddressUser', 'ShippingAddress');
+    var $uses = array('Country', 'User', 'Debitcard', 'Creditcard', 'CardUser', 'SaddressUser', 'ShippingAddress', 'BaddressUser', 'BillingAddress');
 
     public function index(){
         $this->set('users',$this->User->find('all'));
@@ -32,7 +32,17 @@ class UsersController extends AppController {
                 'fields' => array('ShippingAddress.address'),
                 'conditions' => array('ShippingAddress.id' => $saddress)))
         );
+
+        $baddress = $this->BaddressUser->find('list', array(
+            'fields' => array('BaddressUser.address_id'),
+            'conditions' => array('BaddressUser.user_id' => $id)));
+
+        $this->set('billaddress', $this->BillingAddress->find('list', array(
+                'fields' => array('BillingAddress.id','BillingAddress.address'),
+                'conditions' => array('BillingAddress.id' => $baddress)))
+        );
     }
+
 
     public function add() {
         $this->set('countries', $this->Country->find('list', array('fields' => array('Country.country_name'))));
@@ -68,7 +78,7 @@ class UsersController extends AppController {
 			unset($this->request->data['User']['password']);
         }
 		
-		// De aquí abajo es para medios de pago
+		// De aquï¿½ abajo es para medios de pago
 
         $dcard = $this->CardUser->find('list', array(
             'fields' => array('CardUser.card_id'),
@@ -88,15 +98,24 @@ class UsersController extends AppController {
                 'conditions' => array('Creditcard.id' => $ccard)))
         );
 
-        // De aquí para abajo es para recuperar las direcciones de envío asociadas
+        // De aquï¿½ para abajo es para recuperar las direcciones de envï¿½o asociadas
 
         $saddress = $this->SaddressUser->find('list', array(
             'fields' => array('SaddressUser.address_id'),
             'conditions' => array('SaddressUser.user_id' => $id)));
 
+        $baddress = $this->BaddressUser->find('list', array(
+            'fields' => array('BaddressUser.address_id'),
+            'conditions' => array('BaddressUser.user_id' => $id)));
+
         $this->set('shipaddress', $this->ShippingAddress->find('list', array(
                 'fields' => array('ShippingAddress.id','ShippingAddress.address'),
                 'conditions' => array('ShippingAddress.id' => $saddress)))
+        );
+
+        $this->set('billaddress', $this->BillingAddress->find('list', array(
+                'fields' => array('BillingAddress.id','BillingAddress.address'),
+                'conditions' => array('BillingAddress.id' => $baddress)))
         );
     }
 
@@ -128,7 +147,7 @@ class UsersController extends AppController {
             {
                 return $this->redirect(array('controller' => 'debitcard', 'action' => 'register'));
             }
-            $this->Session->setFlash(__('Usuario o contraseña inválidas, intente de nuevo'));
+            $this->Session->setFlash(__('Usuario o contraseï¿½a invï¿½lidas, intente de nuevo'));
         }
     }
 
