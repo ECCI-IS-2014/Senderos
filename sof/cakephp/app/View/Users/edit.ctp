@@ -125,6 +125,9 @@
                     <?php endforeach; ?>
                     <?php unset($address); ?>
                     </table>
+                <?php
+                echo $this->Html->link('Registrar nueva dirección de envío',array('controller' =>'ShippingAddress','action'=>'add'));
+                ?>
                 <?php echo "Dirección de Facturación:"; ?><br><br>
                     <table>
                     <tr>
@@ -140,13 +143,10 @@
                                 echo $this->Html->link('Eliminar', array('controller' => 'BillingAddress', 'action' => 'delete', $address), array('confirm' => '¿Seguro?'));
                             ?>
                             </td>
-                        </tr>
-                        <?php endforeach; ?>
-                        <?php unset($address); ?>
-                        </table>
-                <?php
-                echo $this->Html->link('Registrar nueva dirección de envío',array('controller' =>'ShippingAddress','action'=>'add'));
-                ?>
+                     </tr>
+                     <?php endforeach; ?>
+                     <?php unset($address); ?>
+                     </table>
                 <?php
 		        if($this->Session->read('Auth.User.role')== 'admin')
 		        {
