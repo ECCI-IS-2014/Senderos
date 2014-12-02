@@ -89,6 +89,27 @@
                    <?php unset($address); ?>
             </table>
 		<br><br>
+		<br>
+                		<h3>Dirección de Facturación</h3><br>
+                		<h3><?php
+                            if(empty($billaddress))
+                            {
+                                echo "No tiene direcciones registradas hasta el momento";
+                            }
+                            ?></h3>
+                		    <table>
+                		           <tr>
+                                        <th>Dirección</th>
+                                   </tr>
+                                   <?php foreach ($billaddress as $address): ?>
+                                   <tr>
+                                        <td><?php echo $address; ?></td>
+                                   </tr>
+                                   <?php endforeach; ?>
+                                   <?php unset($address); ?>
+                            </table>
+                <br><br>
+
         <h3><?php echo $this->Html->link('Editar mi perfil',array('controller' =>'users','action'=>'edit',$this->Session->read('Auth.User.id'))); ?>
     </div>
 </div>
