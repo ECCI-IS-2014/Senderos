@@ -18,7 +18,7 @@ class CardUserFixture extends CakeTestFixture
             'card_type' => 1
         ),
         array(
-            'id' => 1,
+            'id' => 2,
             'user_id' => 1,
             'card_id' =>100,
             'card_type' => 2

@@ -125,8 +125,8 @@
             				);
             	?>
 		        <ul>
-                    <li align=center><a>Ofertas</a></li>
-                    <li align=center><a>F.A.Q</a></li>
+                   <li align=center><?php echo $this->Html->link('Ofertas',array('controller'=>'products','action' => 'discount'));?></li>
+                   <li align=center><a>F.A.Q</a></li>
                     <li align=center><a>Contáctenos</a></li>
                     <li align=center><?php echo $this->Html->link('Ayuda',array('controller'=>'users','action' => 'help'));?></li>
                 </ul>
@@ -145,7 +145,7 @@
 
         <div id="right_side">
             <?php
-                    echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'products','action'=>'carrito')).": ".$this->Carrito->calcularCarrito($this->Session->read('Cart'),$this->Session->read('CartQty'),$this->Session->read('CartPrc'))."$&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'productwishlist','action'=>'index'))."&nbsp&nbsp&nbsp";
+                    echo '<p>'.$this->Html->link('Mi carrito',array('controller' =>'products','action'=>'carrito')).": ".$this->Carrito->calcularCarrito($this->Session->read('Cart'),$this->Session->read('CartQty'),$this->Session->read('CartPrc'))."$&nbsp&nbsp&nbsp".$this->Html->link('Mi Wish List',array('controller' =>'ProductWishlist','action'=>'index'))."&nbsp&nbsp&nbsp";
                     if($this->Session->read('Auth.User.username')==null)
                     {
                         echo $this->Html->link('Ingresar',array('controller' =>'users','action'=>'login'))."&nbsp&nbsp&nbsp".$this->Html->link('Crear cuenta',array('controller' => 'users', 'action' => 'add')).'</p>';

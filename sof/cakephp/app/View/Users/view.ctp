@@ -62,36 +62,14 @@
         {
             echo "Rol: ".h($users['User']['role'])." ";
         } ?></h3>
-		<h3>Tarjetas registradas</h3>
         <h3><?php
-            if(empty($dcard_num) && empty($ccard_num))
-            {
-                echo "No tiene tarjetas registradas hasta el momento";
-            }
+            echo $this->Html->link("Tarjetas registradas",array('controller' => 'CardUser', 'action' => 'index'));
         ?></h3>
-        <table>
-            <tr>
-                <th>Últimos cuatro dígitos de la tarjeta de débito</th>
-            </tr>
-            <?php foreach ($dcard_num as $cardnum): ?>
-            <tr>
-                <td><?php echo "------------".$cardnum[12].$cardnum[13].$cardnum[14].$cardnum[15]; ?></td>
-            </tr>
-            <?php endforeach; ?>
-            <?php unset($cardnum); ?>
-        </table>
-        <table>
-            <tr>
-                <th>Últimos cuatro dígitos de la tarjeta de crédito</th>
-            </tr>
-            <?php foreach ($ccard_num as $cardnum): ?>
-            <tr>
-                <td><?php echo "------------".$cardnum[12].$cardnum[13].$cardnum[14].$cardnum[15]; ?></td>
-            </tr>
-            <?php endforeach; ?>
-            <?php unset($cardnum); ?>
-        </table>
-		<br>
+        <br>
+        <h3><?php
+            echo $this->Html->link("Mis compras",array('controller' => 'CheckProduct', 'action' => 'sales'));
+        ?></h3>
+        <br>
 		<h3>Direcciones de envío</h3><br>
 		<h3><?php
             if(empty($shipaddress))
@@ -111,6 +89,27 @@
                    <?php unset($address); ?>
             </table>
 		<br><br>
+		<br>
+                		<h3>Dirección de facturación</h3><br>
+                		<h3><?php
+                            if(empty($billaddress))
+                            {
+                                echo "No tiene direcciones registradas hasta el momento";
+                            }
+                            ?></h3>
+                		    <table>
+                		           <tr>
+                                        <th>Dirección</th>
+                                   </tr>
+                                   <?php foreach ($billaddress as $address): ?>
+                                   <tr>
+                                        <td><?php echo $address; ?></td>
+                                   </tr>
+                                   <?php endforeach; ?>
+                                   <?php unset($address); ?>
+                            </table>
+                <br><br>
+
         <h3><?php echo $this->Html->link('Editar mi perfil',array('controller' =>'users','action'=>'edit',$this->Session->read('Auth.User.id'))); ?>
     </div>
 </div>

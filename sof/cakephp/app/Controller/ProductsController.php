@@ -6,7 +6,7 @@ class ProductsController extends AppController
 {
     public $helpers = array('Html', 'Form');
 	var $components = array('Session');
-	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock','Wishlist','ProductWishlist');
+	var $uses = array('Product', 'Platform', 'Category', 'CategoryProduct', 'Stock','Wishlist','ProductWishlist','Countries','SaddressUser','ShippingAddress');
 
 	
 	public function index()
@@ -49,7 +49,7 @@ class ProductsController extends AppController
             throw new NotFoundException(__('Invalid product'));
         }
 		$this->set('platform', $this->Product->Platform->find('first', array('conditions' => array('Platform.id' == $product['Product']['platform_id']))));
-		$this->set('categories', $this->Product->Category->find('list'));
+		$this->set('categories', $this->Category->CategoryProduct->find('list', array('conditions' => array('product_id' => $id))));
 		$this->set('cant', $this->Product->Stock->find('first', array('conditions' => array('Stock.product_id' == $product['Product']['id']))));
         $this->set('product', $product);
 		
@@ -151,7 +151,7 @@ class ProductsController extends AppController
 			if ($this->request->is('post')) { 
 				$this->Product->create();
 				if ($this->Product->save($this->request->data)) {
-					$this->Product->Stock->save(['product_id'=>$this->Product->id, 'amount'=>$this->request->data['Product']['amount']]);
+					$this->Product->Stock->save(array('product_id'=>$this->Product->id, 'amount'=>$this->request->data['Product']['amount']));
 					if($this->request->data['Product']['archivo']['error'] == 0 &&  $this->request->data['Product']['archivo']['size'] > 0){
 					  // Informacion del tipo de archivo subido $this->data['Product']['archivo']['type']
 					  //$destino = WWW_ROOT.'uploads'.DS;
@@ -271,6 +271,18 @@ class ProductsController extends AppController
         }
 
         $this->set(compact('cart'));
+		
+		$idUser = $this->Session->read("Auth.User.id");
+		
+		$saddress = $this->SaddressUser->find('all',array('conditions' => array('user_id = '=>$idUser)));
+		$address = array();
+		
+		foreach($saddress as $sadres){
+			$address = Hash::merge($address,$this->ShippingAddress->find('list',array('fields'=>array('ShippingAddress.address'),'conditions'=>array('id ='=>$sadres['SaddressUser']['address_id']))));
+		}
+		
+		$this->set(compact('address'));
+		
     }
 
     public function eliminarCarrito($id){
@@ -301,6 +313,27 @@ class ProductsController extends AppController
         $this->Session->delete('CartQty');
         $this->Session->delete('CartPrc');
         return $this->redirect(array('action'=>'index'));
+    }
+	
+	public function discount(){
+        $this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1",'Product.discount > 0'))));
+
+        if($this->Session->read("Auth.User.role") == 'admin'){
+            $this->set('role','admin');
+            $this->set('products', $this->Product->find("all",array('conditions'=>array('Product.discount > 0'))));
+        }
+        else{
+            $this->set('role','cust');
+            $this->set('products', $this->Product->find("all", array('conditions' => array("Product.enabled = 1",'Product.discount > 0'))));
+        }
+
+        $this->set('categorylist',$this->Category->generateTreeList(
+            null,
+            null,
+            null,
+            ' • '
+        ));
+
     }
 
 }
