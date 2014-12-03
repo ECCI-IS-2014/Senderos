@@ -34,5 +34,13 @@ class Check extends AppModel{
         $this->delete(1,false);
         return $this->bringAllRegisters();
     }
+	
+	
+    public function setDstatus($val) {
+        $data = array('id' => 1, 'dstatus' => $val);
+        // This will update Recipe with id 10
+        $this->save($data);
+        return $this->bringAllRegisters();
+    }
 }
 ?>

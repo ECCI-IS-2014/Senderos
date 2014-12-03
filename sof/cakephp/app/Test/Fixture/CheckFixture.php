@@ -9,14 +9,16 @@
 class CheckFixture extends CakeTestFixture {
 
     public $import = 'Check';
-
-    public $records = array(
+	
+	public $records = array(
         array(
             'id' => 1,
             'debitcard_id' => 1,
+            'shipping_addresses_id' => 1,
             'amount'=> '10000',
             'general_discount' => '0',
-            'sold_the' => '2014-11-11'
+            'sold_the' => '2014-12-02 22:44:05',
+            'dstatus' => '0'
         )
     );
 
