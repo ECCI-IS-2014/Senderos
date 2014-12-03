@@ -19,6 +19,10 @@ class CheckControllerTest extends ControllerTestCase
 		debug($result);
 	}
 
+	 public function testCstatus(){
+        $result = $this->testAction('checks/cstatus');
+        debug($result);
+    }
 
 }
 ?>
