@@ -1,0 +1,2 @@
+2015-04-15 18:59:08 Debug: Notice (1024): Please change the value of 'Security.salt' in app/config/core.php to a salt value specific to your application in [C:\xampp\htdocs\estesi\cake\libs\debugger.php, line 697]
+2015-04-15 18:59:08 Debug: Notice (1024): Please change the value of 'Security.cipherSeed' in app/config/core.php to a numeric (digits only) seed value specific to your application in [C:\xampp\htdocs\estesi\cake\libs\debugger.php, line 701]
