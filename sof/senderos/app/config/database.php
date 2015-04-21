@@ -80,7 +80,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'system',
-		'password' => 'wut',
+		'password' => 'goore383',
 		'database' => 'localhost:1521/XE',
 		//'database' => 'localhost/XE',
 		'prefix' => '',
