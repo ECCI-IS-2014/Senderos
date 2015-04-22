@@ -1,4 +1,4 @@
--- Creación de las tablas
+-- Creació® ¤e las tablas
 CREATE TABLE stations
 (
   id int NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE trails
   id int NOT NULL,
   name varchar(100) NOT NULL,
   description varchar(100) NOT NULL,
-  map multipoint NOT NULL,
+  image varchar(100) NOT NULL,
   station_id int NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(station_id) REFERENCES stations(id)
@@ -23,15 +23,15 @@ CREATE TABLE points
 (
   id int NOT NULL,
   name varchar(100) NOT NULL,
-  cordx point NOT NULL,
-  cordy point NOT NULL,
+  cordx double NOT NULL,
+  cordy double NOT NULL,
   description varchar(100) NOT NULL,
   trail_id int NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(trail_id) REFERENCES trails(id)
 );
 
-CREATE TABLE multimedias 
+CREATE TABLE documents
 (
   id int NOT NULL,
   name varchar(100) NOT NULL,
@@ -39,18 +39,17 @@ CREATE TABLE multimedias
   type varchar(100) NOT NULL,
   route varchar(100) NOT NULL,
   language varchar(100) NOT NULL,
-  point_id int NOT NULL,
-  PRIMARY KEY(id),
-  FOREIGN KEY(point_id) REFERENCES points(id)
+  PRIMARY KEY(id)
 );
 
-CREATE TABLE point_multimedias 
+CREATE TABLE documents_points
 (
+  id int NOT NULL,
+  document_id int NOT NULL,
   point_id int NOT NULL,
-  multimedia_id int NOT NULL,
-  PRIMARY KEY(point_id, multimedia_id),
   FOREIGN KEY(point_id) REFERENCES points(id),
-  FOREIGN KEY(multimedia_id) REFERENCES multimedias(id)
+  FOREIGN KEY(document_id) REFERENCES documents(id),
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE countries
@@ -61,7 +60,7 @@ CREATE TABLE countries
   PRIMARY KEY(id)
 );
 
-CREATE TABLE users
+CREATE TABLE clients
 (
   id int NOT NULL,
   username varchar(100) NOT NULL,
@@ -78,20 +77,32 @@ CREATE TABLE visitors
 (
   id int NOT NULL,
   role varchar(100) NOT NULL,
-  multimedia_id int NOT NULL,
+  document_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(multimedia_id) REFERENCES multimedias(id)
+  FOREIGN KEY(document_id) REFERENCES documents(id)
 );
+
 
 -- Autoincrementos para las tablas.
 
 CREATE SEQUENCE stations_seq;
 CREATE SEQUENCE trails_seq;
 CREATE SEQUENCE points_seq;
-CREATE SEQUENCE multimedias_seq;
+CREATE SEQUENCE documents_seq;
 CREATE SEQUENCE visitors_seq;
 CREATE SEQUENCE country_seq;
-CREATE SEQUENCE users_seq;
+CREATE SEQUENCE clients_seq;
+CREATE SEQUENCE dots_seq;
+
+CREATE OR REPLACE TRIGGER dots_ai
+BEFORE INSERT ON documents_points
+FOR EACH ROW
+BEGIN
+  SELECT dots_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
 
 CREATE OR REPLACE TRIGGER stations_ai
 BEFORE INSERT ON stations 
@@ -120,11 +131,11 @@ BEGIN
   FROM   dual;
 END;
 
-CREATE OR REPLACE TRIGGER multimedias_ai
-BEFORE INSERT ON multimedias
+CREATE OR REPLACE TRIGGER documents_ai
+BEFORE INSERT ON documents
 FOR EACH ROW
 BEGIN
-  SELECT multimedias_seq.NEXTVAL
+  SELECT documents_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
@@ -147,21 +158,21 @@ BEGIN
   FROM   dual;
 END;
 
-CREATE OR REPLACE TRIGGER users_ai
-BEFORE INSERT ON users
+CREATE OR REPLACE TRIGGER clients_ai
+BEFORE INSERT ON clients
 FOR EACH ROW
 BEGIN
-  SELECT users_seq.NEXTVAL
+  SELECT clients_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
 
 -- Eliminar todas la tablas creadas.
-DROP TABLE users;
+DROP TABLE clients;
 DROP TABLE countries;
 DROP TABLE visitors;
-DROP TABLE point_multimedias;
-DROP TABLE multimedias;
+DROP TABLE documents_points;
+DROP TABLE documents;
 DROP TABLE points;
 DROP TABLE trails;
 DROP TABLE stations;
@@ -173,11 +184,11 @@ DROP SEQUENCE trails_seq;
 DROP TRIGGER trails_ai;
 DROP SEQUENCE points_seq;
 DROP TRIGGER points_ai;
-DROP SEQUENCE multimedias_seq;
-DROP TRIGGER multimedias_ai;
+DROP SEQUENCE documents_seq;
+DROP TRIGGER documents_ai;
 DROP SEQUENCE visitors_seq;
 DROP TRIGGER visitors_ai;
 DROP SEQUENCE country_seq;
 DROP TRIGGER country_ai;
-DROP SEQUENCE users_seq;
-DROP TRIGGER users_ai;
+DROP SEQUENCE clients_seq;
+DROP TRIGGER clients_ai;
