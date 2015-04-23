@@ -23,8 +23,8 @@ CREATE TABLE points
 (
   id int NOT NULL,
   name varchar(100) NOT NULL,
-  cordx double NOT NULL,
-  cordy double NOT NULL,
+  cordx float NOT NULL,
+  cordy float NOT NULL,
   description varchar(100) NOT NULL,
   trail_id int NOT NULL,
   PRIMARY KEY(id),
