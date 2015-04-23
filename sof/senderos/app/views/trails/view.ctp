@@ -26,6 +26,11 @@
 			<?php echo $this->Html->link($trail['Station']['name'], array('controller' => 'stations', 'action' => 'view', $trail['Station']['id'])); ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Station'); ?></dt>
+        <dd<?php if ($i++ % 2 == 0) echo $class;?>>
+        <?php echo $this->Html->image($trail['Trail']['image'], array('style'=> "width:700px;height:500px;padding:10px;"));?>
+        &nbsp;
+        </dd>
 	</dl>
 </div>
 <div class="actions">
