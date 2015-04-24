@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-    include("header.ctp");
+
 ?>
 </body>
 </html>
