@@ -52,7 +52,7 @@ h1 {
 }
 h2 {
 	background:#fff;
-	color: #e32;
+	color: #F26631 ;
 	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 190%;
 }
@@ -74,7 +74,7 @@ ul, li {
 {
     height: 9em;
     cursor: default;
-    background-color: #7BC143;
+    background: #7BC143 url('../img/banner2.jpg');
     padding: 0;
 }
 
@@ -105,7 +105,7 @@ ul, li {
 
 #nav > ul > li:hover a
 {
-    color: #81F7D8;
+    color: #FDBB30;
 }
 /** Layout **/
 #container {
@@ -116,6 +116,7 @@ ul, li {
 	padding: 0 0 0 0;
     margin: 0;
     background: #7BC143;
+    padding: 0 0 0 0;
 }
 #header h1 {
 	line-height:20px;
@@ -432,6 +433,7 @@ div.actions li {
 	list-style-type: none;
 	white-space: nowrap;
 	padding: 0;
+
 }
 div.actions ul li a {
 	font-weight: normal;
@@ -578,4 +580,31 @@ div.code-coverage-results span.result-good {
 /** Elements **/
 #url-rewriting-warning {
 	display: none;
+}
+
+/**Barra Navegacion**/
+
+#navegador{
+    background: #FDBB30;
+    padding: 5px;
+}
+
+#navegador ul{
+    list-style-type: none;
+    text-align: right;
+}
+
+#navegador li{
+    display: inline;
+    text-align: center;
+    margin: 0 0 0 0;
+}
+#navegador li a {
+    padding: 2px 7px 2px 7px;
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+#navegador li a:hover{
+    color:#7BC143;
 }
