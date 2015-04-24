@@ -1,12 +1,14 @@
 <div class="documents form">
-<?php echo $this->Form->create('Document');?>
+<?php echo $this->Form->create('Document',array('type' => 'file'));?>
 	<fieldset>
 		<legend><?php __('Add Document'); ?></legend>
 	<?php
+        echo $this->Form->input('id', array('type' => 'hidden'));
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
-		echo $this->Form->input('type');
-		echo $this->Form->input('route');
+		echo $this->Form->input('Document.type',array('type'=>'select','options'=>array('Video','Text','Image','Sound')));
+        echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a file:'));
+        //echo $this->Form->input('route');
 		echo $this->Form->input('language');
 	?>
 	</fieldset>
