@@ -16,10 +16,33 @@ class DocumentsController extends AppController {
 		$this->set('document', $this->Document->read(null, $id));
 	}
 
-	function add() {
+	
+	/*function add() {
 		if (!empty($this->data)) {
 			$this->Document->create();
 			if ($this->Document->save($this->data)) {
+				$this->Session->setFlash(__('The document has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The document could not be saved. Please, try again.', true));
+			}
+		}
+	}*/
+
+    function add() {
+		if (!empty($this->data)) {
+			$this->Document->create();
+			if ($this->Document->save($this->data)) {
+                if($this->data['Document']['archivo']['error'] == 0 &&  $this->data['Document']['archivo']['size'] > 0){
+                    // Informacion del tipo de archivo subido $this->data['Trail']['archivo']['type']
+                    //$destino = WWW_ROOT.'uploads'.DS;
+                    $destino = WWW_ROOT.'files'.DS;
+                    move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);
+                    $id = $this->data['Document']['id'];
+                    $this->Document->read(null, $id);
+                    $this->Document->set('route', $this->data['Document']['archivo']['name']);
+                    $this->Document->save();
+                }
 				$this->Session->setFlash(__('The document has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {

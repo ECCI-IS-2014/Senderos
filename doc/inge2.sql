@@ -13,7 +13,7 @@ CREATE TABLE trails
   id int NOT NULL,
   name varchar(100) NOT NULL,
   description varchar(100) NOT NULL,
-  image varchar(100) NOT NULL,
+  image varchar(100),
   station_id int NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(station_id) REFERENCES stations(id)
@@ -37,7 +37,7 @@ CREATE TABLE documents
   name varchar(100) NOT NULL,
   description varchar(500) NOT NULL,
   type varchar(100) NOT NULL,
-  route varchar(100) NOT NULL,
+  route varchar(100),
   language varchar(100) NOT NULL,
   PRIMARY KEY(id)
 );
