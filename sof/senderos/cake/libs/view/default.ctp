@@ -39,7 +39,7 @@
         		    <nav id="nav">
                         <?php echo $this->Html->link(
                             	$this->Html->image('oet.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:15px;margin-top:15px;float:left;width:250px;height:75px;padding:10px;")),
-                            					array('action' => 'home'),
+                            					array('controller'=>'pages','action' => 'home'),
                              					array('target' => '_self', 'escape' => false)
                             				);
                         ?>
