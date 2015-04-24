@@ -36,7 +36,24 @@ class DocumentsController extends AppController {
                 if($this->data['Document']['archivo']['error'] == 0 &&  $this->data['Document']['archivo']['size'] > 0){
                     // Informacion del tipo de archivo subido $this->data['Trail']['archivo']['type']
                     //$destino = WWW_ROOT.'uploads'.DS;
+                    $nombre =  $this->data['Document']['archivo']['name'];
+                    $terminacion = substr($nombre,strlen($nombre)-3);
                     $destino = WWW_ROOT.'files'.DS;
+                    switch($terminacion) {
+                        case "doc": $destino = WWW_ROOT.'text'.DS; break;
+                        case "txt": $destino = WWW_ROOT.'text'.DS; break;
+                        case "odt": $destino = WWW_ROOT.'text'.DS; break;
+                        case "mp3": $destino = WWW_ROOT.'sound'.DS; break;
+                        case "wav": $destino = WWW_ROOT.'sound'.DS; break;
+                        case "avi": $destino = WWW_ROOT.'sound'.DS; break;
+                        case "flv": $destino = WWW_ROOT.'video'.DS; break;
+                        case "wmv": $destino = WWW_ROOT.'video'.DS; break;
+                        case "mov": $destino = WWW_ROOT.'video'.DS; break;
+                        case "mp4": $destino = WWW_ROOT.'video'.DS; break;
+                        case "jpg": $destino = WWW_ROOT.'images'.DS; break;
+                        case "png": $destino = WWW_ROOT.'images'.DS; break;
+                        default:  $destino = WWW_ROOT.'files'.DS;
+                    }
                     move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);
                     $id = $this->data['Document']['id'];
                     $this->Document->read(null, $id);
