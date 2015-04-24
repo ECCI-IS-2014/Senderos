@@ -4,7 +4,7 @@ CREATE TABLE stations
   id int NOT NULL,
   name varchar(100) NOT NULL,
   location varchar(100) NOT NULL,
-  description varchar(100) NOT NULL,
+  description varchar(100),
   PRIMARY KEY(id)
 );
 
@@ -12,7 +12,7 @@ CREATE TABLE trails
 (
   id int NOT NULL,
   name varchar(100) NOT NULL,
-  description varchar(100) NOT NULL,
+  description varchar(100),
   image varchar(100),
   station_id int NOT NULL,
   PRIMARY KEY(id),
@@ -25,7 +25,7 @@ CREATE TABLE points
   name varchar(100) NOT NULL,
   cordx float NOT NULL,
   cordy float NOT NULL,
-  description varchar(100) NOT NULL,
+  description varchar(100),
   trail_id int NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(trail_id) REFERENCES trails(id)
@@ -35,7 +35,7 @@ CREATE TABLE documents
 (
   id int NOT NULL,
   name varchar(100) NOT NULL,
-  description varchar(500) NOT NULL,
+  description varchar(500),
   type varchar(100) NOT NULL,
   route varchar(100),
   language varchar(100) NOT NULL,
