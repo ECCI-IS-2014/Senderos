@@ -1,23 +1,31 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/git/sof/senderos/css/documents.css">
+</head>
+<header>
+</header>
+<body>
+<div id="formulario" >
 <div class="documents form">
 <?php echo $this->Form->create('Document',array('type' => 'file'));?>
-	<fieldset>
-		<legend><?php __('Add Document'); ?></legend>
-	<?php
-        echo $this->Form->input('id', array('type' => 'hidden'));
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('Document.type',array('type'=>'select','options'=>array('Video','Text','Image','Sound')));
-        echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a file:'));
-        //echo $this->Form->input('route');
-		echo $this->Form->input('language');
-	?>
+	<fieldset id="formulario_interno">
+
+	<?php echo $this->Form->input('id', array('type' => 'hidden'));?>
+	<?php echo $this->Form->input('name');?>
+	<?php echo $this->Form->input('description');?>
+	<?php echo $this->Form->input('Document.type',array('type'=>'select','options'=>array('Video','Text','Image','Sound')));?>
+    <?php  echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a file:'));?>
+    <?php echo $this->Form->input('language');?>
+
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<div id="submit_button"> <?php echo $this->Form->end(__('Submit', true));?> </div>
+</div>
 </div>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-
 		<li><?php echo $this->Html->link(__('List Documents', true), array('action' => 'index'));?></li>
 	</ul>
 </div>
+</body>
+</html>

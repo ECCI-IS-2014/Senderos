@@ -30,6 +30,7 @@ class DocumentsController extends AppController {
 	}*/
 
     function add() {
+        $this->layout= '';
 		if (!empty($this->data)) {
 			$this->Document->create();
 			if ($this->Document->save($this->data)) {
