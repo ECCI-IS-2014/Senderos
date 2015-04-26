@@ -60,6 +60,37 @@ class TrailsController extends AppController {
 	}
 
 	function edit($id = null) {
+        if (!$id && empty($this->data)) {
+            $this->Session->setFlash(__('Invalid trail', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        if (!empty($this->data)) {
+            if ($this->Trail->save($this->data)) {
+                if($this->data['Trail']['archivo']['error'] == 0 &&  $this->data['Trail']['archivo']['size'] > 0){
+                    // Informacion del tipo de archivo subido $this->data['Trail']['archivo']['type']
+                    //$destino = WWW_ROOT.'uploads'.DS;
+                    $destino = WWW_ROOT.'img'.DS;
+                    move_uploaded_file($this->data['Trail']['archivo']['tmp_name'], $destino.$this->data['Trail']['archivo']['name']);
+                    $id = $this->data['Trail']['id'];
+                    $this->Trail->read(null, $id);
+                    $this->Trail->set('image', $this->data['Trail']['archivo']['name']);
+                    $this->Trail->save();
+                }
+                $this->Session->setFlash(__('The trail has been saved', true));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The trail could not be saved. Please, try again.', true));
+            }
+        }
+        if (empty($this->data)) {
+            $this->data = $this->Trail->read(null, $id);
+        }
+        $stations = $this->Trail->Station->find('list');
+        $this->set(compact('stations'));
+    }
+
+    /*
+	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid trail', true));
 			$this->redirect(array('action' => 'index'));
@@ -77,7 +108,7 @@ class TrailsController extends AppController {
 		}
 		$stations = $this->Trail->Station->find('list');
 		$this->set(compact('stations'));
-	}
+	}*/
 
 	function delete($id = null) {
 		if (!$id) {

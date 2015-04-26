@@ -1,12 +1,12 @@
 <div class="trails form">
-<?php echo $this->Form->create('Trail');?>
+<?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
 		<legend><?php __('Edit Trail'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
+        echo $this->Form->input('id', array('type' => 'hidden'));
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
-		echo $this->Form->input('image');
+        echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a map image:'));
 		echo $this->Form->input('station_id');
 	?>
 	</fieldset>
