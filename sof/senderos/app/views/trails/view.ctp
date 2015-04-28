@@ -1,3 +1,6 @@
+<?php echo $html->script("draggable"); ?>
+<?php echo $html->script("points"); ?>
+
 <div class="trails view">
 <h2><?php  __('Trail');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
@@ -28,7 +31,30 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Station'); ?></dt>
         <dd<?php if ($i++ % 2 == 0) echo $class;?>>
-        <?php echo $this->Html->image($trail['Trail']['image'], array('style'=> "width:700px;height:500px;padding:10px;"));?>
+        <!--<?php echo $this->Html->image($trail['Trail']['image'], array('style'=> "width:700px;height:500px;padding:10px;"));?>-->
+
+
+	<div id="borderBox" style="position:relative;border:1px solid black;width:700px;height:700px;overflow:hidden;">
+		<?php echo $this->Html->image($trail['Trail']['image'], array('id'=>"draggableElement", 'style'=> "width:1024px;height:1024px;top:0px;left:0px;position:absolute;cursor: pointer;"));?>
+    	</div>
+
+	<script type="text/javascript">
+		var myImg = document.getElementById("draggableElement");
+		myImg.onmousedown = GetCoordinates;
+		myImg.onmousemove= SetPointer;
+	</script>
+	<script type="text/javascript">
+	       var el = document.getElementById('draggableElement');
+	       var leftEdge = el.parentNode.clientWidth - el.clientWidth;
+	       var topEdge = el.parentNode.clientHeight - el.clientHeight;
+	       var dragObj = new dragObject(el, null, new Position(leftEdge, topEdge), new Position(0, 0));
+	</script>
+	 <p>X:<span id="x"></span></p>
+	 <p>Y:<span id="y"></span></p>
+
+
+
+
         &nbsp;
         </dd>
 	</dl>
