@@ -2,7 +2,6 @@
 	<h2><?php __('Visitors');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('role');?></th>
 			<th><?php echo $this->Paginator->sort('document_id');?></th>
 			<th class="actions"><?php __('Actions');?></th>
@@ -16,7 +15,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $visitor['Visitor']['id']; ?>&nbsp;</td>
 		<td><?php echo $visitor['Visitor']['role']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($visitor['Document']['name'], array('controller' => 'documents', 'action' => 'view', $visitor['Document']['id'])); ?>
