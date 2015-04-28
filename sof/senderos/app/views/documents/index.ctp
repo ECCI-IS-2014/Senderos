@@ -2,7 +2,6 @@
 	<h2><?php __('Documents');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('type');?></th>
@@ -19,7 +18,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $document['Document']['id']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['name']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['description']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['type']; ?>&nbsp;</td>
