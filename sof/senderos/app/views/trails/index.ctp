@@ -2,7 +2,6 @@
 	<h2><?php __('Trails');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('image');?></th>
@@ -18,7 +17,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $trail['Trail']['id']; ?>&nbsp;</td>
 		<td><?php echo $trail['Trail']['name']; ?>&nbsp;</td>
 		<td><?php echo $trail['Trail']['description']; ?>&nbsp;</td>
 		<td><?php echo $trail['Trail']['image']; ?>&nbsp;</td>
