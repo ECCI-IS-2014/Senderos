@@ -2,7 +2,6 @@
 	<h2><?php __('Stations');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('location');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
@@ -17,7 +16,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $station['Station']['id']; ?>&nbsp;</td>
 		<td><?php echo $station['Station']['name']; ?>&nbsp;</td>
 		<td><?php echo $station['Station']['location']; ?>&nbsp;</td>
 		<td><?php echo $station['Station']['description']; ?>&nbsp;</td>
