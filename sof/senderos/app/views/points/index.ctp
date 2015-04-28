@@ -2,7 +2,6 @@
 	<h2><?php __('Points');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('cordx');?></th>
 			<th><?php echo $this->Paginator->sort('cordy');?></th>
@@ -19,7 +18,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $point['Point']['id']; ?>&nbsp;</td>
 		<td><?php echo $point['Point']['name']; ?>&nbsp;</td>
 		<td><?php echo $point['Point']['cordx']; ?>&nbsp;</td>
 		<td><?php echo $point['Point']['cordy']; ?>&nbsp;</td>
