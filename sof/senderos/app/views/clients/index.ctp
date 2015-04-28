@@ -2,7 +2,6 @@
 	<h2><?php __('Clients');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('username');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('lastname');?></th>
@@ -20,7 +19,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $client['Client']['id']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['username']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['name']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['lastname']; ?>&nbsp;</td>
