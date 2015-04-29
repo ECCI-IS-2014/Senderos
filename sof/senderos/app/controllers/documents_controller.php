@@ -16,19 +16,6 @@ class DocumentsController extends AppController {
 		$this->set('document', $this->Document->read(null, $id));
 	}
 
-	
-	/*function add() {
-		if (!empty($this->data)) {
-			$this->Document->create();
-			if ($this->Document->save($this->data)) {
-				$this->Session->setFlash(__('The document has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The document could not be saved. Please, try again.', true));
-			}
-		}
-	}*/
-
     function add() {
         $this->layout= '';
 		if (!empty($this->data)) {
@@ -58,6 +45,19 @@ class DocumentsController extends AppController {
                     move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);
                     $id = $this->data['Document']['id'];
                     $this->Document->read(null, $id);
+                    $tipo = $nombre =  $this->data['Document']['archivo']['Document.type'];
+                    switch($tipo)
+                    {
+                        case "0": $tipo = "video"; break;
+
+                        case "1": $tipo = "text"; break;
+
+                        case "2": $tipo = "img"; break;
+
+                        default: $tipo = "sound"; break;
+
+                    }
+                    $this->Document->set('type', $tipo);
                     $this->Document->set('route', $this->data['Document']['archivo']['name']);
                     $this->Document->save();
                 }
@@ -93,7 +93,14 @@ class DocumentsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Document->delete($id)) {
-			$this->Session->setFlash(__('Document deleted', true));
+            //Tengo que hacer la consulta para sacar el path.
+            $this->Document->id = $id;
+            $this->Document->read();
+            $record = $this->Document->data;
+            //$document = $this->Document->read(null, $id);
+            $file = new File(WWW_ROOT ."/".$record['type']."/".$record['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
+            $file->delete();
+			$this->Session->setFlash(__('Document deleted'.WWW_ROOT .$record['type']."/".$record['route'], true));
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(__('Document was not deleted', true));

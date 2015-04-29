@@ -9,12 +9,12 @@
 {
     border-style: none;
     display: inline;
-    margin-left: 15%;
+    margin-left: 0%;
 }
 
 #submit_button
 {
-    margin-left: 50%;
+    margin-left: 20%;
 }
 
 .input.text.required
@@ -37,28 +37,30 @@ label
 
 #documentName
 {
+    width: 60%;
+    height: 4.5%;
     margin-left: 7%;
-    width: 70%;
     margin-bottom: 10%;
 }
 
 #documentDescription
 {
-    width: 65%;
+    width: 58%;
     height: 10%;
 
 }
 
 #documentType
 {
-    margin-left: 10%;
+    margin-left: 8%;
     margin-top: 5%;
     width: 40%;
 }
 #documentArchivo
 {
-    width: 31%;
+    width: 30%;
     margin-left: 0%;
+    margin-left: 1%;
 }
 
 .input.file
@@ -74,7 +76,9 @@ label
 
 #documentLanguage
 {
-    margin-left: 3%;
+    margin-left: 2%;
+    width: 60%;
+    height: 4%;
 }
 
 #documentAddForm
