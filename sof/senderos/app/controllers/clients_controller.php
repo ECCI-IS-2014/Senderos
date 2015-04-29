@@ -1,6 +1,5 @@
 <?php
 class ClientsController extends AppController {
-
 	var $name = 'Clients';
 
 	function index() {
@@ -17,7 +16,7 @@ class ClientsController extends AppController {
 	}
 
 	function add() {
-		if (!empty($this->data)) {
+        if (!empty($this->data)) {
 			$this->Client->create();
 			if ($this->Client->save($this->data)) {
 				$this->Session->setFlash(__('The client has been saved', true));
@@ -26,7 +25,7 @@ class ClientsController extends AppController {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
 			}
 		}
-		$countries = $this->Client->Country->find('list');
+		$countries = $this->Client->Country->find('list', array('fields' => array('Country.name')));
 		$this->set(compact('countries'));
 	}
 
@@ -62,4 +61,22 @@ class ClientsController extends AppController {
 		$this->Session->setFlash(__('Client was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+
+    function change($id = null) {
+        if (!$id && empty($this->data)) {
+            $this->Session->setFlash(__('Invalid client', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        if (!empty($this->data)) {
+            if ($this->Client->saveField('password', AuthComponent::password($this->request->data['Client']['new_password']))) {
+                $this->Session->setFlash(__('The client has been saved', true));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
+            }
+        }
+        if (empty($this->data)) {
+            $this->data = $this->Client->read(null, $id);
+        }
+    }
 }
