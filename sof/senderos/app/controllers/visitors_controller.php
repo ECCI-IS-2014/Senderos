@@ -19,11 +19,24 @@ class VisitorsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Visitor->create();
+            $tipo = $this->data['Visitor']['role'];
+            switch($tipo){
+                case 0:
+                    $tipo = 'Tourist';
+                    break;
+                case 1:
+                    $tipo = 'Student';
+                    break;
+                case 2:
+                    $tipo = 'Scientific';
+                    break;
+            }
+            $this->data['Visitor']['role'] = $tipo;
 			if ($this->Visitor->save($this->data)) {
-				$this->Session->setFlash(__('The visitor has been saved', true));
+				$this->Session->setFlash(__('The association has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The visitor could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The association could not be saved. Please, try again.', true));
 			}
 		}
 		$documents = $this->Visitor->Document->find('list');
@@ -36,11 +49,24 @@ class VisitorsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+            $tipo = $this->data['Visitor']['role'];
+            switch($tipo){
+                case 0:
+                    $tipo = 'Tourist';
+                    break;
+                case 1:
+                    $tipo = 'Student';
+                    break;
+                case 2:
+                    $tipo = 'Scientific';
+                    break;
+            }
+            $this->data['Visitor']['role'] = $tipo;
 			if ($this->Visitor->save($this->data)) {
-				$this->Session->setFlash(__('The visitor has been saved', true));
+				$this->Session->setFlash(__('The association has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The visitor could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The association could not be saved. Please, try again.', true));
 			}
 		}
 		if (empty($this->data)) {
@@ -52,14 +78,14 @@ class VisitorsController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for visitor', true));
+			$this->Session->setFlash(__('Invalid id for association', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Visitor->delete($id)) {
-			$this->Session->setFlash(__('Visitor deleted', true));
+			$this->Session->setFlash(__('Association deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Visitor was not deleted', true));
+		$this->Session->setFlash(__('Association was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
 }

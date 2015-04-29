@@ -1,5 +1,5 @@
 <div class="visitors index">
-	<h2><?php __('Visitors');?></h2>
+	<h2><?php __('Associations between multimedia files and goal visitors');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('role');?></th>
@@ -44,7 +44,7 @@
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Visitor', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Association', true), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Documents', true), array('controller' => 'documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Document', true), array('controller' => 'documents', 'action' => 'add')); ?> </li>
 	</ul>
