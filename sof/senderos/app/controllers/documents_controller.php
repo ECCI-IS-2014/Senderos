@@ -127,18 +127,16 @@ class DocumentsController extends AppController {
 			$this->Session->setFlash(__('Invalid id for document', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->Document->delete($id)) {
-            //Tengo que hacer la consulta para sacar el path.
-            $this->Document->id = $id;
-            $this->Document->read();
-            $record = $this->Document->data;
-            //$document = $this->Document->read(null, $id);
-            $file = new File(WWW_ROOT ."/".$record['type']."/".$record['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
+		//if ($this->Document->delete($id)) {
+            //Tengo que hacer la consulta para sacar el path
+            $document = $this->Document->read(null, $id);
+            $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
             $file->delete();
-			$this->Session->setFlash(__('Document deleted'.WWW_ROOT .$record['type']."/".$record['route'], true));
+            $this->Document->delete($id);
+			$this->Session->setFlash(__('Document deleted'.WWW_ROOT .$document['Document']['type']."/".$document['Document']['route'], true));
 			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Document was not deleted', true));
+		//}
+		//$this->Session->setFlash(__('Document was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
 }
