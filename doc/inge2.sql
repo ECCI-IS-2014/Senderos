@@ -414,7 +414,6 @@ INSERT INTO countries (code, name) VALUES ('ZR', 'Zaire');
 INSERT INTO countries (code, name) VALUES ('ZM', 'Zambia');
 INSERT INTO countries (code, name) VALUES ('ZW', 'Zimbabwe');
 
-
 CREATE OR REPLACE TRIGGER country_ai
 BEFORE INSERT ON countries
 FOR EACH ROW
@@ -452,3 +451,5 @@ DROP SEQUENCE country_seq;
 DROP TRIGGER country_ai;
 DROP SEQUENCE clients_seq;
 DROP TRIGGER clients_ai;
+DROP SEQUENCE dots_seq;
+DROP TRIGGER dots_ai;
