@@ -52,6 +52,8 @@
                  <li><?php echo $this->Html->link(__('Estaciones', true), array('controller'=>'stations','action' => 'index')); ?></li>
                  <li><?php echo $this->Html->link(__('Senderos', true), array('controller'=>'trails','action' => 'index')); ?></li>
                  <li><?php echo $this->Html->link(__('Puntos', true), array('controller'=>'points','action' => 'index')); ?></li>
+				 <li><?php echo $this->Html->link(__('Documentos', true), array('controller'=>'documents','action' => 'index')); ?></li>
+                 <li><?php echo $this->Html->link(__('Clientes', true), array('controller'=>'clients','action' => 'index')); ?></li>
              </ul>
         </div>
 		<div id="content">
