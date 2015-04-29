@@ -3,7 +3,7 @@ CREATE TABLE stations
 (
   id int NOT NULL,
   name varchar(100) NOT NULL,
-  location varchar(100) NOT NULL,
+  location varchar(100),
   description varchar(100),
   PRIMARY KEY(id)
 );
@@ -16,19 +16,19 @@ CREATE TABLE trails
   image varchar(100),
   station_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(station_id) REFERENCES stations(id)
+  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE CASCADE
 );
 
 CREATE TABLE points 
 (
   id int NOT NULL,
   name varchar(100) NOT NULL,
-  cordx float NOT NULL,
-  cordy float NOT NULL,
+  cordx float,
+  cordy float,
   description varchar(100),
   trail_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(trail_id) REFERENCES trails(id)
+  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE CASCADE
 );
 
 CREATE TABLE documents
@@ -47,8 +47,8 @@ CREATE TABLE documents_points
   id int NOT NULL,
   document_id int NOT NULL,
   point_id int NOT NULL,
-  FOREIGN KEY(point_id) REFERENCES points(id),
-  FOREIGN KEY(document_id) REFERENCES documents(id),
+  FOREIGN KEY(point_id) REFERENCES points(id) ON DELETE CASCADE,
+  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
 
@@ -79,7 +79,7 @@ CREATE TABLE visitors
   role varchar(100) NOT NULL,
   document_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(document_id) REFERENCES documents(id)
+  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE
 );
 
 
@@ -415,11 +415,11 @@ INSERT INTO countries (code, name) VALUES ('ZM', 'Zambia');
 INSERT INTO countries (code, name) VALUES ('ZW', 'Zimbabwe');
 
 
-CREATE OR REPLACE TRIGGER visitors_ai
-BEFORE INSERT ON visitors
+CREATE OR REPLACE TRIGGER country_ai
+BEFORE INSERT ON countries
 FOR EACH ROW
 BEGIN
-  SELECT visitors_seq.NEXTVAL
+  SELECT country_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
