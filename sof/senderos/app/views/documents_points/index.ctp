@@ -1,8 +1,7 @@
 <div class="documentsPoints index">
-	<h2><?php __('Documents Points');?></h2>
+	<h2><?php __('Associations between multimedia files and points');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('document_id');?></th>
 			<th><?php echo $this->Paginator->sort('point_id');?></th>
 			<th class="actions"><?php __('Actions');?></th>
@@ -16,7 +15,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $documentsPoint['DocumentsPoint']['id']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($documentsPoint['Document']['name'], array('controller' => 'documents', 'action' => 'view', $documentsPoint['Document']['id'])); ?>
 		</td>
@@ -48,7 +46,7 @@
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Documents Point', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Association', true), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Documents', true), array('controller' => 'documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Document', true), array('controller' => 'documents', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Points', true), array('controller' => 'points', 'action' => 'index')); ?> </li>

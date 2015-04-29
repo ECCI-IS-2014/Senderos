@@ -1,7 +1,7 @@
 <div class="documentsPoints form">
 <?php echo $this->Form->create('DocumentsPoint');?>
 	<fieldset>
-		<legend><?php __('Add Documents Point'); ?></legend>
+		<legend><?php __('Edit association between multimedia file and point'); ?></legend>
 	<?php
 		echo $this->Form->input('id', array('type' => 'hidden'));
 		echo $this->Form->input('document_id');
@@ -14,7 +14,7 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Documents Points', true), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List Associations', true), array('action' => 'index'));?></li>
 		<li><?php echo $this->Html->link(__('List Documents', true), array('controller' => 'documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Document', true), array('controller' => 'documents', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Points', true), array('controller' => 'points', 'action' => 'index')); ?> </li>
