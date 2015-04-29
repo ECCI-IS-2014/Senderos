@@ -37,7 +37,7 @@ class ClientsController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->Client->save($this->data)) {
 				$this->Session->setFlash(__('The client has been saved', true));
-				$this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'view', $this->Client->id));
 			} else {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
 			}
