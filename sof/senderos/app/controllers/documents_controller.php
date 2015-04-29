@@ -75,6 +75,9 @@ class DocumentsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+            $document = $this->Document->read(null, $id);
+            $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
+            $file->delete();
             $nombre =  $this->data['Document']['archivo']['name'];
             $terminacion = substr($nombre,strlen($nombre)-3);
             $destino = WWW_ROOT.'files'.DS;
@@ -94,28 +97,29 @@ class DocumentsController extends AppController {
                 default:  $destino = WWW_ROOT.'files'.DS;
             }
             move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);
-            $id = $this->data['Document']['id'];
-            $this->Document->read(null, $id);
             $tipo = $this->data['Document']['archivo']['Document.type'];
             switch($tipo)
             {
-                case "0": $tipo = "video"; break;
+                case 0: $tipo = "video"; break;
 
-                case "1": $tipo = "text"; break;
+                case 1: $tipo = "text"; break;
 
-                case "2": $tipo = "img"; break;
+                case 2: $tipo = "img"; break;
 
                 default: $tipo = "sound"; break;
 
             }
+            $id = $this->data['Document']['id'];
+            $this->Document->read(null, $id);
             $this->Document->set('type', $tipo);
             $this->Document->set('route', $this->data['Document']['archivo']['name']);
-			if ($this->Document->save($this->data)) {
+            $this->Document->save();
+			//if ($this->Document->save($this->data)) {
 				$this->Session->setFlash(__('The document has been saved', true));
 				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The document could not be saved. Please, try again.', true));
-			}
+			//} else {
+				//$this->Session->setFlash(__('The document could not be saved. Please, try again.', true));
+			//}
 		}
 		if (empty($this->data)) {
 			$this->data = $this->Document->read(null, $id);

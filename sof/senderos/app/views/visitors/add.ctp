@@ -1,9 +1,10 @@
 <div class="visitors form">
 <?php echo $this->Form->create('Visitor');?>
 	<fieldset>
-		<legend><?php __('Add Visitor'); ?></legend>
+		<legend><?php __('Associate a goal visitor to a multimedia file'); ?></legend>
 	<?php
-		echo $this->Form->input('role');
+		//echo $this->Form->input('role', array('type'=select));
+        echo $this->Form->input('role', array('type'=>'select','options'=>array('Tourist','Student','Scientific')));
 		echo $this->Form->input('document_id');
 	?>
 	</fieldset>
