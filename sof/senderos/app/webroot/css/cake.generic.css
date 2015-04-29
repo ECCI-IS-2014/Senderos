@@ -74,7 +74,7 @@ ul, li {
 {
     height: 9em;
     cursor: default;
-    background: #7BC143 url('../img/banner2.jpg');
+    background: #7BC143 url('../img/banner4.jpg');
     padding: 0;
 }
 
@@ -585,13 +585,13 @@ div.code-coverage-results span.result-good {
 /**Barra Navegacion**/
 
 #navegador{
-    background: #FDBB30;
+    background: #0B610B;
     padding: 5px;
 }
 
 #navegador ul{
     list-style-type: none;
-    text-align: right;
+    text-align: center;
 }
 
 #navegador li{
@@ -606,5 +606,5 @@ div.code-coverage-results span.result-good {
 }
 
 #navegador li a:hover{
-    color:#7BC143;
+    color:#FACC2E;
 }
