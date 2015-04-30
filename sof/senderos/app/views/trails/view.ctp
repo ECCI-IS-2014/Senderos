@@ -30,12 +30,21 @@
 
 
 	<div id="borderBox" style="position:relative;border:1px solid black;width:700px;height:700px;overflow:hidden;">
-		<?php echo $this->Html->image($trail['Trail']['image'], array('id'=>"draggableElement", 'style'=> "width:1024px;height:1024px;top:0px;left:0px;position:absolute;cursor: pointer;"));?>
+
+		<?php echo $this->Html->image($trail['Trail']['image'], array('id'=>"draggableElement", 'style'=> "width:1024px;height:1024px;top:0px;left:0px;position:absolute;cursor: default; overflow:auto;"));?>
+
+		<!--<p id="text" style="z-index:100; position:absolute; left:150px; top:350px; " >Hello World!</p>-->
+		<!--<div id="leyenda" style="z-index:100; position:absolute; display: none; background: red;"></div>-->
+
     	</div>
+
+	<div id="leyenda" style="z-index:100; position:absolute; display: none; background: rgb(10, 20, 60);background: rgba(10, 20, 60, .6);color:white;border-radius:5px; margin: 5px;padding:5px;cursor:pointer;"></div>
 
 	<script type="text/javascript">
 		var myImg = document.getElementById("draggableElement");
-		myImg.onmousedown = GetCoordinates;
+		//myImg.onmousedown = GetCoordinates;
+		myImg.onmousedown = getPoint;
+		myImg.onmouseup= function () {moused = 0; myImg.style.cursor = 'default';};
 		myImg.onmousemove= SetPointer;
 	</script>
 	<script type="text/javascript">
@@ -44,8 +53,11 @@
 	       var topEdge = el.parentNode.clientHeight - el.clientHeight;
 	       var dragObj = new dragObject(el, null, new Position(leftEdge, topEdge), new Position(0, 0));
 	</script>
-	 <p>X:<span id="x"></span></p>
+	 <!--<p>X:<span id="x"></span></p>
 	 <p>Y:<span id="y"></span></p>
+
+	 <p>X:<span id="ax"></span></p>
+	 <p>Y:<span id="ay"></span></p>-->
 
 
 
