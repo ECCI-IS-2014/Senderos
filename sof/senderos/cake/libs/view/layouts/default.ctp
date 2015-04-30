@@ -38,13 +38,10 @@
 				<div id="header">
         		    <nav id="nav">
                         <?php echo $this->Html->link(
-                            	$this->Html->image('oet.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:15px;margin-top:15px;float:left;width:250px;height:75px;padding:10px;")),
+                            	$this->Html->image('oet.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-right:15px;margin-top:15px;float:right;width:250px;height:75px;padding:10px;")),
                             					array('controller'=>'pages','action' => 'home'),
-                             					array('target' => '_self', 'escape' => false)
-                            				);
+                             					array('target' => '_self', 'escape' => false));
                         ?>
-                        <ul>
-                        </ul>
                     </nav>
                </div>
         <div id="navegador">
@@ -52,6 +49,8 @@
                  <li><?php echo $this->Html->link(__('Estaciones', true), array('controller'=>'stations','action' => 'index')); ?></li>
                  <li><?php echo $this->Html->link(__('Senderos', true), array('controller'=>'trails','action' => 'index')); ?></li>
                  <li><?php echo $this->Html->link(__('Puntos', true), array('controller'=>'points','action' => 'index')); ?></li>
+				 <li><?php echo $this->Html->link(__('Documentos', true), array('controller'=>'documents','action' => 'index')); ?></li>
+                 <li><?php echo $this->Html->link(__('Clientes', true), array('controller'=>'clients','action' => 'index')); ?></li>
              </ul>
         </div>
 		<div id="content">

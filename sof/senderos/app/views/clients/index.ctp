@@ -27,7 +27,7 @@
 		<td><?php echo $client['Client']['role']; ?>&nbsp;</td>
 		<!-- <td><?php echo $client['Client']['password']; ?>&nbsp;</td> -->
 		<td>
-			<?php echo $this->Html->link($client['Country']['name'], array('controller' => 'countries', 'action' => 'view', $client['Country']['id'])); ?>
+			<?php echo $client['Country']['name'];?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $client['Client']['id'])); ?>
