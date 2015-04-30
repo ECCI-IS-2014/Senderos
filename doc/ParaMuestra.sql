@@ -1,24 +1,10 @@
 insert into stations (name,location,description) values('Estacion 1','Location 1','Descripcion estacion 1');
 
-CREATE OR REPLACE TRIGGER stations_ai
-BEFORE INSERT ON stations 
-FOR EACH ROW
-BEGIN
-  SELECT stations_seq.NEXTVAL
-  INTO   :new.id
-  FROM   dual;
-END;
+COMMIT;
 
 insert into trails (name, description, image, station_id) values('Nativas','Descripcion Nativas','/img/Nativas.jpg',1);
 
-CREATE OR REPLACE TRIGGER trails_ai
-BEFORE INSERT ON trails
-FOR EACH ROW
-BEGIN
-  SELECT trails_seq.NEXTVAL
-  INTO   :new.id
-  FROM   dual;
-END;
+COMMIT;
 
 insert into points(name,cordx,cordy,description, trail_id) values ('punto 1',88888,99999,'Descripcion punto 1', 1);
 insert into points(name,cordx,cordy,description, trail_id) values ('punto 2',88888,99999,'Descripcion punto 2', 1);
@@ -34,11 +20,4 @@ insert into points(name,cordx,cordy,description, trail_id) values ('punto 11',88
 insert into points(name,cordx,cordy,description, trail_id) values ('punto 12',88888,99999,'Descripcion punto 12', 1);
 insert into points(name,cordx,cordy,description, trail_id) values ('punto 13',88888,99999,'Descripcion punto 13', 1);
 
-CREATE OR REPLACE TRIGGER points_ai
-BEFORE INSERT ON points
-FOR EACH ROW
-BEGIN
-  SELECT points_seq.NEXTVAL
-  INTO   :new.id
-  FROM   dual;
-END;
+COMMIT;
