@@ -16,7 +16,8 @@ class Point extends AppModel {
 		'cordx' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+                'rule' => array('decimal'),
+				'message' => 'Insert a valid coordinate',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -26,7 +27,8 @@ class Point extends AppModel {
 		'cordy' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+                'rule' => array('decimal'),
+				'message' => 'Insert a valid coordinate',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
