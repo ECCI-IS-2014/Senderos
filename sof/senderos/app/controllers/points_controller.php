@@ -2,6 +2,9 @@
 class PointsController extends AppController {
 
 	var $name = 'Points';
+	
+	var $helpers = array('Html','Ajax','Javascript');
+	var $components = array('RequestHandler');
 
 	function index() {
 		$this->Point->recursive = 0;
@@ -61,5 +64,19 @@ class PointsController extends AppController {
 		}
 		$this->Session->setFlash(__('Point was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function getinfo($id)
+	{
+		$this->autoRender = false; // No renderiza mediate el fichero .ctp
+
+		$this->set('point', $this->Point->read(null, $id));
+
+		$response = $this->viewVars['point']['Point']['name'].'<br>';
+		$response .= $this->viewVars['point']['Point']['description'].'<br>';
+		$response .= $this->viewVars['point']['Point']['cordx'].'<br>';
+		$response .= $this->viewVars['point']['Point']['cordy'].'<br>';
+
+		echo $response;
 	}
 }
