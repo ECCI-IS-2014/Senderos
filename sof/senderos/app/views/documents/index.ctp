@@ -1,3 +1,6 @@
+
+
+
 <div class="documents index">
 	<h2><?php __('Documents');?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -18,6 +21,7 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
+
 		<td><?php echo $document['Document']['name']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['description']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['type']; ?>&nbsp;</td>
@@ -51,3 +55,4 @@
 		<li><?php echo $this->Html->link(__('New Document', true), array('action' => 'add')); ?></li>
 	</ul>
 </div>
+

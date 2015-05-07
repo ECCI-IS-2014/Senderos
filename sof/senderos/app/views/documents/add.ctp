@@ -29,7 +29,6 @@
     <h3> Add Multimedia File </h3>
 <?php echo $this->Form->create('Document',array('type' => 'file'));?>
 	<fieldset id="formulario_interno">
-
 	<?php echo $this->Form->input('id', array('type' => 'hidden'));?>
 	<?php echo $this->Form->input('name');?>
 	<?php echo $this->Form->input('description');?>

@@ -25,10 +25,13 @@ class DocumentsController extends AppController {
                     // Informacion del tipo de archivo subido $this->data['Trail']['archivo']['type']
                     //$destino = WWW_ROOT.'uploads'.DS;
                     $nombre =  $this->data['Document']['archivo']['name'];
-                    $terminacion = substr($nombre,strlen($nombre)-3);
+                    $posicion = stripos($nombre,".");
+                    $terminacion = substr($nombre,$posicion);
                     $destino = WWW_ROOT.'files'.DS;
+
                     switch($terminacion) {
                         case "doc": $destino = WWW_ROOT.'text'.DS; break;
+                        case "docx": $destino = WWW_ROOT.'text'.DS; break;
                         case "txt": $destino = WWW_ROOT.'text'.DS; break;
                         case "odt": $destino = WWW_ROOT.'text'.DS; break;
                         case "mp3": $destino = WWW_ROOT.'sound'.DS; break;
@@ -39,7 +42,10 @@ class DocumentsController extends AppController {
                         case "mov": $destino = WWW_ROOT.'video'.DS; break;
                         case "mp4": $destino = WWW_ROOT.'video'.DS; break;
                         case "jpg": $destino = WWW_ROOT.'images'.DS; break;
+                        case "jpeg": $destino = WWW_ROOT.'images'.DS; break;
+                        case "gif": $destino = WWW_ROOT.'images'.DS; break;
                         case "png": $destino = WWW_ROOT.'images'.DS; break;
+                        case "bmp": $destino = WWW_ROOT.'images'.DS; break;
                         default:  $destino = WWW_ROOT.'files'.DS;
                     }
                     move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);
@@ -79,10 +85,12 @@ class DocumentsController extends AppController {
             $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
             $file->delete();
             $nombre =  $this->data['Document']['archivo']['name'];
-            $terminacion = substr($nombre,strlen($nombre)-3);
+            $posicion = stripos($nombre,".");
+            $terminacion = substr($nombre,$posicion+1);
             $destino = WWW_ROOT.'files'.DS;
             switch($terminacion) {
                 case "doc": $destino = WWW_ROOT.'text'.DS; break;
+                case "docx": $destino = WWW_ROOT.'text'.DS; break;
                 case "txt": $destino = WWW_ROOT.'text'.DS; break;
                 case "odt": $destino = WWW_ROOT.'text'.DS; break;
                 case "mp3": $destino = WWW_ROOT.'sound'.DS; break;
