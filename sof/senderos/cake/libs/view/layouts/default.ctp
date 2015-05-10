@@ -38,7 +38,7 @@
 				<div id="header">
         		    <nav id="nav">
                         <?php echo $this->Html->link(
-                            	$this->Html->image('oet.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-right:15px;margin-top:15px;float:right;width:250px;height:75px;padding:10px;")),
+                            	$this->Html->image('oet.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-right:15px;margin-top:05px;float:right;width:250px;height:75px;padding:30px;")),
                             					array('controller'=>'pages','action' => 'home'),
                              					array('target' => '_self', 'escape' => false));
                         ?>
@@ -55,11 +55,16 @@
         </div>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $content_for_layout; ?>
-
 		</div>
     	<div id="footer">
+    	    <div id="languages">
+    	        <ul>
+    	            <li><?php echo $html->link('English', array('language'=>'en')); ?></li>
+    	            <li><?php echo $html->link('Español', array('language'=>'es')); ?></li>
+    	            <li><?php echo $html->link('中文', array('language'=>'zh')); ?></li>
+                </ul>
+    	    </div>
 			<?php echo $this->Html->link(
 					$this->Html->image('ots.logo.gif', array('alt'=> __('CakePHP: the rapid development php framework', true), 'border' => '0')),
 					'http://www.ots.ac.cr/',
