@@ -31,3 +31,8 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+
+	// Adds the language abbreviation in the URL
+	Router::connect('/:language/:controller/:action/*',
+		array(),
+		array('language' => '[a-z]{2}'));

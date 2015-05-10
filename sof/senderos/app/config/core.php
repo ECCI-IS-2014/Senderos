@@ -302,3 +302,6 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
+	
+	// Sets English as the default language 
+	Configure::write('Config.language', 'en');
