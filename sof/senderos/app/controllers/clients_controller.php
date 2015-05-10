@@ -1,6 +1,7 @@
 <?php
 class ClientsController extends AppController {
 	var $name = 'Clients';
+   // var $components = array('Auth');
 
 	function index() {
 		$this->Client->recursive = 0;
@@ -78,5 +79,25 @@ class ClientsController extends AppController {
         if (empty($this->data)) {
             $this->data = $this->Client->read(null, $id);
         }
+    }
+
+    /**
+     *  El AuthComponent proporciona la funcionalidad necesaria
+     *  para el acceso (login), por lo que se puede dejar esta función en blanco.
+     */
+    function login() {
+       // $this->redirect(array('action' => 'index'));
+    }
+
+    function logout() {
+        $this->redirect($this->Auth->logout());
+
+    }
+
+    /**
+     *
+     */
+    function beforeFilter() {
+        parent::beforeFilter();
     }
 }
