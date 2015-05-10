@@ -86,7 +86,6 @@ class ClientsController extends AppController {
      *  para el acceso (login), por lo que se puede dejar esta función en blanco.
      */
     function login() {
-       // $this->redirect(array('action' => 'index'));
     }
 
     function logout() {
