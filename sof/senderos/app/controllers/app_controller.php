@@ -33,7 +33,9 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-    var $components = array('Auth');
+
+	// Cookie sirve para habilitar el idioma
+    var $components = array('Auth','Cookie');
 
     /**
      *
