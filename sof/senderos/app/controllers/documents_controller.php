@@ -83,6 +83,7 @@ class DocumentsController extends AppController {
 		if (!empty($this->data)) {
             $document = $this->Document->read(null, $id);
             $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
+            $this->Session->setFlash(__('The document has been saved'.WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], true));
             $file->delete();
             $nombre =  $this->data['Document']['archivo']['name'];
             $posicion = stripos($nombre,".");
@@ -124,7 +125,7 @@ class DocumentsController extends AppController {
             $this->Document->saveField('type', $tipo);*/
             $this->Document->set('route', $this->data['Document']['archivo']['name']);
             $this->Document->save();
-			$this->Session->setFlash(__('The document has been saved', true));
+			//$this->Session->setFlash(__('The document has been saved', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (empty($this->data)) {
@@ -137,16 +138,12 @@ class DocumentsController extends AppController {
 			$this->Session->setFlash(__('Invalid id for document', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		//if ($this->Document->delete($id)) {
-            //Tengo que hacer la consulta para sacar el path
             $document = $this->Document->read(null, $id);
             $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
             $file->delete();
             $this->Document->delete($id);
-			$this->Session->setFlash(__('Document deleted'.WWW_ROOT .$document['Document']['type']."/".$document['Document']['route'], true));
+			$this->Session->setFlash(__('Document deleted', true));
 			$this->redirect(array('action'=>'index'));
-		//}
-		//$this->Session->setFlash(__('Document was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
 }
