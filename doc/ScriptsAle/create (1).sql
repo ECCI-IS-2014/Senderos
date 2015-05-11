@@ -90,11 +90,10 @@ CREATE TABLE functions
   id int NOT NULL,
   client_id int,
   model varchar(100),
-  record_id int,
-  creating int,
-  reading int,
-  updating int,
-  deleting int,
+  creating int, -- 0|1
+  reading int, -- 0|1
+  updating int, -- 0|1
+  deleting int, -- 0|1
   PRIMARY KEY(id)
 );
 
