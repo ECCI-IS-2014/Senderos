@@ -470,6 +470,7 @@ DROP TABLE documents;
 DROP TABLE points;
 DROP TABLE trails;
 DROP TABLE stations;
+DROP TABLE functions;
 
 -- Eliminar los autoincrementos
 DROP SEQUENCE stations_seq;
@@ -488,3 +489,5 @@ DROP SEQUENCE clients_seq;
 DROP TRIGGER clients_ai;
 DROP SEQUENCE dots_seq;
 DROP TRIGGER dots_ai;
+DROP SEQUENCE functions_seq;
+DROP TRIGGER functions_ai;
