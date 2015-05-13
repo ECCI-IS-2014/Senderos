@@ -83,10 +83,11 @@ CREATE TABLE visitors(
   FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE SET NULL
 );
 
-CREATE TABLE functions(
+CREATE TABLE restrictions(
   id int NOT NULL,
   client_id int,
   model varchar(100),
+  recordid int,
   creating int, -- 0|1
   reading int, -- 0|1
   updating int, -- 0|1
@@ -105,7 +106,7 @@ CREATE SEQUENCE visitors_seq;
 CREATE SEQUENCE country_seq;
 CREATE SEQUENCE clients_seq;
 CREATE SEQUENCE dots_seq;
-CREATE SEQUENCE functions_seq;
+CREATE SEQUENCE restrictions_seq;
 
 /
 CREATE OR REPLACE TRIGGER dots_ai
@@ -196,11 +197,11 @@ END;
 
 /
 
-CREATE OR REPLACE TRIGGER functions_ai
-BEFORE INSERT ON functions
+CREATE OR REPLACE TRIGGER restrictions_ai
+BEFORE INSERT ON restrictions
 FOR EACH ROW
 BEGIN
-  SELECT functions_seq.NEXTVAL
+  SELECT restrictions_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
@@ -470,7 +471,7 @@ DROP TABLE documents;
 DROP TABLE points;
 DROP TABLE trails;
 DROP TABLE stations;
-DROP TABLE functions;
+DROP TABLE restrictions;
 
 -- Eliminar los autoincrementos
 DROP SEQUENCE stations_seq;
@@ -489,5 +490,5 @@ DROP SEQUENCE clients_seq;
 DROP TRIGGER clients_ai;
 DROP SEQUENCE dots_seq;
 DROP TRIGGER dots_ai;
-DROP SEQUENCE functions_seq;
-DROP TRIGGER functions_ai;
+DROP SEQUENCE restrictions_seq;
+DROP TRIGGER restrictions_ai;
