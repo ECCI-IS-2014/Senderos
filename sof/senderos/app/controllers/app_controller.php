@@ -64,7 +64,7 @@ class AppController extends Controller {
     function beforeFilter() {
         $this->Auth->userModel = 'Client';
         $this->Auth->loginRedirect = array('controller' => 'trails', 'action' => 'index');
-//        $this->Auth->allow('index', 'view', 'edit', 'view', 'delete');
+        //$this->Auth->allow('index', 'view');
     }
     
 }
