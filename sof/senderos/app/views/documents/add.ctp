@@ -34,9 +34,11 @@
 	<?php echo $this->Form->input('description');?>
 	 <?php  $types = array('sound'=>'Sound', 'video'=>'Video', 'text'=>'Text', 'images'=>'Image');
      echo $this->Form->input('type', array('options'=>$types, 'default'=>'Sound')); ?>
-    //echo $this->Form->input('Document.type',array('type'=>'select','options'=>array('Video','Text','Image','Sound')));
+
     <?php echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a file:'));?>
     <?php echo $this->Form->input('language');?>
+    <?php echo $this->Form->input('targets', array('type' => 'select','multiple' => 'checkbox','options' => array('1' => 'Students','2' => 'Prof','3'=>'Scientific')));
+    ?>
 
 	</fieldset>
 <div id="submit_button"> <?php echo $this->Form->end(__('Submit', true));?> </div>

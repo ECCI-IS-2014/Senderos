@@ -39,3 +39,8 @@
 		<li><?php echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+
+$this->Js->get('h2')->event('hover', $eventCode);
+
+<?php echo $this->Js->writeBuffer(); ?>

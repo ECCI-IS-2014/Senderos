@@ -2,8 +2,9 @@
 class PointsController extends AppController {
 
 	var $name = 'Points';
-	
-	var $helpers = array('Html','Ajax','Javascript');
+
+    var $helpers = array('Js');
+
 	var $components = array('RequestHandler');
 
 	function index() {
