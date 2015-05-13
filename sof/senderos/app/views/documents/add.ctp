@@ -32,7 +32,7 @@
 	<?php echo $this->Form->input('id', array('type' => 'hidden'));?>
 	<?php echo $this->Form->input('name');?>
 	<?php echo $this->Form->input('description');?>
-	 <?php  $types = array('sound'=>'Sound', 'video'=>'Video', 'text'=>'Text', 'image'=>'Image');
+	 <?php  $types = array('sound'=>'Sound', 'video'=>'Video', 'text'=>'Text', 'images'=>'Image');
      echo $this->Form->input('type', array('options'=>$types, 'default'=>'Sound')); ?>
     //echo $this->Form->input('Document.type',array('type'=>'select','options'=>array('Video','Text','Image','Sound')));
     <?php echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a file:'));?>

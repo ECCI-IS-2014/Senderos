@@ -8,7 +8,7 @@
 		echo $this->Form->input('description');
 
 
-            $types = array('sound'=>'Sound', 'video'=>'Video', 'text'=>'Text', 'image'=>'Image');
+            $types = array('sound'=>'Sound', 'video'=>'Video', 'text'=>'Text', 'images'=>'Image');
             echo $this->Form->input('type', array('options'=>$types, 'default'=>'Sound'));
 
 

@@ -1,7 +1,7 @@
 <?php
 class ClientsController extends AppController {
 	var $name = 'Clients';
-   // var $components = array('Auth');
+    var $components = array('Auth');
 
 	function index() {
 		$this->Client->recursive = 0;
@@ -98,5 +98,6 @@ class ClientsController extends AppController {
      */
     function beforeFilter() {
         parent::beforeFilter();
+		$this->Auth->allow('add', 'logout');
     }
 }

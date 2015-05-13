@@ -16,19 +16,21 @@ CREATE TABLE trails
   image varchar(100),
   station_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE CASCADE
+  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE SET NULL
 );
 
-CREATE TABLE points 
-(
+CREATE TABLE points (
   id int NOT NULL,
+  pnumber int NOT NULL,
   name varchar(100) NOT NULL,
   cordx float,
   cordy float,
   description varchar(100),
-  trail_id int NOT NULL,
+  trail_id int,
+  px_x int,
+  px_y int,
   PRIMARY KEY(id),
-  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE CASCADE
+  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE SET NULL
 );
 
 CREATE TABLE documents
@@ -47,8 +49,8 @@ CREATE TABLE documents_points
   id int NOT NULL,
   document_id int NOT NULL,
   point_id int NOT NULL,
-  FOREIGN KEY(point_id) REFERENCES points(id) ON DELETE CASCADE,
-  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
+  FOREIGN KEY(point_id) REFERENCES points(id) ON DELETE SET NULL,
+  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE SET NULL,
   PRIMARY KEY (id)
 );
 
@@ -73,15 +75,25 @@ CREATE TABLE clients
   FOREIGN KEY(country_id) REFERENCES countries(id)
 );
 
-CREATE TABLE visitors
-(
+CREATE TABLE visitors(
   id int NOT NULL,
   role varchar(100) NOT NULL,
   document_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE
+  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE SET NULL
 );
 
+CREATE TABLE functions(
+  id int NOT NULL,
+  client_id int,
+  model varchar(100),
+  creating int, -- 0|1
+  reading int, -- 0|1
+  updating int, -- 0|1
+  deleting int, -- 0|1
+  PRIMARY KEY(id),
+  FOREIGN KEY(client_id) REFERENCES clients(id)
+);
 
 -- Autoincrementos para las tablas.
 
@@ -93,7 +105,9 @@ CREATE SEQUENCE visitors_seq;
 CREATE SEQUENCE country_seq;
 CREATE SEQUENCE clients_seq;
 CREATE SEQUENCE dots_seq;
+CREATE SEQUENCE functions_seq;
 
+/
 CREATE OR REPLACE TRIGGER dots_ai
 BEFORE INSERT ON documents_points
 FOR EACH ROW
@@ -102,6 +116,8 @@ BEGIN
   INTO   :new.id
   FROM   dual;
 END;
+
+/
 
 CREATE OR REPLACE TRIGGER stations_ai
 BEFORE INSERT ON stations 
@@ -112,6 +128,8 @@ BEGIN
   FROM   dual;
 END;
 
+/
+
 CREATE OR REPLACE TRIGGER trails_ai
 BEFORE INSERT ON trails
 FOR EACH ROW
@@ -120,6 +138,8 @@ BEGIN
   INTO   :new.id
   FROM   dual;
 END;
+
+/
 
 CREATE OR REPLACE TRIGGER points_ai
 BEFORE INSERT ON points
@@ -130,6 +150,8 @@ BEGIN
   FROM   dual;
 END;
 
+/
+
 CREATE OR REPLACE TRIGGER documents_ai
 BEFORE INSERT ON documents
 FOR EACH ROW
@@ -138,6 +160,8 @@ BEGIN
   INTO   :new.id
   FROM   dual;
 END;
+
+/
 
 CREATE OR REPLACE TRIGGER visitors_ai
 BEFORE INSERT ON visitors
@@ -148,6 +172,8 @@ BEGIN
   FROM   dual;
 END;
 
+/
+
 CREATE OR REPLACE TRIGGER country_ai
 BEFORE INSERT ON countries
 FOR EACH ROW
@@ -156,6 +182,8 @@ BEGIN
   INTO   :new.id
   FROM   dual;
 END;
+
+/
 
 CREATE OR REPLACE TRIGGER clients_ai
 BEFORE INSERT ON clients
@@ -166,6 +194,20 @@ BEGIN
   FROM   dual;
 END;
 
+/
+
+CREATE OR REPLACE TRIGGER functions_ai
+BEFORE INSERT ON functions
+FOR EACH ROW
+BEGIN
+  SELECT functions_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+/
+
+commit;
 
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
@@ -428,6 +470,7 @@ DROP TABLE documents;
 DROP TABLE points;
 DROP TABLE trails;
 DROP TABLE stations;
+DROP TABLE functions;
 
 -- Eliminar los autoincrementos
 DROP SEQUENCE stations_seq;
@@ -446,3 +489,5 @@ DROP SEQUENCE clients_seq;
 DROP TRIGGER clients_ai;
 DROP SEQUENCE dots_seq;
 DROP TRIGGER dots_ai;
+DROP SEQUENCE functions_seq;
+DROP TRIGGER functions_ai;
