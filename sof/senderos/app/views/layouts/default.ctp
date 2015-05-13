@@ -1,4 +1,3 @@
-
 <?php
 /**
  *
@@ -34,6 +33,14 @@
 	?>
 </head>
 <body>
+	<?php
+        $lan = $this->params['language'];
+        include '/../layouts/'.$lan.'.php';
+        if($lan==null)
+        {
+            include '/../layouts/en.php';
+        }
+    ?>
 	<div id="container">
 				<div id="header">
         		    <nav id="nav">
@@ -45,13 +52,13 @@
                     </nav>
                </div>
         <div id="navegador">
-             <ul>
-                 <li><?php echo $this->Html->link(__('Estaciones', true), array('controller'=>'stations','action' => 'index')); ?></li>
-                 <li><?php echo $this->Html->link(__('Senderos', true), array('controller'=>'trails','action' => 'index')); ?></li>
-                 <li><?php echo $this->Html->link(__('Puntos', true), array('controller'=>'points','action' => 'index')); ?></li>
-				 <li><?php echo $this->Html->link(__('Documentos', true), array('controller'=>'documents','action' => 'index')); ?></li>
-                 <li><?php echo $this->Html->link(__('Clientes', true), array('controller'=>'clients','action' => 'index')); ?></li>
-             </ul>
+            <ul>
+                    <li><?php echo $this->Html->link(__($str_stations, true), '../'.$this->params['language'].'/stations/index'); ?></li>
+                    <li><?php echo $this->Html->link(__($str_trails, true), '../'.$this->params['language'].'/trails/index'); ?></li>
+                    <li><?php echo $this->Html->link(__($str_points, true), '../'.$this->params['language'].'/points/index'); ?></li>
+                 	<li><?php echo $this->Html->link(__($str_documents, true), '../'.$this->params['language'].'/documents/index'); ?></li>
+                    <li><?php echo $this->Html->link(__($str_clients, true), '../'.$this->params['language'].'/clients/index'); ?></li>
+            </ul>
         </div>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
@@ -59,10 +66,10 @@
 		</div>
     	<div id="footer">
     	    <div id="languages">
-    	        <ul>
-    	            <li><?php echo $html->link('English', array('language'=>'en')); ?></li>
-    	            <li><?php echo $html->link('Español', array('language'=>'es')); ?></li>
-    	            <li><?php echo $html->link('中文', array('language'=>'zh')); ?></li>
+                <ul>
+                    <li><?php if($title_for_layout!='Home'){echo $html->link('English', array('language'=>'en'));} ?></li>
+                    <li><?php if($title_for_layout!='Home'){echo $html->link('Español', array('language'=>'es'));} ?></li>
+                    <li><?php if($title_for_layout!='Home'){echo $html->link('中文', array('language'=>'zh'));} ?></li>
                 </ul>
     	    </div>
 			<?php echo $this->Html->link(
