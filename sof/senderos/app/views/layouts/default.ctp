@@ -28,7 +28,7 @@
 		echo $this->Html->meta('favicon.ico','img/favicon.ico',array('type' => 'icon'));
 
 		echo $this->Html->css('cake.generic');
-
+        echo $this->Html->script('jquery'); // Include jQuery library
 		echo $scripts_for_layout;
 	?>
 </head>
@@ -81,5 +81,6 @@
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
+
 </body>
 </html>
