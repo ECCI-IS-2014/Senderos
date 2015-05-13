@@ -16,16 +16,26 @@ class ClientsController extends AppController {
 		$this->set('client', $this->Client->read(null, $id));
 	}
 
-	function add() {
-        if (!empty($this->data)) {
-			$this->Client->create();
-			if ($this->Client->save($this->data)) {
-				$this->Session->setFlash(__('The client has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
-			}
-		}
+	function add()
+    {
+        if (!empty($this->data))
+        {
+            if ($this->data['Client']['password'] == $this->Auth->password($this->data['Client']['password_confirm']))
+            {
+                $this->Client->create();
+                if ($this->Client->save($this->data))
+                {
+                    $this->Session->setFlash(__('The client has been saved', true));
+                    $this->redirect(array('action' => 'index'));
+                } else {
+                    $this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
+                }
+            }
+            else
+            {
+                $this->Session->setFlash(__('Passwords do not match', true));
+            }
+        }
 		$countries = $this->Client->Country->find('list', array('fields' => array('Country.name')));
 		$this->set(compact('countries'));
 	}

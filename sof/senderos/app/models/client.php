@@ -70,12 +70,12 @@ class Client extends AppModel {
             (
                 'rule' => array('notEmpty'),
                 'message' => 'Please confirm your password'
-            ),
+            )/*,
             'equals' => array
             (
                 'rule' => array('equals','password'),
                 'message' => 'Both passwords must match.'
-            )
+            )*/
         ),
         'new_password' => array
         (
