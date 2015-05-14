@@ -64,7 +64,7 @@ class AppController extends Controller {
     function beforeFilter() {
         $this->Auth->userModel = 'Client';
         $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'home');
-        $this->Auth->allow('index', 'view');
+        $this->Auth->allow('index', 'view','display');
     }
     
 }
