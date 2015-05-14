@@ -58,6 +58,13 @@
                     <li><?php echo $this->Html->link(__($str_points, true), '../'.$this->params['language'].'/points/index'); ?></li>
                  	<li><?php echo $this->Html->link(__($str_documents, true), '../'.$this->params['language'].'/documents/index'); ?></li>
                     <li><?php echo $this->Html->link(__($str_clients, true), '../'.$this->params['language'].'/clients/index'); ?></li>
+					<li><?php
+						if($this->Session->read('Auth.Client.id') != null){
+							echo $this->Html->link(__(Logout, true), array('controller'=>'clients','action' => 'logout'));
+						}else{
+							echo $this->Html->link(__(Login, true), array('controller'=>'clients','action' => 'login'));
+                    	}
+                    ?></li>
             </ul>
         </div>
 		<div id="content">
