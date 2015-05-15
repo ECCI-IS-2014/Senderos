@@ -15,8 +15,8 @@
  * @since         CakePHP(tm)
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-@import url("font-awesome.min.css");
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
+
+@import url("http://fonts.googleapis.com/css?family=Questrial");
 
 * {
 	margin:0;
@@ -27,7 +27,7 @@
 body {
 	background: #f5f5f5;
 	color: #fff;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Questrial', arial, sans-serif;
 	font-size:100%;
     line-height: 1.65em;
 	margin: 0;
@@ -35,7 +35,7 @@ body {
 a {
 	color: #003d4c;
 	text-decoration: none;
-	font-weight: bold;
+	/**font-weight: bold;*/
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 a:hover {
@@ -74,10 +74,11 @@ ul, li {
 	margin: 0 12px;
 }
 
-/**Nav**/
+/**Nav*/
+
 #nav
 {
-    height: 9em;
+    height: 10em;
     cursor: default;
     background: #7BC143 url('../img/banner.jpg');
     padding: 0;
@@ -95,17 +96,17 @@ ul, li {
 {
     position: relative;
     display: inline-block;
-    margin-left: 2em;
+    margin-left: 3em;
 }
 
 #nav > ul > li a
 {
     color: #fff;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1.5em;
     border: 0;
     display: block;
-    padding: 1.5em 0.5em 1.35em 0.5em;
+    padding: 1.5em 1.5em 1.35em 1.5em;
 }
 
 #nav > ul > li:hover a
@@ -591,7 +592,8 @@ div.code-coverage-results span.result-good {
 
 #navegador{
     background: #333;
-    padding: 5px;
+    padding: 1em;
+    position: relative;
 }
 
 #navegador ul{
@@ -602,16 +604,32 @@ div.code-coverage-results span.result-good {
 #navegador li{
     display: inline;
     text-align: center;
-    margin: 0 0 0 0;
+    margin: 0.2em 0.5em 0.2em 0.5em;
 }
 #navegador li a {
+    font-size: 1.1em;
     padding: 2px 7px 2px 7px;
-    color: #f5f5f5;
+    color: #c0c0c0;
     text-decoration: none;
 }
 
 #navegador li a:hover{
-    color:#74DF00;
+    color:#fff;
+}
+
+#login{
+    float:right;
+}
+
+#login a{
+    color: darkgray;
+    font-size:95%;
+}
+
+#login a:hover{
+    text-align: center;
+    color: #04B45F;
+    font-size:95%;
 }
 
 /**Barra de idiomas*/
