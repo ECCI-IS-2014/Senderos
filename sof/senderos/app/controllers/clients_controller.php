@@ -16,6 +16,71 @@ class ClientsController extends AppController {
 		$this->set('client', $this->Client->read(null, $id));
 	}
 
+	function add(){
+        if (!empty($this->data)){
+            if (true) {//$this->data['Client']['password'] == $this->Auth->password($this->data['Client']['password_confirm']))
+                $this->Client->create();
+                if ($this->Client->save($this->data)){
+                        $this->Restriction->create();
+                        $this->Restriction->set( array('client_id'=> $this->Client->id,
+                                'model' => $this->data['Client']['model0'],
+                                'recordid' => $this->data['Client']['recordid0'],
+                                'creating' => $this->data['Client']['creating0'],
+                                'reading' => $this->data['Client']['reading0'],
+                                'updating' => $this->data['Client']['updating0'],
+                                'deleting' =>  $this->data['Client']['deleting0'])
+                        );
+                        $this->Restriction->save();
+
+                        $this->Restriction->create();
+                        $this->Restriction->set( array('client_id'=> $this->Client->id,
+                                'model' => $this->data['Client']['model1'],
+                                'recordid' => $this->data['Client']['recordid1'],
+                                'creating' => $this->data['Client']['creating1'],
+                                'reading' => $this->data['Client']['reading1'],
+                                'updating' => $this->data['Client']['updating1'],
+                                'deleting' =>  $this->data['Client']['deleting1'])
+                        );
+                        $this->Restriction->save();
+
+                        $this->Restriction->create();
+                        $this->Restriction->set( array('client_id'=> $this->Client->id,
+                                'model' => $this->data['Client']['model2'],
+                                'recordid' => $this->data['Client']['recordid2'],
+                                'creating' => $this->data['Client']['creating2'],
+                                'reading' => $this->data['Client']['reading2'],
+                                'updating' => $this->data['Client']['updating2'],
+                                'deleting' =>  $this->data['Client']['deleting2'])
+                        );
+                        $this->Restriction->save();
+
+                        $this->Restriction->create();
+                        $this->Restriction->set( array('client_id'=> $this->Client->id,
+                                'model' => $this->data['Client']['model3'],
+                                'recordid' => $this->data['Client']['recordid3'],
+                                'creating' => $this->data['Client']['creating3'],
+                                'reading' => $this->data['Client']['reading3'],
+                                'updating' => $this->data['Client']['updating3'],
+                                'deleting' =>  $this->data['Client']['deleting3'])
+                        );
+                        $this->Restriction->save();
+
+                    $this->Session->setFlash(__('The client has been saved', true));
+                    $this->redirect(array('action' => 'index'));
+                } else {
+                    $this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
+                }
+            }
+            else{
+                $this->Session->setFlash(__('Passwords do not match', true));
+            }
+        }
+        $countries = $this->Client->Country->find('list', array('fields' => array('Country.name')));
+        $this->set(compact('countries'));
+        $this->set('models', array('Station', 'Trail', 'Point', 'Document'));
+    }
+	
+	/*
 	function add() {
         if (!empty($this->data)) {
 			$this->Client->create();
@@ -28,7 +93,7 @@ class ClientsController extends AppController {
 		}
 		$countries = $this->Client->Country->find('list', array('fields' => array('Country.name')));
 		$this->set(compact('countries'));
-	}
+	}*/
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
