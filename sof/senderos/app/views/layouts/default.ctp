@@ -79,6 +79,7 @@
                     <li><?php if($title_for_layout!='Home'){echo $html->link('English', array('language'=>'en'));} ?></li>
                     <li><?php if($title_for_layout!='Home'){echo $html->link('Español', array('language'=>'es'));} ?></li>
                     <li><?php if($title_for_layout!='Home'){echo $html->link('Português', array('language'=>'pt'));} ?></li>
+                    <li><?php if($title_for_layout!='Home'){echo $html->link('Română', array('language'=>'ro'));} ?></li>
                     <li><?php if($title_for_layout!='Home'){echo $html->link('中文', array('language'=>'zh'));} ?></li>
                     <div id="login">
                     <?php echo $this->Html->link(
