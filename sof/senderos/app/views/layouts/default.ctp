@@ -31,9 +31,7 @@
         echo $this->Html->script('jquery'); // Include jQuery library
 		echo $scripts_for_layout;
 	?>
-</head>
-<body>
-	<?php
+    <?php
         $lan = $this->params['language'];
         include '/../layouts/'.$lan.'.php';
         if($lan==null)
@@ -41,6 +39,8 @@
             include '/../layouts/en.php';
         }
     ?>
+</head>
+<body>
 	<div id="container">
 				<div id="header">
         		    <nav id="nav">
@@ -54,17 +54,16 @@
         <div id="navegador">
             <ul>
                     <li><?php echo $this->Html->link(__($str_stations, true), '../'.$this->params['language'].'/stations/index'); ?></li>
-                    <li><?php echo $this->Html->link(__($str_trails, true), '../'.$this->params['language'].'/trails/index'); ?></li>
-                    <li><?php echo $this->Html->link(__($str_points, true), '../'.$this->params['language'].'/points/index'); ?></li>
-                 	<li><?php echo $this->Html->link(__($str_documents, true), '../'.$this->params['language'].'/documents/index'); ?></li>
-                    <li><?php echo $this->Html->link(__($str_clients, true), '../'.$this->params['language'].'/clients/index'); ?></li>
-
+                    <li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_trails, true), '../'.$this->params['language'].'/trails/index');} ?></li>
+                    <li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_points, true), '../'.$this->params['language'].'/points/index');} ?></li>
+                 	<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_documents, true), '../'.$this->params['language'].'/documents/index');} ?></li>
+                    <li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_clients, true), '../'.$this->params['language'].'/clients/index');} ?></li>
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){
-            		    echo $this->Html->link(__($str_login, true), '../'.$this->params['language'].'/clients/logout');
+            		    echo $this->Html->link(__($str_logout, true), '../'.$this->params['language'].'/clients/logout');
             		}else{
-            		    echo $this->Html->link(__($str_logout, true), '../'.$this->params['language'].'/clients/login');
+            		    echo $this->Html->link(__($str_login, true), '../'.$this->params['language'].'/clients/login');
                     }
                 ?>
             </div>
@@ -79,16 +78,17 @@
                 <ul>
                     <li><?php if($title_for_layout!='Home'){echo $html->link('English', array('language'=>'en'));} ?></li>
                     <li><?php if($title_for_layout!='Home'){echo $html->link('Español', array('language'=>'es'));} ?></li>
+                    <li><?php if($title_for_layout!='Home'){echo $html->link('Português', array('language'=>'pt'));} ?></li>
                     <li><?php if($title_for_layout!='Home'){echo $html->link('中文', array('language'=>'zh'));} ?></li>
+                    <div id="login">
+                    <?php echo $this->Html->link(
+                        $this->Html->image('ots.logo.gif', array('alt'=> __('CakePHP: the rapid development php framework', true), 'border' => '0')),
+                    	                   'http://www.ots.ac.cr/',
+                    					   array('target' => '_blank', 'escape' => false));
+                    ?>
+                    </div>
                 </ul>
     	    </div>
-			<?php echo $this->Html->link(
-					$this->Html->image('ots.logo.gif', array('alt'=> __('CakePHP: the rapid development php framework', true), 'border' => '0')),
-					'http://www.ots.ac.cr/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 
