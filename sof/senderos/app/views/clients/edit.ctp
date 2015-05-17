@@ -13,37 +13,6 @@
 		echo $this->Form->input('country_id');
 	?>
 	</fieldset>
-    <fieldset>
-        <legend><?php __('Edit Restrictions'); ?></legend>
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Client</th>
-                <th>Model</th>
-                <th>Record</th>
-                <th>Creating</th>
-                <th>Reading</th>
-                <th>Updating</th>
-                <th>Deleting</th>
-            </tr>
-
-            <?php $var =  0; ?>
-            <?php foreach ($restrictions as $restriction): ?>
-            <tr>
-                <td> <?php echo $this->Form->input('id'.$var, array('type' => 'hidden', 'default' => $restriction['Restriction']['id'], 'readonly' => 'readonly'));?></td>
-                <td> </td>
-                <td><?php echo $this->Form->input('model'.$var, array('label' => false, 'default' => $restriction['Restriction']['model'], 'readonly' => 'readonly'));?></td>
-                <td><?php echo $form->text('recordid'.$var, array('default' => $restriction['Restriction']['recordid'], 'type' => 'number', 'min' => -1 ) );?></td>
-                <td><?php echo $this->Form->input('creating'.$var, array('label' => false, 'options' => array('false','true'), 'default' => $restriction['Restriction']['creating']));?></td>
-                <td><?php echo $this->Form->input('reading'.$var, array('label' => false, 'options' => array('false','true'), 'default' => $restriction['Restriction']['reading']));?></td>
-                <td><?php echo $this->Form->input('updating'.$var, array('label' => false, 'options' => array('false','true'), 'default' => $restriction['Restriction']['updating']));?></td>
-                <td><?php echo $this->Form->input('deleting'.$var, array('label' => false, 'options' => array('false','true'), 'default' => $restriction['Restriction']['deleting']));?></td>
-            </tr>
-            <?php $var++; ?>
-            <?php endforeach; ?>
-
-        </table>
-    </fieldset>
 <?php echo $this->Form->end(__('Done', true));?>
 </div>
 <div class="actions">
