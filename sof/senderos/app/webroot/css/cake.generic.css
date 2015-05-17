@@ -666,6 +666,11 @@ div.code-coverage-results span.result-good {
     margin: 10px 10px 10px 10px;
 }
 
+#welcome{
+    text-align: center;
+    border-width: 0px;
+}
+
 /** Para créditos en el footer*/
 #credits{
     text-align: center;
