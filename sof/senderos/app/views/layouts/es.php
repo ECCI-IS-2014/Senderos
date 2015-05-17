@@ -1,5 +1,6 @@
 <?php 
 
+$str_actions="Acciones";
 $str_cancel="Cancelar";
 $str_clients="Clientes";
 $str_close="Cerrar";
