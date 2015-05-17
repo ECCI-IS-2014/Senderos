@@ -13,7 +13,7 @@
      ?>
 	</fieldset>
     <fieldset>
-    <h1>Client restrictions</h1>
+    <legend><?php __('Add Restrictions'); ?></legend>
     <table>
         <tr>
             <th>Id</th>

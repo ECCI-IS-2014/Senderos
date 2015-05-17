@@ -93,7 +93,7 @@ CREATE TABLE restrictions(
   updating int, -- 0|1
   deleting int, -- 0|1
   PRIMARY KEY(id),
-  FOREIGN KEY(client_id) REFERENCES clients(id)
+  FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
 -- Autoincrementos para las tablas.
