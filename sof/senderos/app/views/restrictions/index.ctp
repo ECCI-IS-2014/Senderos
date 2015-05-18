@@ -35,3 +35,12 @@
         </table>
 	</fieldset>
 </div>
+<div class="actions">
+<h3><?php __('Actions'); ?></h3>
+<ul>
+    <li><?php echo $this->Html->link(__('New Restriction', true), array('action' => 'add')); ?></li>
+    <li><?php echo $this->Html->link(__('List Clients', true), array('controller' => 'clients', 'action' => 'index')); ?> </li>
+    <!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
+    <li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
+</ul>
+</div>
