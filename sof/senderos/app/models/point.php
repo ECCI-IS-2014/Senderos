@@ -67,4 +67,7 @@ class Point extends AppModel {
 			'order' => ''
 		)
 	);
+
+	//public $hasMany = array('Document');
+	public $hasMany = array('DocumentsPoint');
 }
