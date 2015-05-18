@@ -21,8 +21,8 @@
 		<td><?php echo $station['Station']['description']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $station['Station']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $station['Station']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $station['Station']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $station['Station']['id'])); ?>
+			<?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Edit', true), array('action' => 'edit', $station['Station']['id']));} ?>
+			<?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Delete', true), array('action' => 'delete', $station['Station']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $station['Station']['id']));} ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -42,8 +42,7 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Station', true), array('action' => 'add')); ?></li>
+		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Station', true), array('action' => 'add'));} ?></li>
 	</ul>
 </div>
