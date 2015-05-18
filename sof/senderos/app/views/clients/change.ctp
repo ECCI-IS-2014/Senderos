@@ -1,10 +1,13 @@
 <div class="clients form">
-<?php echo $this->Form->create('Client');?>
+<?php
+echo $this->Session->flash('auth');
+echo $this->Form->create('Client');
+?>
 	<fieldset>
 		<legend><?php __('Change Password'); ?></legend>
 	<?php
-		echo $this->Form->input('new_password', array('label' => 'New Password', 'title' => 'New Password'));
-		echo $this->Form->input('new_password_confirm', array('label' => 'Confirm Password', 'title' => 'Confirm Password', 'type'=>'password'));
+		echo $this->Form->input('password', array('label' => 'New Password', 'title' => 'New Password'));
+		echo $this->Form->input('password_confirm', array('label' => 'Confirm Password', 'title' => 'Confirm Password', 'type'=>'password'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Done', true));?>
