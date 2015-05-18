@@ -54,4 +54,7 @@ class Document extends AppModel {
 			),
 		),
 	);
+	
+	public $hasMany = array('DocumentsPoint');	//agregué esta línea
+	
 }
