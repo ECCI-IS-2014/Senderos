@@ -29,11 +29,10 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Document', true), array('action' => 'edit', $document['Document']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete Document', true), array('action' => 'delete', $document['Document']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $document['Document']['id'])); ?> </li>
+		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Edit Document', true), array('action' => 'edit', $document['Document']['id']));} ?></li>
+		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Delete Document', true), array('action' => 'delete', $document['Document']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $document['Document']['id']));} ?></li>
 		<li><?php echo $this->Html->link(__('List Documents', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Document', true), array('action' => 'add')); ?> </li>
+		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Document', true), array('action' => 'add'));} ?></li>
 	</ul>
 </div>
