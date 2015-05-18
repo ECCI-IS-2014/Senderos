@@ -4,6 +4,11 @@ class DocumentsController extends AppController {
 
 	var $name = 'Documents';
     var $uses = array('Document', 'Visitor');
+	
+	function beforeFilter() {
+        $this->Auth->allow('index', 'view', 'display');
+    }
+	
 	function index() {
 		$this->Document->recursive = 0;
 		$this->set('documents', $this->paginate());

@@ -3,6 +3,10 @@ class StationsController extends AppController {
 
 	var $name = 'Stations';
 
+    function beforeFilter() {
+        $this->Auth->allow('index', 'view', 'display');
+    }
+	
 	function index() {
 		$this->Station->recursive = 0;
 		$this->set('stations', $this->paginate());

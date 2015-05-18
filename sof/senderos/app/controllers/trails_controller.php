@@ -3,6 +3,10 @@ class TrailsController extends AppController {
 
 	var $name = 'Trails';
 
+    function beforeFilter() {
+        $this->Auth->allow('index', 'view', 'display');
+    }
+	
 	function index() {
 		$this->Trail->recursive = 0;
 		$this->set('trails', $this->paginate());
