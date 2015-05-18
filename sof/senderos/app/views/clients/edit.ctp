@@ -1,5 +1,8 @@
 <div class="clients form">
-<?php echo $this->Form->create('Client');?>
+<?php
+echo $this->Session->flash('auth');
+echo $this->Form->create('Client');
+?>
 	<fieldset>
 		<legend><?php __('Edit Client'); ?></legend>
 	<?php
@@ -8,8 +11,8 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('lastname');
 		echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Client'), 'title'=>'Rol', 'label'=>'Rol '));
-		echo $this->Form->input('password');
-		echo $this->Form->input('password_confirm', array('label' => 'Confirm Password ', 'title' => 'Confirm Password', 'type'=>'password'));
+		//echo $this->Form->input('password');
+		//echo $this->Form->input('password_confirm', array('label' => 'Confirm Password ', 'title' => 'Confirm Password', 'type'=>'password'));
 		echo $this->Form->input('country_id');
 	?>
 	</fieldset>

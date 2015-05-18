@@ -1,5 +1,8 @@
 <div class="clients form">
-<?php echo $this->Form->create('Client');?>
+<?php
+echo $this->Session->flash('auth');
+echo $this->Form->create('Client');
+?>
 	<fieldset>
 		<legend><?php __('Add Client'); ?></legend>
 	<?php

@@ -70,7 +70,7 @@ class Client extends AppModel {
             (
                 'rule' => array('notEmpty'),
                 'message' => 'Please confirm your password'
-            ), /*
+            )/*,
             'equals' => array
             (
                 'rule' => array('equals','password'),
@@ -134,17 +134,17 @@ class Client extends AppModel {
         return $this->data[$this->name][$otherfield] === $this->data[$this->name][$fname];
     }
 
-	var $belongsTo = array(
-		'Country' => array(
-			'className' => 'Country',
-			'foreignKey' => 'country_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
-	
-	 var $hasMany = array(
+    var $belongsTo = array(
+        'Country' => array(
+            'className' => 'Country',
+            'foreignKey' => 'country_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
+
+    var $hasMany = array(
         'Restriction' => array(
             'className' => 'Restriction',
             'conditions' => '',
