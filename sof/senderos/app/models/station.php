@@ -34,4 +34,6 @@ class Station extends AppModel {
 			),
 		),
 	);
+	
+	public $hasMany = array('Trail');
 }
