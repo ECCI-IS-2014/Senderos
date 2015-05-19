@@ -140,7 +140,7 @@ $stationdelete = 'no';
 
 	<?php
 	
-	echo $result;
+	//echo $result;
 	
 	?>
 
