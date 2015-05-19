@@ -7,7 +7,7 @@ class PointsController extends AppController {
 	var $components = array('RequestHandler');
 
     function beforeFilter() {
-        $this->Auth->allow('index', 'view', 'display');
+        $this->Auth->allow('index', 'view', 'getinfo','explore', 'documents', 'display');
     }
 	
 	function index() {
