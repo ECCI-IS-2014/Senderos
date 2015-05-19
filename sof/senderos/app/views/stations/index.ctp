@@ -1,3 +1,13 @@
+
+<?php
+$lan = $this->params['language'];
+include '/../layouts/'.$lan.'.php';
+if($lan==null)
+{
+    include '/../layouts/en.php';
+}
+?>
+
 <?php echo $html->css('stations'); ?>
 
 <?php $result = ''; 
