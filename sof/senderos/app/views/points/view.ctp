@@ -1,3 +1,13 @@
+
+<?php
+$lan = $this->params['language'];
+include '/../layouts/'.$lan.'.php';
+if($lan==null)
+{
+    include '/../layouts/en.php';
+}
+?>
+
 <div class="points view">
 <h2><?php  __('Point');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
