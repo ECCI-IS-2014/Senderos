@@ -89,7 +89,7 @@ if($stationread == 'yes')
 
 	<?php
 	
-	echo $result;
+	//echo $result;
 	
 	?>
 
