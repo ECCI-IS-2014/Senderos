@@ -1,3 +1,12 @@
+<?php
+	$lan = $this->params['language'];
+	include '/../layouts/'.$lan.'.php';
+	if($lan==null)
+	{
+	    include '/../layouts/en.php';
+	}
+?>
+
 <?php 
 
 $result = '';
