@@ -1,10 +1,10 @@
 
 <?php
 $lan = $this->params['language'];
-include '/../layouts/'.$lan.'.php';
+include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$lan.'.php';
 if($lan==null)
 {
-    include '/../layouts/en.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
 }
 ?>
 
