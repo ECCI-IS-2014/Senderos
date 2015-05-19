@@ -4,7 +4,7 @@ class TrailsController extends AppController {
 	var $name = 'Trails';
 
     function beforeFilter() {
-        $this->Auth->allow('index', 'view', 'display');
+        $this->Auth->allow('index', 'view', 'stationtrails', 'display');
     }
 	
 	function index() {
