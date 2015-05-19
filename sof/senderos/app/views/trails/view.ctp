@@ -4,7 +4,7 @@ $lan = $this->params['language'];
 include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$lan.'.php';
 if($lan==null)
 {
-    include '$_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
 }
 ?>
 
