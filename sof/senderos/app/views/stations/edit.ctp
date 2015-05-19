@@ -91,7 +91,7 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 
 	<?php
 	
-	echo $result;
+	//echo $result;
 	
 	?>
 
