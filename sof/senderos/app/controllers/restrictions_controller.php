@@ -38,7 +38,7 @@ class RestrictionsController extends AppController {
         $this->set('models', array('Document', 'Point', 'Station', 'Trail'));
         //$this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'), 'conditions' => array('Restriction.client_id' => $this->Client->id))));
         $this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'))));
-        $clients = $this->Client->find('list');
+        $clients = $this->Client->find('list', array('conditions'=>array('Client.role =' => 'cust')));
         $this->set(compact('clients'));
     }
 
@@ -76,7 +76,7 @@ class RestrictionsController extends AppController {
         $this->set('models', array('Document', 'Point', 'Station', 'Trail'));
         //$this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'), 'conditions' => array('Restriction.client_id' => $this->Client->id))));
         $this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'))));
-        $clients = $this->Client->find('list');
+        $clients = $this->Client->find('list', array('conditions'=>array('Client.role =' => 'cust')));
         $this->set(compact('clients'));
     }
 
