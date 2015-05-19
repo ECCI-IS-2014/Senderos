@@ -1,3 +1,11 @@
+
+<?php 
+
+if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
+{
+
+?>
+
 <div class="trails form">
 <?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
@@ -21,3 +29,7 @@
 		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+<?php 
+}
+?>
