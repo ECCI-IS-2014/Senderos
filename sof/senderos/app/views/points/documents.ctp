@@ -1,5 +1,5 @@
 
-<?php include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/en.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php'; ?>
 
 
 <?php
