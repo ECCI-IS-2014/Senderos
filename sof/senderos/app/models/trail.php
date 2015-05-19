@@ -55,4 +55,6 @@ class Trail extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public $hasMany = array('Point');
 }
