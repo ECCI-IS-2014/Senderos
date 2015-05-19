@@ -1,3 +1,13 @@
+
+<?php
+$lan = $this->params['language'];
+include '/../layouts/'.$lan.'.php';
+if($lan==null)
+{
+    include '/../layouts/en.php';
+}
+?>
+
 <?php echo $html->css('pointscss'); ?>
 <?php echo $html->css('menu7'); ?>
 <?php echo $html->css('documentscss'); ?>
