@@ -1,0 +1,172 @@
+.stationsindex{
+	
+}
+
+.stationsindex h2{
+	font-weight: bold;
+}
+
+.stationitem{
+	position: relative;
+	width: 300px;
+	min-height: 200px !important;
+	height: auto;
+	background-color: #7BC143;
+	color: #000000;
+	border-radius: 20px;
+	cursor:pointer;
+	text-align: left;
+	font-weight: bold;
+}
+
+.stationheader{
+	position: relative;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	background-color: #FDBB30;
+	/*width: 100%;
+	height: 20%;*/
+	padding: 10px;
+	font-height: 20px;
+}
+
+.stationitem:hover{
+	width: 400px;
+	height: 300px;
+	font-size: larger;
+}
+
+.stationitem a {
+    color: #000000;
+    text-decoration: none;
+    position: absolute;
+    width: 100%;
+    /*height: 100%;*/
+    top: 0;
+    left: 0;
+    text-decoration: none; /* No underlines on the link */
+    z-index: 10; /* Places the link above everything else in the div */
+    background-color: transparent; /* Fix to make div clickable in IE */
+    padding-top: 20%;
+    padding-left: 10px;
+    font-height: 25px;
+}
+
+.trailitem{
+	position: relative;
+	width: 200px;
+	min-height: 200px !important;
+	height: auto;
+	background-color: #7BC143;
+	color: #000000;
+	border-radius: 20px;
+	cursor:pointer;
+	text-align: left;
+	font-size: 15px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.trailheader{
+	position: relative;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	background-color: #FDBB30;
+	/*width: 100%;
+	height: 20%;*/
+	padding: 10px;
+	font-height: 18px;
+}
+
+.trailitem:hover{
+	width: 300px;
+	height: 300px;
+	font-size: 20px;
+}
+
+.trailitem a {
+    color: #000000;
+    text-decoration: none;
+    position: absolute;
+    width: 100%;
+    /*height: 100%;*/
+    top: 0;
+    left: 0;
+    text-decoration: none; /* No underlines on the link */
+    z-index: 10; /* Places the link above everything else in the div */
+    background-color: transparent; /* Fix to make div clickable in IE */
+    padding-top: 20%;
+    padding-left: 10px;
+    padding-bottom: 20%;
+    font-height: 23px;
+}
+
+.trailitem img {
+	width: 90%;
+	height:50%;
+}
+
+.stationsindex table, .stationsindex td{
+	background: none repeat scroll 0% 0% transparent;
+	/*background:initial;*/
+}
+
+#liststations > tr > td {
+  background: none repeat scroll 0% 0% transparent;
+}
+
+
+.editbutton{
+	position:relative;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: url('/senderos/app/webroot/css/pencil.gif');
+	background-size: 30px 30px;
+    background-repeat: no-repeat;
+    /*content: "edit this item";*/
+    display: inline-block;
+}
+
+.deletebutton{
+	position:relative;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: url('/senderos/app/webroot/css/trash.gif');
+	background-size: 30px 30px;
+    background-repeat: no-repeat;
+    /*content: "edit this item";*/
+    display: inline-block;
+}
+
+.editbutton a, .deletebutton a, .addbutton a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration: none; /* No underlines on the link */
+    z-index: 10; /* Places the link above everything else in the div */
+    background-color: transparent; /* Fix to make div clickable in IE */
+}
+
+.newitem{
+	position: absolute;
+	top: 170px;
+    right: 20%;
+    font-weight: bold;
+    font-size: 90%;
+}
+
+.addbutton{
+	position:relative;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: url('/senderos/app/webroot/css/add.gif');
+	background-size: 30px 30px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    
+}

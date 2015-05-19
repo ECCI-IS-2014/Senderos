@@ -3,9 +3,30 @@ class TrailsController extends AppController {
 
 	var $name = 'Trails';
 
+    function beforeFilter() {
+        $this->Auth->allow('index', 'view', 'display');
+    }
+	
 	function index() {
 		$this->Trail->recursive = 0;
 		$this->set('trails', $this->paginate());
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
+	}
+	
+	function stationtrails($id) {
+		//$this->Trail->recursive = 0;
+		$this->set('trails', $this->Trail->findAllByStationId($id));
+	
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
 	}
 
 	function view($id = null) {
@@ -13,31 +34,27 @@ class TrailsController extends AppController {
 			$this->Session->setFlash(__('Invalid trail', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('trail', $this->Trail->read(null, $id));
-	}
-
-	/*
-	function add() {
-		if (!empty($this->data)) {
-			$this->Trail->create();
-			if ($this->Trail->save($this->data)) {
-				$this->Session->setFlash(__('The trail has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The trail could not be saved. Please, try again.', true));
-			}
+		//$this->set('trail', $this->Trail->read(null, $id));
+		$trail = $this->Trail->findById($id);
+		//$trail = $this->Trail->findById($id, array('contain' => false));
+		$this->set('trail', $trail);
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
-		$stations = $this->Trail->Station->find('list');
-		$this->set(compact('stations'));
-	}*/
+
+		//$this->set('points', $this->Trail->findById($id)->Point->find('all'));
+	}
 	
 	function add() {
 		if (!empty($this->data)) {
 			$this->Trail->create();
 			if ($this->Trail->save($this->data)) {
 				//if($this->request->data['Trail']['archivo']['error'] == 0 &&  $this->request->data['Trail']['archivo']['size'] > 0){
-                debug($this->data);
-                debug($this->data['Trail']);
+                //debug($this->data);
+                //debug($this->data['Trail']);
                 if($this->data['Trail']['archivo']['error'] == 0 &&  $this->data['Trail']['archivo']['size'] > 0){
                     echo('helo');
 					// Informacion del tipo de archivo subido $this->data['Trail']['archivo']['type']
@@ -57,6 +74,12 @@ class TrailsController extends AppController {
 		}
 		$stations = $this->Trail->Station->find('list');
 		$this->set(compact('stations'));
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
 	}
 
 	function edit($id = null) {
@@ -84,31 +107,20 @@ class TrailsController extends AppController {
         }
         if (empty($this->data)) {
             $this->data = $this->Trail->read(null, $id);
+
+		$trail = $this->Trail->findById($id);
+		//$trail = $this->Trail->findById($id, array('contain' => false));
+		$this->set('trail', $trail);
         }
         $stations = $this->Trail->Station->find('list');
         $this->set(compact('stations'));
+        
+        if($_SESSION['role'] === 'restricted')
+        {
+        	$this->loadModel('Restriction');
+        	$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+        }
     }
-
-    /*
-	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid trail', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Trail->save($this->data)) {
-				$this->Session->setFlash(__('The trail has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The trail could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Trail->read(null, $id);
-		}
-		$stations = $this->Trail->Station->find('list');
-		$this->set(compact('stations'));
-	}*/
 
 	function delete($id = null) {
 		if (!$id) {
@@ -121,5 +133,11 @@ class TrailsController extends AppController {
 		}
 		$this->Session->setFlash(__('Trail was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
 	}
 }

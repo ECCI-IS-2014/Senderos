@@ -1,3 +1,13 @@
+
+<?php
+	$lan = $this->params['language'];
+	include '/../layouts/'.$lan.'.php';
+	if($lan==null)
+	{
+	    include '/../layouts/en.php';
+	}
+?>
+
 <div class="points index">
 	<h2><?php __('Points');?></h2>
 	<table cellpadding="0" cellspacing="0">

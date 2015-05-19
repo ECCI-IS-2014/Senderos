@@ -4,6 +4,11 @@ class DocumentsController extends AppController {
 
 	var $name = 'Documents';
     var $uses = array('Document', 'Visitor');
+	
+	function beforeFilter() {
+        $this->Auth->allow('index', 'view', 'display');
+    }
+	
 	function index() {
 		$this->Document->recursive = 0;
 		$this->set('documents', $this->paginate());
@@ -47,15 +52,18 @@ class DocumentsController extends AppController {
                         case "bmp": $destino = WWW_ROOT.'images'.DS; break;
                         default:  $destino = WWW_ROOT.'files'.DS;
                     }
-                    //AQUI GUARDA EN LA TABLA VISITORS EL DOCUMENTO Y A QUIEN ESTA DIRIGIDO
-
-
-                    //AQUI TERMINA DE INGRESAR EN LA TABLA VISITOR
-
 
                     move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);
                     $this->Document->set('route', $this->data['Document']['archivo']['name']);
                     $this->Document->save();
+                    $id_document = $this->Document->getLastInsertID();
+                    if(sizeof($this->data['Document']['targets'])>0){
+                        for($i = 0; $i<sizeof($this->data['Document']['targets']); $i++)
+                        {
+                            $this->Visitor->create();
+                            $this->Visitor->save(Array('Visitor' => Array('role' => $this->data['Document']['targets'][$i] ,'document_id' => $id_document)));
+                        }
+                    }
                 }
 				$this->Session->setFlash(__('The document has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -112,6 +120,8 @@ class DocumentsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
             $document = $this->Document->read(null, $id);
+            $conditions = array('document_id'=>$id);
+            $this->Visitor->deleteAll($conditions, $cascade = true, $callbacks = false);
             $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
             $file->delete();
             $this->Document->delete($id);

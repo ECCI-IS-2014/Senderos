@@ -3,9 +3,19 @@ class StationsController extends AppController {
 
 	var $name = 'Stations';
 
+    function beforeFilter() {
+        $this->Auth->allow('index', 'view', 'display');
+    }
+	
 	function index() {
 		$this->Station->recursive = 0;
 		$this->set('stations', $this->paginate());
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
 	}
 
 	function view($id = null) {
@@ -14,6 +24,12 @@ class StationsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('station', $this->Station->read(null, $id));
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
 	}
 
 	function add() {
@@ -25,6 +41,12 @@ class StationsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The station could not be saved. Please, try again.', true));
 			}
+		}
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
 	}
 
@@ -43,6 +65,13 @@ class StationsController extends AppController {
 		}
 		if (empty($this->data)) {
 			$this->data = $this->Station->read(null, $id);
+			$this->set('station',$this->data );
+		}
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
 	}
 
@@ -57,5 +86,11 @@ class StationsController extends AppController {
 		}
 		$this->Session->setFlash(__('Station was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
 	}
 }

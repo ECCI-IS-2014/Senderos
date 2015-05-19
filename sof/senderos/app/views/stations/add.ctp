@@ -1,3 +1,12 @@
+
+<?php 
+
+if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
+{
+
+?>
+
+
 <div class="stations form">
 <?php echo $this->Form->create('Station');?>
 	<fieldset>
@@ -18,3 +27,7 @@
 		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'index'));?></li>
 	</ul>
 </div>
+
+<?php 
+}
+?>
