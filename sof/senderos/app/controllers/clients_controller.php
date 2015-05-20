@@ -116,7 +116,23 @@ class ClientsController extends AppController {
     $this->data['Client']['role'] = $this->Client->find('first', array('fields' => array('Client.role')));
     $this->data['Client']['country_id'] = $this->Client->find('first', array('fields' => array('Client.country_id')));*/
 
+	/*
     function login() {
+    } */
+	function login() {
+        if( !(empty($this->data)) && $this->Auth->user() ){
+            $rolUser = $this->Session->read("Auth.Client.role") ;
+            if($rolUser == 'admin'){
+                $_SESSION['role'] = 'administrator';
+            }else{
+                if($rolUser == 'cust'){
+                    $_SESSION['role'] = 'restricted';
+                }
+            }
+            Debugger::dump($_SESSION);
+            //trace($_SESSION);
+            $this->redirect($this->Auth->redirect());
+        }
     }
 
     function logout() {
