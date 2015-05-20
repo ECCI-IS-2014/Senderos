@@ -127,6 +127,7 @@ class ClientsController extends AppController {
             }else{
                 if($rolUser == 'cust'){
                     $_SESSION['role'] = 'restricted';
+					$_SESSION['client_id'] = $this->Session->read("Auth.Client.id") ;
                 }
             }
             //Debugger::dump($_SESSION);
