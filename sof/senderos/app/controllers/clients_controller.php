@@ -5,7 +5,12 @@ class ClientsController extends AppController {
 
 	function index() {
 		$this->Client->recursive = 0;
-		$this->set('clients', $this->paginate());
+        if($this->Session->read("Auth.Client.role") == 'cust') {
+            $this->paginate = array('conditions' => array('Client.id' => $this->Session->read("Auth.Client.id")));
+        }
+        $clients = $this->paginate();
+        $this->set(compact('clients'));
+
 	}
 
 	function view($id = null) {
