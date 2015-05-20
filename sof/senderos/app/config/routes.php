@@ -33,4 +33,4 @@
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 	// Adds the language abbreviation in the URL
-    //Router::connect('/:language/:controller/:action/*', array(), array('language' => '[a-z]{2}'));
+    Router::connect('/:language/:controller/:action/*', array(), array('language' => '[a-z]{2}'));
