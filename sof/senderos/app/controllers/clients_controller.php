@@ -129,7 +129,7 @@ class ClientsController extends AppController {
                     $_SESSION['role'] = 'restricted';
                 }
             }
-            Debugger::dump($_SESSION);
+            //Debugger::dump($_SESSION);
             //trace($_SESSION);
             $this->redirect($this->Auth->redirect());
         }

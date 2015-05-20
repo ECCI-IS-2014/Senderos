@@ -6,6 +6,7 @@ class DocumentsController extends AppController {
     var $uses = array('Document', 'Visitor');
 	
 	function beforeFilter() {
+		parent::BeforeFilter();
         $this->Auth->allow('index', 'view', 'display');
     }
 	
