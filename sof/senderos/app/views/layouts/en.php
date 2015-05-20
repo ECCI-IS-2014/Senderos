@@ -1,5 +1,6 @@
 <?php
 $str_cancel="Cancel";
+$str_change_lan = "Change language";
 $str_clients="Clients";
 $str_close="Close";
 $str_cordx="X Coodinate";
