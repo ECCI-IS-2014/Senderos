@@ -144,5 +144,6 @@ class ClientsController extends AppController {
     function beforeFilter() {
         parent::beforeFilter();
 		$this->Auth->allow('add', 'logout');
+		$this->Auth->autoRedirect = false;
     }
 }
