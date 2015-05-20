@@ -51,7 +51,7 @@ $stationdelete = 'no';
 		if($_SESSION['role'] === 'restricted')
 		{
 			foreach ($restrictions as $restriction):
-			if($restriction['Restriction']['model'] == 'stations' && $restriction['Restriction']['recordid'] == $station['Station']['id'])
+			if($restriction['Restriction']['model'] == 'Station' && $restriction['Restriction']['recordid'] == $station['Station']['id'])
 			{
 				if($restriction['Restriction']['creating'] === '1')
 					$stationcreate = 'yes';

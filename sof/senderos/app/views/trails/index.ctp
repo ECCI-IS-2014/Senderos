@@ -38,7 +38,7 @@
 		if($_SESSION['role'] === 'restricted')
 		{
 			foreach ($restrictions as $restriction):
-				if($restriction['Restriction']['model'] == 'trails' && $restriction['Restriction']['recordid'] == $trail['Trail']['id'])
+				if($restriction['Restriction']['model'] == 'Trail' && $restriction['Restriction']['recordid'] == $trail['Trail']['id'])
 				{
 					if($restriction['Restriction']['creating'] === '1')
 						$trailcreate = 'yes';
