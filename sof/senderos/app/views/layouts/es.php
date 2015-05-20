@@ -1,6 +1,7 @@
 <?php 
 
 $str_actions="Acciones";
+$str_change_lan = "Cambiar idioma";
 $str_cancel="Cancelar";
 $str_clients="Clientes";
 $str_close="Cerrar";

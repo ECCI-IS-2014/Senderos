@@ -1,5 +1,6 @@
 <?php
 $str_cancel="Anular";
+$str_change_lan = "Mudar idioma";
 $str_clients="Clientes";
 $str_close="Fechar";
 $str_cordx="Coordenada X";
