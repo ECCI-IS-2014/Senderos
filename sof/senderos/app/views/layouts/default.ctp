@@ -41,6 +41,7 @@
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){
+						echo $this->Session->read('Auth.Client.role').': ';
             		    echo $this->Html->link(__($str_logout, true), array('controller'=>'clients', 'action'=>'logout'));
             		}else{
             		    echo $this->Html->link(__($str_login, true), array('controller'=>'clients', 'action'=>'login'));
