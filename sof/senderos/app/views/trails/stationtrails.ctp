@@ -1,13 +1,13 @@
-
 <?php
-$lan = $this->params['language'];
-include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$lan.'.php';
-if($lan==null)
-{
-    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-}
+    if(!isset($_POST['languages']))
+    {
+        include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
+    }else
+    {
+        $language = $_POST['languages'];
+        include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
+    }
 ?>
-
 
 <?php echo $html->css('stations'); ?>
 
