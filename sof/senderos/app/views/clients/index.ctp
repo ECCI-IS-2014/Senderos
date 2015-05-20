@@ -51,6 +51,7 @@
 		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
 </div>
+<?php if($this->Session->read("Auth.Client.role") != 'cust'){ ?>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
@@ -61,3 +62,4 @@
 		<li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
 	</ul>
 </div>
+<?php } ?>
