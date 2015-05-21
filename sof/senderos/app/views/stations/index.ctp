@@ -160,7 +160,7 @@ $stationdelete = 'no';
 <?php 
 
 if($_SESSION['role'] === 'administrator')
-	$stationcreate === 'yes';
+	$stationcreate = 'yes';
 
 if($stationcreate === 'yes')
 {?>
