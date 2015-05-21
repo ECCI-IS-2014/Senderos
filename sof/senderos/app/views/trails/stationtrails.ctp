@@ -144,6 +144,11 @@ $traildelete = 'no';
 </div>
 
 <?php 
+
+if($_SESSION['role'] === 'administrator')
+	$trailcreate = 'yes';
+
+
 if($trailcreate === 'yes')
 {?>
 

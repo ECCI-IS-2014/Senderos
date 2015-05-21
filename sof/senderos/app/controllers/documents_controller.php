@@ -8,6 +8,7 @@ class DocumentsController extends AppController {
 	function beforeFilter() {
 		parent::BeforeFilter();
         $this->Auth->allow('index', 'view', 'display');
+
     }
 	
 	function index() {
@@ -81,8 +82,8 @@ class DocumentsController extends AppController {
 		}
 		if (!empty($this->data)) {
             $document = $this->Document->read(null, $id);
-            $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
-            $this->Session->setFlash(__('The document has been saved'/*.WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route']*/, true));
+            $dat = $this->Document->find('first', array('conditions' => array('Document.id' =>$id)));
+            $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);
             $file->delete();
             $nombre =  $this->data['Document']['archivo']['name'];
             $posicion = stripos($nombre,".");
@@ -104,12 +105,15 @@ class DocumentsController extends AppController {
                 case "png": $destino = WWW_ROOT.'images'.DS; break;
                 default:  $destino = WWW_ROOT.'files'.DS;
             }
-            move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);
+            move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);}
             $this->Document->set('route', $this->data['Document']['archivo']['name']);
+            $this->Document->set('name', $this->data['Document']['name']);
+            $this->Document->set('description', $this->data['Document']['description']);
+            $this->Document->set('type', $this->data['Document']['type']);
+            $this->Document->set('language', $this->data['Document']['language']);
             $this->Document->save();
-			//$this->Session->setFlash(__('The document has been saved', true));
 			$this->redirect(array('action' => 'index'));
-		}
+		
 		if (empty($this->data)) {
 			$this->data = $this->Document->read(null, $id);
 		}

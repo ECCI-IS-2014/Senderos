@@ -8,9 +8,9 @@
 		echo $this->Form->input('description');
         $types = array('sound'=>'Sound', 'video'=>'Video', 'text'=>'Text', 'images'=>'Image');
         echo $this->Form->input('type', array('options'=>$types, 'default'=>'Sound'));
-        echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a file:'));
+        echo $this->Form->input('archivo', array('type' => 'file','label'=>'Select a file:'.$nom.' is the current file.'));
 		echo $this->Form->input('language');
-		echo $this->Form->input('targets', array('type' => 'select','multiple' => 'checkbox','options' => array('Student' => 'Students','Professor' => 'Professors','Scientist'=>'Scientists')));
+		//echo $this->Form->input('targets', array('type' => 'select','multiple'=>'checkbox','options' => array('Student' => 'Students','Professor' => 'Professors','Scientist'=>'Scientists')));
 
 	?>
 	</fieldset>
