@@ -206,7 +206,7 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 			<fieldset>
 				<legend><?php __('Save Point'); ?></legend>
 			<?php
-				echo $this->Form->input('pnumber');
+				echo $this->Form->input('pnumber', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
 				echo $this->Form->input('name');
 				echo $this->Form->input('cordx', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
 				echo $this->Form->input('cordy', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
