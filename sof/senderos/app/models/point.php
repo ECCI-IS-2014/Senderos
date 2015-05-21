@@ -3,6 +3,16 @@ class Point extends AppModel {
 	var $name = 'Point';
 	var $displayField = 'name';
 	var $validate = array(
+		'pnumber' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -16,8 +26,7 @@ class Point extends AppModel {
 		'cordx' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-                'rule' => array('decimal'),
-				'message' => 'Insert a valid coordinate',
+				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -27,8 +36,7 @@ class Point extends AppModel {
 		'cordy' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-                'rule' => array('decimal'),
-				'message' => 'Insert a valid coordinate',
+				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -46,6 +54,26 @@ class Point extends AppModel {
 			),
 		),
 		'trail_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'px_x' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'px_y' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
