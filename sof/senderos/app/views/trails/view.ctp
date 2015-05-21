@@ -177,6 +177,11 @@ if($trailread == 'yes')
 			echo "var str_texts='".$str_texts."';";
 			echo "var str_others='".$str_others."';";
 		echo "var str_cancel='".$str_cancel."';";
+		
+		echo "var languages='en';";
+		if(isset($_POST['languages']))
+			echo "languages='".$_POST['languages']."';";
+		
 		echo "</script>";
 	?>
 
