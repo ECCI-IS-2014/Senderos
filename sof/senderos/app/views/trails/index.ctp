@@ -131,6 +131,12 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php 
+		
+		if($_SESSION['role'] === 'administrator')
+			$trailcreate = 'yes';
+		else
+			$trailcreate = 'no';
+		
 		if($trailcreate === 'yes')
 			echo $this->Html->link(__('New Trail', true), array('action' => 'add')); 
 		/*else
