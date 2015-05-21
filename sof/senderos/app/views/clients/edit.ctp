@@ -10,7 +10,12 @@ echo $this->Form->create('Client');
 		echo $this->Form->input('username');
 		echo $this->Form->input('name');
 		echo $this->Form->input('lastname');
+		if($this->Session->read("Auth.Client.role") == 'admin'){
 		echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Client'), 'title'=>'Rol', 'label'=>'Rol '));
+		}
+		else{
+		echo $this->Form->input('role', array('options' => array('cust' => 'Client'), 'title'=>'Rol', 'label'=>'Rol '));
+		}
 		//echo $this->Form->input('password');
 		//echo $this->Form->input('password_confirm', array('label' => 'Confirm Password ', 'title' => 'Confirm Password', 'type'=>'password'));
 		echo $this->Form->input('country_id');
