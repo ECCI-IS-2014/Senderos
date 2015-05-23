@@ -10,7 +10,6 @@ class ClientsController extends AppController {
         }
         $clients = $this->paginate();
         $this->set(compact('clients'));
-
 	}
 
 	function view($id = null) {

@@ -152,6 +152,20 @@ if($trailread == 'yes')
 	</script>
 	
 	
+	
+	<?php
+		// accessing php language from javascript
+		echo "<script type='text/javascript'>";
+		echo "var languages='en';";
+		if(isset($_POST['languages']))
+		echo "languages='".$_POST['languages']."';";
+		echo "</script>";
+	?>
+	
+	
+	
+	
+	
 	<?php 
 	}
 	?>
