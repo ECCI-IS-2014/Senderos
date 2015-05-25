@@ -12,10 +12,22 @@
 		echo $scripts_for_layout;
 	?>
     <?php
-        if(!isset($_POST['languages'])){
-            include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-        }else{
-            $language = $_POST['languages'];
+        if($title_for_layout == 'Home')
+        {
+            if(!isset($_POST['languages']))
+            {
+                if(!isset($_POST['languages']))
+                include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
+            }else
+            {
+                $_SESSION['language'] = $_POST['languages'];
+                $language = $_SESSION['language'];
+                include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
+            }
+        }
+        else
+        {
+            $language = $_SESSION['language'];
             include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
         }
     ?>
@@ -43,9 +55,7 @@
             	    if($this->Session->read('Auth.Client.id') != null){
 						echo $this->Session->read('Auth.Client.role').': ';
             		    echo $this->Html->link(__($str_logout, true), array('controller'=>'clients', 'action'=>'logout'));
-            		}else{
-            		    echo $this->Html->link(__($str_login, true), array('controller'=>'clients', 'action'=>'login'));
-                    }
+            		}
                 ?>
             </div>
             </ul>
@@ -55,16 +65,22 @@
 			<?php echo $content_for_layout; ?>
 		</div>
     	<div id="footer">
+    	    <?php if($title_for_layout == 'Home')
+    	    {
+    	    ?>
     	    <div id="languages">
                 <form action="" method="post">
                     <select name="languages">
-                        <option value="es">Spanish</option>
+                        <option value="es">Español</option>
                         <option value="en">English</option>
-                        <option value="pt">Portuguese</option>
+                        <option value="pt">Português</option>
                     </select>
                 <input type="submit" value=<?php echo $str_change_lan ?> >
                 </form>
     	    </div>
+    	    <?php
+    	    }
+    	    ?>
 		</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>

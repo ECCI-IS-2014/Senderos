@@ -1,13 +1,8 @@
 <?php
-    if(!isset($_POST['languages']))
-    {
-        include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-    }else
-    {
-        $language = $_POST['languages'];
-        include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
-    }
+    $language = $_SESSION['language'];
+    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
 ?>
+
 
 <?php echo $html->css('stations'); ?>
 

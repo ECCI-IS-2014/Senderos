@@ -126,11 +126,10 @@ class PointsController extends AppController {
 	{
 		$this->autoRender = false; // No renderiza mediate el fichero .ctp
 
-		//include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-		if(!isset($_GET['languages'])){
+		if(!isset($_SESSION['language'])){
 		    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
 		}else{
-		    $language = $_GET['languages'];
+		    $language = $_SESSION['language'];
 		    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
 		}
 	

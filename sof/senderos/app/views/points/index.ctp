@@ -1,12 +1,13 @@
 <?php
-    if(!isset($_POST['languages']))
-    {
-        include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-    }else
-    {
-        $language = $_POST['languages'];
-        include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
-    }
+	if(!isset($_SESSION['language']))
+	{
+		include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
+	}
+	else
+	{
+		$language = $_SESSION['language'];
+		include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
+	}
 ?>
 
 <div class="points index">
