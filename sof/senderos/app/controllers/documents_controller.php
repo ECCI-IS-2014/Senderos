@@ -25,7 +25,6 @@ class DocumentsController extends AppController {
 	}
 
     function add() {
-        //$this->layout= '';
 		if (!empty($this->data)) {
 			$this->Document->create();
 			if ($this->Document->save($this->data)) {
@@ -82,38 +81,13 @@ class DocumentsController extends AppController {
 		}
 		if (!empty($this->data)) {
             $document = $this->Document->read(null, $id);
-            $dat = $this->Document->find('first', array('conditions' => array('Document.id' =>$id)));
-            $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);
-            $file->delete();
-            $nombre =  $this->data['Document']['archivo']['name'];
-            $posicion = stripos($nombre,".");
-            $terminacion = substr($nombre,$posicion+1);
-            $destino = WWW_ROOT.'files'.DS;
-            switch($terminacion) {
-                case "doc": $destino = WWW_ROOT.'text'.DS; break;
-                case "docx": $destino = WWW_ROOT.'text'.DS; break;
-                case "txt": $destino = WWW_ROOT.'text'.DS; break;
-                case "odt": $destino = WWW_ROOT.'text'.DS; break;
-                case "mp3": $destino = WWW_ROOT.'sound'.DS; break;
-                case "wav": $destino = WWW_ROOT.'sound'.DS; break;
-                case "avi": $destino = WWW_ROOT.'sound'.DS; break;
-                case "flv": $destino = WWW_ROOT.'video'.DS; break;
-                case "wmv": $destino = WWW_ROOT.'video'.DS; break;
-                case "mov": $destino = WWW_ROOT.'video'.DS; break;
-                case "mp4": $destino = WWW_ROOT.'video'.DS; break;
-                case "jpg": $destino = WWW_ROOT.'images'.DS; break;
-                case "png": $destino = WWW_ROOT.'images'.DS; break;
-                default:  $destino = WWW_ROOT.'files'.DS;
-            }
-            move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']);}
-            $this->Document->set('route', $this->data['Document']['archivo']['name']);
             $this->Document->set('name', $this->data['Document']['name']);
             $this->Document->set('description', $this->data['Document']['description']);
             $this->Document->set('type', $this->data['Document']['type']);
             $this->Document->set('language', $this->data['Document']['language']);
             $this->Document->save();
-			$this->redirect(array('action' => 'index'));
-		
+            $this->redirect(array('action' => 'index'));
+        }
 		if (empty($this->data)) {
 			$this->data = $this->Document->read(null, $id);
 		}
