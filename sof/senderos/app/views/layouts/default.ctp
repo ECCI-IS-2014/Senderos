@@ -14,22 +14,14 @@
     <?php
         if($title_for_layout == 'Home')
         {
-            if(!isset($_SESSION['language']))
+            if(!isset($_POST['languages']))
             {
                 if(!isset($_POST['languages']))
-                {
-                    if(!isset($_POST['languages']))
-                    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-                }
-                else
-                {
-                    $_SESSION['language'] = $_POST['languages'];
-                    $language = $_SESSION['language'];
-                    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
-                }
+                include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
             }
             else
             {
+                $_SESSION['language'] = $_POST['languages'];
                 $language = $_SESSION['language'];
                 include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
             }
