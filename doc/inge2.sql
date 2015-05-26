@@ -96,6 +96,14 @@ CREATE TABLE restrictions(
   FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
+CREATE TABLE languages
+(
+  id int NOT NULL,
+  code varchar(2) NOT NULL,
+  name varchar(100) NOT NULL,
+  PRIMARY KEY(id)
+);
+
 -- Autoincrementos para las tablas.
 
 CREATE SEQUENCE stations_seq;
@@ -107,6 +115,7 @@ CREATE SEQUENCE country_seq;
 CREATE SEQUENCE clients_seq;
 CREATE SEQUENCE dots_seq;
 CREATE SEQUENCE restrictions_seq;
+CREATE SEQUENCE language_seq;
 
 /
 CREATE OR REPLACE TRIGGER dots_ai
@@ -202,6 +211,17 @@ BEFORE INSERT ON restrictions
 FOR EACH ROW
 BEGIN
   SELECT restrictions_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER language_ai
+BEFORE INSERT ON languages
+FOR EACH ROW
+BEGIN
+  SELECT language_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
@@ -457,6 +477,10 @@ INSERT INTO countries (code, name) VALUES ('ZR', 'Zaire');
 INSERT INTO countries (code, name) VALUES ('ZM', 'Zambia');
 INSERT INTO countries (code, name) VALUES ('ZW', 'Zimbabwe');
 
+INSERT INTO languages (code, name) VALUES ('en', 'English');
+INSERT INTO languages (code, name) VALUES ('es', 'Spanish');
+INSERT INTO languages (code, name) VALUES ('pt', 'Portuguese');
+
 COMMIT;
 
 -----------------------------------------------------------------------
@@ -472,6 +496,7 @@ DROP TABLE points;
 DROP TABLE trails;
 DROP TABLE stations;
 DROP TABLE restrictions;
+DROP TABLE languages;
 
 -- Eliminar los autoincrementos
 DROP SEQUENCE stations_seq;
@@ -492,3 +517,5 @@ DROP SEQUENCE dots_seq;
 DROP TRIGGER dots_ai;
 DROP SEQUENCE restrictions_seq;
 DROP TRIGGER restrictions_ai;
+DROP SEQUENCE language_seq;
+DROP TRIGGER language_ai;
