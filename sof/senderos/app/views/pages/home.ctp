@@ -9,8 +9,8 @@
 	<p>Select the language in which you want to see the information:</p>
 	    <select id='languages' onchange="selectLanguage()">
 	        <option disabled selected>Select language</option>
-            <option value="es">Español</option>
-            <option value="pt">Português</option>
+            <option value="es">EspaÃ±ol</option>
+            <option value="pt">PortuguÃªs</option>
             <option value="en">English</option>
         </select>
     <br>
@@ -26,7 +26,12 @@
     <br>
     <br>
     <br>
-        <h3><?php echo $this->Html->link(__('Enter', true), array('controller'=>'stations', 'action'=>'index')); ?></h3>
+        <h3><?php
+        if(isset($_SESSION['language'])&&isset($_SESSION['role']))
+        {
+            echo $this->Html->link(__('Enter', true), array('controller'=>'stations', 'action'=>'index'));
+        }
+        ?></h3>
     <script>
     function selectVisitor()
     {

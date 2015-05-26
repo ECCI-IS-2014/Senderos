@@ -12,7 +12,7 @@
 		echo $scripts_for_layout;
 	?>
     <?php
-        if(!isset($_SESSION))
+        if(!isset($_SESSION['language']))
         {
             include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
         }
@@ -34,6 +34,9 @@
                         ?>
                     </nav>
                </div>
+        <?php if($this->Session->read('Auth.Client.id') != null)
+        {
+        ?>
         <div id="navegador">
             <ul>
                     <li><?php echo $this->Html->link(__($str_stations, true), array('controller'=>'stations', 'action'=>'index')); ?></li>
@@ -51,14 +54,24 @@
             </div>
             </ul>
         </div>
+        <?php
+        }
+        ?>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $content_for_layout; ?>
 		</div>
     	<div id="footer">
             <div id="credits">
-            <?php echo 'Session language is: '.$_SESSION['language']."<br>";
-                      echo 'Session visitor is: '.$_SESSION['role'].'';
+            <?php
+            if(isset($_SESSION['language']))
+            {
+                echo 'Session language is: '.$_SESSION['language']."<br>";
+            }
+            if(isset($_SESSION['role']))
+            {
+                echo 'Session visitor is: '.$_SESSION['role'].'';
+            }
             ?>
             </div>
 		</div>
