@@ -3,7 +3,19 @@ class LanguagesController extends AppController
 {
     var $name = 'Languages';
 
-    function index()
+    function beforeFilter()
+    {
+        parent::BeforeFilter();
+        $this->Auth->allow('display','selectlanguage');
+    }
+
+    function selectlanguage()
+    {
+        $language = ''.$_GET['language'].'';
+        $_SESSION['language']= $language;
+    }
+
+    function index($id = null)
     {
         $this->Language->recursive = 0;
         $this->set('languages', $this->paginate());

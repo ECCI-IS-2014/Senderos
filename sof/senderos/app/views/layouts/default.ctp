@@ -12,19 +12,9 @@
 		echo $scripts_for_layout;
 	?>
     <?php
-        if($title_for_layout == 'Home')
+        if(!isset($_SESSION))
         {
-            if(!isset($_POST['languages']))
-            {
-                if(!isset($_POST['languages']))
-                include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-            }
-            else
-            {
-                $_SESSION['language'] = $_POST['languages'];
-                $language = $_SESSION['language'];
-                include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
-            }
+            include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
         }
         else
         {
@@ -66,22 +56,11 @@
 			<?php echo $content_for_layout; ?>
 		</div>
     	<div id="footer">
-    	    <?php if($title_for_layout == 'Home')
-    	    {
-    	    ?>
-    	    <div id="languages">
-                <form action="" method="post">
-                    <select name="languages">
-                        <option value="es">Español</option>
-                        <option value="en">English</option>
-                        <option value="pt">Português</option>
-                    </select>
-                <input type="submit" value=<?php echo $str_change_lan ?> >
-                </form>
-    	    </div>
-    	    <?php
-    	    }
-    	    ?>
+            <div id="credits">
+            <?php echo 'Session language is: '.$_SESSION['language']."<br>";
+                      echo 'Session visitor is: '.$_SESSION['role'].'';
+            ?>
+            </div>
 		</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
