@@ -1,11 +1,11 @@
 <?php
-	if(!isset($_SESSION['language']))
+	if(!isset($_SESSION['lanview']))
 	{
 		include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
 	}
 	else
 	{
-		$language = $_SESSION['language'];
+		$language = $_SESSION['lanview'];
 		include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
 	}
 ?>

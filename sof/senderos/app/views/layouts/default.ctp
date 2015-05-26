@@ -66,14 +66,51 @@
             <?php
             if(isset($_SESSION['language']))
             {
-                echo 'Session language is: '.$_SESSION['language']."<br>";
+                echo 'Your language is: '.$_SESSION['language']."<br>";
             }
             if(isset($_SESSION['role']))
             {
-                echo 'Session visitor is: '.$_SESSION['role'].'';
+                echo 'You\'re a: '.$_SESSION['role'].'';
             }
             ?>
             </div>
+            <br>
+    	    <div id="languages">
+                <?php if($title_for_layout!='Home')
+                {
+                ?>
+                <ul>
+                    <li><a id="lan2" onclick="lan2(this, 'es')">Español</a></li>
+                    <li><a id="lan2" onclick="lan2(this, 'en')">English</a></li>
+                </ul>
+                <?php
+                }
+                ?>
+                <script>
+                function lan2(elmnt,clr)
+                {
+                    //var x = document.getElementById("lan2");
+                    //alert(clr);
+                    var x = clr;
+                    if(window.XMLHttpRequest)
+                        ajax = new XMLHttpRequest()
+                    else
+                        ajax = new ActiveXObject("Microsoft.XMLHTTP");
+
+                    ajax.open("GET","/senderos/languages/setlanguage?lan="+x+"",true);
+
+                    ajax.onreadystatechange=function()
+                    {
+                        if(ajax.readyState==4)
+                        {
+                            var respuesta=ajax.responseText;
+                            location.reload();
+                        }
+                    }
+                    ajax.send(null);
+                }
+                </script>
+    	    </div>
 		</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
