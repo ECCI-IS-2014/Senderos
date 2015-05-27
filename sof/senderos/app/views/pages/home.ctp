@@ -7,29 +7,24 @@
 	<h3>Welcome!</h3>
 	<br>
 	<p>Select the language in which you want to see the information:</p>
-	    <select id='languages' onchange="selectLanguage()">
-	        <option disabled selected>Select language</option>
-            <option value="es">Español</option>
-            <option value="pt">Português</option>
-            <option value="en">English</option>
-        </select>
-		<?php /* ESTA ES LA FORMA CREANDO LA CONEXION CON LA BD DESDE AQUI MISMO
-			$conn = oci_connect("erick", "resh", "localhost:1521/XE"); // LOGIN, PASSWORD Y DATABASE DE DATABASE.PHP
-			$query = 'select code, name from languages';
-			$stid = oci_parse($conn, $query);
-			oci_define_by_name($stid, 'CODE', $code);
-			oci_define_by_name($stid, 'NAME', $name);
-			$r = oci_execute($stid);
+	<?php  //ESTA ES LA FORMA CREANDO LA CONEXION CON LA BD DESDE AQUI MISMO
+		$conn = oci_connect("senderos", "senderos", "elaphe.ots.ac.cr"); // LOGIN, PASSWORD Y DATABASE DE DATABASE.PHP
+		$query = 'select code, name from languages';
+		$stid = oci_parse($conn, $query);
+		oci_define_by_name($stid, 'CODE', $code);
+		oci_define_by_name($stid, 'NAME', $name);
+		$r = oci_execute($stid);
 
-			echo "<select id='languages' onchange=\"selectLanguage()\">";
-			echo "<option disabled selected>Select language</option>";
-			while ($row = oci_fetch($stid)) {
-				print '<option value='.$code.'>'.$name.'</option>';
-			}
+		echo "<select id='languages' onchange=\"selectLanguage()\">";
+		echo "<option disabled selected>Select language</option>";
+		while ($row = oci_fetch($stid))
+		{
+			print '<option value='.$code.'>'.$name.'</option>';
+		}
 			
-			oci_free_statement($stid);
-			oci_close($conn);
-			print '</select>';*/
+		oci_free_statement($stid);
+		oci_close($conn);
+		print '</select>';
         ?>
     <br>
     <br>
