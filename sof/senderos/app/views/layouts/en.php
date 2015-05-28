@@ -12,6 +12,7 @@ $str_file="File";
 $str_images="Images";
 $str_images_c="IMAGES";
 $str_language="Language";
+$str_languages="Languages";
 $str_location="Location";
 $str_login="Login";
 $str_logout="Logout";

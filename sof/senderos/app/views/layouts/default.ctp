@@ -40,10 +40,11 @@
         <div id="navegador">
             <ul>
                     <li><?php echo $this->Html->link(__($str_stations, true), array('controller'=>'stations', 'action'=>'index')); ?></li>
-                    <li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_trails, true), array('controller'=>'trails', 'action'=>'index'));} ?></li>
-                    <li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_points, true), array('controller'=>'points', 'action'=>'index'));} ?></li>
-                 	<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_documents, true), array('controller'=>'documents', 'action'=>'index'));} ?></li>
-                    <li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__($str_clients, true), array('controller'=>'clients', 'action'=>'index'));} ?></li>
+                    <li><?php echo $this->Html->link(__($str_trails, true), array('controller'=>'trails', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_points, true), array('controller'=>'points', 'action'=>'index')); ?></li>
+                 	<li><?php echo $this->Html->link(__($str_documents, true), array('controller'=>'documents', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_clients, true), array('controller'=>'clients', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_languages, true), array('controller'=>'languages', 'action'=>'index')); ?></li>
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){
