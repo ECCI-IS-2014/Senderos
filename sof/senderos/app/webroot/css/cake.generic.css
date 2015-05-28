@@ -78,7 +78,7 @@ ul, li {
 
 #nav
 {
-    height: 10em;
+    height: 11em;
     cursor: default;
     background: #7BC143 url('../img/banner.jpg');
     padding: 0;
@@ -149,6 +149,7 @@ ul, li {
 	overflow: auto;
 }
 #footer {
+    background: #F2F2F2;
 	clear: both;
 	padding: 6px 10px;
 	text-align: right;
@@ -645,6 +646,13 @@ div.code-coverage-results span.result-good {
     padding: 10px;
 }
 
+.visitor
+{
+    text-align: center;
+    color: gray;
+    padding: 10px;
+}
+
 #languages a{
     text-align: center;
     color: darkgray;
@@ -667,12 +675,66 @@ div.code-coverage-results span.result-good {
 }
 
 #welcome{
+    padding-top: 4em;
+    padding-bottom: 2em;
+    padding-left: 5em;
+    padding-right: 5em;
     text-align: center;
     border-width: 0px;
+}
+
+#welcome a
+{
+    color:white;
+}
+
+#welcome h3
+{
+    font-weight: 800;
+    color:#088A4B;
 }
 
 /** Para créditos en el footer*/
 #credits{
     text-align: center;
     color: gray;
+}
+
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: inset 0 0 0 2px #fff;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.5em;
+    font-weight: 800;
+    height: 3.125em;
+    letter-spacing: 0.1em;
+    line-height: 3.125em;
+    padding: 0 2.75em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.button.special {
+    background-color: #04B486;
+    box-shadow: none !important;
+}
+
+.button.special:hover {
+    background-color: #01DFA5;
 }

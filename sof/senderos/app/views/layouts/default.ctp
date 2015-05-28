@@ -63,14 +63,16 @@
 		</div>
     	<div id="footer">
             <div id="credits">
-            <?php
-            if(isset($_SESSION['language']))
+            <?php if($this->Session->read('Auth.Client.id') == null)
             {
-                echo 'Your language is: '.$_SESSION['language']."<br>";
-            }
-            if(isset($_SESSION['role']))
-            {
+                if(isset($_SESSION['language']))
+                {
+                    echo 'Your language is: '.$_SESSION['language']."<br>";
+                }
+                if(isset($_SESSION['role']))
+                {
                 echo 'You\'re a: '.$_SESSION['role'].'';
+                }
             }
             ?>
             </div>
@@ -80,7 +82,7 @@
                 {
                 ?>
                 <ul>
-                    <li><a id="lan2" onclick="lan2(this, 'es')">Español</a></li>
+                    <li><a id="lan2" onclick="lan2(this, 'es')">EspaÃ±ol</a></li>
                     <li><a id="lan2" onclick="lan2(this, 'en')">English</a></li>
                 </ul>
                 <?php

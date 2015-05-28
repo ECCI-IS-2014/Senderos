@@ -3,12 +3,15 @@
 <head>
 </head>
 <body>
+    <?php if($this->Session->read('Auth.Client.id') == null)
+    {
+    ?>
 	<div id="welcome">
 	<h3>Welcome!</h3>
 	<br>
 	<p>Select the language in which you want to see the information:</p>
 	<?php  //ESTA ES LA FORMA CREANDO LA CONEXION CON LA BD DESDE AQUI MISMO
-		$conn = oci_connect("senderos", "senderos", "elaphe.ots.ac.cr"); // LOGIN, PASSWORD Y DATABASE DE DATABASE.PHP
+		$conn = oci_connect("erick", "resh", "localhost:1521/XE"); // LOGIN, PASSWORD Y DATABASE DE DATABASE.PHP
 		$query = 'select code, name from languages';
 		$stid = oci_parse($conn, $query);
 		oci_define_by_name($stid, 'CODE', $code);
@@ -29,7 +32,7 @@
     <br>
     <br>
     <p>Select the type of visitor:</p>
-        <select id='roles' onchange="selectVisitor()">
+        <select id='roles' class="visitor" onchange="selectVisitor()">
             <option disabled selected>Select visitor</option>
             <option value="Student">Student</option>
             <option value="Professor">Professor</option>
@@ -42,7 +45,8 @@
         <h3><?php
         if(isset($_SESSION['language'])&&isset($_SESSION['role']))
         {
-            echo $this->Html->link(__('Enter', true), array('controller'=>'stations', 'action'=>'index'));
+            echo "<div class=\"button special\">".$this->Html->link(__('Enter', true), array('controller'=>'stations', 'action'=>'index'))."</div>";
+            //echo $this->Html->link(__('Enter', true), array('controller'=>'stations', 'action'=>'index'));
         }
         ?></h3>
     <script>
@@ -93,5 +97,8 @@
         }
     </script>
     </div>
+    <?php
+    }
+    ?>
 </body>
 </html>
