@@ -33,6 +33,14 @@ CREATE TABLE points (
   FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE SET NULL
 );
 
+CREATE TABLE languages
+(
+  id int NOT NULL,
+  code varchar(2) NOT NULL,
+  name varchar(100) NOT NULL,
+  PRIMARY KEY(id)
+);
+
 CREATE TABLE documents
 (
   id int NOT NULL,
@@ -40,7 +48,7 @@ CREATE TABLE documents
   description varchar(500),
   type varchar(100) NOT NULL,
   route varchar(100),
-  language_id varchar(100) NOT NULL,
+  language_id int NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE SET NULL
 );
@@ -73,7 +81,7 @@ CREATE TABLE clients
   password varchar(100) NOT NULL,
   country_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(country_id) REFERENCES countries(id) ON DELETE SET NULL,
+  FOREIGN KEY(country_id) REFERENCES countries(id) ON DELETE SET NULL
 );
 
 CREATE TABLE visitors(
@@ -95,14 +103,6 @@ CREATE TABLE restrictions(
   deleting int, -- 0|1
   PRIMARY KEY(id),
   FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE
-);
-
-CREATE TABLE languages
-(
-  id int NOT NULL,
-  code varchar(2) NOT NULL,
-  name varchar(100) NOT NULL,
-  PRIMARY KEY(id)
 );
 
 -- Autoincrementos para las tablas.
