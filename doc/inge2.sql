@@ -40,8 +40,9 @@ CREATE TABLE documents
   description varchar(500),
   type varchar(100) NOT NULL,
   route varchar(100),
-  language varchar(100) NOT NULL,
-  PRIMARY KEY(id)
+  language_id varchar(100) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE SET NULL
 );
 
 CREATE TABLE documents_points
@@ -72,7 +73,7 @@ CREATE TABLE clients
   password varchar(100) NOT NULL,
   country_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(country_id) REFERENCES countries(id)
+  FOREIGN KEY(country_id) REFERENCES countries(id) ON DELETE SET NULL,
 );
 
 CREATE TABLE visitors(
