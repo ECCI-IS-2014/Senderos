@@ -12,7 +12,7 @@
      echo $this->Form->input('type', array('options'=>$types, 'default'=>'Sound')); ?>
 
     <?php echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a file:'));?>
-    <?php echo $this->Form->input('language');?>
+    <?php echo $this->Form->input('language_id', array('options' => $languages));?>
     <?php echo $this->Form->input('targets', array('type' => 'select','multiple' => 'checkbox','options' => array('Student' => 'Students','Professor' => 'Professors','Scientist'=>'Scientists')));
     ?>
 
