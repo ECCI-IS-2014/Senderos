@@ -141,6 +141,8 @@ class ClientsController extends AppController {
     }
 
     function logout() {
+	    $_SESSION['role'] = null;
+        $_SESSION['language'] = null;
         $this->redirect($this->Auth->logout());
 
     }
