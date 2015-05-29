@@ -5,7 +5,8 @@
 	<?php
 		echo $this->Form->input('id');
 		//echo $this->Form->input('role');
-        echo $this->Form->input('role', array('type'=>'select','options'=>array('Tourist','Student','Scientific')));
+        $options = array('Student' => 'Students','Professor' => 'Professors','Scientist'=>'Scientists', 'Natural' => 'Naturals');
+        echo $this->Form->input('role', array('type'=>'select','options' => $options));
 		echo $this->Form->input('document_id');
 	?>
 	</fieldset>

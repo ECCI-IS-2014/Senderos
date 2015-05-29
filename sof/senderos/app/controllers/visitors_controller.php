@@ -19,19 +19,6 @@ class VisitorsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Visitor->create();
-            $tipo = $this->data['Visitor']['role'];
-            switch($tipo){
-                case 0:
-                    $tipo = 'Tourist';
-                    break;
-                case 1:
-                    $tipo = 'Student';
-                    break;
-                case 2:
-                    $tipo = 'Scientific';
-                    break;
-            }
-            $this->data['Visitor']['role'] = $tipo;
 			if ($this->Visitor->save($this->data)) {
 				$this->Session->setFlash(__('The association has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -49,19 +36,6 @@ class VisitorsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-            $tipo = $this->data['Visitor']['role'];
-            switch($tipo){
-                case 0:
-                    $tipo = 'Tourist';
-                    break;
-                case 1:
-                    $tipo = 'Student';
-                    break;
-                case 2:
-                    $tipo = 'Scientific';
-                    break;
-            }
-            $this->data['Visitor']['role'] = $tipo;
 			if ($this->Visitor->save($this->data)) {
 				$this->Session->setFlash(__('The association has been saved', true));
 				$this->redirect(array('action' => 'index'));
