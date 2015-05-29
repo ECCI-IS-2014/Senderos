@@ -13,7 +13,7 @@ html, body {
 
 #point_documents img:hover{
 	
-	position: fixed;
+	/*position: fixed;
 	left: 32%;
 	right: 33.5%;
 	width: 33.5%;
@@ -22,7 +22,7 @@ html, body {
 	
 	height: 50%;
 	
-	z-index: 99999;
+	z-index: 99999;*/
 }
 
 .fileheader{
@@ -139,7 +139,7 @@ html, body {
     /* Other stuff: font-weight, font-size */
 }
 
-imageitem2 table{
+.imageitem2 table{
 	width:100%;	
 }
 
