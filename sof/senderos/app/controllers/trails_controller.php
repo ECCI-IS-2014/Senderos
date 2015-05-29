@@ -5,7 +5,7 @@ class TrailsController extends AppController {
 
     function beforeFilter() {
 		parent::BeforeFilter();
-        $this->Auth->allow('index', 'view', 'stationtrails', 'display');
+        $this->Auth->allow('view', 'stationtrails', 'display');
     }
 	
 	function index() {
@@ -30,14 +30,15 @@ class TrailsController extends AppController {
 		}
 	}
 
-	function view($id = null) {
+
+    function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid trail', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		//$this->set('trail', $this->Trail->read(null, $id));
 		$trail = $this->Trail->findById($id);
-		//$trail = $this->Trail->findById($id, array('contain' => false));
+        		//$trail = $this->Trail->findById($id, array('contain' => false));
 		$this->set('trail', $trail);
 		
 		if($_SESSION['role'] === 'restricted')
@@ -45,10 +46,12 @@ class TrailsController extends AppController {
 			$this->loadModel('Restriction');
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
-
+        $this->set('station',$this->Trail->field('station_id',array('Trail.id'=>$id)));
 		//$this->set('points', $this->Trail->findById($id)->Point->find('all'));
 	}
-	
+
+
+
 	function add() {
 		if (!empty($this->data)) {
 			$this->Trail->create();

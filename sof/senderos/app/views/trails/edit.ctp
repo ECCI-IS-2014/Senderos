@@ -18,7 +18,7 @@ $traildelete = 'no';
 if($_SESSION['role'] === 'restricted')
 {
 	foreach ($restrictions as $restriction):
-	if($restriction['Restriction']['model'] == 'Trail' && $restriction['Restriction']['recordid'] == $trail['Trail']['id'])
+	if($restriction['Restriction']['model'] == 'trails' && $restriction['Restriction']['recordid'] == $trail['Trail']['id'])
 	{
 		if($restriction['Restriction']['creating'] === '1')
 			$trailcreate = 'yes';
@@ -62,7 +62,7 @@ if($trailread == 'yes')
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('station_id');
-        	echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a map image:'));
+        	echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a map image:', "onchange" => "previewMap();"));
 	?>
 
 	
@@ -92,7 +92,7 @@ if($trailread == 'yes')
 		<?php foreach ($trail['Point'] as $point): ?>
 
 			<!-- point_ -->
-			<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer;" onmouseover="PointTitle(<?php echo $point['id']; ?>);"></div><!-- /point_ -->
+			<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer;" ></div><!-- /point_ -->
 
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_id" value="<?php echo $point['id']; ?>"/>
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_pnumber" value="<?php echo $point['pnumber']; ?>"/>
@@ -152,20 +152,6 @@ if($trailread == 'yes')
 	</script>
 	
 	
-	
-	<?php
-		// accessing php language from javascript
-		echo "<script type='text/javascript'>";
-		echo "var languages='en';";
-		if(isset($_POST['languages']))
-		echo "languages='".$_POST['languages']."';";
-		echo "</script>";
-	?>
-	
-	
-	
-	
-	
 	<?php 
 	}
 	?>
@@ -220,7 +206,7 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 			<fieldset>
 				<legend><?php __('Save Point'); ?></legend>
 			<?php
-				echo $this->Form->input('pnumber', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
+				echo $this->Form->input('pnumber',  array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
 				echo $this->Form->input('name');
 				echo $this->Form->input('cordx', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
 				echo $this->Form->input('cordy', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
@@ -292,7 +278,6 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 						<option value="0">Video</option>
 						<option value="3">Sound</option>
 						<option value="1">Text</option>
-						<option value="4">Other</option>
 					</select>
 				</div>
 				<div class="input file">
@@ -303,13 +288,40 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 				</div>
 				<div class="input text required">
 					<label for="DocumentLanguage">Language</label>
-					<input name="data[Document][language]" maxlength="100" id="DocumentLanguage" type="text">
+					<!--<input name="data[Document][language]" maxlength="100" id="DocumentLanguage" type="text">-->
+					<select name="data[Document][language]" id="DocumentLanguage">
+						<option value="en" selected>English</option>
+						<option value="sp">Espa&ntilde;ol</option>
+					</select>
 				</div>
+
+				<div id="choosevisitors" style="text-align:left;">
+				
+					<input type="hidden" id="DocumentVisitors" name="data[Document][visitors]" value=";"/>
+					
+					Available for:<br>
+					<input type="checkbox" value="Student" onclick="AddVisitor(this.checked, this.value);">Student<br>
+					<input type="checkbox" value="Professor" onclick="AddVisitor(this.checked, this.value);">Professor<br>
+					<input type="checkbox" value="Researcher" onclick="AddVisitor(this.checked, this.value);">Researcher<br>
+					<input type="checkbox" value="History" onclick="AddVisitor(this.checked, this.value);">History<br>
+					
+
+				</div> <!-- choosevisitors -->
 				
 				<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
-				<div class="submit">
-				<input type="button" value="Submit" onclick="saveDocument();"></input>
-			    </div>
+				<table style="background-color: transparent; border:none;"><tr>
+					<td style="background-color: transparent; border:none;">
+						<div class="submit">
+							<input type="button" value="Submit" onclick="saveDocument();"></input>
+					    	</div>
+					</td>
+					<td style="background-color: transparent; border:none;">
+						<div id="waitdiv" style="height:50%; width:50%; display:none;">
+							<img src="/senderos/app/webroot/css/wait.gif" height="90%" width="100%"/>
+							<center>Please wait . . .</center>
+						</div>
+					</td>				
+					</tr></table>
 			    <?php } ?>
 				
 				
@@ -340,7 +352,7 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 
 	<?php
 	
-	//echo $result;
+	echo $result;
 	
 	?>
 

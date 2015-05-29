@@ -99,18 +99,18 @@ $traildelete = 'no';
 			
 			echo "</div>";//'trailitem'>"
 			
-			
+
 			if($trailupdate === 'yes')
 				//echo $this->Html->link(__('Edit', true), array('action' => 'edit', $trail['Trail']['id']));
 				echo "<div class='editbutton' title='edit this item'>".$this->Html->link(__('', true), array('action' => 'edit', $trail['Trail']['id']))."</div>";
-			
+
 			if($traildelete === 'yes')
 				//echo $this->Html->link(__('Delete', true), array('action' => 'delete', $trail['Trail']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $trail['Trail']['id']));
 				echo "<div class='deletebutton' title='delete this item'>".$this->Html->link(__('', true), array('action' => 'delete', $trail['Trail']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $trail['Trail']['id']))."</div>";
-				
-				
-			
-					
+
+
+
+
 			echo "</td>";
 			
 			$conter++;
@@ -158,15 +158,15 @@ if($trailcreate === 'yes')
 <!-- <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php 
+		<li><?php
 		//if($trailcreate === 'yes')
-			echo $this->Html->link(__('New Trail', true), array('action' => 'add')); 
-		//else 
+			echo $this->Html->link(__('New Trail', true), array('action' => 'add'));
+		//else
 			//echo "---";
 		?></li>
 	</ul>
 </div> -->
-<?php 
+<?php
 }
 ?>
 

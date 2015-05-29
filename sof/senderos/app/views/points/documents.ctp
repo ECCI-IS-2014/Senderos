@@ -1,7 +1,4 @@
 
-<?php include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php'; ?>
-
-
 <?php
 
 echo $what;
@@ -11,7 +8,7 @@ if($what==='all' or $what==='images')
 	$imagesdiv .= "style='display:block;'";
 else
 	$imagesdiv .= "style='display:none;'";
-$imagesdiv .= "><div id='imagesheader' class='fileheader'><h1>".$str_images_c."</h1></div>";
+$imagesdiv .= "><div id='imagesheader' class='fileheader'><h1>IMAGES</h1></div>";
 
 
 $videosdiv = "<div id='videosdiv' class='filediv' ";
@@ -19,28 +16,28 @@ if($what==='all' or $what==='videos')
 	$videosdiv .= "style='display:block;'";
 else
 	$videosdiv .= "style='display:none;'";
-$videosdiv .= "><div id='videosheader' class='fileheader'><h1>".$str_videos_c."</h1></div>";
+$videosdiv .= "><div id='videosheader' class='fileheader'><h1>VIDEOS</h1></div>";
 
 $soundsdiv = "<div id='soundsdiv' class='filediv' ";
 if($what==='all' or $what==='sounds')
 	$soundsdiv .= "style='display:block;'";
 else
 	$soundsdiv .= "style='display:none;'";
-$soundsdiv .= "><div id='soundsheader' class='fileheader'><h1>".$str_sounds_c."</h1></div>";
+$soundsdiv .= "><div id='soundsheader' class='fileheader'><h1>SOUNDS</h1></div>";
 
 $textsdiv = "<div id='textsdiv' class='filediv' ";
 if($what==='all' or $what==='texts')
 	$textsdiv .= "style='display:block;'";
 else
 	$textsdiv .= "style='display:none;'";
-$textsdiv .= "><div id='textsheader' class='fileheader'><h1>".$str_texts_c."</h1></div>";
+$textsdiv .= "><div id='textsheader' class='fileheader'><h1>TEXTS</h1></div>";
 
 $othersdiv = "<div id='othersdiv' class='filediv' ";
 if($what==='all' or $what==='others')
 	$othersdiv .= "style='display:block;'";
 else
 	$othersdiv .= "style='display:none;'";
-$othersdiv .= "><div id='othersheader' class='fileheader'><h1>".$str_others_c."</h1></div>";
+$othersdiv .= "><div id='othersheader' class='fileheader'><h1>OTHER</h1></div>";
 
 $imagescounter = 0;
 $videoscounter = 0;
@@ -98,7 +95,7 @@ if($show === 'yes')
 		$imagesdiv .= "<input name='_method' value='POST' type='hidden'/>";
 		
 		$imagesdiv .= "<table><tr>";
-		$imagesdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$imagescounter.",2);' title='".$str_previous."'/></td>";
+		$imagesdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$imagescounter.",2);' title='previous'/></td>";
 		$imagesdiv .= "<td class='desc'>";
 		$imagesdiv .= "<input name='data[Document][id]' id='DocumentId' type='hidden' value='".$pointdocument['Document']['id']."'/><br>";
 		$imagesdiv .= "Name:<br><input name='data[Document][name]' id='DocumentName' type='text' value='".$pointdocument['Document']['name']."'/><br>";
@@ -122,12 +119,64 @@ if($show === 'yes')
 		}
 		$imagesdiv .= "</td>"; //td img
 		
-		$imagesdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$imagescounter.",2);' title='".$str_next."'/></td>";
+		$imagesdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$imagescounter.",2);' title='next'/></td>";
 		
 		$imagesdiv .= "</tr>";
 		
 		if($_SESSION['role'] === "administrator" || $_SESSION['role'] === 'restricted')
 		{
+			$imagesdiv .= "<tr><td colspan=4><div id=\"choosevisitors\" style=\"text-align:left;\">";
+			//$imagesdiv .= "<input type=\"hidden\" id=\"DocumentVisitors\" name=\"data[Document][visitors]\" value=\";\"/>";
+			$imagesdiv .= "Available for:<br>";
+
+			$availability = ";";
+
+			$imagesdiv .= "<input type=\"checkbox\" value=\"Student\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Student' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$imagesdiv .= " checked";
+					$availability .= "Student;";
+					break;
+				}	
+			endforeach;
+			$imagesdiv .= ">Student<br>";
+
+			$imagesdiv .= "<input type=\"checkbox\" value=\"Professor\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Professor' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$imagesdiv .= " checked";
+					$availability .= "Professor;";
+					break;
+				}	
+			endforeach;
+			$imagesdiv .= ">Professor<br>";
+			$imagesdiv .= "<input type=\"checkbox\" value=\"Researcher\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Researcher' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$imagesdiv .= " checked";
+					$availability .= "Researcher;";
+					break;
+				}	
+			endforeach;
+			$imagesdiv .= ">Researcher<br>";
+			$imagesdiv .= "<input type=\"checkbox\" value=\"History\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'History' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$imagesdiv .= " checked";
+					$availability .= "History;";
+					break;
+				}	
+			endforeach;
+			$imagesdiv .= ">History<br>";
+
+			$imagesdiv .= "<input type=\"hidden\" id=\"D_".$pointdocument['Document']['id']."\" name=\"data[Document][visitors]\" value=\"".$availability."\"/>";
+
+			$imagesdiv .= "</div> </td></tr><!-- choosevisitors -->";
+
 			$imagesdiv .= "<tr><td colspan=3 style='text-align:right;' title='Save the current document'>";
 			$imagesdiv .= "<a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");'>save</a>";
 			$imagesdiv .= "</td></tr>";
@@ -164,7 +213,7 @@ if($show === 'yes')
 		$videosdiv .= "<input name='_method' value='POST' type='hidden'/>";
 	
 		$videosdiv .= "<table><tr>";
-		$videosdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$videoscounter.",0);' title='".$str_previous."'/></td>";
+		$videosdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$videoscounter.",0);' title='previous'/></td>";
 		$videosdiv .= "<td class='desc'>";
 		$videosdiv .= "<input name='data[Document][id]' id='DocumentId' type='hidden' value='".$pointdocument['Document']['id']."'/><br>";
 		$videosdiv .= "Name:<br><input name='data[Document][name]' id='DocumentName' type='text' value='".$pointdocument['Document']['name']."'/><br>";
@@ -229,12 +278,63 @@ if($show === 'yes')
 		}
 		$videosdiv .= "</td>"; //td img
 	
-		$videosdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$videoscounter.",0);' title='".$str_next."'/></td>";
+		$videosdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$videoscounter.",0);' title='next'/></td>";
 	
 		$videosdiv .= "</tr>";
 	
 		if($_SESSION['role'] === "administrator" || $_SESSION['role'] === 'restricted')
 		{
+			$videosdiv .= "<tr><td colspan=4><div id=\"choosevisitors\" style=\"text-align:left;\">";
+			//$videosdiv .= "<input type=\"hidden\" id=\"DocumentVisitors\" name=\"data[Document][visitors]\" value=\";\"/>";
+			$videosdiv .= "Available for:<br>";
+
+			$availability = ";";
+
+			$videosdiv .= "<input type=\"checkbox\" value=\"Student\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Student' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$videosdiv .= " checked";
+					$availability .= "Student;";
+					break;
+				}	
+			endforeach;
+			$videosdiv .= ">Student<br>";
+
+			$videosdiv .= "<input type=\"checkbox\" value=\"Professor\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Professor' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$videosdiv .= " checked";
+					$availability .= "Professor;";
+					break;
+				}	
+			endforeach;
+			$videosdiv .= ">Professor<br>";
+			$videosdiv .= "<input type=\"checkbox\" value=\"Researcher\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Researcher' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$videosdiv .= " checked";
+					$availability .= "Researcher;";
+					break;
+				}	
+			endforeach;
+			$videosdiv .= ">Researcher<br>";
+			$videosdiv .= "<input type=\"checkbox\" value=\"History\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'History' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$videosdiv .= " checked";
+					$availability .= "History;";
+					break;
+				}	
+			endforeach;
+			$videosdiv .= ">History<br>";
+
+			$videosdiv .= "<input type=\"hidden\" id=\"D_".$pointdocument['Document']['id']."\" name=\"data[Document][visitors]\" value=\"".$availability."\"/>";
+			$videosdiv .= "</div> </td></tr><!-- choosevisitors -->";
+
 			$videosdiv .= "<tr><td colspan=3 style='text-align:right;' title='Save the current document'>";
 			$videosdiv .= "<a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");'>save</a>";
 			$videosdiv .= "</td></tr>";
@@ -271,13 +371,13 @@ if($show === 'yes')
 		$soundsdiv .= "<input name='_method' value='POST' type='hidden'/>";
 	
 		$soundsdiv .= "<table><tr>";
-		$soundsdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$soundscounter.",3);' title='".$str_previous."'/></td>";
+		$soundsdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$soundscounter.",3);' title='previous'/></td>";
 		$soundsdiv .= "<td class='desc'>";
 		$soundsdiv .= "<input name='data[Document][id]' id='DocumentId' type='hidden' value='".$pointdocument['Document']['id']."'/><br>";
-		$soundsdiv .= "Name:<br><input name='data[Document][name]' id='DocumentName' type='sound' value='".$pointdocument['Document']['name']."'/><br>";
-		$soundsdiv .= "<br>File:<br><input name='data[Document][route]' id='DocumentRoute".$pointdocument['Document']['id']."' type='sound' value='".$pointdocument['Document']['route']."'/><br>";
-		$soundsdiv .= "<br>Language:<br><input name='data[Document][language]' id='DocumentLanguage' type='sound' value='".$pointdocument['Document']['language']."'/><br>";
-		$soundsdiv .= "<br>Description:<br><soundarea name='data[Document][description]' id='DocumentDescription'>".$pointdocument['Document']['description']."</soundarea><br>";
+		$soundsdiv .= "Name:<br><input name='data[Document][name]' id='DocumentName' type='text' value='".$pointdocument['Document']['name']."'/><br>";
+		$soundsdiv .= "<br>File:<br><input name='data[Document][route]' id='DocumentRoute".$pointdocument['Document']['id']."' type='text' value='".$pointdocument['Document']['route']."'/><br>";
+		$soundsdiv .= "<br>Language:<br><input name='data[Document][language]' id='DocumentLanguage' type='text' value='".$pointdocument['Document']['language']."'/><br>";
+		$soundsdiv .= "<br>Description:<br><textarea name='data[Document][description]' id='DocumentDescription'>".$pointdocument['Document']['description']."</textarea><br>";
 		$soundsdiv .= "</td>";//td desc
 	
 		$soundsdiv .= "<td class='filecont'>";
@@ -310,12 +410,63 @@ if($show === 'yes')
 		}
 		$soundsdiv .= "</td>"; //td img
 	
-		$soundsdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$soundscounter.",3);' title='".$str_next."'/></td>";
+		$soundsdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$soundscounter.",3);' title='next'/></td>";
 	
 		$soundsdiv .= "</tr>";
 	
 		if($_SESSION['role'] === "administrator" || $_SESSION['role'] === 'restricted')
 		{
+			$soundsdiv .= "<tr><td colspan=4><div id=\"choosevisitors\" style=\"text-align:left;\">";
+			//$soundsdiv .= "<input type=\"hidden\" id=\"DocumentVisitors\" name=\"data[Document][visitors]\" value=\";\"/>";
+			$soundsdiv .= "Available for:<br>";
+
+			$availability = ";";
+
+			$soundsdiv .= "<input type=\"checkbox\" value=\"Student\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Student' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$soundsdiv .= " checked";
+					$availability .= 'Student;';
+					break;
+				}	
+			endforeach;
+			$soundsdiv .= ">Student<br>";
+
+			$soundsdiv .= "<input type=\"checkbox\" value=\"Professor\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Professor' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$soundsdiv .= " checked";
+					$availability .= 'Professor;';
+					break;
+				}	
+			endforeach;
+			$soundsdiv .= ">Professor<br>";
+			$soundsdiv .= "<input type=\"checkbox\" value=\"Researcher\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Researcher' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$soundsdiv .= " checked";
+					$availability .= 'Researcher;';
+					break;
+				}	
+			endforeach;
+			$soundsdiv .= ">Researcher<br>";
+			$soundsdiv .= "<input type=\"checkbox\" value=\"History\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'History' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$soundsdiv .= " checked";
+					$availability .= 'History;';
+					break;
+				}	
+			endforeach;
+			$soundsdiv .= ">History<br>";
+
+			$soundsdiv .= "<input type=\"hidden\" id=\"D_".$pointdocument['Document']['id']."\" name=\"data[Document][visitors]\" value=\"".$availability."\"/>";
+			$soundsdiv .= "</div> </td></tr><!-- choosevisitors -->";
+
 			$soundsdiv .= "<tr><td colspan=3 style='sound-align:right;' title='Save the current document'>";
 			$soundsdiv .= "<a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");'>save</a>";
 			$soundsdiv .= "</td></tr>";
@@ -352,7 +503,7 @@ if($show === 'yes')
 		$textsdiv .= "<input name='_method' value='POST' type='hidden'/>";
 	
 		$textsdiv .= "<table><tr>";
-		$textsdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$textscounter.",1);' title='".$str_previous."'/></td>";
+		$textsdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$textscounter.",1);' title='previous'/></td>";
 		$textsdiv .= "<td class='desc'>";
 		$textsdiv .= "<input name='data[Document][id]' id='DocumentId' type='hidden' value='".$pointdocument['Document']['id']."'/><br>";
 		$textsdiv .= "Name:<br><input name='data[Document][name]' id='DocumentName' type='text' value='".$pointdocument['Document']['name']."'/><br>";
@@ -383,12 +534,63 @@ if($show === 'yes')
 		}
 		$textsdiv .= "</td>"; //td img
 	
-		$textsdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$textscounter.",1);' title='".$str_next."'/></td>";
+		$textsdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$textscounter.",1);' title='next'/></td>";
 	
 		$textsdiv .= "</tr>";
 	
 		if($_SESSION['role'] === "administrator" || $_SESSION['role'] === 'restricted')
 		{
+			$textsdiv .= "<tr><td colspan=4><div id=\"choosevisitors\" style=\"text-align:left;\">";
+			//$textsdiv .= "<input type=\"hidden\" id=\"DocumentVisitors\" name=\"data[Document][visitors]\" value=\";\"/>";
+			$textsdiv .= "Available for:<br>";
+
+			$availability = ";";
+
+			$textsdiv .= "<input type=\"checkbox\" value=\"Student\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Student' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$textsdiv .= " checked";
+					$availability .= 'Student;';
+					break;
+				}	
+			endforeach;
+			$textsdiv .= ">Student<br>";
+
+			$textsdiv .= "<input type=\"checkbox\" value=\"Professor\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Professor' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$textsdiv .= " checked";
+					$availability .= 'Professor;';
+					break;
+				}	
+			endforeach;
+			$textsdiv .= ">Professor<br>";
+			$textsdiv .= "<input type=\"checkbox\" value=\"Researcher\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'Researcher' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$textsdiv .= " checked";
+					$availability .= 'Researcher;';
+					break;
+				}	
+			endforeach;
+			$textsdiv .= ">Researcher<br>";
+			$textsdiv .= "<input type=\"checkbox\" value=\"History\" onclick=\"AddVisitor(this.checked, this.value, D_".$pointdocument['Document']['id'].");\"";
+			foreach ($visitors as $visitor):
+				if($visitor['Visitor']['role'] == 'History' && $visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+				{
+					$textsdiv .= " checked";
+					$availability .= 'History;';
+					break;
+				}	
+			endforeach;
+			$textsdiv .= ">History<br>";
+
+			$textsdiv .= "<input type=\"hidden\" id=\"D_".$pointdocument['Document']['id']."\" name=\"data[Document][visitors]\" value=\"".$availability."\"/>";
+			$textsdiv .= "</div> </td></tr><!-- choosevisitors -->";
+
 			$textsdiv .= "<tr><td colspan=3 style='text-align:right;' title='Save the current document'>";
 			$textsdiv .= "<a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");'>save</a>";
 			$textsdiv .= "</td></tr>";
@@ -405,76 +607,7 @@ if($show === 'yes')
 	}
 	else
 	{
-		$otherscounter++;
-	
-		$othersdiv .= "<center><div id='otheritem".$otherscounter."'";
-	
-		if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
-			$othersdiv .= " class='imageitem1'";
-		else
-			$othersdiv .= " class='imageitem2'";
-	
-		if($otherscounter==1)
-			$othersdiv .= " style='display:block;'";
-		else
-			$othersdiv .= " style='display:none;'";
-	
-		$othersdiv .= ">"; //otheritemdiv
-	
-		$othersdiv .= "<form action='/senderos/documents/add' id='DocumentEditForm".$pointdocument['Document']['id']."' enctype='multipart/form-data' method='post' accept-charset='utf-8'>";
-		$othersdiv .= "<input name='_method' value='POST' type='hidden'/>";
-	
-		$othersdiv .= "<table><tr>";
-		$othersdiv .= "<td class='middle'><input type='button' value='<<' onclick='back(".$otherscounter.",4);' title='".$str_previous."'/></td>";
-		$othersdiv .= "<td class='desc'>";
-		$othersdiv .= "<input name='data[Document][id]' id='DocumentId' type='hidden' value='".$pointdocument['Document']['id']."'/><br>";
-		$othersdiv .= "Name:<br><input name='data[Document][name]' id='DocumentName' type='other' value='".$pointdocument['Document']['name']."'/><br>";
-		$othersdiv .= "<br>File:<br><input name='data[Document][route]' id='DocumentRoute".$pointdocument['Document']['id']."' type='other' value='".$pointdocument['Document']['route']."'/><br>";
-		$othersdiv .= "<br>Language:<br><input name='data[Document][language]' id='DocumentLanguage' type='other' value='".$pointdocument['Document']['language']."'/><br>";
-		$othersdiv .= "<br>Description:<br><otherarea name='data[Document][description]' id='DocumentDescription'>".$pointdocument['Document']['description']."</otherarea><br>";
-		$othersdiv .= "</td>";//td desc
-	
-		$othersdiv .= "<td class='filecont'>";
-	
 		
-		$othersdiv .= "<object id='oth".$pointdocument['Document']['id']."' name='oth".$pointdocument['Document']['id']."'";
-		$othersdiv .= " data='/senderos/app/webroot/other/".$pointdocument['Document']['route']."' >";
-		$othersdiv .= "<param name='src' value='/senderos/app/webroot/other/".$pointdocument['Document']['route']."'/>";
-		$othersdiv .= "</object>";
-		$othersdiv .= "<a href='/senderos/app/webroot/other/".$pointdocument['Document']['route']."' target='_blank'>".$pointdocument['Document']['route']."</a>";
-	
-	
-		if($_SESSION['role'] === "administrator" || $_SESSION['role'] === 'restricted')
-		{
-			$othersdiv .= "<div id='filediv".$pointdocument['Document']['id']."' style='display: block; width: 100px; height: 20px; overflow: hidden;cursor: pointer;' title='Change file'>";
-			$othersdiv .= "<a href='javascript: void(0)' style='width: 110px; height: 30px; position: relative; top: -5px; left: -5px;cursor: pointer;'>Change</a>";
-			$othersdiv .= "<input name='data[Document][archivo]' id='DocumentArchivo".$pointdocument['Document']['id']."' type='file'";
-			$othersdiv .= " onchange=\"previewFile('".$pointdocument['Document']['id']."','DocumentArchivo".$pointdocument['Document']['id']."')\"";
-			$othersdiv .= " accept='other/*, other/*, audio/*, application/pdf'";
-			$othersdiv .= " style='font-size: 50px; width: 120px; opacity: 0; filter:alpha(opacity: 0);  position: relative; top: -40px; left: -20px; cursor: pointer;'/>";//file
-			$othersdiv .= "</div>"; //div filediv???
-		}
-		$othersdiv .= "</td>"; //td img
-	
-		$othersdiv .= "<td class='middle'><input type='button' value='>>' onclick='forward(".$otherscounter.",4);' title='".$str_next."'/></td>";
-	
-		$othersdiv .= "</tr>";
-	
-		if($_SESSION['role'] === "administrator" || $_SESSION['role'] === 'restricted')
-		{
-			$othersdiv .= "<tr><td colspan=3 style='other-align:right;' title='Save the current document'>";
-			$othersdiv .= "<a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");'>save</a>";
-			$othersdiv .= "</td></tr>";
-		}
-	
-		$othersdiv .= "</table>";
-	
-	
-		$othersdiv .= "<input name='data[Document][type]' id='DocumentType' type='hidden' value='".$pointdocument['Document']['type']."'/>";
-	
-		$othersdiv .= "</form>";
-	
-		$othersdiv .= "</div></center>"; //otheritemdiv
 		
 	}
 	
@@ -486,7 +619,7 @@ $imagesdiv .= "Total: <div id='imagescount'>".$imagescounter."</div></div>"; //e
 $videosdiv .= "Total: <div id='videoscount'>".$videoscounter."</div></div>"; //end videos div
 $soundsdiv .= "Total: <div id='soundscount'>".$soundscounter."</div></div>"; //end soundsdiv
 $textsdiv .= "Total: <div id='textscount'>".$textscounter."</div></div>";    //end textsdiv
-$othersdiv .= "Total: <div id='otherscount'>".$otherscounter."</div></div>"; //end others div
+//$othersdiv .= "Total: <div id='otherscount'>".$otherscounter."</div></div>"; //end others div
 
 ?>
 
@@ -496,11 +629,11 @@ $othersdiv .= "Total: <div id='otherscount'>".$otherscounter."</div></div>"; //e
 
 <?php 
 
-echo $imagesdiv."<br>";
-echo $videosdiv."<br>";
-echo $soundsdiv."<br>";
-echo $textsdiv."<br>";
-echo $othersdiv."<br>";
+if($imagescounter>0) echo $imagesdiv."<br>";
+if($videoscounter>0) echo $videosdiv."<br>";
+if($soundscounter>0) echo $soundsdiv."<br>";
+if($textscounter>0) echo $textsdiv."<br>";
+//if($otherscounter>0) echo $othersdiv."<br>";
 
 
 //debug($pointdocuments);

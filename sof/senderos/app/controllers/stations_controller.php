@@ -5,7 +5,7 @@ class StationsController extends AppController {
 
     function beforeFilter() {
 		parent::BeforeFilter();
-        $this->Auth->allow('index', 'view', 'display');
+        $this->Auth->allow('station', 'display');
     }
 	
 	function index() {
@@ -18,6 +18,22 @@ class StationsController extends AppController {
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
 	}
+
+    /*
+     * Funcion para index de los visitantes
+     * */
+
+
+    function station() {
+        $this->Station->recursive = 0;
+        $this->set('stations', $this->paginate());
+
+        if($_SESSION['role'] === 'restricted')
+        {
+            $this->loadModel('Restriction');
+            $this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+        }
+    }
 
 	function view($id = null) {
 		if (!$id) {
