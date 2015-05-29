@@ -274,4 +274,13 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 
 <?php
 }
+else{
 ?>
+    <div class="actions">
+    	<h3><?php __('Actions'); ?></h3>
+    	<ul>
+    <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+    <li><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'stationtrails',$station)); ?> </li>
+	</ul>
+</div>
+<?php } ?>

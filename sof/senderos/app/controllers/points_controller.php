@@ -8,7 +8,7 @@ class PointsController extends AppController {
 
     function beforeFilter() {
 		parent::BeforeFilter();
-        $this->Auth->allow('index', 'view', 'getinfo','explore', 'documents', 'display');
+        $this->Auth->allow('view', 'getinfo','explore', 'documents', 'display');
     }
 	
 	function index() {
