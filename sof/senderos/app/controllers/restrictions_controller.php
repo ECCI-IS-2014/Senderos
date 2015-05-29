@@ -12,21 +12,6 @@ class RestrictionsController extends AppController {
 
     function add() {
         if (!empty($this->data)) {
-            $modelS = $this->data['Restriction']['model'];
-            switch($modelS){
-                case 0:
-                    $this->data['Restriction']['model'] = 'Document';
-                break;
-                case 1:
-                    $this->data['Restriction']['model'] = 'Point';
-                break;
-                case 2:
-                    $this->data['Restriction']['model'] = 'Station';
-                break;
-                case 3:
-                    $this->data['Restriction']['model'] = 'Trail';
-                break;
-            }
             $this->Restriction->create();
             if ($this->Restriction->save($this->data)) {
                 $this->Session->setFlash(__('The restriction has been saved', true));
@@ -35,7 +20,6 @@ class RestrictionsController extends AppController {
                 $this->Session->setFlash(__('The restriction could not be saved. Please, try again.', true));
             }
         }
-        $this->set('models', array('Document', 'Point', 'Station', 'Trail'));
         //$this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'), 'conditions' => array('Restriction.client_id' => $this->Client->id))));
         $this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'))));
         $clients = $this->Client->find('list', array('conditions'=>array('Client.role =' => 'cust')));
@@ -48,21 +32,6 @@ class RestrictionsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {
-            $modelS = $this->data['Restriction']['model'];
-            switch($modelS){
-                case 0:
-                    $this->data['Restriction']['model'] = 'Document';
-                    break;
-                case 1:
-                    $this->data['Restriction']['model'] = 'Point';
-                    break;
-                case 2:
-                    $this->data['Restriction']['model'] = 'Station';
-                    break;
-                case 3:
-                    $this->data['Restriction']['model'] = 'Trail';
-                    break;
-            }
             if ($this->Restriction->save($this->data)) {
                 $this->Session->setFlash(__('The restriction has been saved', true));
                 return $this->redirect(array('action' => 'index', $this->Restriction->id));
@@ -73,7 +42,6 @@ class RestrictionsController extends AppController {
         if (empty($this->data)) {
             $this->data = $this->Restriction->read(null, $id);
         }
-        $this->set('models', array('Document', 'Point', 'Station', 'Trail'));
         //$this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'), 'conditions' => array('Restriction.client_id' => $this->Client->id))));
         $this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'))));
         $clients = $this->Client->find('list', array('conditions'=>array('Client.role =' => 'cust')));

@@ -46,7 +46,10 @@
             <tr>
                 <td> </td>
                 <td><?php echo $this->Form->input('client_id', array('label' => false, 'options' => $clients));?></td>
-                <td><?php echo $this->Form->input('model', array('label' => false));?></td>
+                <td><?php
+                        $moptions = array('Document' => 'Document', 'Point' => 'Point', 'Station' => 'Station', 'Trail' => 'Trail');
+                        echo $this->Form->input('model', array('label' => false, 'options' => $moptions));?>
+                </td>
                 <td><?php echo $form->text('recordid', array('type' => 'number', 'min' => -1, 'default' => -1 ) );?></td>
                 <td><?php echo $this->Form->input('creating', array('label' => false, 'options' => array('false','true')));?></td>
                 <td><?php echo $this->Form->input('reading', array('label' => false, 'options' => array('false','true')));?></td>
