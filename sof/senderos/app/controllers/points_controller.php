@@ -2,15 +2,10 @@
 class PointsController extends AppController {
 
 	var $name = 'Points';
-	
+
 	var $helpers = array('Html','Ajax','Javascript');
 	var $components = array('RequestHandler');
 
-    function beforeFilter() {
-		parent::BeforeFilter();
-        $this->Auth->allow('view', 'getinfo','explore', 'documents', 'display');
-    }
-	
 	function index() {
 		$this->Point->recursive = 0;
 		$this->set('points', $this->paginate());
@@ -120,27 +115,94 @@ class PointsController extends AppController {
 
 		echo $response;
 	}
+
+	//funcion ajax
+	function infooptions($id)
+	{
+		$this->autoRender = false; // No renderiza mediate el fichero .ctp
+
+		$pointdocuments = $this->Point->DocumentsPoint->findAllByPointId($id);
+
+		$response = '';
+
+		$video = 0;
+		$text = 0;
+		$image = 0;
+		$sound = 0;
+
+		$cont = 0;
+
+		if(isset($_SESSION['role']))
+		{
+			if($_SESSION['role'] !== 'administrator' || $_SESSION['role'] !== 'restricted')
+			{
+				$this->loadModel('Visitor');
+				$visitors = $this->Visitor->findAllByRole($_SESSION['role']);
+
+				foreach($pointdocuments as $pointdocument):
+
+					$show = 'no';
+					foreach ($visitors as $visitor):
+						if($visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+						{
+							if($pointdocument['Document']['language'] === $_SESSION['language'])
+							{
+								$show = 'yes';
+								break;
+							}
+						}
+					endforeach;
+					
+					if($show === 'yes')
+					{
+						$cont++;
+						if($pointdocument['Document']['type'] === '0') $video++;
+						else if($pointdocument['Document']['type'] === '1') $text++;
+						else if($pointdocument['Document']['type'] === '2') $image++;
+						else if($pointdocument['Document']['type'] === '3') $sound++;
+						else continue;
+					}
+				endforeach;
+
+			}
+		}
+
+		
+
+		if($cont>0)
+		{
+			$response .= '<ul>';
+
+			if($video > 0)
+				$response .= "<li><a onclick=\"ShowMultimedia(".$id.",0);\" style=\"cursor: pointer;\">Videos</a></li>";
+			if($text > 0)
+				$response .= "<li><a onclick=\"ShowMultimedia(".$id.",1);\" style=\"cursor: pointer;\">Texts</a></li>";
+			if($image > 0)
+				$response .= "<li><a onclick=\"ShowMultimedia(".$id.",2);\" style=\"cursor: pointer;\">Images</a></li>";
+			if($sound > 0)
+				$response .= "<li><a onclick=\"ShowMultimedia(".$id.",3);\" style=\"cursor: pointer;\">Sounds</a></li>";
+	
+			$response .= '</ul>';
+		}
+		else
+			$response = 'empty';
+
+		echo $response;
+	}
 	
 	//funcion ajax
 	function explore($id)
 	{
 		$this->autoRender = false; // No renderiza mediate el fichero .ctp
-
-		if(!isset($_SESSION['language'])){
-		    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
-		}else{
-		    $language = $_SESSION['language'];
-		    include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
-		}
 	
 		$point = $this->Point->read(null, $id);
 		
 		$response ="";
 	
-		$response .= ''.$str_name.'<br>'.$point['Point']['name'].'<br>';
-		$response .= '<br>'.$str_cordx.'<br>'.$point['Point']['cordx'].'<br>';
-		$response .= '<br>'.$str_cordy.'<br>'.$point['Point']['cordy'].'<br>';
-		$response .= '<br>'.$str_description.'<br>'.$point['Point']['description'].'<br>';
+		$response .= 'Name<br>'.$point['Point']['name'].'<br>';
+		$response .= '<br>CordX<br>'.$point['Point']['cordx'].'<br>';
+		$response .= '<br>CordY<br>'.$point['Point']['cordy'].'<br>';
+		$response .= '<br>Description<br>'.$point['Point']['description'].'<br>';
 		/*$response .= $this->viewVars['point']['Point']['description'].'<br>';
 			$response .= $this->viewVars['point']['Point']['cordx'].'<br>';
 		$response .= $this->viewVars['point']['Point']['cordy'].'<br>';*/
@@ -221,27 +283,8 @@ class PointsController extends AppController {
 					case "4": $destino = WWW_ROOT.'other'.DS; break;
 					default:  $destino = WWW_ROOT.'other'.DS;
 					
-					/*case "doc": $destino = WWW_ROOT.'text'.DS; break;
-					case "txt": $destino = WWW_ROOT.'text'.DS; break;
-					case "odt": $destino = WWW_ROOT.'text'.DS; break;
-					case "pdf": $destino = WWW_ROOT.'text'.DS; break;
-					case "mp3": $destino = WWW_ROOT.'sound'.DS; break;
-					case "wav": $destino = WWW_ROOT.'sound'.DS; break;
-					case "avi": $destino = WWW_ROOT.'sound'.DS; break;
-					case "flv": $destino = WWW_ROOT.'video'.DS; break;
-					case "wmv": $destino = WWW_ROOT.'video'.DS; break;
-					case "mov": $destino = WWW_ROOT.'video'.DS; break;
-					case "mp4": $destino = WWW_ROOT.'video'.DS; break;
-					case "jpg": $destino = WWW_ROOT.'images'.DS; break;
-					case "png": $destino = WWW_ROOT.'images'.DS; break;
-					default:  $destino = WWW_ROOT.'files'.DS;*/
+					
 				}
-				
-				
-				/*ini_set('upload_max_filesize', '50M');
-				ini_set('post_max_size', '50M');
-				ini_set('max_input_time', 300);
-				ini_set('max_execution_time', 300);*/
 				
 				
 				if(move_uploaded_file($this->data['Document']['archivo']['tmp_name'], $destino.$this->data['Document']['archivo']['name']))
@@ -270,11 +313,25 @@ class PointsController extends AppController {
 							
 							if($this->DocumentsPoint->save($newdocumentpoint))
 							{
-								$response .= '<br>and has been associated.';
+								$response .= '';//'<br>and has been associated.';
+
+								$this->loadModel('Visitor');
+								$conditions = array ("Visitor.document_id" => $newdocumentid);
+								$this->Visitor->deleteAll($conditions); 
+								$visitors = explode(';', $this->data['Document']['visitors']);
+
+								foreach($visitors as $visitor):
+									$this->Visitor->create();
+
+									$newvisitor['Visitor']['role'] = $visitor;
+									$newvisitor['Visitor']['document_id'] = $newdocumentid;
+									
+									$this->Visitor->save($newvisitor);
+								endforeach;
 							}
 							else
 							{
-								$response .= '<br>but could not be associated.';
+								$response .= '';//'<br>but could not be associated.';
 							}
 						}
 						
@@ -284,7 +341,7 @@ class PointsController extends AppController {
 					}
 					else {
 						//delete the uploaded file
-						$response .= 'The file could not be saved. Please, try again.';
+						$response .= '';//'The file could not be saved. Please, try again.';
 					}
 				}
 				else 
@@ -303,10 +360,25 @@ class PointsController extends AppController {
 				if ($saved == 0)
 				{
 					if($this->Document->save($this->data))
+					{
+						$this->loadModel('Visitor');
+						$conditions = array ("Visitor.document_id" => $this->data['Document']['id']);
+						$this->Visitor->deleteAll($conditions); 
+						$visitors = explode(';', $this->data['Document']['visitors']);
+
+						foreach($visitors as $visitor):
+							
+							$this->Visitor->create();
+							$newvisitor['Visitor']['role'] = $visitor;
+							$newvisitor['Visitor']['document_id'] = $this->data['Document']['id'];
+							$this->Visitor->save($newvisitor);
+						endforeach;
+
 						$response .= 'The file has been updated';
+					}
 				}
 				else
-					$response .= 'The file could not be uploaded. Please, try again.';
+					$response .= '';//'The file could not be uploaded. Please, try again.';
 			}
 		}
 		if (empty($this->data)) {
@@ -332,6 +404,29 @@ class PointsController extends AppController {
 		{
 			if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 			{
+				$this->loadModel('Visitor');
+				$this->set('visitors', $this->Visitor->find('all'));
+			}
+			else {
+				$this->loadModel('Visitor');
+				$this->set('visitors', $this->Visitor->findAllByRole($_SESSION['role']));
+			}
+		}
+	}
+
+
+	function multimedia($id = null)
+	{
+		$this->layout = 'ajax';	//avoids rendering default layout
+		$this->set('what', $_GET['what']);
+		$this->set('pointdocuments',$this->Point->DocumentsPoint->findAllByPointId($id));
+		
+		$this->set('rol',$_SESSION['role']);
+		
+		if(isset($_SESSION['role']))
+		{
+			if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
+			{
 				//$this->loadModel('Visitor');
 				//$this->set('visitors', $this->Visitor->findAllByRole($_SESSION['role']));
 			}
@@ -341,4 +436,5 @@ class PointsController extends AppController {
 			}
 		}
 	}
+
 }
