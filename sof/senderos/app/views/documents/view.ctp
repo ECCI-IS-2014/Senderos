@@ -23,7 +23,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Language'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $document['Document']['language']; ?>
+			<?php echo $document['Language']['name']; ?>
 			&nbsp;
 		</dd>
 	</dl>

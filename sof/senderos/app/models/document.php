@@ -56,5 +56,15 @@ class Document extends AppModel {
 	);
 	
 	public $hasMany = array('DocumentsPoint');	//agregué esta línea
+	var $belongsTo = array(
+        'Language' => array(
+            'className' => 'Language',
+            'foreignKey' => 'language_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
+}
 	
 }

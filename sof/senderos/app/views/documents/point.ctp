@@ -24,7 +24,7 @@
 		<td><?php echo $document['Document']['description']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['type']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['route']; ?>&nbsp;</td>
-		<td><?php echo $document['Document']['language']; ?>&nbsp;</td>
+		<td><?php echo $document['Language']['name']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $document['Document']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $document['Document']['id'])); ?>
