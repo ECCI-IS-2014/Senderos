@@ -3,7 +3,7 @@
 class DocumentsController extends AppController {
 
 	var $name = 'Documents';
-    var $uses = array('Document', 'Visitor');
+    var $uses = array('Document', 'Visitor', 'Language');
 	
 	function beforeFilter() {
 		parent::BeforeFilter();
@@ -72,6 +72,8 @@ class DocumentsController extends AppController {
 				$this->Session->setFlash(__('The document could not be saved. Please, try again.', true));
 			}
 		}
+		$languages = $this->Language->find('list'); //, array('conditions'=>array('Client.role =' => 'cust')));
+        $this->set(compact('languages'));
 	}
 
 	function edit($id = null) {
@@ -91,6 +93,8 @@ class DocumentsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Document->read(null, $id);
 		}
+		$languages = $this->Language->find('list'); //, array('conditions'=>array('Client.role =' => 'cust')));
+        $this->set(compact('languages'));
 	}
 
 	function delete($id = null) {

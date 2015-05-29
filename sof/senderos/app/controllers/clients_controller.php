@@ -124,6 +124,7 @@ class ClientsController extends AppController {
     function login() {
     } */
 	function login() {
+		$_SESSION['lan2'] = 'en';
         if( !(empty($this->data)) && $this->Auth->user() ){
             $rolUser = $this->Session->read("Auth.Client.role") ;
             if($rolUser == 'admin'){
@@ -141,6 +142,8 @@ class ClientsController extends AppController {
     }
 
     function logout() {
+	    $_SESSION['role'] = null;
+        $_SESSION['language'] = null;
         $this->redirect($this->Auth->logout());
 
     }
