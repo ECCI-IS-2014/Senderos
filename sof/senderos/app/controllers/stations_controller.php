@@ -5,7 +5,7 @@ class StationsController extends AppController {
 
     function beforeFilter() {
 		parent::BeforeFilter();
-        $this->Auth->allow('station', 'display');
+        $this->Auth->allow('station', 'display', 'index');
     }
 	
 	function index() {

@@ -46,23 +46,11 @@
             <tr>
                 <td> </td>
                 <td><?php echo $this->Form->input('client_id', array('label' => false, 'options' => $clients));?></td>
-<<<<<<< Updated upstream
                 <td><?php
                         $moptions = array('Document' => 'Document', 'Point' => 'Point', 'Station' => 'Station', 'Trail' => 'Trail');
                         echo $this->Form->input('model', array('label' => false, 'options' => $moptions));?>
                 </td>
                 <td><?php echo $form->text('recordid', array('type' => 'number', 'min' => -1, 'default' => -1 ) );?></td>
-=======
-                <td><?php echo $this->Form->input('model', array('label' => false));?></td>
-
-                <?php  /*$docs = $this->Document->find('all', array('fields' => array('Document.name')),array('conditions'=>array('Document.id >'=>'0')));*/?>
-
-
-                <td><?php
-                            echo $form->text('recordid', array('type' => 'number', 'min' => -1, 'default' => -1 ) );
-
-                ?></td>
->>>>>>> Stashed changes
                 <td><?php echo $this->Form->input('creating', array('label' => false, 'options' => array('false','true')));?></td>
                 <td><?php echo $this->Form->input('reading', array('label' => false, 'options' => array('false','true')));?></td>
                 <td><?php echo $this->Form->input('updating', array('label' => false, 'options' => array('false','true')));?></td>
@@ -85,17 +73,4 @@
 </div>
 
 
-<script>
-$( document ).ready(function() {
-    $("#RestrictionModel").hover(function(){
-            alert("You entered RestrictionModel!");
-        },
-        function(){
-            alert("Bye! You now leave RestrictionModel!");
-        });
 
-
-
-
-});
-</script>
