@@ -1,7 +1,7 @@
 <?php
 class RestrictionsController extends AppController {
 	var $name = 'Restrictions';
-    var $uses = array('Restriction', 'Client');
+    var $uses = array('Restriction', 'Client', 'Document', 'Point', 'Station', 'Trail');
 
     function index() {
         $this->Restriction->recursive = 0;
