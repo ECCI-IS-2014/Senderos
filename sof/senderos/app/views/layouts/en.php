@@ -1,0 +1,34 @@
+<?php
+$str_cancel="Cancel";
+$str_change_lan = "Change language";
+$str_clients="Clients";
+$str_close="Close";
+$str_cordx="X Coodinate";
+$str_cordy="Y Coodinate";
+$str_description="Description";
+$str_documents="Documents";
+$str_explore="Explore";
+$str_file="File";
+$str_images="Images";
+$str_images_c="IMAGES";
+$str_language="Language";
+$str_languages="Languages";
+$str_location="Location";
+$str_login="Login";
+$str_logout="Logout";
+$str_multimedia="Multimedia";
+$str_name="Name";
+$str_next="Next";
+$str_others="Others";
+$str_others_c="OTHERS";
+$str_points="Points";
+$str_previous="Previous";
+$str_sounds="Sounds";
+$str_sounds_c="SOUNDS";
+$str_stations="Stations";
+$str_texts="Texts";
+$str_texts_c="TEXTS";
+$str_trails="Trails";
+$str_videos="Videos";
+$str_videos_c="VIDEOS";
+?>

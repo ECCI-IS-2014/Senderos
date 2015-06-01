@@ -1,0 +1,91 @@
+#formulario
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ababb2;
+}
+
+#formulario_interno
+{
+    border-style: none;
+    display: inline;
+    margin-left: 0%;
+}
+
+#submit_button
+{
+    margin-left: 20%;
+}
+
+.input.text.required
+{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.input.select.required
+{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+label
+{
+    margin-right: 12%;
+    display: inline-block;
+}
+
+#documentName
+{
+    width: 60%;
+    height: 4.5%;
+    margin-left: 7%;
+    margin-bottom: 10%;
+}
+
+#documentDescription
+{
+    width: 58%;
+    height: 10%;
+
+}
+
+#documentType
+{
+    margin-left: 8%;
+    margin-top: 5%;
+    width: 40%;
+}
+#documentArchivo
+{
+    width: 30%;
+    margin-left: 0%;
+    margin-left: 1%;
+}
+
+.input.file
+{
+  margin-top: 8%;
+    margin-bottom: 8%;
+}
+.input.file label
+{
+
+    display: inline;
+}
+
+#documentLanguage
+{
+    margin-left: 2%;
+    width: 60%;
+    height: 4%;
+}
+
+#documentAddForm
+{
+    margin-right: 20%;
+    margin-left: 20%;
+    padding-left:0%;
+    padding-right: 0%;
+
+}
