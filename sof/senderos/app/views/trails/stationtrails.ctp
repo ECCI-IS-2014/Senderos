@@ -24,7 +24,7 @@ $traildelete = 'no';
 <center>
 
 
-<div><!--  class="trails index"> -->
+<div class="trailindex">
 	<h2><?php __($str_trails);?></h2>
 	
 	<table>
@@ -80,7 +80,6 @@ $traildelete = 'no';
 			{
 				echo "<tr>";
 			}
-			
 			echo "<td>";
 			
 			//echo "<a href='/senderos/trails/view/".$trail['Trail']['id']."'>";

@@ -25,7 +25,7 @@
 
 /** General Style Info **/
 body {
-	background: #f5f5f5;
+	background: #7BC143;
 	color: #fff;
     font-family: 'Questrial', arial, sans-serif;
 	font-size:100%;
@@ -57,8 +57,9 @@ h1 {
 }
 h2 {
 	background:#fff;
-	color: #F26631 ;
-	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+    font-weight: bold;
+    font-family: 'Questrial', arial, sans-serif;
+    color: #7BC143;
 	font-size: 190%;
 }
 h3 {
@@ -70,6 +71,7 @@ h4 {
 	color: #993;
 	font-weight: normal;
 }
+
 ul, li {
 	margin: 0 12px;
 }
@@ -78,9 +80,10 @@ ul, li {
 
 #nav
 {
-    height: 11em;
+    height: 13em;
     cursor: default;
-    background: #7BC143 url('../img/banner.jpg');
+    background: #F5F5DC /*url('../img/leaf.jpg')*/;
+    background-size: cover;
     padding: 0;
 }
 
@@ -161,7 +164,7 @@ div.index,
 div.view {
 	float:right;
 	width:76%;
-	border-left:1px solid #666;
+	border-left:0px solid #666;
 	padding:10px 2%;
 }
 div.actions {
@@ -258,7 +261,7 @@ dl {
 	width: 60%;
 }
 dl .altrow {
-	background: #f4f4f4;
+	/*background: #f4f4f4;*/
 }
 dt {
 	font-weight: bold;
@@ -690,8 +693,9 @@ div.code-coverage-results span.result-good {
 
 #welcome h3
 {
-    font-weight: 800;
-    color:#088A4B;
+    font-weight: bold;
+    font-family: 'Questrial', arial, sans-serif;
+    color: #7BC143;
 }
 
 /** Para créditos en el footer*/
@@ -731,7 +735,7 @@ div.code-coverage-results span.result-good {
 }
 
 .button.special {
-    background-color: #04B486;
+    background-color: #7BC143;
     box-shadow: none !important;
 }
 

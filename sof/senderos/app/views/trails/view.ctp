@@ -8,21 +8,17 @@
 		$language = $_SESSION['lanview'];
 		include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
 	}
-?>
 
+?>
 <?php echo $html->css('pointscss'); ?>
+<?php echo $html->css('stations'); ?>
 <?php echo $html->css('menu7'); ?>
 <?php echo $html->css('documentscss'); ?>
 <?php echo $html->script("draggable"); ?>
 <?php echo $html->script("points"); ?>
 <?php echo $html->script("slider"); ?>
-
-
-
-<?php 
-
+<?php
 $result = '';
-
 $trailcreate = 'no';
 $trailread = 'yes';
 $trailupdate = 'no';
@@ -66,7 +62,7 @@ if($trailread == 'yes')
 
 ?>
 
-
+<div class="trailview">
 <div class="trails view">
 <h2><?php  __($str_trails);?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
@@ -277,10 +273,10 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 else{
 ?>
     <div class="actions">
-    	<h3><?php __('Actions'); ?></h3>
     	<ul>
     <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
     <li><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'stationtrails',$station)); ?> </li>
 	</ul>
 </div>
 <?php } ?>
+</div>

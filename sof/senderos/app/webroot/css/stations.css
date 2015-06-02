@@ -1,9 +1,11 @@
 .stationsindex{
-	
+    margin:2em 8em;
 }
 
 .stationsindex h2{
 	font-weight: bold;
+    font-family: 'Questrial', arial, sans-serif;
+    color: #7BC143;
 }
 
 .stationitem{
@@ -13,7 +15,7 @@
 	height: auto;
 	background-color: #7BC143;
 	color: #000000;
-	border-radius: 20px;
+	border-radius: 10px;
 	cursor:pointer;
 	text-align: left;
 	font-weight: bold;
@@ -21,19 +23,14 @@
 
 .stationheader{
 	position: relative;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
-	background-color: #FDBB30;
-	/*width: 100%;
-	height: 20%;*/
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: #BCE954;
 	padding: 10px;
 	font-height: 20px;
 }
 
 .stationitem:hover{
-	width: 400px;
-	height: 300px;
-	font-size: larger;
 }
 
 .stationitem a {
@@ -52,6 +49,22 @@
     font-height: 25px;
 }
 
+.trailindex
+{
+     margin:2em 8em;
+}
+
+.trailview
+{
+    margin: 4em 8em;
+}
+
+.trailindex h2{
+    font-weight: bold;
+    font-family: 'Questrial', arial, sans-serif;
+    color: #7BC143;
+}
+
 .trailitem{
 	position: relative;
 	width: 200px;
@@ -59,7 +72,7 @@
 	height: auto;
 	background-color: #7BC143;
 	color: #000000;
-	border-radius: 20px;
+	border-radius: 10px;
 	cursor:pointer;
 	text-align: left;
 	font-size: 15px;
@@ -69,9 +82,9 @@
 
 .trailheader{
 	position: relative;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
-	background-color: #FDBB30;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: #BCE954;
 	/*width: 100%;
 	height: 20%;*/
 	padding: 10px;
@@ -79,9 +92,6 @@
 }
 
 .trailitem:hover{
-	width: 300px;
-	height: 300px;
-	font-size: 20px;
 }
 
 .trailitem a {
@@ -168,5 +178,4 @@
 	background-size: 30px 30px;
     background-repeat: no-repeat;
     display: inline-block;
-    
 }
