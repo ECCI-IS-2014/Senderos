@@ -143,30 +143,19 @@ $traildelete = 'no';
 
 </div>
 
-<?php 
+<div class="actions">
 
+<?php
 if($_SESSION['role'] === 'administrator')
 	$trailcreate = 'yes';
-
 
 if($trailcreate === 'yes')
 {?>
 
-<?php echo "<div class='newitem'><div class='addbutton' title='add a new item'>".$this->Html->link(__('', true), array('action' => 'add'))."</div>New Trail</div>"; ?>
+    <?php echo "<div class='newitem'><div class='addbutton' title='Add a new trail'>".$this->Html->link(__('', true), array('action' => 'add'))."</div>New Trail</div>"; ?>
 
-<!-- <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php
-		//if($trailcreate === 'yes')
-			echo $this->Html->link(__('New Trail', true), array('action' => 'add'));
-		//else
-			//echo "---";
-		?></li>
-	</ul>
-</div> -->
 <?php
 }
 ?>
-
+</div>
 </center>

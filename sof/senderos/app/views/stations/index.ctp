@@ -158,7 +158,7 @@ if($_SESSION['role'] === 'administrator')
 if($stationcreate === 'yes')
 {?>
 
-<?php echo "<div class='newitem'><div class='addbutton' title='add a new item'>".$this->Html->link(__('', true), array('action' => 'add'))."</div>New Station</div>"; ?>
+<?php echo "<div class='newitem'><div class='addbutton' title='Add a new station'>".$this->Html->link(__('', true), array('action' => 'add'))."</div>New Station"; ?>
 
 <?php 
 }

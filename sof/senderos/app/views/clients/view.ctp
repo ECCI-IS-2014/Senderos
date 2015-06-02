@@ -29,7 +29,6 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Client', true), array('action' => 'edit', $client['Client']['id'])); ?> </li>
         <li><?php echo $this->Html->link(__('Change Password', true), array('action' => 'change', $client['Client']['id'])); ?> </li>

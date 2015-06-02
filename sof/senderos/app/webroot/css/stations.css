@@ -171,9 +171,8 @@
 
 .addbutton{
 	position:relative;
-	width: 40px;
-	height: 40px;
-	border-radius: 0%;
+	width: 35px;
+	height: 30px;
 	/*background: url('/senderos/app/webroot/css/add.gif');*/
     background: url('/senderos/app/webroot/css/add.png');
     background-size: 30px 30px;

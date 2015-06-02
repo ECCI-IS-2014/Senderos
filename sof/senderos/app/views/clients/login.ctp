@@ -6,11 +6,10 @@
     echo $form->input('username');
     echo $form->input('password');
     echo $form->end('Login');
-
 ?>
 </div>
+
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Register', true), array('controller' => 'clients','action' => 'add')); ?></li>
 	</ul>

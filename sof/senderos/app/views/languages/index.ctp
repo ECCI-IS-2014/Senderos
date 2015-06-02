@@ -28,23 +28,22 @@
     <?php endforeach; ?>
 
 	</table>
-	<p>
+	<!--p>
 	    <?php
 	    echo $this->Paginator->counter(array(
 	    'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 	    ));
 	    ?>
-	</p>
+	</p-->
 
-	<div class="paging">
+	<!--div class="paging">
 		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
-	 	|<?php echo $this->Paginator->numbers();?>
-		| <?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
-	</div>
+	 	<?php echo $this->Paginator->numbers();?>
+		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	</div-->
 </div>
 
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Language', true), array('action' => 'add')); ?></li>
 	</ul>

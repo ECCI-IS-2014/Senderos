@@ -82,7 +82,7 @@ ul, li {
 {
     height: 13em;
     cursor: default;
-    background: #F5F5DC /*url('../img/leaf.jpg')*/;
+    background: #FFF8DC /*url('../img/leaf.jpg')*/;
     background-size: cover;
     padding: 0;
 }
@@ -740,5 +740,5 @@ div.code-coverage-results span.result-good {
 }
 
 .button.special:hover {
-    background-color: #01DFA5;
+    background-color: #6CC417;
 }
