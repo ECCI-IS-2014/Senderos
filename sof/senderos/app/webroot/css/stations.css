@@ -131,7 +131,8 @@
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
-	background: url('/senderos/app/webroot/css/pencil.gif');
+	/*background: url('/senderos/app/webroot/css/pencil.gif');*/
+    background: url('/senderos/app/webroot/css/pen.png');
 	background-size: 30px 30px;
     background-repeat: no-repeat;
     /*content: "edit this item";*/
@@ -143,8 +144,9 @@
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
-	background: url('/senderos/app/webroot/css/trash.gif');
-	background-size: 30px 30px;
+	/*background: url('/senderos/app/webroot/css/trash.gif');*/
+    background: url('/senderos/app/webroot/css/delete.png');
+    background-size: 30px 30px;
     background-repeat: no-repeat;
     /*content: "edit this item";*/
     display: inline-block;
@@ -163,8 +165,6 @@
 
 .newitem{
 	position: absolute;
-	top: 170px;
-    right: 20%;
     font-weight: bold;
     font-size: 90%;
 }
@@ -173,9 +173,10 @@
 	position:relative;
 	width: 40px;
 	height: 40px;
-	border-radius: 50%;
-	background: url('/senderos/app/webroot/css/add.gif');
-	background-size: 30px 30px;
+	border-radius: 0%;
+	/*background: url('/senderos/app/webroot/css/add.gif');*/
+    background: url('/senderos/app/webroot/css/add.png');
+    background-size: 30px 30px;
     background-repeat: no-repeat;
     display: inline-block;
 }

@@ -148,16 +148,7 @@ $stationdelete = 'no';
 	
 </div>
 
-
-<div >
-
-	<?php
-	
-	//echo $result;
-	
-	?>
-
-</div>
+<div class="actions">
 
 <?php 
 
@@ -169,20 +160,8 @@ if($stationcreate === 'yes')
 
 <?php echo "<div class='newitem'><div class='addbutton' title='add a new item'>".$this->Html->link(__('', true), array('action' => 'add'))."</div>New Station</div>"; ?>
 
-<!-- <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php 
-		//if($stationcreate === 'yes')
-			//echo $this->Html->link(__('New Station', true), array('action' => 'add')); 
-		
-		//else 
-			//echo "---";
-		?></li>
-	</ul>
-</div> -->
 <?php 
 }
 ?>
-
+</div>
 </center>
