@@ -1,0 +1,2 @@
+1519627954
+a:8:{s:2:"id";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:9:"client_id";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:5:"model";a:2:{s:4:"type";s:6:"string";s:6:"length";s:3:"100";}s:8:"recordid";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:8:"creating";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:7:"reading";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:8:"updating";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:8:"deleting";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}}
