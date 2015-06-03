@@ -6,6 +6,11 @@ class PointsController extends AppController {
 	var $helpers = array('Html','Ajax','Javascript');
 	var $components = array('RequestHandler');
 
+	function beforeFilter() {
+        parent::BeforeFilter();
+        $this->Auth->allow('getinfo', 'explore', 'multimedia', 'documents');
+    }
+	
 	function index() {
 		$this->Point->recursive = 0;
 		$this->set('points', $this->paginate());
