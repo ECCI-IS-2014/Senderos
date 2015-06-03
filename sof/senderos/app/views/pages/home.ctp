@@ -11,7 +11,7 @@
 	<br>
 	<p>Select the language in which you want to see the information:</p>
 	<?php  //ESTA ES LA FORMA CREANDO LA CONEXION CON LA BD DESDE AQUI MISMO
-		$conn = oci_connect("erick", "resh", "localhost:1521/XE"); // LOGIN, PASSWORD Y DATABASE DE DATABASE.PHP
+		$conn = oci_connect("mana", "coco", "localhost:1521/XE"); // LOGIN, PASSWORD Y DATABASE DE DATABASE.PHP
 		$query = 'select code, name from languages';
 		$stid = oci_parse($conn, $query);
 		oci_define_by_name($stid, 'CODE', $code);

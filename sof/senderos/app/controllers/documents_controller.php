@@ -76,6 +76,27 @@ class DocumentsController extends AppController {
         $this->set(compact('languages'));
 	}
 
+    function edit($id = null) {
+        if (!$id && empty($this->data)) {
+            $this->Session->setFlash(__('Invalid document', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        if (!empty($this->data)) {
+            if ($this->Document->save($this->data)) {
+                $this->Session->setFlash(__('The document has been saved', true));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The country could not be saved. Please, try again.', true));
+            }
+        }
+        if (empty($this->data)) {
+            $this->data = $this->Document->read(null, $id);
+        }
+        $languages = $this->Language->find('list'); //, array('conditions'=>array('Client.role =' => 'cust')));
+        $this->set(compact('languages'));
+    }
+
+    /*
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid document', true));
@@ -95,7 +116,7 @@ class DocumentsController extends AppController {
 		}
 		$languages = $this->Language->find('list'); //, array('conditions'=>array('Client.role =' => 'cust')));
         $this->set(compact('languages'));
-	}
+	}*/
 
 	function delete($id = null) {
 		if (!$id) {
