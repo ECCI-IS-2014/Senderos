@@ -649,6 +649,12 @@ div.code-coverage-results span.result-good {
     padding: 10px;
 }
 
+#visitors{
+    text-align: center;
+    color: gray;
+    padding: 10px;
+}
+
 .visitor
 {
     text-align: center;
