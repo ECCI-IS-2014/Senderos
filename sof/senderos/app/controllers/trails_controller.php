@@ -30,25 +30,23 @@ class TrailsController extends AppController {
 		}
 	}
 	
-	function trail($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid trail', true));
-			$this->redirect(array('action' => 'index'));
-		}
+    function trail ($id = null)
+    {
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid trail', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        $trail = $this->Trail->findById($id);
+        $this->set('trail', $trail);
+        $this->loadModel('Station');
+        $this->set('stations',$this->Station->find('all'));
+        if($_SESSION['role'] === 'restricted')
+        {
+            $this->loadModel('Restriction');
+            $this->set('restrictions', $this->Restriction->findAllByClientId($_SESSION['client_id']));
 
-		$trail = $this->Trail->findById($id);
-
-		$this->set('trail', $trail);
-
-		$this->loadModel('Station');
-		$this->set('stations', $this->Station->find('all'));
-		
-		if($_SESSION['role'] === 'restricted')
-		{
-			$this->loadModel('Restriction');
-			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
-		}
-	}
+        }
+    }
 
 
     function view($id = null) {

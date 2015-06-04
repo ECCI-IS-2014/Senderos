@@ -1,6 +1,10 @@
 
 <?php
-
+$what = $_GET['what'];
+if($what === '2')
+{
+    $what = 'images';
+}
 $imagesdiv = "<div id='imagesdiv' class='filediv'>";
 
 $imagescounter = 0;
@@ -9,7 +13,7 @@ $show = 'no';
 
 foreach($pointdocuments as $pointdocument):
 
-if($pointdocument['Document']['language'] === $_SESSION['language'])
+if($pointdocument['Document']['language_id'] == $_SESSION['language'])
 {
 
 $show = 'no';
@@ -30,16 +34,16 @@ else
 
 if($show === 'yes')
 {
-	if($pointdocument['Document']['type'] === $_GET['what']) //if an image
+	if($pointdocument['Document']['type'] === $what) //if an image
 	{
 		$imagescounter++;
 		
 		$imagesdiv .= "<div id='";
 
-		if($pointdocument['Document']['type'] === '2')$imagesdiv .= "imageitem";
-		if($pointdocument['Document']['type'] === '0')$imagesdiv .= "videoitem";
-		if($pointdocument['Document']['type'] === '1')$imagesdiv .= "textitem";
-		if($pointdocument['Document']['type'] === '3')$imagesdiv .= "sounditem";
+		if($pointdocument['Document']['type'] === 'images')$imagesdiv .= "imageitem";
+		if($pointdocument['Document']['type'] === 'video')$imagesdiv .= "videoitem";
+		if($pointdocument['Document']['type'] === 'text')$imagesdiv .= "textitem";
+		if($pointdocument['Document']['type'] === 'sound')$imagesdiv .= "sounditem";
 
 
 		$imagesdiv .= $imagescounter."'";
@@ -58,11 +62,11 @@ if($show === 'yes')
 
 		$imagesdiv .= "<td>";
 
-		if($pointdocument['Document']['type'] === '2') //if an image
+		if($pointdocument['Document']['type'] === 'images') //if an image
 		{
 			$imagesdiv .="<img id='img".$pointdocument['Document']['id']."' style='width:500px; height:450px;' src='/senderos/app/webroot/images/".$pointdocument['Document']['route']."' />";
 		}
-		else if($pointdocument['Document']['type'] === '0') //if a video
+		else if($pointdocument['Document']['type'] === 'video') //if a video
 		{
 			$imagesdiv .= "<video id='vid".$pointdocument['Document']['id']."' width='500' height='450' controls>";
 			$imagesdiv .= "<source src='/senderos/app/webroot/video/".$pointdocument['Document']['route']."' type='video/mp4'>";
@@ -70,7 +74,7 @@ if($show === 'yes')
 			$imagesdiv .= "Your browser does not support the video tag";
 			$imagesdiv .= "</video>";
 		}
-		else if($pointdocument['Document']['type'] === '3') //if a sound
+		else if($pointdocument['Document']['type'] === 'sound') //if a sound
 		{
 			$imagesdiv .= "<audio id='snd".$pointdocument['Document']['id']."' width='500' height='450' controls>";
 			$imagesdiv .= "<source src='/senderos/app/webroot/sound/".$pointdocument['Document']['route']."' type='audio/mpeg'>";
@@ -78,7 +82,7 @@ if($show === 'yes')
 			$imagesdiv .= "Your browser does not support the audio tag";
 			$imagesdiv .= "</audio>";
 		}
-		else if($pointdocument['Document']['type'] === '1') //if a text
+		else if($pointdocument['Document']['type'] === 'text') //if a text
 		{
 			$imagesdiv .="<embed id='txt".$pointdocument['Document']['id']."' style='width:500px; height:450px;' src='/senderos/app/webroot/text/".$pointdocument['Document']['route']."' />";
 		}
@@ -99,7 +103,7 @@ if($show === 'yes')
 		//$imagesdiv .= "".$pointdocument['Document']['id']."<br>";
 		$imagesdiv .= "<h1>".$pointdocument['Document']['name']."</h1>";
 		//$imagesdiv .= "".$pointdocument['Document']['route']."<br>";
-		//$imagesdiv .= "".$pointdocument['Document']['language']."<br>";
+		//$imagesdiv .= "".$pointdocument['Document']['language_id']."<br>";
 		$imagesdiv .= "<p>".$pointdocument['Document']['description']."</p>";
 
 		$imagesdiv .= "</div>"; //information div
@@ -124,7 +128,9 @@ $imagesdiv .= "</div>"; //end imagesdiv
 <div id="point_documents">
 
 
-<?php 
+<?php
+
+echo $what;
 
 echo $imagesdiv."<br>";
 

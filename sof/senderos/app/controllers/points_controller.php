@@ -8,7 +8,7 @@ class PointsController extends AppController {
 
 	function beforeFilter() {
         parent::BeforeFilter();
-        $this->Auth->allow('getinfo', 'explore', 'multimedia', 'documents');
+        $this->Auth->allow('getinfo', 'multimedia', 'documents', 'index', 'view', 'display', 'infooptions');
     }
 	
 	function index() {
@@ -150,7 +150,7 @@ class PointsController extends AppController {
 					foreach ($visitors as $visitor):
 						if($visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
 						{
-							if($pointdocument['Document']['language'] === $_SESSION['language'])
+							if($pointdocument['Document']['language_id'] === $_SESSION['language'])
 							{
 								$show = 'yes';
 								break;
@@ -161,10 +161,10 @@ class PointsController extends AppController {
 					if($show === 'yes')
 					{
 						$cont++;
-						if($pointdocument['Document']['type'] === '0') $video++;
-						else if($pointdocument['Document']['type'] === '1') $text++;
-						else if($pointdocument['Document']['type'] === '2') $image++;
-						else if($pointdocument['Document']['type'] === '3') $sound++;
+						if($pointdocument['Document']['type'] === 'video') $video++;
+						else if($pointdocument['Document']['type'] === 'text') $text++;
+						else if($pointdocument['Document']['type'] === 'images') $image++;
+						else if($pointdocument['Document']['type'] === 'sound') $sound++;
 						else continue;
 					}
 				endforeach;
@@ -418,6 +418,7 @@ class PointsController extends AppController {
 			}
 		}
 	}
+
 
 
 	function multimedia($id = null)
