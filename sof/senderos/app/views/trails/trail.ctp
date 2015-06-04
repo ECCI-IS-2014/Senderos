@@ -7,28 +7,9 @@
 <div id="bodycontent">
 
 	<div id="leftdiv">
-		<div id="accordeon">
-			<?php foreach($stations as $station): ?>
-
-				<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
-					<!--<div style="float:left;">-->
-					<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>
-
-					<div id="station_<?php echo $station['Station']['id']?>_arrow" class="menuarrow" onclick="this.innerHTML = (this.innerHTML=='&#x25B2;')? '&#x25BC;': '&#x25B2;';">
-					&#x25BC;</div>
-
-				</div> <!-- station_{}-->
-
-				<div id="station_<?php echo $station['Station']['id']?>_trails" style="display:none;">
-					<?php foreach($station['Trail'] as $stationtrail): ?>
-						<div class="trailitem">
-						<?php echo $this->Html->link($stationtrail['name'], array('controller' => 'trails', 'action' => 'trail', $stationtrail['id'])); ?>
-						</div>
-					<?php endforeach ?>
-				</div> <!-- station_{}_trails-->
-
-			<?php endforeach; ?>
-		</div><!-- accordeon container -->
+		<p><h1><?php echo $trail['Station']['name']; ?></h1></p>
+		<p><h2><?php echo $trail['Trail']['name']; ?></h2></p>
+		<p><?php echo $trail['Trail']['description']; ?></p>
 	</div> <!-- leftdiv container -->
 
 	<div id="centraldiv">
@@ -131,11 +112,63 @@
 	</div> <!-- centraldiv container -->
 
 	<div id="rightdiv">
+		<div id="accordeon">
+			<?php foreach($stations as $station): ?>
 
-		<p><h1><?php echo $trail['Station']['name']; ?></h1></p>
-		<p><h2><?php echo $trail['Trail']['name']; ?></h2></p>
-		<p><?php echo $trail['Trail']['description']; ?></p>
+				<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
+					<!--<div style="float:left;">-->
+					<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>
+
+					<div id="station_<?php echo $station['Station']['id']?>_arrow" class="menuarrow" onclick="this.innerHTML = (this.innerHTML=='&#x25B2;')? '&#x25BC;': '&#x25B2;';">
+					&#x25BC;</div>
+
+				</div> <!-- station_{}-->
+
+				<div id="station_<?php echo $station['Station']['id']?>_trails" style="display:none;">
+					<?php foreach($station['Trail'] as $stationtrail): ?>
+						<div class="trailitem">
+						<?php echo $this->Html->link($stationtrail['name'], array('controller' => 'trails', 'action' => 'trail', $stationtrail['id'])); ?>
+						</div>
+					<?php endforeach ?>
+				</div> <!-- station_{}_trails-->
+
+			<?php endforeach; ?>
+		</div><!-- accordeon container -->
+		<?php
+        		$languages = $this->requestAction('/languages/getlanguages');
+
+        		echo "<select id='languages' onchange=\"selectLanguage()\">";
+        		echo "<option disabled selected>Change language</option>";
+
+        		foreach($languages as $language):
+        			print '<option value='.$language['Language']['id'].'>'.$language['Language']['name'].'</option>';
+        		endforeach;
+
+        		print '</select>';
+        ?>
 	</div> <!-- rightdiv container -->
 
+    <script>
+        function selectLanguage()
+        {
+           var e = document.getElementById("languages").value;
+
+           if(window.XMLHttpRequest)
+              ajax = new XMLHttpRequest()
+           else
+              ajax = new ActiveXObject("Microsoft.XMLHTTP");
+
+           ajax.open("GET","/senderos/languages/selectlanguage?language="+e+"",true);
+
+           ajax.onreadystatechange=function(){
+              if(ajax.readyState==4)
+              {
+                  var respuesta=ajax.responseText;
+                  location.reload();
+              }
+           }
+           ajax.send(null);
+        }
+    </script>
 
 </div> <!-- bodycontent container -->

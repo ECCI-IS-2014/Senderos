@@ -1,10 +1,21 @@
-
 <?php
 $what = $_GET['what'];
-if($what === '2')
+switch($what)
 {
-    $what = 'images';
+    case '0':
+        $what = 'video';
+        break;
+    case '1':
+        $what = 'text';
+        break;
+    case '2':
+        $what = 'images';
+        break;
+    case '3':
+        $what = 'sound';
+        break;
 }
+
 $imagesdiv = "<div id='imagesdiv' class='filediv'>";
 
 $imagescounter = 0;

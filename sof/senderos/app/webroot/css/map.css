@@ -1,5 +1,6 @@
-
 /* CLEARING INHERITANCE */
+
+@import url("http://fonts.googleapis.com/css?family=Questrial");
 
 #bodycontent{
 	margin: 0;
@@ -7,7 +8,7 @@
 	/*position: relative;*/
 	background: initial;
 	color: initial;
-	font-family: initial;
+	font-family: 'Questrial', arial, sans-serif;
 	font-size: initial;
 	text-align: initial;
 	clear: initial;
@@ -58,6 +59,11 @@
 	width: 20%;
 }
 
+#leftdiv h1{
+    color: black;
+    font-size: larger;
+}
+
 #centraldiv{
 	float: left;
 	width: 60%;
@@ -77,6 +83,11 @@
 #rightdiv p{
 	margin-top: 10px;
 	/*font-weight: bold;*/
+}
+
+#selectlans
+{
+    padding:1em;
 }
 
 #pointslayer{
@@ -203,6 +214,10 @@
 	position: relative;
 }
 
+#accordeon a
+{
+    color:white;
+}
 
 .stationitem{
 	position: relative;
@@ -212,6 +227,7 @@
 	padding-bottom: 2.5%;
 	padding-left: 2.5%;
 	border-bottom: 1px solid;
+    border-bottom-color: #347C17;
 	clear:both;
 	height: auto !important;
 }
@@ -220,13 +236,13 @@
 	position: absolute;
 	top: 10%;
 	right: 5%;
-	color: #045FB4;
+	color: white;
 	padding-right: 2.5%;
 	cursor: pointer;
 }
 
 .trailitem{
-	background-color: #FDBB30;
+	background-color: #BCE954;
 	width: 82.5%;
 	padding-top: 2.5%;
 	padding-bottom: 2.5%;
