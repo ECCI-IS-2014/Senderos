@@ -10,27 +10,18 @@
 	<h3>Welcome!</h3>
 	<br>
 	<p>Select the language in which you want to see the information:</p>
-	<?php  //ESTA ES LA FORMA CREANDO LA CONEXION CON LA BD DESDE AQUI MISMO
-		$conn = oci_connect("erick", "resh", "localhost:1521/XE"); // LOGIN, PASSWORD Y DATABASE DE DATABASE.PHP
-		$query = 'select id, code, name from languages';
-		$stid = oci_parse($conn, $query);
-		oci_define_by_name($stid, 'CODE', $code);
-		oci_define_by_name($stid, 'ID', $lanid);
-		oci_define_by_name($stid, 'NAME', $name);
-		$r = oci_execute($stid);
+    <?php
+		$languages = $this->requestAction('/languages/getlanguages');
 
 		echo "<select id='languages' onchange=\"selectLanguage()\">";
 		echo "<option disabled selected>Select language</option>";
-		while ($row = oci_fetch($stid))
-		{
-			//print '<option value='.$code.'>'.$name.'</option>';
-			print '<option value='.$lanid.'>'.$name.'</option>';
-		}
-			
-		oci_free_statement($stid);
-		oci_close($conn);
+
+		foreach($languages as $language):
+			print '<option value='.$language['Language']['id'].'>'.$language['Language']['name'].'</option>';
+		endforeach;
+
 		print '</select>';
-        ?>
+    ?>
     <br>
     <br>
     <p>Select the type of visitor:</p>
