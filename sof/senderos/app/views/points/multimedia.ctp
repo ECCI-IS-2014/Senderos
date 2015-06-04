@@ -107,17 +107,6 @@ if($show === 'yes')
 		$imagesdiv .= "<td width='30px'><input class='middle' type='button' value='>' onclick='forward(".$imagescounter.",".$pointdocument['Document']['type'].");' title='next'/></td>";
 		$imagesdiv .= "</tr></table>";
 		$imagesdiv .= "</div>";	//the file div
-		
-		//information
-		$imagesdiv .= "<div class='imageinfo' style='float: left; width: 20%; height: 100%;'>";
-
-		//$imagesdiv .= "".$pointdocument['Document']['id']."<br>";
-		$imagesdiv .= "<h1>".$pointdocument['Document']['name']."</h1>";
-		//$imagesdiv .= "".$pointdocument['Document']['route']."<br>";
-		//$imagesdiv .= "".$pointdocument['Document']['language_id']."<br>";
-		$imagesdiv .= "<p>".$pointdocument['Document']['description']."</p>";
-
-		$imagesdiv .= "</div>"; //information div
 
 		$imagesdiv .= "</div>"; //imageitem div
 	}
