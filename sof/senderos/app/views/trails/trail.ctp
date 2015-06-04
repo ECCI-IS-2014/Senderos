@@ -147,6 +147,19 @@
 
         		print '</select>';
         ?></div>
+        <div id="selectlans"><?php
+            echo "<p>Change visitor type</p>";
+            $visitors = $this->requestAction('/visitors/getvisitors');
+
+            echo "<select id='visitors' onchange=\"selectVisitor()\">";
+            echo "<option disabled selected>Change visitor</option>";
+
+            foreach($visitors as $visitor):
+                print '<option value='.$visitor['Visitor']['role'].'>'.$visitor['Visitor']['role'].'</option>';
+            endforeach;
+
+            print '</select>';
+        ?></div>
 	</div> <!-- rightdiv container -->
 
     <script>
@@ -170,6 +183,32 @@
            }
            ajax.send(null);
         }
+    </script>
+
+    <script>
+    function selectVisitor()
+    {
+        var e = document.getElementById("visitors");
+        var session_role = e.options[e.selectedIndex].value;
+
+        if(window.XMLHttpRequest)
+            ajax = new XMLHttpRequest()
+        else
+            ajax = new ActiveXObject("Microsoft.XMLHTTP");
+
+        ajax.open("GET","/senderos/sessions/setsession?var=role&value="+session_role+"",true);
+
+        ajax.onreadystatechange=function()
+        {
+            if(ajax.readyState==4)
+            {
+                var respuesta=ajax.responseText;
+                location.reload();
+            }
+        }
+
+        ajax.send(null);
+    }
     </script>
 
 </div> <!-- bodycontent container -->

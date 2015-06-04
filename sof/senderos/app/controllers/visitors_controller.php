@@ -3,6 +3,17 @@ class VisitorsController extends AppController {
 
 	var $name = 'Visitors';
 
+	function beforeFilter()
+    {
+        parent::BeforeFilter();
+        $this->Auth->allow('display', 'getvisitors');
+    }
+
+    function getvisitors()
+    {
+        return $this->Visitor->find('all');
+    }
+	
 	function index() {
 		$this->Visitor->recursive = 0;
 		$this->set('visitors', $this->paginate());
