@@ -87,23 +87,43 @@ CREATE TABLE clients
 CREATE TABLE visitors(
   id int NOT NULL,
   role varchar(100) NOT NULL,
+  description varchar(500), 
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE documents_visitors
+(
+  id int NOT NULL,
   document_id int NOT NULL,
-  PRIMARY KEY(id),
-  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE SET NULL
+  visitor_id int NOT NULL,
+  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
+  FOREIGN KEY(visitor_id) REFERENCES visitors(id) ON DELETE SET NULL,
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE restrictions(
   id int NOT NULL,
-  client_id int,
-  model varchar(100),
-  recordid int,
-  creating int, -- 0|1
-  reading int, -- 0|1
-  updating int, -- 0|1
-  deleting int, -- 0|1
+  client_id int NOT NULL,
+  station_id int NOT NULL,
+  trail_id int,
   PRIMARY KEY(id),
-  FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE
+  FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE,
+  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE SET NULL,
+  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE SET NULL
 );
+
+--CREATE TABLE restrictions(
+--  id int NOT NULL,
+--  client_id int,
+--  model varchar(100),
+--  recordid int,
+--  creating int, -- 0|1
+--  reading int, -- 0|1
+--  updating int, -- 0|1
+--  deleting int, -- 0|1
+--  PRIMARY KEY(id),
+--  FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE
+--);
 
 -- Autoincrementos para las tablas.
 
@@ -117,6 +137,8 @@ CREATE SEQUENCE clients_seq;
 CREATE SEQUENCE dots_seq;
 CREATE SEQUENCE restrictions_seq;
 CREATE SEQUENCE language_seq;
+CREATE SEQUENCE dovi_seq;
+
 
 /
 CREATE OR REPLACE TRIGGER dots_ai
@@ -223,6 +245,17 @@ BEFORE INSERT ON languages
 FOR EACH ROW
 BEGIN
   SELECT language_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER dovi_ai
+BEFORE INSERT ON documents_visitors
+FOR EACH ROW
+BEGIN
+  SELECT dovi_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
@@ -498,6 +531,7 @@ DROP TABLE trails;
 DROP TABLE stations;
 DROP TABLE restrictions;
 DROP TABLE languages;
+DROP TABLE documents_visitors;
 
 -- Eliminar los autoincrementos
 DROP SEQUENCE stations_seq;
@@ -520,3 +554,5 @@ DROP SEQUENCE restrictions_seq;
 DROP TRIGGER restrictions_ai;
 DROP SEQUENCE language_seq;
 DROP TRIGGER language_ai;
+DROP TRIGGER dovi_ai;
+DROP TRIGGER dovi_seq;

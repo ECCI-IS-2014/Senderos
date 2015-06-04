@@ -55,7 +55,9 @@ class Document extends AppModel {
 		),
 	);
 	
-	public $hasMany = array('DocumentsPoint');	//agregué esta línea
+	//public $hasMany = array('DocumentsPoint');	//agregué esta línea
+	public $hasMany = array('DocumentsPoint', 'DocumentsVisitor');	//agregué esta línea
+
 	var $belongsTo = array(
         'Language' => array(
             'className' => 'Language',

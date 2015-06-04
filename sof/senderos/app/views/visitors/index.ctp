@@ -1,9 +1,9 @@
 <div class="visitors index">
-	<h2><?php __('Associations between multimedia files and goal visitors');?></h2>
+	<h2><?php __('Visitors');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('role');?></th>
-			<th><?php echo $this->Paginator->sort('document_id');?></th>
+			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -16,9 +16,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $visitor['Visitor']['role']; ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($visitor['Document']['name'], array('controller' => 'documents', 'action' => 'view', $visitor['Document']['id'])); ?>
-		</td>
+        <td><?php echo $visitor['Visitor']['description']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $visitor['Visitor']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $visitor['Visitor']['id'])); ?>
@@ -43,8 +41,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('New Association', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Documents', true), array('controller' => 'documents', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Document', true), array('controller' => 'documents', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Visitor', true), array('action' => 'add')); ?></li>
 	</ul>
 </div>

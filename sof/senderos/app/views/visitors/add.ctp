@@ -1,12 +1,11 @@
 <div class="visitors form">
 <?php echo $this->Form->create('Visitor');?>
 	<fieldset>
-		<legend><?php __('Associate a goal visitor to a multimedia file'); ?></legend>
+		<legend><?php __('Add visitor'); ?></legend>
 	<?php
-		//echo $this->Form->input('role', array('type'=select));
-        $options = array('Student' => 'Students','Professor' => 'Professors','Scientist'=>'Scientists', 'Natural' => 'Naturals');
-        echo $this->Form->input('role', array('type'=>'select','options' => $options));
-		echo $this->Form->input('document_id');
+		echo $this->Form->input('id');
+        echo $this->Form->input('role');
+        echo $this->Form->input('description');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
@@ -15,7 +14,5 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Visitors', true), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Documents', true), array('controller' => 'documents', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Document', true), array('controller' => 'documents', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
