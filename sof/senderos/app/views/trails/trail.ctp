@@ -134,7 +134,8 @@
 
 			<?php endforeach; ?>
 		</div><!-- accordeon container -->
-		<?php
+		<div id="selectlans"><?php
+		        echo "<p>Change your current language</p>";
         		$languages = $this->requestAction('/languages/getlanguages');
 
         		echo "<select id='languages' onchange=\"selectLanguage()\">";
@@ -145,7 +146,7 @@
         		endforeach;
 
         		print '</select>';
-        ?>
+        ?></div>
 	</div> <!-- rightdiv container -->
 
     <script>
