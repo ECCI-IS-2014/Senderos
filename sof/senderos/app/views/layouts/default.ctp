@@ -10,6 +10,7 @@
 		echo $this->Html->css('cake.generic');
         echo $this->Html->script('jquery'); // Include jQuery library
 		echo $scripts_for_layout;
+		echo $this->Html->script('ckeditor/ckeditor');
 	?>
     <?php
         if(!isset($_SESSION['lanview']))
