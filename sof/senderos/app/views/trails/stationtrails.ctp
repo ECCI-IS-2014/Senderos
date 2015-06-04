@@ -87,7 +87,7 @@ $traildelete = 'no';
 			
 			echo "<div class='trailheader'>".$trail['Trail']['name']."</div><br>";
 			
-			echo "<a href='/senderos/trails/view/".$trail['Trail']['id']."'>";
+			echo "<a href='/senderos/trails/trail/".$trail['Trail']['id']."'>";
 			
 			//echo "ID: ".$trail['Trail']['id']."<br>";
 			//echo "NAME: ".$trail['Trail']['name']."<br>";
