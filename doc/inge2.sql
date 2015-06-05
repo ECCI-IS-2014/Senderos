@@ -29,6 +29,7 @@ CREATE TABLE points (
   trail_id int,
   px_x int,
   px_y int,
+  style varchar(200),
   PRIMARY KEY(id),
   FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE SET NULL
 );
@@ -48,6 +49,7 @@ CREATE TABLE documents
   description varchar(500),
   type varchar(100) NOT NULL,
   route varchar(100),
+  htmltext varchar2(4000),
   PRIMARY KEY(id)
 );
 

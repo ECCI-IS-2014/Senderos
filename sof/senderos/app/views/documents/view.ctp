@@ -21,11 +21,6 @@
 			<?php echo $document['Document']['route']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Language'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $document['Language']['name']; ?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
 <div class="actions">

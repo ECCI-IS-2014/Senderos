@@ -6,7 +6,6 @@
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('type');?></th>
 			<th><?php echo $this->Paginator->sort('route');?></th>
-			<th><?php echo $this->Paginator->sort('language');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -23,7 +22,6 @@
 		<td><?php echo $document['Document']['description']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['type']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['route']; ?>&nbsp;</td>
-		<td><?php echo $document['Language']['name']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $document['Document']['id'])); ?>
 			<?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Edit', true), array('action' => 'edit', $document['Document']['id']));} ?>
