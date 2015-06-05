@@ -1,7 +1,7 @@
 <?php
 class Client extends AppModel {
 	var $name = 'Client';
-	var $displayField = 'name';
+	var $displayField = 'username';
 	var $validate = array(
         'username' => array
         (

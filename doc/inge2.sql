@@ -48,9 +48,7 @@ CREATE TABLE documents
   description varchar(500),
   type varchar(100) NOT NULL,
   route varchar(100),
-  language_id int NOT NULL,
-  PRIMARY KEY(id),
-  FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE SET NULL
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE documents_points
@@ -101,6 +99,16 @@ CREATE TABLE documents_visitors
   PRIMARY KEY (id)
 );
 
+CREATE TABLE documents_languages
+(
+  id int NOT NULL,
+  document_id int NOT NULL,
+  language_id int NOT NULL,
+  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
+  FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE SET NULL,
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE restrictions(
   id int NOT NULL,
   client_id int NOT NULL,
@@ -139,6 +147,7 @@ CREATE SEQUENCE dots_seq;
 CREATE SEQUENCE restrictions_seq;
 CREATE SEQUENCE language_seq;
 CREATE SEQUENCE dovi_seq;
+CREATE SEQUENCE dola_seq;
 
 
 /
@@ -257,6 +266,17 @@ BEFORE INSERT ON documents_visitors
 FOR EACH ROW
 BEGIN
   SELECT dovi_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER dola_ai
+BEFORE INSERT ON documents_languages
+FOR EACH ROW
+BEGIN
+  SELECT dola_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
@@ -533,6 +553,7 @@ DROP TABLE stations;
 DROP TABLE restrictions;
 DROP TABLE languages;
 DROP TABLE documents_visitors;
+DROP TABLE documents_languages;
 
 -- Eliminar los autoincrementos
 DROP SEQUENCE stations_seq;
@@ -556,4 +577,6 @@ DROP TRIGGER restrictions_ai;
 DROP SEQUENCE language_seq;
 DROP TRIGGER language_ai;
 DROP TRIGGER dovi_ai;
-DROP TRIGGER dovi_seq;
+DROP SEQUENCE dovi_seq;
+DROP TRIGGER dola_ai;
+DROP SEQUENCE dola_seq;

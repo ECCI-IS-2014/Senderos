@@ -1,11 +1,11 @@
 <?php
-class DocumentsVisitorsController extends AppController {
+class DocumentsLanguagesController extends AppController {
 
-	var $name = 'DocumentsVisitor';
+	var $name = 'DocumentsLanguages';
 
 	function index() {
-		$this->DocumentsVisitor->recursive = 0;
-		$this->set('documentsVisitors', $this->paginate());
+		$this->DocumentsLanguage->recursive = 0;
+		$this->set('documentsLanguages', $this->paginate());
 	}
 
 	function view($id = null) {
@@ -13,22 +13,22 @@ class DocumentsVisitorsController extends AppController {
 			$this->Session->setFlash(__('Invalid association', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('documentsVisitors', $this->DocumentsVisitor->read(null, $id));
+		$this->set('documentsLanguages', $this->DocumentsLanguage->read(null, $id));
 	}
 
 	function add() {
 		if (!empty($this->data)) {
-			$this->DocumentsVisitor->create();
-			if ($this->DocumentsVisitor->save($this->data)) {
+			$this->DocumentsLanguage->create();
+			if ($this->DocumentsLanguage->save($this->data)) {
 				$this->Session->setFlash(__('The association has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The association could not be saved. Please, try again.', true));
 			}
 		}
-		$documents = $this->DocumentsVisitor->Document->find('list');
-		$visitors = $this->DocumentsVisitor->Visitor->find('list');
-		$this->set(compact('documents', 'visitors'));
+		$documents = $this->DocumentsLanguage->Document->find('list');
+		$languages = $this->DocumentsLanguage->Language->find('list');
+		$this->set(compact('documents', 'languages'));
 	}
 
 	function edit($id = null) {
@@ -37,7 +37,7 @@ class DocumentsVisitorsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->DocumentsVisitor->save($this->data)) {
+			if ($this->DocumentsLanguage->save($this->data)) {
 				$this->Session->setFlash(__('The association has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -45,11 +45,11 @@ class DocumentsVisitorsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->DocumentsVisitor->read(null, $id);
+			$this->data = $this->DocumentsLanguage->read(null, $id);
 		}
-		$documents = $this->DocumentsVisitor->Document->find('list');
-		$visitors = $this->DocumentsVisitor->Visitor->find('list');
-		$this->set(compact('documents', 'documents'));
+		$documents = $this->DocumentsLanguage->Document->find('list');
+		$languages = $this->DocumentsLanguage->Language->find('list');
+		$this->set(compact('documents', 'languages'));
 	}
 
 	function delete($id = null) {
