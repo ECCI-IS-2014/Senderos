@@ -544,18 +544,19 @@ COMMIT;
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -- Eliminar todas la tablas creadas.
-DROP TABLE clients;
+
 DROP TABLE countries;
-DROP TABLE visitors;
+DROP TABLE restrictions;
+DROP TABLE clients;
 DROP TABLE documents_points;
+DROP TABLE documents_visitors;
+DROP TABLE documents_languages;
+DROP TABLE visitors;
+DROP TABLE languages;
 DROP TABLE documents;
 DROP TABLE points;
 DROP TABLE trails;
 DROP TABLE stations;
-DROP TABLE restrictions;
-DROP TABLE languages;
-DROP TABLE documents_visitors;
-DROP TABLE documents_languages;
 
 -- Eliminar los autoincrementos
 DROP SEQUENCE stations_seq;
