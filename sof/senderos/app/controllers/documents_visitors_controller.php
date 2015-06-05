@@ -1,7 +1,7 @@
 <?php
 class DocumentsVisitorsController extends AppController {
 
-	var $name = 'DocumentsVisitors';
+	var $name = 'DocumentsVisitor';
 
 	function index() {
 		$this->DocumentsVisitor->recursive = 0;
@@ -49,7 +49,7 @@ class DocumentsVisitorsController extends AppController {
 		}
 		$documents = $this->DocumentsVisitor->Document->find('list');
 		$visitors = $this->DocumentsVisitor->Visitor->find('list');
-		$this->set(compact('documents', 'visitors'));
+		$this->set(compact('documents', 'documents'));
 	}
 
 	function delete($id = null) {

@@ -141,14 +141,20 @@ class PointsController extends AppController {
 		{
 			if($_SESSION['role'] !== 'administrator' || $_SESSION['role'] !== 'restricted')
 			{
-				$this->loadModel('Visitor');
-				$visitors = $this->Visitor->findAllByRole($_SESSION['role']);
+                $this->loadModel('Visitor');
+                $this->loadModel('DocumentsVisitor');
+                $roles = $this->Visitor->findAllByRole($_SESSION['role']);
+
+                foreach($roles as $role)
+                {
+                    $visitors = $this->DocumentsVisitor->findAllByVisitorId($role['Visitor']['id']);
+                }
 
 				foreach($pointdocuments as $pointdocument):
 
 					$show = 'no';
 					foreach ($visitors as $visitor):
-						if($visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+						if($visitor['DocumentsVisitor']['document_id'] == $pointdocument['Document']['id'])
 						{
 							if($pointdocument['Document']['language_id'] === $_SESSION['language'])
 							{
@@ -433,12 +439,18 @@ class PointsController extends AppController {
 		{
 			if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 			{
-				//$this->loadModel('Visitor');
-				//$this->set('visitors', $this->Visitor->findAllByRole($_SESSION['role']));
+
 			}
 			else {
-				$this->loadModel('Visitor');
-				$this->set('visitors', $this->Visitor->findAllByRole($_SESSION['role']));
+                $this->loadModel('Visitor');
+                $this->loadModel('DocumentsVisitor');
+                $roles = $this->Visitor->findAllByRole($_SESSION['role']);
+
+                foreach($roles as $role)
+                {
+                    $visitors = $this->DocumentsVisitor->findAllByVisitorId($role['Visitor']['id']);
+                }
+				$this->set('visitors', $visitors);
 			}
 		}
 	}

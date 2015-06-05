@@ -34,9 +34,8 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 else
 {
 	foreach ($visitors as $visitor):
-		if($visitor['Visitor']['document_id'] == $pointdocument['Document']['id'])
+		if($visitor['DocumentsVisitor']['document_id'] == $pointdocument['Document']['id'])
 		{
-			
 			$show = 'yes';
 			break;
 		}
@@ -117,24 +116,14 @@ if($show === 'yes')
 
 }
 endforeach; // foreach document
-
 $imagesdiv .= "<div id='imagescount' style='display:none;'>".$imagescounter."</div>";
-
 $imagesdiv .= "</div>"; //end imagesdiv
-
 ?>
-
 
 <div id="point_documents">
 
-
 <?php
-
-echo $what;
-
 echo $imagesdiv."<br>";
-
 ?>
-
 
 </div> <!-- point_documents -->
