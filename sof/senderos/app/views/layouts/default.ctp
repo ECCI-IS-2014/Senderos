@@ -39,7 +39,7 @@
         ?>
         <div id="navegador">
             <ul>
-                    <li><?php echo $this->Html->link(__($str_stations, true), array('controller'=>'stations', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_stations, true), array('controller'=>'stations', 'action'=>'stationindex')); ?></li>
                     <li><?php echo $this->Html->link(__($str_trails, true), array('controller'=>'trails', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_points, true), array('controller'=>'points', 'action'=>'index')); ?></li>
                  	<li><?php echo $this->Html->link(__($str_documents, true), array('controller'=>'documents', 'action'=>'index')); ?></li>

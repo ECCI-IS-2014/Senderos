@@ -8,6 +8,18 @@ class StationsController extends AppController {
         $this->Auth->allow('station', 'display', 'index');
     }
 	
+	function stationindex()
+    {
+        $this->Station->recursive = 0;
+        $this->set('stations', $this->paginate());
+
+        if($_SESSION['role'] === 'restricted')
+        {
+            $this->loadModel('Restriction');
+            $this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+        }
+    }
+	
 	function index() {
 		$this->Station->recursive = 0;
 		$this->set('stations', $this->paginate());
