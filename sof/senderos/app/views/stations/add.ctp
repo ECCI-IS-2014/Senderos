@@ -21,10 +21,8 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex'));?></li>
 	</ul>
 </div>
 

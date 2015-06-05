@@ -109,7 +109,6 @@ if($stationread == 'yes')
 
 
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php 
 		if($stationupdate === 'yes')
@@ -123,7 +122,7 @@ if($stationread == 'yes')
 		/*else 
 			echo "---";*/
 		?> </li>
-		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex')); ?> </li>
 		<li><?php 
 		if($stationcreate === 'yes')
 			echo $this->Html->link(__('New Station', true), array('action' => 'add')); 

@@ -66,16 +66,14 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 ?>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
 	<ul>
-
 		<li><?php 
 		if($stationdelete === 'yes')
 			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Station.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Station.id'))); 
 		/*else 
 			echo "---";*/
 		?></li>
-		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex'));?></li>
 	</ul>
 </div>
 
