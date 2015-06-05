@@ -25,13 +25,18 @@
     <br>
     <br>
     <p>Select the type of visitor:</p>
-        <select id='roles' class="visitor" onchange="selectVisitor()">
-            <option disabled selected>Select visitor</option>
-            <option value="Student">Student</option>
-            <option value="Professor">Professor</option>
-            <option value="Researcher">Researcher</option>
-            <option value="Natural">Natural</option>
-        </select>
+    <?php
+        $visitors = $this->requestAction('/visitors/getvisitors');
+
+        echo "<select id='visitors' onchange=\"selectVisitor()\">";
+        echo "<option disabled selected>Change visitor</option>";
+
+        foreach($visitors as $visitor):
+            print '<option value='.$visitor['Visitor']['role'].'>'.$visitor['Visitor']['role'].'</option>';
+        endforeach;
+
+        print '</select>';
+    ?>
     <br>
     <br>
     <br>
@@ -45,7 +50,7 @@
     <script>
     function selectVisitor()
     {
-        var e = document.getElementById("roles");
+        var e = document.getElementById("visitors");
         var session_role = e.options[e.selectedIndex].value;
 
         if(window.XMLHttpRequest)

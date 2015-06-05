@@ -7,7 +7,19 @@ class StationsController extends AppController {
 		parent::BeforeFilter();
         $this->Auth->allow('station', 'display', 'index');
     }
-	
+
+    function stationindex()
+    {
+        $this->Station->recursive = 0;
+        $this->set('stations', $this->paginate());
+
+        if($_SESSION['role'] === 'restricted')
+        {
+            $this->loadModel('Restriction');
+            $this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+        }
+    }
+
 	function index() {
 		$this->Station->recursive = 0;
 		$this->set('stations', $this->paginate());
@@ -23,7 +35,6 @@ class StationsController extends AppController {
      * Funcion para index de los visitantes
      * */
 
-
     function station() {
         $this->Station->recursive = 0;
         $this->set('stations', $this->paginate());
@@ -38,7 +49,7 @@ class StationsController extends AppController {
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid station', true));
-			$this->redirect(array('action' => 'index'));
+			$this->redirect(array('action' => 'stationindex'));
 		}
 		$this->set('station', $this->Station->read(null, $id));
 		
@@ -54,7 +65,7 @@ class StationsController extends AppController {
 			$this->Station->create();
 			if ($this->Station->save($this->data)) {
 				$this->Session->setFlash(__('The station has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'stationindex'));
 			} else {
 				$this->Session->setFlash(__('The station could not be saved. Please, try again.', true));
 			}
@@ -75,7 +86,7 @@ class StationsController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->Station->save($this->data)) {
 				$this->Session->setFlash(__('The station has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'stationindex'));
 			} else {
 				$this->Session->setFlash(__('The station could not be saved. Please, try again.', true));
 			}
@@ -95,14 +106,14 @@ class StationsController extends AppController {
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for station', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'stationindex'));
 		}
 		if ($this->Station->delete($id)) {
 			$this->Session->setFlash(__('Station deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'stationindex'));
 		}
 		$this->Session->setFlash(__('Station was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('action' => 'stationindex'));
 		
 		if($_SESSION['role'] === 'restricted')
 		{

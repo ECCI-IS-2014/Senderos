@@ -6,15 +6,20 @@ class LanguagesController extends AppController
     function beforeFilter()
     {
         parent::BeforeFilter();
-        $this->Auth->allow('display','selectlanguage','setlanguage', 'getlanguages');
+        $this->Auth->allow('display','selectlanguage','setlanguage', 'getlanguages','getlanname');
     }
 
     function getlanguages()
     {
         return $this->Language->find('all');
     }
+
+    function getlanname()
+    {
+        return $this->Language->findById($_SESSION['language']);
+    }
 	
-    function selectlanguage() // Define el idioma de la sesión para mostrar información
+    function selectlanguage() // Define el idioma de la sesiï¿½n para mostrar informaciï¿½n
     {
         $language = ''.$_GET['language'].'';
         $_SESSION['language']= $language;

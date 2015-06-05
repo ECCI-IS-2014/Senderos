@@ -10,6 +10,7 @@
 		echo $this->Html->css('cake.generic');
         echo $this->Html->script('jquery'); // Include jQuery library
 		echo $scripts_for_layout;
+		echo $this->Html->script('ckeditor/ckeditor');
 	?>
     <?php
         if(!isset($_SESSION['lanview']))
@@ -38,12 +39,15 @@
         ?>
         <div id="navegador">
             <ul>
-                    <li><?php echo $this->Html->link(__($str_stations, true), array('controller'=>'stations', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_stations, true), array('controller'=>'stations', 'action'=>'stationindex')); ?></li>
                     <li><?php echo $this->Html->link(__($str_trails, true), array('controller'=>'trails', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_points, true), array('controller'=>'points', 'action'=>'index')); ?></li>
                  	<li><?php echo $this->Html->link(__($str_documents, true), array('controller'=>'documents', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_clients, true), array('controller'=>'clients', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_visitors, true), array('controller'=>'visitors', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_languages, true), array('controller'=>'languages', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_filesandpoints, true), array('controller'=>'documents_points', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_filesandvisitors, true), array('controller'=>'documents_visitors', 'action'=>'index')); ?></li>
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){
@@ -67,7 +71,8 @@
             {
                 if(isset($_SESSION['language']))
                 {
-                    echo 'Your language is: '.$_SESSION['language']."<br>";
+                    $lanv = $this->requestAction('/languages/getlanname');
+                    echo 'Your language is: '.$lanv['Language']['name']."<br>";
                 }
                 if(isset($_SESSION['role']))
                 {
