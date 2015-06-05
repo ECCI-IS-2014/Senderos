@@ -44,7 +44,10 @@
                     <li><?php echo $this->Html->link(__($str_points, true), array('controller'=>'points', 'action'=>'index')); ?></li>
                  	<li><?php echo $this->Html->link(__($str_documents, true), array('controller'=>'documents', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_clients, true), array('controller'=>'clients', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_visitors, true), array('controller'=>'visitors', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_languages, true), array('controller'=>'languages', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_filesandpoints, true), array('controller'=>'documents_points', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_filesandvisitors, true), array('controller'=>'documents_visitors', 'action'=>'index')); ?></li>
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){

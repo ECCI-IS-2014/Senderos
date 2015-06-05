@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+$str_associations="Asociaciones";
 $str_actions="Acciones";
 $str_change_lan = "Cambiar idioma";
 $str_cancel="Cancelar";
@@ -11,6 +11,8 @@ $str_description="Descripción";
 $str_documents="Documentos";
 $str_explore="Explorar";
 $str_file="Archivo";
+$str_filesandpoints="Documentos&Puntos";
+$str_filesandvisitors="Documentos&Visitantes";
 $str_images="Imágenes";
 $str_images_c="IMáGENES";
 $str_language="Idioma";
@@ -33,5 +35,5 @@ $str_texts_c="TEXTOS";
 $str_trails="Senderos";
 $str_videos="Videos";
 $str_videos_c="VIDEOS";
-
+$str_visitors="Visitantes";
 ?>
