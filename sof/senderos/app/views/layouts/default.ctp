@@ -68,7 +68,8 @@
             {
                 if(isset($_SESSION['language']))
                 {
-                    echo 'Your language is: '.$_SESSION['language']."<br>";
+                    $lanv = $this->requestAction('/languages/getlanname');
+                    echo 'Your language is: '.$lanv['Language']['name']."<br>";
                 }
                 if(isset($_SESSION['role']))
                 {
