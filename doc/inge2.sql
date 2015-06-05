@@ -106,6 +106,7 @@ CREATE TABLE restrictions(
   client_id int NOT NULL,
   station_id int NOT NULL,
   trail_id int,
+  allt int NOT NULL, -- 0 o 1
   PRIMARY KEY(id),
   FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE,
   FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE SET NULL,

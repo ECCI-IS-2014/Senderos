@@ -6,24 +6,18 @@
         <tr>
             <th>Id</th>
             <th>Client</th>
-            <th>Model</th>
-            <th>Record</th>
-            <th>Creating</th>
-            <th>Reading</th>
-            <th>Updating</th>
-            <th>Deleting</th>
+            <th>Station</th>
+            <th>All trails</th>
+            <th>Trail id</th>
         </tr>
 
         <?php foreach ($restrictions as $restriction): ?>
         <tr>
             <td><?php echo $restriction['Restriction']['id']; ?></td>
-            <td><?php echo $restriction['Restriction']['client_id']; ?></td>
-            <td><?php echo $restriction['Restriction']['model']; ?></td>
-            <td><?php echo $restriction['Restriction']['recordid']; ?></td>
-            <td><?php echo $restriction['Restriction']['creating']; ?></td>
-            <td><?php echo $restriction['Restriction']['reading']; ?></td>
-            <td><?php echo $restriction['Restriction']['updating']; ?></td>
-            <td><?php echo $restriction['Restriction']['deleting']; ?></td>
+            <td><?php echo $restriction['Client']['username']; ?></td>
+            <td><?php echo $restriction['Station']['name']; ?></td>
+            <td><?php if ($restriction['Restriction']['allt'] ==1 ){echo 'TRUE';} else {echo 'FALSE';} ?></td>
+            <td><?php if( $restriction['Restriction']['allt'] == 0 ) {echo $restriction['Trail']['name']; }else { echo 'NA'; } ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
@@ -35,25 +29,20 @@
             <tr>
                 <th>Id</th>
                 <th>Client</th>
-                <th>Model</th>
-                <th>Record</th>
-                <th>Creating</th>
-                <th>Reading</th>
-                <th>Updating</th>
-                <th>Deleting</th>
+                <th>Station</th>
+                <th>Trail id</th>
+                <th>All trails</th>
             </tr>
+            <p>NECESITO QUE SE CARGUEN TODOS LOS CLIENTES RESTRINGIDOS
+                Y TODAS LAS ESTACIONES Y AQUÍ HAY DOS OPCIONES: </p>
+            <p>1) SI SELECCIONAN 'ALL TRAILS' = TRUE, SE BLOQUEA EL SELECT DE TRAILS</p>
+            <p>2) SI SELECCIONAN 'ALL TRAILS' = FALSE, SE CARGA EL SELECT DE TRAILS CON LOS SENDEROS DE LA ESTACIÓN Q ELIGIÓ</p>
             <tr>
                 <td><?php echo $this->Form->input('id', array('label' => false, 'type' => 'hidden'));?></td>
-                <td><?php echo $this->Form->input('client_id', array('label' => false, 'options' => $clients));?></td>
-                 <td><?php
-                        $moptions = array('Document' => 'Document', 'Point' => 'Point', 'Station' => 'Station', 'Trail' => 'Trail');
-                        echo $this->Form->input('model', array('label' => false, 'options' => $moptions));?>
-                </td>
-                <td><?php echo $form->text('recordid', array('type' => 'number', 'default' => -1, 'min' => -1) );?></td>
-                <td><?php echo $this->Form->input('creating', array('label' => false, 'options' => array('false','true')));?></td>
-                <td><?php echo $this->Form->input('reading', array('label' => false, 'options' => array('false','true')));?></td>
-                <td><?php echo $this->Form->input('updating', array('label' => false, 'options' => array('false','true')));?></td>
-                <td><?php echo $this->Form->input('deleting', array('label' => false, 'options' => array('false','true')));?></td>
+                <td><?php echo $this->Form->input('client_id');?></td>
+                <td><?php echo $this->Form->input('station_id');?></td>
+                <td><?php echo $this->Form->input('allt', array('label' => 'All trails?', 'options' => array('false','true')));?></td>
+                <td><?php echo $this->Form->input('trail_id');?></td>
             </tr>
         </table>
     </fieldset>

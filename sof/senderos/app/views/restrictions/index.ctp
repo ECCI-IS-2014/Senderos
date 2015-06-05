@@ -1,4 +1,4 @@
-<div class="points form">
+<div class="restrictions index">
 <?php echo $this->Form->create('Restriction');?>
 	<fieldset>
 		<legend><?php __('View Restrictions'); ?></legend>
@@ -6,29 +6,22 @@
             <tr>
                 <th>Id</th>
                 <th>Client</th>
-                <th>Model</th>
-                <th>Record</th>
-                <th>Creating</th>
-                <th>Reading</th>
-                <th>Updating</th>
-                <th>Deleting</th>
+                <th>Station</th>
+                <th>All trails</th>
+                <th>Trail id</th>
+                <th class="actions"><?php __('Actions');?></th>
             </tr>
 
             <?php foreach ($restrictions as $restriction): ?>
             <tr>
                 <td><?php echo $restriction['Restriction']['id']; ?></td>
-                <td><?php echo $restriction['Restriction']['client_id']; ?></td>
-                <td><?php echo $restriction['Restriction']['model']; ?></td>
-                <td><?php echo $restriction['Restriction']['recordid']; ?></td>
-                <td><?php echo $restriction['Restriction']['creating']; ?></td>
-                <td><?php echo $restriction['Restriction']['reading']; ?></td>
-                <td><?php echo $restriction['Restriction']['updating']; ?></td>
-                <td><?php echo $restriction['Restriction']['deleting']; ?></td>
-                <td>
-                    <?php echo $this->Html->link(__('Edit', true), array('controller' => 'restrictions', 'action' => 'edit', $restriction['Restriction']['id'])); ?>
-                </td>
-                <td>
-                    <?php echo $this->Html->link(__('Delete', true), array('controller' => 'restrictions', 'action' => 'delete', $restriction['Restriction']['id'])); ?>
+                <td><?php echo $restriction['Client']['username']; ?></td>
+                <td><?php echo $restriction['Station']['name']; ?></td>
+                <td><?php if ($restriction['Restriction']['allt'] ==1 ){echo 'TRUE';} else {echo 'FALSE';} ?></td>
+                <td><?php if( $restriction['Restriction']['allt'] == 0 ) {echo $restriction['Trail']['name']; }else { echo 'NA'; } ?></td>
+                <td class="actions">
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $restriction['Restriction']['id'])); ?>
+                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $restriction['Restriction']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $restriction['Restriction']['id'])); ?>
                 </td>
             </tr>
             <?php endforeach; ?>

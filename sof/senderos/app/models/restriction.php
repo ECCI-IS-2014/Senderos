@@ -17,6 +17,20 @@ class Restriction extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
+        ),
+        'Station' => array(
+            'className' => 'Station',
+            'foreignKey' => 'station_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+        'Trail' => array(
+            'className' => 'Trail',
+            'foreignKey' => 'trail_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
         )
     );
 
