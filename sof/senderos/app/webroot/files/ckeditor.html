@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="/senderos/app/webroot/js/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript">
+			counter = 0;
+			content = '';
+			function clearGreeting() {
+			    document.forms['iframeditorform'].elements['textbox1'].value = '';
+			}
+			function minimizing() {
+			    editor.execCommand('Maximize');
+			}
+			function editparent() {
+			    window.parent.document.getElementById('DocumentHtmltext').value = content;
+			}
+		</script>
+	<head>
+	<body style="margin:0px; padding:0px;">
+
+		<form action="#" id="iframeditorform">
+			<input type="hidden" value="textbox1" id="textbox1" name="textbox1"/>
+
+			<textarea name="editor1" id="editor1">
+			</textarea>
+			<script>
+	
+			CKEDITOR.replace( 'editor1', {removeButtons: 'Source', height: 500, readOnly: false, editable: true });
+
+			var editor = CKEDITOR.instances['editor1'];
+
+				editor.on('change', function() {content = editor.getData(); document.getElementById('textbox1').value= content; editparent(); });
+
+				editor.on('beforeCommandExec',function(e){
+
+					if(e.data.name=='maximize'){
+						if(editor.getCommand("maximize").state == 2)
+							window.parent.maximizeeditor(2);//alert('max');
+						else
+							window.parent.maximizeeditor(1);
+					}
+
+				});
+
+			</script>
+		</form>
+
+	<body>
+</html>
