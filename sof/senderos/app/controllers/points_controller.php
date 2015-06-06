@@ -127,7 +127,6 @@ class PointsController extends AppController {
 		$this->autoRender = false; // No renderiza mediate el fichero .ctp
 
 		$pointdocuments = $this->Point->DocumentsPoint->findAllByPointId($id);
-
 		$response = '';
 		$video = 0;
 		$text = 0;
@@ -148,30 +147,32 @@ class PointsController extends AppController {
 
                 foreach($lans as $lan)
                 {
-                    $doclans = $this->DocumentsLanguage->findAllByLanguageId($lan['Language']['id']);
+                    $doclans = $this->Point->DocumentsLanguage->findAllByLanguageId($lan['Language']['id']);
                 }
 
-				foreach($pointdocuments as $pointdocument):
-
+				foreach($pointdocuments as $pointdocument)
+                {
 					$show = 'no';
 
                     foreach($roles as $role)
                     {
-                        $visitors = $this->DocumentsVisitor->findAllByVisitorId($role['Visitor']['id']);
+                        $visitors = $this->Point->DocumentsVisitor->findAllByVisitorId($role['Visitor']['id']);
                     }
 
-					foreach ($visitors as $visitor):
+					foreach ($visitors as $visitor)
+                    {
 						if($visitor['DocumentsVisitor']['document_id'] == $pointdocument['Document']['id'])
 						{
-                            foreach ($doclans as $doclan):
-							if($doclan['DocumentsLanguage']['language_id'] == $_SESSION['language'])
-							{
-								$show = 'yes';
-								break;
-							}
-                            endforeach;
+                            foreach ($doclans as $doclan)
+                            {
+							    if(($doclan['DocumentsLanguage']['language_id'] == $_SESSION['language'])&&($doclan['DocumentsLanguage']['document_id'] == $pointdocument['Document']['id']))
+							    {
+								    $show = 'yes';
+								    break;
+							    }
+                            }
 						}
-					endforeach;
+					}
 					
 					if($show === 'yes')
 					{
@@ -182,7 +183,7 @@ class PointsController extends AppController {
 						else if($pointdocument['Document']['type'] === 'sound') $sound++;
 						else continue;
 					}
-				endforeach;
+                }
 
 			}
 		}
