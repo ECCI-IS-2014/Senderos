@@ -57,7 +57,7 @@ class DocumentsVisitorsController extends AppController {
 			$this->Session->setFlash(__('Invalid id for association', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->DocumentsLanguage->delete($id)) {
+		if ($this->DocumentsVisitor->delete($id)) {
 			$this->Session->setFlash(__('Association deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}
