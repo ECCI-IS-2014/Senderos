@@ -129,12 +129,10 @@ class PointsController extends AppController {
 		$pointdocuments = $this->Point->DocumentsPoint->findAllByPointId($id);
 
 		$response = '';
-
 		$video = 0;
 		$text = 0;
 		$image = 0;
 		$sound = 0;
-
 		$cont = 0;
 
 		if(isset($_SESSION['role']))
@@ -142,25 +140,36 @@ class PointsController extends AppController {
 			if($_SESSION['role'] !== 'administrator' || $_SESSION['role'] !== 'restricted')
 			{
                 $this->loadModel('Visitor');
+                $this->loadModel('Language');
+                $this->loadModel('DocumentsLanguage');
                 $this->loadModel('DocumentsVisitor');
                 $roles = $this->Visitor->findAllByRole($_SESSION['role']);
+                $lans = $this->Language->findAllById($_SESSION['language']);
 
-                foreach($roles as $role)
+                foreach($lans as $lan)
                 {
-                    $visitors = $this->DocumentsVisitor->findAllByVisitorId($role['Visitor']['id']);
+                    $doclans = $this->DocumentsLanguage->findAllByLanguageId($lan['Language']['id']);
                 }
 
 				foreach($pointdocuments as $pointdocument):
 
 					$show = 'no';
+
+                    foreach($roles as $role)
+                    {
+                        $visitors = $this->DocumentsVisitor->findAllByVisitorId($role['Visitor']['id']);
+                    }
+
 					foreach ($visitors as $visitor):
 						if($visitor['DocumentsVisitor']['document_id'] == $pointdocument['Document']['id'])
 						{
-							if($pointdocument['Document']['language_id'] === $_SESSION['language'])
+                            foreach ($doclans as $doclan):
+							if($doclan['DocumentsLanguage']['language_id'] == $_SESSION['language'])
 							{
 								$show = 'yes';
 								break;
 							}
+                            endforeach;
 						}
 					endforeach;
 					
@@ -177,8 +186,6 @@ class PointsController extends AppController {
 
 			}
 		}
-
-		
 
 		if($cont>0)
 		{

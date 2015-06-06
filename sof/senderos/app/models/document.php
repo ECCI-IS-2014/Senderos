@@ -34,29 +34,29 @@ class Document extends AppModel {
 			),
 		),
 		'route' => array(
-			'notempty' => array(
+			/*'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
-		'language' => array(
-			'notempty' => array(
+		'htmltext' => array(
+			/*'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 	);
 	
 	//public $hasMany = array('DocumentsPoint');	//agregué esta línea
-	public $hasMany = array('DocumentsPoint', 'DocumentsVisitor');	//agregué esta línea
+	public $hasMany = array('DocumentsPoint', 'DocumentsVisitor', 'DocumentsLanguage');	//agregué esta línea
 }
 	
 
