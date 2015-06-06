@@ -49,7 +49,8 @@ class DocumentsVisitorsController extends AppController {
 		}
 		$documents = $this->DocumentsVisitor->Document->find('list');
 		$visitors = $this->DocumentsVisitor->Visitor->find('list');
-		$this->set(compact('documents', 'documents'));
+		$this->set(compact('documents', $documents));
+        $this->set(compact('visitors', $visitors));
 	}
 
 	function delete($id = null) {
