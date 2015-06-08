@@ -64,4 +64,6 @@ class DocumentsPointsController extends AppController {
 		$this->Session->setFlash(__('Association was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	//nada ...
 }
