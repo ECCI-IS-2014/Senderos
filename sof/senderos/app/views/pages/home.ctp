@@ -17,7 +17,7 @@
 		echo "<option disabled selected>Select language</option>";
 
 		foreach($languages as $language):
-			print '<option value='.$language['Language']['id'].'>'.$language['Language']['name'].'</option>';
+			print '<option value="'.$language['Language']['id'].'">'.$language['Language']['name'].'</option>';
 		endforeach;
 
 		print '</select>';

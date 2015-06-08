@@ -142,7 +142,7 @@
         		echo "<option disabled selected>Change language</option>";
 
         		foreach($languages as $language):
-        			print '<option value='.$language['Language']['id'].'>'.$language['Language']['name'].'</option>';
+        			print '<option value="'.$language['Language']['id'].'">'.$language['Language']['name'].'</option>';
         		endforeach;
 
         		print '</select>';
@@ -155,7 +155,7 @@
             echo "<option disabled selected>Change visitor</option>";
 
             foreach($visitors as $visitor):
-                print '<option value='.$visitor['Visitor']['role'].'>'.$visitor['Visitor']['role'].'</option>';
+                print '<option value="'.$visitor['Visitor']['role'].'">'.$visitor['Visitor']['role'].'</option>';
             endforeach;
 
             print '</select>';
