@@ -15,12 +15,12 @@
     <?php
         if(!isset($_SESSION['lanview']))
         {
-            include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/en.php';
+            include $_SERVER['DOCUMENT_ROOT'].'/git/sof/senderos/app/views/layouts/en.php';
         }
         else
         {
             $language = $_SESSION['lanview'];
-            include $_SERVER['DOCUMENT_ROOT'].'/senderos/app/views/layouts/'.$language.'.php';
+            include $_SERVER['DOCUMENT_ROOT'].'/git/sof/senderos/app/views/layouts/'.$language.'.php';
         }
     ?>
 </head>
@@ -46,8 +46,7 @@
                     <li><?php echo $this->Html->link(__($str_clients, true), array('controller'=>'clients', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_visitors, true), array('controller'=>'visitors', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_languages, true), array('controller'=>'languages', 'action'=>'index')); ?></li>
-                    <li><?php echo $this->Html->link(__($str_filesandpoints, true), array('controller'=>'documents_points', 'action'=>'index')); ?></li>
-                    <li><?php echo $this->Html->link(__($str_filesandvisitors, true), array('controller'=>'documents_visitors', 'action'=>'index')); ?></li>
+                    <li><?php echo $this->Html->link(__($str_restrictions, true), array('controller'=>'restrictions', 'action'=>'index')); ?></li>
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){

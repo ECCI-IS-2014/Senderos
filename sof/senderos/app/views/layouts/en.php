@@ -36,4 +36,5 @@ $str_trails="Trails";
 $str_videos="Videos";
 $str_videos_c="VIDEOS";
 $str_visitors="Visitors";
+$str_restrictions="Restrictions";
 ?>

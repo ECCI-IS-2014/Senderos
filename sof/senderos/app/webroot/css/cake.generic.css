@@ -402,7 +402,6 @@ div.message {
 div.error-message {
 	clear: both;
 	color: #fff;
-	font-weight: bold;
 	background: #c73e14;
 }
 p.error {
