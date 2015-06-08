@@ -3,14 +3,10 @@
 <?php
     echo $session->flash('auth');
     echo $form->create('Client', array('controller'=>'clients','action' => 'login'));
-    echo $form->input('username');
-    echo $form->input('password');
+?>
+    <h1 title = "You MUST type your username"> <?php echo $form->input('username'); ?> </h1>
+    <h1 title = "You MUST type your password"> <?php echo $form->input('password'); ?> </h1>
+<?php
     echo $form->end('Login');
 ?>
-</div>
-
-<div class="actions">
-	<ul>
-		<li><?php echo $this->Html->link(__('Register', true), array('controller' => 'clients','action' => 'add')); ?></li>
-	</ul>
 </div>

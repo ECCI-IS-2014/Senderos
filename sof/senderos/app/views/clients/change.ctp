@@ -6,8 +6,8 @@ echo $this->Form->create('Client');
 	<fieldset>
 		<legend><?php __('Change Password'); ?></legend>
 	<?php
-		echo $this->Form->input('password', array('label' => 'New Password', 'title' => 'New Password'));
-		echo $this->Form->input('password_confirm', array('label' => 'Confirm Password', 'title' => 'Confirm Password', 'type'=>'password'));
+		echo $this->Form->input('password', array('label' => 'New Password', 'title' => 'Type a new password'));
+		echo $this->Form->input('password_confirm', array('label' => 'Confirm Password', 'title' => 'Retype the new password', 'type'=>'password'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Done', true));?>

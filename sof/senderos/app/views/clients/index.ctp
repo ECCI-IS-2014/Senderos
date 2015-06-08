@@ -54,9 +54,9 @@
 <?php if($this->Session->read("Auth.Client.role") != 'cust'){ ?>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('New Client', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Restrictions', true), array('controller' => 'restrictions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Restriction', true), array('controller' => 'restrictions', 'action' => 'add')); ?> </li>
+		<li title = "Add a new client"><?php echo $this->Html->link(__('New Client', true), array('action' => 'add')); ?></li>
+		<li title= "List of restrictions"><?php echo $this->Html->link(__('List Restrictions', true), array('controller' => 'restrictions', 'action' => 'index')); ?> </li>
+		<li title = "Add a new restriction"><?php echo $this->Html->link(__('New Restriction', true), array('controller' => 'restrictions', 'action' => 'add')); ?> </li>
 		<!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
 	</ul>
