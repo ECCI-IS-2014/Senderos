@@ -4,15 +4,15 @@ class VisitorsController extends AppController {
 	var $name = 'Visitors';
 
 	function beforeFilter()
-    {
-        parent::BeforeFilter();
-        $this->Auth->allow('display', 'getvisitors');
-    }
+	    {
+		parent::BeforeFilter();
+		$this->Auth->allow('display', 'getvisitors', 'getid', 'isavailable');
+	    }
 
-    function getvisitors()
-    {
-        return $this->Visitor->find('all');
-    }
+	    function getvisitors()
+	    {
+		return $this->Visitor->find('all');
+	    }
 	
 	function index() {
 		$this->Visitor->recursive = 0;
@@ -69,4 +69,32 @@ class VisitorsController extends AppController {
 		$this->Session->setFlash(__('Visitor was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	// mando el rol, devuelve el id
+	function getid($role)
+	{
+		$id = null;
+		$visitors = $this->Visitor->findAllByRole($role);
+		foreach($visitors as $visitor):
+			$id = $visitor['Visitor']['id'];
+			break;
+		endforeach;
+		return $id;
+	}
+
+	// pregunta si un visitor esta ligado a un documento
+	function isavailable($thisvisitor, $document_id)
+	{
+		$this->loadModel('DocumentsVisitor');
+
+		$visitors = $this->DocumentsVisitor->findAllByDocumentId($document_id);
+		
+		foreach($visitors as $visitor):
+			if($visitor['Visitor']['role'] === $thisvisitor)
+				return true;
+		endforeach;
+
+		return false;
+	}
+	//nada ...
 }
