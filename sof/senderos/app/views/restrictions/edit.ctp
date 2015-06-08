@@ -33,15 +33,11 @@
                 <th>Trail id</th>
                 <th>All trails</th>
             </tr>
-            <p>NECESITO QUE SE CARGUEN TODOS LOS CLIENTES RESTRINGIDOS
-                Y TODAS LAS ESTACIONES Y AQUÍ HAY DOS OPCIONES: </p>
-            <p>1) SI SELECCIONAN 'ALL TRAILS' = TRUE, SE BLOQUEA EL SELECT DE TRAILS</p>
-            <p>2) SI SELECCIONAN 'ALL TRAILS' = FALSE, SE CARGA EL SELECT DE TRAILS CON LOS SENDEROS DE LA ESTACIÓN Q ELIGIÓ</p>
             <tr>
                 <td><?php echo $this->Form->input('id', array('label' => false, 'type' => 'hidden'));?></td>
                 <td><?php echo $this->Form->input('client_id');?></td>
                 <td><?php echo $this->Form->input('station_id');?></td>
-                <td><?php echo $this->Form->input('allt', array('label' => 'All trails?', 'options' => array('false','true')));?></td>
+                <td><?php echo $this->Form->input('allt', array('label' => 'All trails?','default'=>'1','options' => array('false','true')));?></td>
                 <td><?php echo $this->Form->input('trail_id');?></td>
             </tr>
         </table>
@@ -59,6 +55,30 @@
         <li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
 	</ul>
 </div>
+
+<script>
+$( document ).ready(function() {
+     $('#RestrictionTrailId').prop('disabled', 'disabled');
+    $("#RestrictionAllt").click(function()
+    {
+        if($("#RestrictionAllt").val()=="1")
+        {
+            $('#RestrictionTrailId').prop('disabled', 'disabled');
+
+        }
+        else
+        {
+            $('#RestrictionTrailId').prop('disabled', false);
+        }
+
+    });
+});
+</script>
+
+
+
+
+
 
 <?php
 $this->Js->get('#RestrictionStationId')->event('change',
