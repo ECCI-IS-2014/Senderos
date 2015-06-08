@@ -24,7 +24,7 @@ class RestrictionsController extends AppController {
         $this->set('restrictions', $this->Restriction->find('all'));//, array('order' => array('Restriction.model ASC'))));
         $stations = $this->Station->find('list');//, array('conditions'=>array('Client.role =' => 'cust')));
         $this->set(compact('stations'));
-        $trails = $this->Trail->find('list');//, array('conditions'=>array('Client.role =' => 'cust')));
+        $trails = $this->Trail->find('list');// array('conditions'=>array('Client.role =' => 'cust')));
         $this->set(compact('trails'));
         $clients = $this->Client->find('list', array('conditions'=>array('Client.role =' => 'cust')));
         $this->set(compact('clients'));
