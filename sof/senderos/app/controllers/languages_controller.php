@@ -6,7 +6,7 @@ class LanguagesController extends AppController
     function beforeFilter()
     {
         parent::BeforeFilter();
-        $this->Auth->allow('display','selectlanguage','setlanguage', 'getlanguages','getlanname');
+        $this->Auth->allow('display','selectlanguage','setlanguage', 'getlanguages','getlanname','getid', 'isavailable');
     }
 
     function getlanguages()
@@ -104,4 +104,34 @@ class LanguagesController extends AppController
         $this->Session->setFlash(__('Language was not deleted', true));
         $this->redirect(array('action' => 'index'));
     }
+
+	// mando el code, devuelve el id
+	function getid($code)
+	{
+		$id = null;
+		//$languages = $this->Language->findAllByCode($code);
+		$languages = $this->Language->findAllById($code);
+		foreach($languages as $language):
+			$id = $language['Language']['id'];
+			break;
+		endforeach;
+		return $id;
+	}
+
+	// pregunta si un lenguaje esta ligado a un documento
+	function isavailable($thislanguage, $document_id)
+	{
+		$this->loadModel('DocumentsLanguage');
+
+		$languages = $this->DocumentsLanguage->findAllByDocumentId($document_id);
+		
+		foreach($languages as $language):
+			if($language['Language']['name'] === $thislanguage)
+				return true;
+		endforeach;
+
+		return false;
+	}
+	
+	//nada ...
 }
