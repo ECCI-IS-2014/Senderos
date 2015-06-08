@@ -28,7 +28,7 @@
 	<div id="container">
 				<div id="header">
         		    <nav id="nav">
-                        <?php echo $this->Html->link($this->Html->image('senderos2.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:20px;margin-top:15px;float:left;width:225px;height:95px;padding:30px;")),
+                        <?php echo $this->Html->link($this->Html->image('senderos2.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "margin-left:20px;margin-top:15px;float:right;width:225px;height:95px;padding:30px;")),
                                                     					array('controller'=>'pages','action' => 'home'),
                                                      					array('target' => '_self', 'escape' => false));
                         ?>
