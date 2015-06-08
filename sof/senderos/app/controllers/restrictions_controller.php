@@ -2,6 +2,7 @@
 class RestrictionsController extends AppController {
 	var $name = 'Restrictions';
     var $uses = array('Restriction', 'Client', 'Station', 'Trail');
+	public $helpers = array('Js');
 
     function index() {
         $this->Restriction->recursive = 0;
