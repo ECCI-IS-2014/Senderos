@@ -4,6 +4,8 @@ html, body {
 }
 
 
+
+
 #point_documents{
 	
 	margin: 10px;
@@ -74,6 +76,18 @@ html, body {
 	cursor: pointer;
 }
 
+.filediv form div{
+	margin-bottom: 0;
+	padding: 0;
+}
+
+
+
+.imageitem2 form{
+	margin-bottom: 0;
+	padding: 0;
+}
+
 .imageitem1{
 	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 2s; /* Firefox < 16 */
@@ -123,17 +137,24 @@ html, body {
 
 
 .imageitem2{
-	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
+	/*-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       /*-moz-animation: fadein 2s; /* Firefox < 16 */
+        /*-ms-animation: fadein 2s; /* Internet Explorer */
+         /*-o-animation: fadein 2s; /* Opera < 12.1 */
+            /*animation: fadein 2s; /* */
+	margin-bottom: 0;
+	padding: 0;
+}
+
+.imageitem2 form{
+	margin-bottom: 0;
+	padding: 0;
 }
 
 .imageitem2 input[type="text"], .imageitem2 textarea {
     border: none;
     background-color: transparent;
-    pointer-events: none;
+    /*pointer-events: none;*/
     font-size: 15px;
     width: 100%;
     /* Other stuff: font-weight, font-size */
