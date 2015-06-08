@@ -1,6 +1,7 @@
 <?php echo $html->css('pointscss'); ?>
 <?php echo $html->css('menu7'); ?>
 <?php echo $html->css('documentscss'); ?>
+<?php echo $html->css("slider"); ?>
 <?php echo $html->script("draggable"); ?>
 <?php echo $html->script("points"); ?>
 <?php echo $html->script("slider"); ?>
@@ -14,6 +15,9 @@ $trailcreate = 'no';
 $trailread = 'yes';
 $trailupdate = 'no';
 $traildelete = 'no';
+
+$visitors = $this->requestAction('/visitors/getvisitors');
+$languages = $this->requestAction('/languages/getlanguages');
 
 if($_SESSION['role'] === 'restricted')
 {
@@ -92,7 +96,7 @@ if($trailread == 'yes')
 		<?php foreach ($trail['Point'] as $point): ?>
 
 			<!-- point_ -->
-			<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer;" ></div><!-- /point_ -->
+			<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer; <?php echo $point['style']; ?>" onmouseover="point_action(<?php echo $point['id']; ?>,event);"><?php echo $point['pnumber']; ?></div><!-- /point_ -->
 
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_id" value="<?php echo $point['id']; ?>"/>
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_pnumber" value="<?php echo $point['pnumber']; ?>"/>
@@ -103,9 +107,10 @@ if($trailread == 'yes')
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_trail_id" value="<?php echo $point['trail_id']; ?>"/>
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_px_x" value="<?php echo $point['px_x']; ?>"/>
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_px_y" value="<?php echo $point['px_y']; ?>"/>
+			<input type="hidden" id="point_<?php echo $point['id']; ?>_style" value="<?php echo $point['style']; ?>"/>
 			
 			<!-- labels -->
-			<div id="label_<?php echo $point['id']; ?>" class="pointlabel" style="position: absolute;top: <?php echo ($point['px_y']-5); ?>px; left: <?php if(($point['pnumber'] * 1) < 10) echo ($point['px_x']-15); else echo ($point['px_x']-25); ?>px; pointer-events: none;"><?php echo $point['pnumber']; ?></div><!-- /labels -->
+			<!-- <div id="label_<?php echo $point['id']; ?>" class="pointlabel" style="position: absolute;top: <?php echo ($point['px_y']-5); ?>px; left: <?php if(($point['pnumber'] * 1) < 10) echo ($point['px_x']-15); else echo ($point['px_x']-25); ?>px; pointer-events: none;"><?php echo $point['pnumber']; ?></div><!-- /labels -->
 
 			<?php
 				echo "<script type='text/javascript'>";
@@ -114,6 +119,7 @@ if($trailread == 'yes')
 				echo "var mover = function (event) {point_action(".$point['id'].",event);};";
 				echo "var stopper = function (event) {};";
 				echo "newpoint.addEventListener('mouseup', mover, false);";
+				echo "newpoint.addEventListener('mouseover', mover, false);";
 				echo "</script>";
 			?>
 
@@ -175,7 +181,7 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 <div id="popDiv" class="ontop">
 	<div id="popup">
 		<a style="cursor: pointer;" onClick="hide('popDiv')">Close</a>
-		<div id="popup_content" >
+		<div id="popupcontent" >
 		</div> <!-- popup_content -->
 	</div> <!-- popup -->
 </div> <!-- popDiv -->
@@ -218,7 +224,61 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 					</div>\n";
 				echo $this->Form->input('px_x',array('type' => 'hidden'));
 				echo $this->Form->input('px_y',array('type' => 'hidden'));
+
+				echo $this->Form->input('style',array('type' => 'hidden'));
+
 			?>
+
+			
+
+			<div style="text-align:left;">Style:
+			<div id="pointstyling" >
+				<div id="thepoint" class="point" >#
+				</div> <!-- the point -->
+				<div id="stylechooser" >
+					Diameter:<br>
+					<select id='diameter' onchange="stylepoint(this, 'diameter');">
+						<option value='10'>10</option>
+						<option value='15'>15</option>
+						<option value='20'>20</option>
+						<option value='25' selected>25</option>
+						<option value='30'>30</option>
+						<option value='35'>35</option>
+						<option value='40'>40</option>
+						<option value='45'>45</option>
+						<option value='50'>50</option>
+					</select><br>
+					Background color:<br>
+					<select id='background' onchange="stylepoint(this, 'background');">
+						<option value='green' selected>Green</option>
+						<option value='blue'>Blue</option>
+						<option value='violet'>Violet</option>
+						<option value='red'>Red</option>
+						<option value='pink'>Pink</option>
+						<option value='white'>White</option>
+						<option value='gray'>Gray</option>
+						<option value='black'>Black</option>
+						<option value='yellow'>Yellow</option>
+						<option value='orange'>Orange</option>
+						<option value='brown'>Brown</option>
+					</select><br>
+					Font color:<br>
+					<select id='font' onchange="stylepoint(this, 'font');">
+						<option value='green'>Green</option>
+						<option value='blue'>Blue</option>
+						<option value='violet'>Violet</option>
+						<option value='red'>Red</option>
+						<option value='pink'>Pink</option>
+						<option value='white' selected>White</option>
+						<option value='gray'>Gray</option>
+						<option value='black'>Black</option>
+						<option value='yellow'>Yellow</option>
+						<option value='orange'>Orange</option>
+						<option value='brown'>Brown</option>
+					</select>
+				</div> <!-- stylechooser -->
+			</div> <!-- point styling -->
+			</div>
 
 			<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 			<div class="submit">
@@ -263,50 +323,86 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 				<legend><?php __('Save File'); ?></legend>
 				<input name="data[Point][id]" id="PointId" type="hidden">
 				<input name="data[Document][id]" id="DocumentId" type="hidden">
-				<div class="input text required">
+				<div id="choosename" style="text-align:left;">
 					<label for="DocumentName">Name</label>
 					<input name="data[Document][name]" maxlength="100" id="DocumentName" type="text">
 				</div>
-				<div class="input text required">
+				<div id="choosedescription" style="text-align:left;">
 				<label for="DocumentDescription">Description</label>
 				<input name="data[Document][description]" maxlength="500" id="DocumentDescription" type="text">
 				</div>
-				<div class="input select required">
-					<label for="DocumentType">Type</label>
-					<select name="data[Document][type]" id="DocumentType">
-						<option value="2">Image</option>
-						<option value="0">Video</option>
-						<option value="3">Sound</option>
-						<option value="1">Text</option>
+				<div style="text-align:left;">
+					<label for="DocumentType">Type</label><br>
+					<select name="data[Document][type]" id="DocumentType" onchange="displayEditor(this);">
+						<option value="images">Image</option>
+						<option value="video">Video</option>
+						<option value="sound">Sound</option>
+						<option value="text">Text</option>
 					</select>
 				</div>
-				<div class="input file">
-				<table><tr><td>
-				<label for="DocumentRoute"><b>Select a file:</b></label></td><td>
-				<input name="data[Document][archivo]" id="DocumentArchivo" type="file" accept="image/*, video/*, audio/*, application/pdf">
-				</td></tr></table>
-				</div>
-				<div class="input text required">
-					<label for="DocumentLanguage">Language</label>
-					<!--<input name="data[Document][language]" maxlength="100" id="DocumentLanguage" type="text">-->
-					<select name="data[Document][language]" id="DocumentLanguage">
-						<option value="en" selected>English</option>
-						<option value="sp">Espa&ntilde;ol</option>
-					</select>
-				</div>
-
-				<div id="choosevisitors" style="text-align:left;">
 				
-					<input type="hidden" id="DocumentVisitors" name="data[Document][visitors]" value=";"/>
-					
-					Available for:<br>
-					<input type="checkbox" value="Student" onclick="AddVisitor(this.checked, this.value);">Student<br>
-					<input type="checkbox" value="Professor" onclick="AddVisitor(this.checked, this.value);">Professor<br>
-					<input type="checkbox" value="Researcher" onclick="AddVisitor(this.checked, this.value);">Researcher<br>
-					<input type="checkbox" value="History" onclick="AddVisitor(this.checked, this.value);">History<br>
-					
+				<textarea name="data[Document][htmltext]" id="DocumentHtmltext" style="display:none;"></textarea>
 
-				</div> <!-- choosevisitors -->
+				<div id="editartexto" style="height: auto; margin-bottom: 0;">
+				</div><!-- editartexto -->
+
+				<div id="rendereditartexto" style="height: 0px; overflow:hidden; line-height: 0; margin-bottom: 0; visibility: hidden;">
+				<div id="editorcontainer" style="background-color: transparent;margin:0; padding:0; width:100%; height: 500px;">
+					<iframe id="iframeditor" name="iframeditor" width="100%" height="100%" src="/senderos/app/webroot/files/ckeditor.html" frameBorder="0">
+					</iframe>
+				</div><!-- editorcontainer -->
+				</div><!-- rendereditartexto-->
+
+
+
+				<div id="choosefile" style="text-align:left;">
+				<label for="DocumentRoute">Select a file:</label><br>
+				<input name="data[Document][archivo]" id="DocumentArchivo" type="file" accept="image/*, video/*, audio/*, application/pdf">
+				</div>
+
+<!-- <select name="data[Document][languages]" id="DocumentLanguages"> -->
+
+<!-- <select name="data[Document][visitors]" id="DocumentVisitors"> -->
+
+				<?php
+				echo "<div style='text-align:left;padding:0; margin:0;'>Visitors:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;'>"; //visitors div
+
+				$availability = ";";
+
+				echo "<table style='height:initial; background-color:initial; margin:0; padding: 0;'>";
+				foreach($visitors as $visitor):
+					echo "<tr><td style='height:initial; background-color:initial; margin:0; padding: 0;'><input type=\"checkbox\" value=\"".$visitor['Visitor']['id']."\" onclick=\"AddVisitor(this.checked, this.value, 'DocumentVisitors');\"";
+
+					echo ">".$visitor['Visitor']['role']."</td></tr>";
+				endforeach;
+				echo "</table>";
+
+				echo "<input name='data[Document][visitors]' id='DocumentVisitors' type='hidden' value='".$availability."'>";
+
+				echo "</div>"; //end visitors div
+
+
+				echo "<div style='text-align:left;padding:0; margin:0;'>Languages:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;'>"; //languages div
+
+				$availability = ";";
+
+				echo "<table style='height:initial; background-color:initial; margin:0; padding: 0;'>";
+				foreach($languages as $language):
+					echo "<tr><td style='height:initial; background-color:initial; margin:0; padding: 0;'><input type=\"checkbox\" value=\"".$language['Language']['id']."\" onclick=\"AddVisitor(this.checked, this.value, 'DocumentLanguages');\"";
+
+					echo ">".$language['Language']['name']."</td></tr>";
+				endforeach;
+				echo "</table>";
+
+				echo "<input name='data[Document][languages]' id='DocumentLanguages' type='hidden' value='".$availability."'>";
+
+				echo "</div>"; //end languages div
+
+				?>
+
+
+				<!--<input type="button" onclick="alert(document.getElementById('DocumentVisitors').value);" />-->
+
 				
 				<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 				<table style="background-color: transparent; border:none;"><tr>
@@ -375,3 +471,13 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 	</ul>
 </div> <!-- actions -->
 
+
+
+<!--<script>
+	// attach handlers once iframe is loaded
+document.getElementById('iframeditor').onload = function() {
+
+	/*var win = document.getElementById('iframeditor').contentWindow;
+        win.minimizing(); // call function in iframed document*/
+}
+</script>-->
