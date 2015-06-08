@@ -60,5 +60,18 @@
 	</ul>
 </div>
 
-
+<?php
+$this->Js->get('#RestrictionStationId')->event('change',
+$this->Js->request(array(
+                    'controller'=>'trails',
+                    'action'=>'getByStation'
+                    ),
+            array(
+                'update'=>'#RestrictionTrailId',
+                'async' => true,
+                'method' => 'post',
+                'dataExpression'=>true,
+                'data'=> $this->Js->serializeForm(array('isForm' => true,'inline' => true))
+                )));
+?>
 
