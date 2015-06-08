@@ -163,5 +163,15 @@ class TrailsController extends AppController {
 		}
 	}
 
+	    public function getByStation() {
+        $station_id = $this->data['Restriction']['station_id'];
+        $seltrails = $this->Trail->find('list', array(
+            'conditions' => array('Trail.station_id' => $station_id)
+        ));
+
+        $this->set('seltrails',$seltrails);
+        $this->layout = 'ajax';
+        
+    }
 	//nada ...
 }
