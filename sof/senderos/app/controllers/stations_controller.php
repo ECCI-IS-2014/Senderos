@@ -121,4 +121,6 @@ class StationsController extends AppController {
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
 	}
+	
+	//nada ...
 }
