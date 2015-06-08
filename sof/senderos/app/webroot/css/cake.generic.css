@@ -391,11 +391,12 @@ form .submit input[type=submit]:hover {
 /** Notices and Errors **/
 div.message {
 	clear: both;
-	color: #fff;
+	color: #478e67;
 	font-size: 140%;
 	font-weight: bold;
 	margin: 0 0 1em 0;
-	background: #c73e14;
+    margin-left: 40%;
+	background: #fff;
 	padding: 5px;
 }
 div.error-message {
