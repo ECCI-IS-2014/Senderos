@@ -106,5 +106,6 @@ class Point extends AppModel {
 		)
 	);
 
+	//public $hasMany = array('Document');
 	public $hasMany = array('DocumentsPoint','DocumentsLanguage','DocumentsVisitor');
 }
