@@ -7,13 +7,17 @@
 			counter = 0;
 			content = '';
 			function clearGreeting() {
-			    document.forms['iframeditorform'].elements['textbox1'].value = '';
+			    //document.forms['iframeditorform'].elements['textbox1'].value = '';
+				alert('hello from childol');
 			}
 			function minimizing() {
 			    editor.execCommand('Maximize');
 			}
 			function editparent() {
 			    window.parent.document.getElementById('DocumentHtmltext').value = content;
+			}
+			function editme(htmltext) {
+			    document.getElementById('editor1').value = htmltext;
 			}
 		</script>
 	<head>
