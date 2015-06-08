@@ -28,14 +28,14 @@
 					<!-- point_{point_id} -->
 					<!--<div id="point_<?php echo $point['id']; ?>" class="marker" style="top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px;" onmouseover="InfoOptions(<?php echo $point['id']; ?>);">
 					</div> <!-- point_{point_id} -->
-					<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer;" onmouseover="InfoOptions(<?php echo $point['id']; ?>);"></div><!-- /point_ -->
+					<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer; <?php echo $point['style']; ?>" onmouseover="InfoOptions(<?php echo $point['id']; ?>);"><?php echo $point['pnumber']; ?></div><!-- /point_ -->
 
 					<!-- label_{point_id} -->
 					<!--<div id="label_<?php echo $point['id']; ?>" class="markerlabel" style="top: <?php echo ($point['px_y']-5); ?>px; left: <?php if(($point['pnumber'] * 1) < 10) echo ($point['px_x']-15); else echo ($point['px_x']-25); ?>px;">
 					<?php echo $point['pnumber']; ?>
 					</div> <!-- label_{point_id} -->
 					<!-- labels -->
-			<div id="label_<?php echo $point['id']; ?>" class="pointlabel" style="position: absolute;top: <?php echo ($point['px_y']-5); ?>px; left: <?php if(($point['pnumber'] * 1) < 10) echo ($point['px_x']-15); else echo ($point['px_x']-25); ?>px; pointer-events: none;"><?php echo $point['pnumber']; ?></div><!-- /labels -->
+			<!--<div id="label_<?php echo $point['id']; ?>" class="pointlabel" style="position: absolute;top: <?php echo ($point['px_y']-5); ?>px; left: <?php if(($point['pnumber'] * 1) < 10) echo ($point['px_x']-15); else echo ($point['px_x']-25); ?>px; pointer-events: none;"><?php echo $point['pnumber']; ?></div><!-- /labels -->
 
 					<?php
 						echo "<script type='text/javascript'>";
@@ -155,7 +155,7 @@
             echo "<option disabled selected>Change visitor</option>";
 
             foreach($visitors as $visitor):
-                print '<option value="'.$visitor['Visitor']['role'].'">'.$visitor['Visitor']['role'].'</option>';
+                print '<option value='.$visitor['Visitor']['role'].'>'.$visitor['Visitor']['role'].'</option>';
             endforeach;
 
             print '</select>';
