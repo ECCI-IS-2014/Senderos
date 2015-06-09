@@ -1,5 +1,14 @@
 
-<?php 
+<?php
+        $add = 0;
+
+        if($_SESSION['role'] === 'restricted'){
+        foreach ($restrictions as $restriction):
+        if(/* $restriction['Station']['id'] == $trail['Station']['id'] && */ $restriction['Restriction']['allt'] == 1){
+        $add = 1;
+        }
+        endforeach;
+        }
 
 if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 {

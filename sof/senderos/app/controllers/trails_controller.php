@@ -144,6 +144,37 @@ class TrailsController extends AppController {
         }
     }
 
+    function delete($id = null) {
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid id for trail', true));
+            $this->redirect(array('action'=>'index'));
+        }
+        $canDelete = 0;
+        $this->loadModel('Restriction');
+        $rests = $this->Restriction->findAllByClientId($this->Session->read('Auth.Client.id'));
+        foreach($rests as $res):
+            $trail = $this->Trail->read(null, $id);
+            if( $res['Restriction']['station_id'] == $trail['Trail']['station_id']&& ($res['Restriction']['trail_id']==$id || $res['Restriction']['allt']==1) ){
+                $canDelete = 1;
+            }
+        endforeach;
+        if($this->Session->read('Auth.Client.role') =='admin' || $canDelete == 1){
+            if ($this->Trail->delete($id)) {
+                $this->Session->setFlash(__('Trail deleted', true));
+                $this->redirect(array('action'=>'index'));
+            }
+        }
+        $this->Session->setFlash(__('Trail was not deleted', true));
+        $this->redirect(array('action' => 'index'));
+
+        if($_SESSION['role'] === 'restricted')
+        {
+            $this->loadModel('Restriction');
+            $this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+        }
+    }
+
+    /*
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for trail', true));
@@ -161,7 +192,7 @@ class TrailsController extends AppController {
 			$this->loadModel('Restriction');
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
-	}
+	}*/
 
 	    public function getByStation() {
         $station_id = $this->data['Restriction']['station_id'];
