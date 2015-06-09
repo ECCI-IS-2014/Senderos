@@ -11,19 +11,15 @@ $stationdelete = 'no';
 if($_SESSION['role'] === 'restricted')
 {
 	foreach ($restrictions as $restriction):
-		if($restriction['Restriction']['model'] == 'Station' && $restriction['Restriction']['recordid'] == $station['Station']['id'])
-		{
-			if($restriction['Restriction']['creating'] === '1')
-				$stationcreate = 'yes';
-			if($restriction['Restriction']['reading'] === '0')
-				$stationread = 'no';
-			if($restriction['Restriction']['updating'] === '1')
-				$stationupdate = 'yes';
-			if($restriction['Restriction']['deleting'] === '1')
-				$stationdelete = 'yes';
-				
-			$result .= "<br>Found a restriction on ".$station['Station']['id'].": C=".$stationcreate.", R=".$stationread.", U=".$stationupdate.", D=".$stationdelete."";
-		}
+        if($restriction['Restriction']['station_id'] == $station['Station']['id'] && $restriction['Restriction']['allt'] == 1)
+        {
+            $stationcreate = 'no';
+            $stationread = 'yes';
+            $stationupdate = 'yes';
+            $stationdelete = 'yes';
+
+            $result .= "<br>Found a restriction on ".$station['Station']['id'].": C=".$stationcreate.", R=".$stationread.", U=".$stationupdate.", D=".$stationdelete."";
+        }
 	endforeach;
 }
 else if($_SESSION['role'] === 'administrator')

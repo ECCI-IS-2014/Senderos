@@ -156,7 +156,7 @@ class TrailsController extends AppController {
         endforeach;
         return $canDelete;
     }
-    
+
     function delete($id = null) {
         if (!$id) {
             $this->Session->setFlash(__('Invalid id for trail', true));
