@@ -144,6 +144,19 @@ class TrailsController extends AppController {
         }
     }
 
+    function candelete($id){
+        $canDelete = 0;
+        $this->loadModel('Restriction');
+        $rests = $this->Restriction->findAllByClientId($this->Session->read('Auth.Client.id'));
+        foreach($rests as $res):
+            $trail = $this->Trail->read(null, $id);
+            if( $res['Restriction']['station_id'] == $trail['Trail']['station_id']&& ($res['Restriction']['trail_id']==$id || $res['Restriction']['allt']==1) ){
+                $canDelete = 1;
+            }
+        endforeach;
+        return $canDelete;
+    }
+    
     function delete($id = null) {
         if (!$id) {
             $this->Session->setFlash(__('Invalid id for trail', true));
