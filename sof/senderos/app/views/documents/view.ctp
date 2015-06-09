@@ -1,3 +1,4 @@
+<?php /* ?>
 <div class="documents view">
 <h2><?php  __('Document');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
@@ -31,3 +32,4 @@
 		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Document', true), array('action' => 'add'));} ?></li>
 	</ul>
 </div>
+<?php */ ?>

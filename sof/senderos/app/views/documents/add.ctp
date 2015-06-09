@@ -1,3 +1,4 @@
+<?php /* ?>
 <html>
 <body>
 <div id="formulario" >
@@ -26,3 +27,4 @@
 	</ul>
 </div>
 </html>
+<?php */ ?>

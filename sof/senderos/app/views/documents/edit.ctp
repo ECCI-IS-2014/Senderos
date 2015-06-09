@@ -1,3 +1,4 @@
+<?php /* ?>
 <div class="documents form">
 <?php echo $this->Form->create('Document', array('type' => 'file'));?>
 	<fieldset>
@@ -21,3 +22,4 @@
         <li><?php echo $this->Html->link(__('List Documents', true), array('action' => 'index'));?></li>
 	</ul>
 </div>
+<?php */ ?>
