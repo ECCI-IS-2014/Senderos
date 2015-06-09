@@ -25,24 +25,26 @@ $trailread = 'yes';
 $trailupdate = 'no';
 $traildelete = 'no';
 
-if($_SESSION['role'] === 'restricted')
-{
-	foreach ($restrictions as $restriction):
-	if($restriction['Restriction']['model'] == 'Trail' && $restriction['Restriction']['recordid'] == $trail['Trail']['id'])
-	{
-		if($restriction['Restriction']['creating'] === '1')
-			$trailcreate = 'yes';
-		if($restriction['Restriction']['reading'] === '0')
-			$trailread = 'no';
-		if($restriction['Restriction']['updating'] === '1')
-			$trailupdate = 'yes';
-		if($restriction['Restriction']['deleting'] === '1')
-			$traildelete = 'yes';
-			
-		$result .= "<br>Found a restriction on ".$trail['Trail']['id'].": C=".$trailcreate.", R=".$trailread.", U=".$trailupdate.", D=".$traildelete."";
-	}
-	endforeach;
-}
+        if($_SESSION['role'] === 'restricted')
+        {
+            foreach ($restrictions as $restriction):
+                if( ($restriction['Station']['id'] == $trail['Station']['id'])
+                    && ($restriction['Restriction']['trail_id'] == $trail['Trail']['id'] || $restriction['Restriction']['allt'] == 1)
+                )
+                {
+                    $trailcreate = 'no';
+                    $trailread = 'yes';
+                    $trailupdate = 'yes';
+                    $traildelete = 'yes';
+
+                    $result .= "<br>Found a restriction on ".$trail['Trail']['id'].": C=".$trailcreate.", R=".$trailread.", U=".$trailupdate.", D=".$traildelete."";
+
+                    if($restriction['Station']['id'] == $trail['Station']['id'] && $restriction['Restriction']['allt'] == 1){
+                         $trailcreate = 'yes';
+                    }
+                }
+                endforeach;
+        }
 else if($_SESSION['role'] === 'administrator')
 {
 	$trailcreate = 'yes';

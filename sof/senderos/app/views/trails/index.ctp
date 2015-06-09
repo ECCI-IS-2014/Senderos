@@ -11,7 +11,6 @@
 ?>
 
 <?php $result = ''; ?>
-<?php $veMenu = 0; ?>
 
 <div class="trails index">
 	<h2><?php __($str_trails);?></h2>
@@ -43,7 +42,7 @@
                     && ($restriction['Restriction']['trail_id'] == $trail['Trail']['id'] || $restriction['Restriction']['allt'] == 1)
                 )
                 {
-                    $trailcreate = 'yes';
+                    $trailcreate = 'no';
                     $trailread = 'yes';
                     $trailupdate = 'yes';
                     $traildelete = 'yes';
@@ -51,7 +50,7 @@
                     $result .= "<br>Found a restriction on ".$trail['Trail']['id'].": C=".$trailcreate.", R=".$trailread.", U=".$trailupdate.", D=".$traildelete."";
 
                     if($restriction['Station']['id'] == $trail['Station']['id'] && $restriction['Restriction']['allt'] == 1){
-                        $veMenu = 1;
+                        $trailcreate = 'yes';
                     }
                 }
             endforeach;
