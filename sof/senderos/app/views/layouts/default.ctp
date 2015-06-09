@@ -46,7 +46,9 @@
                     <li><?php echo $this->Html->link(__($str_clients, true), array('controller'=>'clients', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_visitors, true), array('controller'=>'visitors', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_languages, true), array('controller'=>'languages', 'action'=>'index')); ?></li>
-                    <li><?php echo $this->Html->link(__($str_restrictions, true), array('controller'=>'restrictions', 'action'=>'index')); ?></li>
+                    <?php if($this->Session->read('Auth.Client.role') == 'admin'){ ?>
+                        <li><?php echo $this->Html->link(__($str_restrictions, true), array('controller'=>'restrictions', 'action'=>'index')); ?></li>
+                    <?php } ?>
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){
