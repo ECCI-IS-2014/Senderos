@@ -1,7 +1,7 @@
 
 <?php 
 
-if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
+if($_SESSION['role'] === 'administrator')
 {
 
 ?>
@@ -27,5 +27,8 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 </div>
 
 <?php 
+}else{?>
+    <h2>You are not authorized to access that location</h2>
+<?php
 }
 ?>
