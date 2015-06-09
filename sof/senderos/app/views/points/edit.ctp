@@ -1,3 +1,5 @@
+<?php /*?>
+
 <div class="points form">
 <?php echo $this->Form->create('Point');?>
 	<fieldset>
@@ -25,3 +27,4 @@
 		<li><?php echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+        <?php */?>

@@ -1,3 +1,4 @@
+<?php /*?>
 <?php
 	if(!isset($_SESSION['lanview']))
 	{
@@ -50,3 +51,4 @@
 		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add'));} ?></li>
 	</ul>
 </div>
+        <?php */?>
