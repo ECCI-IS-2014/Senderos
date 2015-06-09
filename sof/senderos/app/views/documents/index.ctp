@@ -23,9 +23,9 @@
 		<td><?php echo $document['Document']['type']; ?>&nbsp;</td>
 		<td><?php echo $document['Document']['route']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $document['Document']['id'])); ?>
+			<!--<?php echo $this->Html->link(__('View', true), array('action' => 'view', $document['Document']['id'])); ?>
 			<?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Edit', true), array('action' => 'edit', $document['Document']['id']));} ?>
-			<?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Delete', true), array('action' => 'delete', $document['Document']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $document['Document']['id']));} ?>
+			--><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Delete', true), array('action' => 'delete', $document['Document']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $document['Document']['id']));} ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -45,7 +45,8 @@
 	</div-->
 </div>
 <div class="actions">
-	<ul>
+	<ul> <!--
 		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Document', true), array('action' => 'add'));} ?></li>
+	    -->
 	</ul>
 </div>
