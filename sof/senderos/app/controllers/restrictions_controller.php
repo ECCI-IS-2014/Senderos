@@ -16,7 +16,7 @@ class RestrictionsController extends AppController {
             $this->Restriction->create();
             if ($this->Restriction->save($this->data)) {
                 $this->Session->setFlash(__('The restriction has been saved', true));
-                $this->redirect(array('action' => 'add'));
+                $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The restriction could not be saved. Please, try again.', true));
             }
