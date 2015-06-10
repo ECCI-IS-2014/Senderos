@@ -62,13 +62,11 @@ if($trailread == 'yes')
 <?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
 		<legend><?php __('Edit Trail'); ?></legend>
-	<?php
-        echo $this->Form->input('id', array('type' => 'hidden'));
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('station_id');
-        	echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a map image:', "onchange" => "previewMap();"));
-	?>
+    <?php echo $this->Form->input('id', array('type' => 'hidden'));?>
+	<h1 title = "You MUST type a name for the new trail"><?php echo $this->Form->input('name');?></h1>
+	<h1 title = "You MUST type a description for the new trail"><?php echo $this->Form->input('description');?></h1>
+	<h1 title = "Upload the map for the new trail"><?php echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Choose a map image:'));?></h1>
+	<h1 title = "You MUST choose a station for the new trail"><?php echo $this->Form->input('station_id');?></h1>
 
 	
 	<?php 
@@ -460,13 +458,13 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php 
+		<li title = "Delete this trail"><?php 
 		if($traildelete === 'yes')
 			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Trail.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Trail.id'))); 
 		/*else 
 			echo "---";*/
 		?></li>
-		<li><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
+		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
 		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
 	</ul>
