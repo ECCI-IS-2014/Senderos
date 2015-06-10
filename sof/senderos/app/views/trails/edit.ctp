@@ -30,7 +30,7 @@ $languages = $this->requestAction('/languages/getlanguages');
                     $trailupdate = 'yes';
                     $traildelete = 'yes';
 
-                    $result .= "<br>Found a restriction on ".$trail['Trail']['id'].": C=".$trailcreate.", R=".$trailread.", U=".$trailupdate.", D=".$traildelete."";
+                   // $result .= "<br>Found a restriction on ".$trail['Trail']['id'].": C=".$trailcreate.", R=".$trailread.", U=".$trailupdate.", D=".$traildelete."";
 
                     if($restriction['Station']['id'] == $trail['Station']['id'] && $restriction['Restriction']['allt'] == 1){
                         $trailcreate = 'yes';
