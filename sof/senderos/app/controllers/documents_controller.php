@@ -14,10 +14,14 @@ class DocumentsController extends AppController {
 	function index() {
 		$this->Document->recursive = 0;
 		$this->set('documents', $this->paginate());
-
-        $this->loadModel('DocumentsPoint');
+		
+		$this->loadModel('DocumentsPoint');
+		$this->loadModel('Station');
+		$this->loadModel('Trail');
         $this->set('dopos', $this->DocumentsPoint->find('all'));
-        //debug($this->DocumentsPoint->find('all'));
+		$this->set('stations', $this->Station->find('all'));
+		$this->set('trails', $this->Trail->find('all'));
+        debug($this->DocumentsPoint->find('all'));
         if($_SESSION['role'] === 'restricted')
         {
             $this->loadModel('Restriction');

@@ -17,15 +17,28 @@
 		}
             $canDelete = 0;
             if( $_SESSION['role'] === 'restricted'){
-            foreach($restrictions as $restriction):
-            foreach($dopos as $dopo):
-            if( $dopo['DocumentsPoint']['document_id'] == $document['Document']['id'] &&
-            ($dopo['Point']['trail_id'] == $restriction['Trail']['id'] ||  $restriction['Restriction']['allt'] == 1)
-            ){
-            $canDelete = 1;
-            }
-            endforeach;
-            endforeach;
+				foreach($restrictions as $restriction):
+					foreach($dopos as $dopo):
+						if(  // caso 1: tiene permisos especificos sobre el sendero
+							$dopo['Document']['id'] == $document['Document']['id'] &&
+							$dopo['Point']['trail_id'] == $restriction['Trail']['id']
+					    ){ $canDelete = 1; break; }
+						foreach($stations as $station):
+							foreach($trails as $trail):
+								if( // caso 2: tiene permisos sobre todos los senderos de la estacion a la que pertenece el documento
+								   $dopo['Document']['id'] == $document['Document']['id'] &&
+								   $trail['Trail']['id'] ==  $dopo['Point']['trail_id'] &&
+								   $station['Station']['id'] ==  $trail['Station']['id'] &&
+								   $station['Station']['id'] ==  $restriction['Restriction']['station_id'] &&
+								   $restriction['Restriction']['allt'] == 1
+								 ){
+									echo 'hola';
+									$canDelete = 1;
+								}
+							endforeach;
+						endforeach;
+					endforeach;
+				endforeach;
             }
 	?>
 	<tr<?php echo $class;?>>
