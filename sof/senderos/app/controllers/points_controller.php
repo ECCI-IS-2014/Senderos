@@ -83,6 +83,56 @@ class PointsController extends AppController {
 	}
 
 	function delete($id = null) {
+	
+		$resp = "";
+	
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for point', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		
+		$this->loadModel('Documents');
+		$this->loadModel('DocumentsPoint');
+		
+		$documents = $this->Point->DocumentsPoint->findAllByPointId($id);
+		
+		$this->loadModel('DocumentsVisitor');
+		$this->loadModel('DocumentsLanguage');
+		$this->loadModel('DocumentsPoint');
+		
+		debug($documents);
+		
+		foreach($documents as $document):
+				$doc_id = $document['DocumentsPoint']['document_id'];
+				
+				
+				
+				if($this->DocumentsVisitor->deleteAll(array("DocumentsVisitor.document_id" => $doc_id)))
+					$resp .= "";
+					
+				if($this->DocumentsLanguage->deleteAll(array("DocumentsLanguage.document_id" => $doc_id)))
+					$resp .= "";
+				
+			
+		endforeach;
+		
+		if ($this->Point->delete($id)) {
+			$resp .= 'Point deleted';
+			$this->Session->setFlash(__($resp, true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('Point was not deleted', true));
+		$this->redirect(array('action' => 'index'));
+		
+		if($_SESSION['role'] === 'restricted')
+		{
+			$this->loadModel('Restriction');
+			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+		}
+	}
+
+	/*
+	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for point', true));
 			$this->redirect(array('action'=>'index'));
@@ -99,7 +149,7 @@ class PointsController extends AppController {
 			$this->loadModel('Restriction');
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
-	}
+	}*/
 
 	function multi($id = null) {
 		$this->redirect(array('controller' => 'documents', 'action' => 'point', $id));
