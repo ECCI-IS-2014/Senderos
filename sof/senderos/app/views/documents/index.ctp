@@ -15,6 +15,18 @@
 		if ($i++ % 2 == 0) {
 			$class = ' class="altrow"';
 		}
+            $canDelete = 0;
+            if( $_SESSION['role'] === 'restricted'){
+            foreach($restrictions as $restriction):
+            foreach($dopos as $dopo):
+            if( $dopo['DocumentsPoint']['document_id'] == $document['Document']['id'] &&
+            ($dopo['Point']['trail_id'] == $restriction['Trail']['id'] ||  $restriction['Restriction']['allt'] == 1)
+            ){
+            $canDelete = 1;
+            }
+            endforeach;
+            endforeach;
+            }
 	?>
 	<tr<?php echo $class;?>>
 
@@ -25,7 +37,7 @@
 		<td class="actions">
 			<!--<?php echo $this->Html->link(__('View', true), array('action' => 'view', $document['Document']['id'])); ?>
 			<?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Edit', true), array('action' => 'edit', $document['Document']['id']));} ?>
-			--><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Delete', true), array('action' => 'delete', $document['Document']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $document['Document']['id']));} ?>
+			--><?php if($this->Session->read('Auth.Client.role') == 'admin' || $canDelete==1){echo $this->Html->link(__('Delete', true), array('action' => 'delete', $document['Document']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $document['Document']['id']));} ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

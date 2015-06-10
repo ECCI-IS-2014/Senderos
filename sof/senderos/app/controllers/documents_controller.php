@@ -14,6 +14,15 @@ class DocumentsController extends AppController {
 	function index() {
 		$this->Document->recursive = 0;
 		$this->set('documents', $this->paginate());
+
+        $this->loadModel('DocumentsPoint');
+        $this->set('dopos', $this->DocumentsPoint->find('all'));
+        //debug($this->DocumentsPoint->find('all'));
+        if($_SESSION['role'] === 'restricted')
+        {
+            $this->loadModel('Restriction');
+            $this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+        }
 	}
 
 	function view($id = null) {
