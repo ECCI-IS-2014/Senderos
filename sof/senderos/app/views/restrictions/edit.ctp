@@ -11,6 +11,7 @@
                 <th>All trails</th>
             </tr>
             <tr>
+				<td><?php echo $this->Form->input('id');?></td>
                 <td><?php echo $this->Form->input('client_id');?></td>
                 <td><?php echo $this->Form->input('station_id');?></td>
                 <td><?php echo $this->Form->input('allt', array('label' => 'All trails?','default'=>'1','options' => array('false','true')));?></td>
