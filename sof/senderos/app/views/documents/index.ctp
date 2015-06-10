@@ -32,7 +32,6 @@
 								   $station['Station']['id'] ==  $restriction['Restriction']['station_id'] &&
 								   $restriction['Restriction']['allt'] == 1
 								 ){
-									echo 'hola';
 									$canDelete = 1;
 								}
 							endforeach;
