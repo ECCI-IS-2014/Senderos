@@ -47,12 +47,10 @@ if($stationread == 'yes')
 <?php echo $this->Form->create('Station');?>
 	<fieldset>
 		<legend><?php __('Edit Station'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('location');
-		echo $this->Form->input('description');
-	?>
+    <?php echo $this->Form->input('id', array('type' => 'hidden'));?>
+	<h1 title = "You MAY change the name for this station"><?php echo $this->Form->input('name');?></h1>
+	<h1 title = "You MAY change the location for this station"><?php echo $this->Form->input('location');?></h1>
+	<h1 title = "You MAY change the description for this station"><?php echo $this->Form->input('description');?></h1>
 	</fieldset>
 <?php 
 
@@ -63,13 +61,13 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 </div>
 <div class="actions">
 	<ul>
-		<li><?php 
+		<li title = "Delete this station"><?php
 		if($stationdelete === 'yes')
 			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Station.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Station.id'))); 
 		/*else 
 			echo "---";*/
 		?></li>
-		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex'));?></li>
+		<li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex'));?></li>
 	</ul>
 </div>
 

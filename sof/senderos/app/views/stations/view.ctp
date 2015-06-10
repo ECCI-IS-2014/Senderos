@@ -101,20 +101,20 @@ if($stationread == 'yes')
 
 <div class="actions">
 	<ul>
-		<li><?php 
+		<li title = "Edit the information for this station"><?php
 		if($stationupdate === 'yes')
 			echo $this->Html->link(__('Edit Station', true), array('action' => 'edit', $station['Station']['id'])); 
 		/*else 
 			echo "---";*/
 		?> </li>
-		<li><?php 
+		<li title = "Delete this station"><?php
 		if($stationdelete === 'yes')
 			echo $this->Html->link(__('Delete Station', true), array('action' => 'delete', $station['Station']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $station['Station']['id'])); 
 		/*else 
 			echo "---";*/
 		?> </li>
-		<li><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex')); ?> </li>
-		<li><?php 
+		<li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex')); ?> </li>
+		<li title = "Create a new station"><?php
 		if($stationcreate === 'yes')
 			echo $this->Html->link(__('New Station', true), array('action' => 'add')); 
 		/*else 
