@@ -134,10 +134,12 @@ class DocumentsController extends AppController {
 		}
             $document = $this->Document->read(null, $id);
             $conditions = array('document_id'=>$id);
-            //$this->Visitor->deleteAll($conditions, $cascade = true, $callbacks = false);
+           // $this->Visitor->deleteAll($conditions, $cascade = true, $callbacks = false);
             $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
             $file->delete();
-            $this->Document->delete($id);
+            $this->loadModel('DocumentsPoints');
+            $this->DocumentsPoints->deleteAll(array('DocumentsPoints.document_id' => $id));
+            $this->Document->delete($id,true);
 			$this->Session->setFlash(__('Document deleted', true));
 			$this->redirect(array('action'=>'index'));
 		$this->redirect(array('action' => 'index'));
