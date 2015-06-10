@@ -16,13 +16,13 @@ CREATE TABLE trails
   image varchar(100),
   station_id int NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE SET NULL
+  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE CASCADE
 );
 
 CREATE TABLE points (
   id int NOT NULL,
-  pnumber int NOT NULL,
-  name varchar(100) NOT NULL,
+  pnumber int,
+  name varchar(100),
   cordx float,
   cordy float,
   description varchar(100),
@@ -31,7 +31,7 @@ CREATE TABLE points (
   px_y int,
   style varchar(200),
   PRIMARY KEY(id),
-  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE SET NULL
+  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE CASCADE
 );
 
 CREATE TABLE languages
@@ -57,7 +57,7 @@ CREATE TABLE documents_points
 (
   id int NOT NULL,
   document_id int NOT NULL,
-  point_id int NOT NULL,
+  point_id INT,
   FOREIGN KEY(point_id) REFERENCES points(id) ON DELETE CASCADE,
   FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
@@ -79,9 +79,9 @@ CREATE TABLE clients
   lastname varchar(100) NOT NULL,
   role varchar(100) NOT NULL,
   password varchar(100) NOT NULL,
-  country_id int NOT NULL,
+  country_id int,
   PRIMARY KEY(id),
-  FOREIGN KEY(country_id) REFERENCES countries(id) ON DELETE SET NULL
+  FOREIGN KEY(country_id) REFERENCES countries(id) ON DELETE CASCADE
 );
 
 CREATE TABLE visitors(
@@ -119,8 +119,8 @@ CREATE TABLE restrictions(
   allt int NOT NULL, -- 0 o 1
   PRIMARY KEY(id),
   FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE,
-  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE SET NULL,
-  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE SET NULL
+  FOREIGN KEY(station_id) REFERENCES stations(id) ON DELETE CASCADE,
+  FOREIGN KEY(trail_id) REFERENCES trails(id) ON DELETE CASCADE
 );
 
 --CREATE TABLE restrictions(
@@ -537,6 +537,13 @@ INSERT INTO countries (code, name) VALUES ('ZW', 'Zimbabwe');
 INSERT INTO languages (code, name) VALUES ('en', 'English');
 INSERT INTO languages (code, name) VALUES ('es', 'Spanish');
 INSERT INTO languages (code, name) VALUES ('pt', 'Portuguese');
+
+INSERT INTO visitors (role, description) VALUES ('Student', 'NA');
+INSERT INTO visitors (role, description) VALUES ('Researcher', 'NA');
+INSERT INTO visitors (role, description) VALUES ('Professor', 'NA');
+INSERT INTO visitors (role, description) VALUES ('Natural', 'NA');
+
+INSERT INTO clients (username, name, lastname, role, password, country_id) VALUES ('root_senderos', 'root_senderos', 'root_senderos', 'admin', '25d454ef4917fb457afe5f3562335d46c0bfdfc9', 52);
 
 COMMIT;
 
