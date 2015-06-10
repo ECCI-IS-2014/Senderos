@@ -389,7 +389,7 @@ foreach($pointdocuments as $pointdocument):
 			endforeach;
 			$textsbuilder .= "</table>";
 
-			$textsbuilder .= "<input name='data[Document][visitors".$pointdocument['Document']['id']."]' id='DocumentVisitors".$pointdocument['Document']['id']."' type='text' value='".$availability."'>";
+			$textsbuilder .= "<input name='data[Document][visitors".$pointdocument['Document']['id']."]' id='DocumentVisitors".$pointdocument['Document']['id']."' type='hidden' value='".$availability."'>";
 
 			$textsbuilder .= "</div>"; //end visitors div
 			$textsbuilder .= "</td>";	//end cell for visitors
@@ -413,7 +413,7 @@ foreach($pointdocuments as $pointdocument):
 			endforeach;
 			$textsbuilder .= "</table>";
 
-			$textsbuilder .= "<input name='data[Document][languages".$pointdocument['Document']['id']."]' id='DocumentLanguages".$pointdocument['Document']['id']."' type='text' value='".$availability."'>";
+			$textsbuilder .= "<input name='data[Document][languages".$pointdocument['Document']['id']."]' id='DocumentLanguages".$pointdocument['Document']['id']."' type='hidden' value='".$availability."'>";
 
 			$textsbuilder .= "</div>"; //end languages div
 			$textsbuilder .= "</td>";	//end cell for visitors

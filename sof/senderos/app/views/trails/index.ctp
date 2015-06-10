@@ -83,7 +83,7 @@
 		<td class="actions">
 			<?php 
 			if($trailread === 'yes')
-				echo $this->Html->link(__('View', true), array('action' => 'view', $trail['Trail']['id'])); 
+				//echo $this->Html->link(__('View', true), array('action' => 'view', $trail['Trail']['id']));
 			/*else
 				echo "---";*/
 			?>
