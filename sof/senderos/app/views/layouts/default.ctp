@@ -52,7 +52,7 @@
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){
-						echo $this->Session->read('Auth.Client.role').': ';
+						echo $this->Session->read('Auth.Client.username').': ';
             		    echo $this->Html->link(__($str_logout, true), array('controller'=>'clients', 'action'=>'logout'));
             		}
                 ?>
