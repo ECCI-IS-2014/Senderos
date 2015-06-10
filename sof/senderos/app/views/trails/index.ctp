@@ -120,7 +120,7 @@
 
 <div class="actions">
 	<ul>
-		<li><?php 
+		<li title = "Create a new trail"><?php 
 		
 		if($_SESSION['role'] === 'administrator')
 			$trailcreate = 'yes';

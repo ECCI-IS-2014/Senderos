@@ -207,19 +207,19 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php 
+		<li title = "Edit the information for this trail"><?php 
 		if($trailupdate === 'yes')
 			echo $this->Html->link(__('Edit Trail', true), array('action' => 'edit', $trail['Trail']['id'])); 
 		/*else 
 			echo "---";*/
 		?> </li>
-		<li><?php 
+		<li title = "Delete this trail"><?php 
 		if($traildelete === 'yes')
 			echo $this->Html->link(__('Delete Trail', true), array('action' => 'delete', $trail['Trail']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $trail['Trail']['id'])); 
 		/*else 
 			echo "---";*/
 		?> </li>
-		<li><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index')); ?> </li>
+		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index')); ?> </li>
 		<li><?php 
 		if($trailcreate === 'yes')
 			echo $this->Html->link(__('New Trail', true), array('action' => 'add')); 
@@ -227,7 +227,7 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 			echo "---";*/
 		?> </li>
 		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
+		<li title = "Create a new station"><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
 	</ul>
 </div><!-- actions -->
 
@@ -237,8 +237,8 @@ else{
 ?>
     <div class="actions">
     	<ul>
-    <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
-    <li><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'stationtrails',$station)); ?> </li>
+    <li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+    <li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'stationtrails',$station)); ?> </li>
 	</ul>
 </div>
 <?php } ?>

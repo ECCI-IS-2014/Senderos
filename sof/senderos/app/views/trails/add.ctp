@@ -19,13 +19,11 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 <?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
 		<legend><?php __('Add Trail'); ?></legend>
-	<?php
-	echo $this->Form->input('id', array('type' => 'hidden'));
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Choose a map image:'));
-		echo $this->Form->input('station_id');
-	?>
+	<?php echo $this->Form->input('id', array('type' => 'hidden'));?>
+	<h1 title = "You MUST type a name for the new trail"><?php echo $this->Form->input('name');?></h1>
+	<h1 title = "You MUST type a description for the new trail"><?php echo $this->Form->input('description');?></h1>
+	<h1 title = "Upload the map for the new trail"><?php echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Choose a map image:'));?></h1>
+	<h1 title = "You MUST choose a station for the new trail"><?php echo $this->Form->input('station_id');?></h1>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
@@ -33,9 +31,9 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li>
+		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
+		<li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+		<li title = "Create a new station"><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 
