@@ -134,7 +134,7 @@ class DocumentsController extends AppController {
 		}
             $document = $this->Document->read(null, $id);
             $conditions = array('document_id'=>$id);
-            $this->Visitor->deleteAll($conditions, $cascade = true, $callbacks = false);
+            //$this->Visitor->deleteAll($conditions, $cascade = true, $callbacks = false);
             $file = new File(WWW_ROOT ."/".$document['Document']['type']."/".$document['Document']['route'], false, 0777);//Si esta sirviendo esta fallando la ruta >.>
             $file->delete();
             $this->Document->delete($id);
