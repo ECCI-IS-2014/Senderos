@@ -58,8 +58,8 @@ CREATE TABLE documents_points
   id int NOT NULL,
   document_id int NOT NULL,
   point_id int NOT NULL,
-  FOREIGN KEY(point_id) REFERENCES points(id) ON DELETE SET NULL,
-  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE SET NULL,
+  FOREIGN KEY(point_id) REFERENCES points(id) ON DELETE CASCADE,
+  FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
 
@@ -97,7 +97,7 @@ CREATE TABLE documents_visitors
   document_id int NOT NULL,
   visitor_id int NOT NULL,
   FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
-  FOREIGN KEY(visitor_id) REFERENCES visitors(id) ON DELETE SET NULL,
+  FOREIGN KEY(visitor_id) REFERENCES visitors(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
 
@@ -107,7 +107,7 @@ CREATE TABLE documents_languages
   document_id int NOT NULL,
   language_id int NOT NULL,
   FOREIGN KEY(document_id) REFERENCES documents(id) ON DELETE CASCADE,
-  FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE SET NULL,
+  FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
 
