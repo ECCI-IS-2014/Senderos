@@ -763,3 +763,10 @@ div.code-coverage-results span.result-good {
     border-left:0px solid #666;
     padding:10px 2%;
 }
+
+.oetlogo
+{
+    margin: 1.2em;
+    background: rgb(54, 92, 10);
+    background: rgba(54, 92, 10, .7);
+}
