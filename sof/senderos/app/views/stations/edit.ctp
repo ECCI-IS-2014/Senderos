@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 
 $result = '';
 
@@ -42,6 +41,15 @@ if($stationread == 'yes')
 
 ?>
 
+<div class="actions">
+	<ul>
+		<li title = "Delete this station"><?php
+		if($stationdelete === 'yes')
+			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Station.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Station.id')));
+		?></li>
+		<li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex'));?></li>
+	</ul>
+</div>
 
 <div class="stations form">
 <?php echo $this->Form->create('Station');?>
@@ -58,33 +66,9 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 	echo $this->Form->end(__('Submit', true));
 
 ?>
-</div>
-<div class="actions">
-	<ul>
-		<li title = "Delete this station"><?php
-		if($stationdelete === 'yes')
-			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Station.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Station.id'))); 
-		/*else 
-			echo "---";*/
-		?></li>
-		<li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('action' => 'stationindex'));?></li>
-	</ul>
+
 </div>
 
-<?php 
-
+<?php
 }
-
 ?>
-
-
-
-<div >
-
-	<?php
-	
-	//echo $result;
-	
-	?>
-
-</div>

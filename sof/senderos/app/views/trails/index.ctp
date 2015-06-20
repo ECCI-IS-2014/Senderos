@@ -19,6 +19,25 @@ $station_id = 'none';
 
 ?>
 
+<div class="actions">
+	<ul>
+		<li title = "Create a new trail"><?php
+
+		if($_SESSION['role'] === 'administrator')
+			$trailcreate = 'yes';
+		else
+			$trailcreate = 'no';
+
+		if($trailcreate === 'yes')
+			echo $this->Html->link(__('New Trail', true), array('action' => 'add'));
+		/*else
+			echo "---";*/
+		?></li>
+		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
+	</ul>
+</div>
+
 <div class="trails index">
 	<h2><?php __($str_trails);?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -150,23 +169,4 @@ if($trail['Station']['id'] !== $station_id)
  
 		<?php echo $this->Paginator->next(__($str_next, true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div-->
-</div>
-
-<div class="actions">
-	<ul>
-		<li title = "Create a new trail"><?php 
-		
-		if($_SESSION['role'] === 'administrator')
-			$trailcreate = 'yes';
-		else
-			$trailcreate = 'no';
-		
-		if($trailcreate === 'yes')
-			echo $this->Html->link(__('New Trail', true), array('action' => 'add')); 
-		/*else
-			echo "---";*/
-		?></li>
-		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
-	</ul>
 </div>

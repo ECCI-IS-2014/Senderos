@@ -12,6 +12,25 @@
 
 <?php $result = ''; ?>
 
+<div class="actions">
+	<ul>
+		<li><?php
+
+		if($_SESSION['role'] === 'administrator')
+			$stationcreate = 'yes';
+		else
+			$stationcreate = 'no';
+
+		if($stationcreate === 'yes')
+			echo $this->Html->link(__('New station', true), array('action' => 'add'));
+		/*else
+			echo "---";*/
+		?></li>
+		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
+	</ul>
+</div>
+
 <div class="Station index">
 	<h2><?php __($str_stations);?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -109,23 +128,4 @@
  
 		<?php echo $this->Paginator->next(__($str_next, true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div-->
-</div>
-
-<div class="actions">
-	<ul>
-		<li><?php 
-		
-		if($_SESSION['role'] === 'administrator')
-			$stationcreate = 'yes';
-		else
-			$stationcreate = 'no';
-		
-		if($stationcreate === 'yes')
-			echo $this->Html->link(__('New station', true), array('action' => 'add'));
-		/*else
-			echo "---";*/
-		?></li>
-		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
-	</ul>
 </div>

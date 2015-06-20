@@ -25,7 +25,6 @@
 
 /** General Style Info **/
 body {
-	background: #7BC143;
 	color: #fff;
     font-family: 'Questrial', arial, sans-serif;
     line-height: 1.65em;
@@ -153,24 +152,33 @@ ul, li {
 	overflow: auto;
 }
 #footer {
-    background: #F2F2F2;
+    background: white;
 	clear: both;
 	padding: 6px 10px;
 	text-align: right;
 }
 
 /** containers **/
-div.form,
+div.form
+{
+    font-size: smaller;
+    float:left;
+    width:45%;
+    border-left:0px solid #666;
+    padding:10px 2%;
+}
 div.index,
 div.view {
-	float:right;
-	width:76%;
+    font-size: smaller;
+    float:left;
+	width:65%;
 	border-left:0px solid #666;
 	padding:10px 2%;
 }
+
 div.actions {
 	float:left;
-	width:16%;
+	width:10%;
 	padding:10px 1.5%;
 }
 div.actions h3 {
@@ -376,17 +384,14 @@ input[type=submit] {
 	width: auto;
 }
 form .submit input[type=submit] {
-	background:#62af56;
-	background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
-	background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
-	border-color: #2d6324;
-	color: #000;
-	text-shadow: #8cee7c 0px 1px 0px;
+	background: #7BC143;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	color: white;
 }
 form .submit input[type=submit]:hover {
-	background:#4ca83d;
-	background: -webkit-gradient(linear, left top, left bottom, from(#85e573), to(#4ca83d));
-	background-image: -moz-linear-gradient(top, #85e573, #4ca83d);
+	background:#8FD853;
 }
 
 /** Notices and Errors **/
@@ -458,25 +463,26 @@ div.actions ul li a:hover {
 input[type=submit],
 div.actions ul li a,
 td.actions a {
+    font-size: small;
 	font-weight:normal;
 	padding: 4px 8px;
 	background:#e6e49f;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f1f1d4), to(#e6e49f));
-	background-image: -moz-linear-gradient(top, #f1f1d4, #e6e49f);
 	color:#333;
-	border:1px solid #aaac62;
+	border:0px solid #aaac62;
 	-webkit-border-radius:8px;
 	-moz-border-radius:8px;
-	border-radius:8px;
+	border-radius:4px;
 	text-decoration:none;
+    text-align: center;
 	text-shadow: #fff 0px 1px 0px;
 	min-width: 0;
 }
 input[type=submit]:hover,
 div.actions ul li a:hover,
 td.actions a:hover {
-	background: #f0f09a;
+	background: #EEEBA5;
 	background: -webkit-gradient(linear, left top, left bottom, from(#f7f7e1), to(#eeeca9));
+    text-decoration:none;
 }
 
 /** Related **/
@@ -597,13 +603,8 @@ div.code-coverage-results span.result-good {
 
 #navegador{
     background: #1C1C1C;
-    padding: 1em;
-
-    background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/bg01.png');
-    background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/bg01.png');
-    background-image: -o-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/bg01.png');
-    background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/bg01.png');
-    background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/bg01.png');
+    padding: 0.5em;
+    font-size: smaller;
 }
 
 #navegador ul{
@@ -750,4 +751,15 @@ div.code-coverage-results span.result-good {
 
 .button.special:hover {
     background-color: #6CC417;
+}
+
+.loginform
+{
+    font-size: small;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width:20%;
+    border-left:0px solid #666;
+    padding:10px 2%;
 }

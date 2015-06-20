@@ -1,3 +1,10 @@
+<div class="actions">
+	<ul>
+		<li title ="Index for Clients"><?php if($this->Session->read('Auth.Client.id') != null){ echo $this->Html->link(__('List Clients', true), array('action' => 'index'));} ?></li>
+		<!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
+	</ul>
+</div>
 <div class="clients form">
 <?php
 echo $this->Session->flash('auth');
@@ -22,11 +29,4 @@ echo $this->Form->create('Client');
 		<h1 title= "You MUST choose a country"> <?php echo $this->Form->input('country_id');?></h1>
 	</fieldset>
 <?php echo $this->Form->end(__('Done', true));?>
-</div>
-<div class="actions">
-	<ul>
-		<li title ="Index for Clients"><?php if($this->Session->read('Auth.Client.id') != null){ echo $this->Html->link(__('List Clients', true), array('action' => 'index'));} ?></li>
-		<!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
-	</ul>
 </div>

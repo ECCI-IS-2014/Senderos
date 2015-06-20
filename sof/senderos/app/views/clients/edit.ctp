@@ -1,3 +1,13 @@
+<div class="actions">
+	<ul>
+
+		<li title="Delete this account"><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Client.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Client.id'))); ?></li>
+		<li title="Index for Clients"><?php echo $this->Html->link(__('List Clients', true), array('action' => 'index'));?></li>
+        <li title ="Change the password for this user"><?php echo $this->Html->link(__('Change Password', true), array('action' => 'change', $this->Form->value('Client.id'))); ?> </li>
+		<!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
+		<?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
+	</ul>
+</div>
 <div class="clients form">
 <?php
 echo $this->Session->flash('auth');
@@ -25,15 +35,4 @@ echo $this->Form->create('Client');
 		<h1 title= "You may change the associated country"> <?php echo $this->Form->input('country_id');?></h1>
 	</fieldset>
 <?php echo $this->Form->end(__('Done', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li title="Delete this account"><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Client.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Client.id'))); ?></li>
-		<li title="Index for Clients"><?php echo $this->Html->link(__('List Clients', true), array('action' => 'index'));?></li>
-        <li title ="Change the password for this user"><?php echo $this->Html->link(__('Change Password', true), array('action' => 'change', $this->Form->value('Client.id'))); ?> </li>
-		<!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
-		<?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
-	</ul>
 </div>

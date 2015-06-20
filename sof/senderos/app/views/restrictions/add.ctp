@@ -1,3 +1,11 @@
+<div class="actions" >
+	<ul>
+		<li><?php echo $this->Html->link(__('List Permissions', true), array('action' => 'index'));?></li>
+        <!-- <li><?php echo $this->Html->link(__('List Clients', true), array('action' => 'index'));?></li>
+        <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
+	</ul>
+</div>
 <div class="clients form">
 <?php echo $this->Form->create('Restriction');?>
 
@@ -20,16 +28,6 @@
     </fieldset>
 
 <?php echo $this->Form->end(__('Done', true));?>
-</div>
-
-<div class="actions" >
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('List Permissions', true), array('action' => 'index'));?></li>
-        <!-- <li><?php echo $this->Html->link(__('List Clients', true), array('action' => 'index'));?></li>
-        <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
-        <li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
-	</ul>
 </div>
 
 <script>

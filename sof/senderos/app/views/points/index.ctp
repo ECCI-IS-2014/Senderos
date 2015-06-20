@@ -17,8 +17,13 @@
 $trail_id = 'none';
 
 ?>
-
-
+<div class="actions">
+	<ul>
+	<!-- <li title = "Create a new point"><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Point', true), array('action' => 'add'));} ?></li>
+    --><li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'index')); ?> </li>
+    <li title = "Create a new trail"><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add'));} ?></li>
+	</ul>
+</div>
 <div class="points index">
 	<h2><?php __('Points');?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -105,11 +110,4 @@ if($point['Trail']['id'] !== $trail_id)
  
 		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div-->
-</div>
-<div class="actions">
-	<ul>
-	<!-- <li title = "Create a new point"><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Point', true), array('action' => 'add'));} ?></li>
-    --><li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'index')); ?> </li>
-    <li title = "Create a new trail"><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add'));} ?></li>
-	</ul>
 </div>

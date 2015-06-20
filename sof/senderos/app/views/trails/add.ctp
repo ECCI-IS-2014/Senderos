@@ -15,6 +15,15 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 
 ?>
 
+<div class="actions">
+	<ul>
+
+		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
+		<li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+		<li title = "Create a new station"><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li>
+	</ul>
+</div>
+
 <div class="trails form">
 <?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
@@ -26,15 +35,6 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 	<h1 title = "You MUST choose a station for the new trail"><?php echo $this->Form->input('station_id');?></h1>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
-		<li title = "Index for stations"><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
-		<li title = "Create a new station"><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li>
-	</ul>
 </div>
 
 <?php 

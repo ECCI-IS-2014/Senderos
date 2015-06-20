@@ -1,3 +1,8 @@
+<div class="actions">
+	<ul>
+		<li><?php echo $this->Html->link(__('List Visitors', true), array('action' => 'index'));?></li>
+	</ul>
+</div>
 <div class="visitors form">
 <?php echo $this->Form->create('Visitor');?>
 	<fieldset>
@@ -9,10 +14,4 @@
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Visitors', true), array('action' => 'index'));?></li>
-	</ul>
 </div>

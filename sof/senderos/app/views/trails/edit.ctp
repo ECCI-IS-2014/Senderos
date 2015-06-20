@@ -58,6 +58,21 @@ if($trailread == 'yes')
 
 ?>
 
+<div class="actions">
+	<ul>
+
+		<li title = "Delete this trail"><?php
+		if($traildelete === 'yes')
+			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Trail.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Trail.id')));
+		/*else
+			echo "---";*/
+		?></li>
+		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
+		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
+	</ul>
+</div> <!-- actions -->
+
 <div class="trails form">
 <?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
@@ -473,25 +488,6 @@ function hide2(div)
 	?>
 
 </div>
-
-
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li title = "Delete this trail"><?php 
-		if($traildelete === 'yes')
-			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Trail.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Trail.id'))); 
-		/*else 
-			echo "---";*/
-		?></li>
-		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('action' => 'index'));?></li>
-		<!-- <li><?php echo $this->Html->link(__('List Stations', true), array('controller' => 'stations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Station', true), array('controller' => 'stations', 'action' => 'add')); ?> </li> -->
-	</ul>
-</div> <!-- actions -->
-
-
 
 <!--<script>
 	// attach handlers once iframe is loaded

@@ -1,3 +1,8 @@
+<div class="actions">
+	<ul>
+		<li><?php echo $this->Html->link(__('List Clients', true), array('action' => 'index'));?></li>
+	</ul>
+</div>
 <div class="clients form">
 <?php
 echo $this->Session->flash('auth');
@@ -11,10 +16,4 @@ echo $this->Form->create('Client');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Done', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('List Clients', true), array('action' => 'index'));?></li>
-	</ul>
 </div>

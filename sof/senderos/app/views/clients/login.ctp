@@ -1,11 +1,10 @@
-<div class="clients index">
-<h2><?php __('Login');?></h2>
+<div class="loginform">
 <?php
     echo $session->flash('auth');
     echo $form->create('Client', array('controller'=>'clients','action' => 'login'));
 ?>
-    <h1 title = "You MUST type your username"> <?php echo $form->input('username'); ?> </h1>
-    <h1 title = "You MUST type your password"> <?php echo $form->input('password'); ?> </h1>
+    <p title = "Type your username"> <?php echo $form->input('username'); ?> </p>
+    <p title = "Type your password"> <?php echo $form->input('password'); ?> </p>
 <?php
     echo $form->end('Login');
 ?>

@@ -1,4 +1,9 @@
 <?php /* ?>
+<div class="actions">
+	<ul>
+        <li title = "Index for Files"><?php echo $this->Html->link(__('List Documents', true), array('action' => 'index'));?></li>
+	</ul>
+</div>
 <div class="documents form">
 <?php echo $this->Form->create('Document', array('type' => 'file'));?>
 	<fieldset>
@@ -11,10 +16,5 @@
         <h1 title= "You MAY change the language associated to this file"><?php echo $this->Form->input('language_id', array('options' => $languages));?></h1>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<ul>
-        <li title = "Index for Files"><?php echo $this->Html->link(__('List Documents', true), array('action' => 'index'));?></li>
-	</ul>
 </div>
 <?php */ ?>

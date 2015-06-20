@@ -1,5 +1,11 @@
 <?php /*?>
-
+<div class="actions">
+	<ul>
+		<li title = "Index for points"><?php echo $this->Html->link(__('List Points', true), array('action' => 'index'));?></li>
+		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'index')); ?> </li>
+		<li title = "Create a new trail"><?php echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add')); ?> </li>
+	</ul>
+</div>
 <div class="points form">
 <?php echo $this->Form->create('Point');?>
 	<fieldset>
@@ -15,13 +21,5 @@
 
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li title = "Index for points"><?php echo $this->Html->link(__('List Points', true), array('action' => 'index'));?></li>
-		<li title = "Index for trails"><?php echo $this->Html->link(__('List Trails', true), array('controller' => 'trails', 'action' => 'index')); ?> </li>
-		<li title = "Create a new trail"><?php echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add')); ?> </li>
-	</ul>
 </div>
 <?php */?>

@@ -9,8 +9,13 @@
 $point_id = 'none';
 
 ?>
-
-
+<div class="actions">
+<div style = "text-align: justify">In order to create a new document, you have to do it from the trail of the point that you want it to be associated to.</div>
+	<ul> <!--
+		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Document', true), array('action' => 'add'));} ?></li>
+	    -->
+	</ul>
+</div>
 <div class="documents index">
 	<h2><?php __('Documents');?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -135,11 +140,4 @@ if($current_point !== $point_id)
 
 		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div-->
-</div>
-<div class="actions">
-<div style = "text-align: justify">In order to create a new document, you have to do it from the trail of the point that you want it to be associated to.</div>
-	<ul> <!--
-		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Document', true), array('action' => 'add'));} ?></li>
-	    -->
-	</ul>
 </div>

@@ -1,7 +1,12 @@
 <?php /* ?>
 <html>
 <body>
-<div id="formulario" >
+<div id="formulario">
+<div class="actions">
+	<ul>
+		<li title = "Index for Files"><?php echo $this->Html->link(__('List Documents', true), array('action' => 'index'));?></li>
+	</ul>
+</div>
 <div class="documents form">
     <h3> Add Multimedia File </h3>
 <?php echo $this->Form->create('Document',array('type' => 'file'));?>
@@ -20,11 +25,6 @@
 	</fieldset>
 <div id="submit_button"> <?php echo $this->Form->end(__('Submit', true));?> </div>
 </div>
-</div>
-<div class="actions">
-	<ul>
-		<li title = "Index for Files"><?php echo $this->Html->link(__('List Documents', true), array('action' => 'index'));?></li>
-	</ul>
 </div>
 </html>
 <?php */ ?>

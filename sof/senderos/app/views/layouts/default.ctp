@@ -50,9 +50,6 @@
                     <li><?php echo $this->Html->link(__($str_clients, true), array('controller'=>'clients', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_visitors, true), array('controller'=>'visitors', 'action'=>'index')); ?></li>
                     <li><?php echo $this->Html->link(__($str_languages, true), array('controller'=>'languages', 'action'=>'index')); ?></li>
-                    <?php if($this->Session->read('Auth.Client.role') == 'admin'){ ?>
-                        <li><?php echo $this->Html->link(__($str_restrictions, true), array('controller'=>'restrictions', 'action'=>'index')); ?></li>
-                    <?php } ?>
             <div id="login">
                 <?php
             	    if($this->Session->read('Auth.Client.id') != null){
@@ -69,8 +66,6 @@
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $content_for_layout; ?>
-		</div>
-    	<div id="footer">
 		</div>
 	    <script>
         function lan2(elmnt,clr)

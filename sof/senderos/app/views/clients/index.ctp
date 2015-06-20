@@ -1,3 +1,14 @@
+<?php if($this->Session->read("Auth.Client.role") != 'cust'){ ?>
+<div class="actions">
+	<ul>
+		<li title = "Add a new client"><?php echo $this->Html->link(__('New Client', true), array('action' => 'add')); ?></li>
+		<li title= "List of restrictions"><?php echo $this->Html->link(__('List Permissions', true), array('controller' => 'restrictions', 'action' => 'index')); ?> </li>
+		<li title = "Add a new restriction"><?php echo $this->Html->link(__('New Permission', true), array('controller' => 'restrictions', 'action' => 'add')); ?> </li>
+		<!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
+	</ul>
+</div>
+<?php } ?>
 <div class="clients index">
 	<h2><?php __('Clients');?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -51,14 +62,3 @@
 		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div-->
 </div>
-<?php if($this->Session->read("Auth.Client.role") != 'cust'){ ?>
-<div class="actions">
-	<ul>
-		<li title = "Add a new client"><?php echo $this->Html->link(__('New Client', true), array('action' => 'add')); ?></li>
-		<li title= "List of restrictions"><?php echo $this->Html->link(__('List Permissions', true), array('controller' => 'restrictions', 'action' => 'index')); ?> </li>
-		<li title = "Add a new restriction"><?php echo $this->Html->link(__('New Permission', true), array('controller' => 'restrictions', 'action' => 'add')); ?> </li>
-		<!-- <li><?php echo $this->Html->link(__('List Countries', true), array('controller' => 'countries', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
-	</ul>
-</div>
-<?php } ?>
