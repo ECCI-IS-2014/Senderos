@@ -86,8 +86,6 @@ foreach($pointdocuments as $pointdocument):
 
 			$imagesdiv .= "<div style='position: absolute; float:left; left: 5%; right:5%; z-index=2;'>";
 
-			$imagesdiv .= "<div title='".$pointdocument['Document']['description']."' style='cursor: default;'><b><h4>".$pointdocument['Document']['name']."</h4></b></div>";
-
 			if($pointdocument['Document']['type'] === 'images') //if an image
 			{
 				$imagesdiv .="<img id='img".$pointdocument['Document']['id']."'  src='/senderos/app/webroot/images/".$pointdocument['Document']['route']."' />";
