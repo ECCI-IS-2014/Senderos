@@ -1,0 +1,2 @@
+1521074917
+a:5:{s:2:"id";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:9:"client_id";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:10:"station_id";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:8:"trail_id";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}s:4:"allt";a:2:{s:4:"type";s:7:"integer";s:6:"length";s:2:"22";}}
