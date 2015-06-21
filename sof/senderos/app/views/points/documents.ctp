@@ -463,12 +463,14 @@ if($textscounter>0) echo '<td>'.$textsselect."</td>";
 
 <?php
 
-if($imagescounter>0) echo $imagesbuilder;
-if($videoscounter>0) echo $videosbuilder;
-if($soundscounter>0) echo $soundsbuilder;
-if($textscounter>0) echo $textsbuilder;
+$empty = true;
 
+if($imagescounter>0) {echo $imagesbuilder; $empty = false;}
+if($videoscounter>0) {echo $videosbuilder; $empty = false;}
+if($soundscounter>0) {echo $soundsbuilder; $empty = false;}
+if($textscounter>0) {echo $textsbuilder; $empty = false;}
+
+if($empty) echo "<center>You have not added files to this point ... <br><a onclick=\"displaySaveDocumentForm(".$point_id.");\" style=\"cursor:pointer\">Add a new file</a></center>";
 
 ?>
-
 
