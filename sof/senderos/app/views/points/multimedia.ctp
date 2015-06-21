@@ -107,16 +107,16 @@ foreach($pointdocuments as $pointdocument):
 				$imagesdiv .= "Your browser does not support the audio tag";
 				$imagesdiv .= "</audio>";*/
 				$imagesdiv .= "<object id='snd".$pointdocument['Document']['id']."' name='snd".$pointdocument['Document']['id']."'";
-				$imagesdiv .= " data='/senderos/app/webroot/sound/".$pointdocument['Document']['route']."' width='500' height='200'>";
+				$imagesdiv .= " data='/senderos/app/webroot/sound/".$pointdocument['Document']['route']."' width='500' height='400'>";
 				$imagesdiv .= "<param name='src' value='/senderos/app/webroot/sound/".$pointdocument['Document']['route']."'/>";
 				$imagesdiv .= "<PARAM NAME='autoplay' VALUE='true' />";
-				$imagesdiv .= "<EMBED id='snd".$pointdocument['Document']['id']."' name='snd".$pointdocument['Document']['id']."' SRC='/senderos/app/webroot/sound/".$pointdocument['Document']['route']."' AUTOPLAY='true' width='500' height='200'></EMBED>";
+				$imagesdiv .= "<EMBED id='snd".$pointdocument['Document']['id']."' name='snd".$pointdocument['Document']['id']."' SRC='/senderos/app/webroot/sound/".$pointdocument['Document']['route']."' AUTOPLAY='true' width='400' height='200'></EMBED>";
 				$imagesdiv .= "</object><br>";
 			}
 			else if($pointdocument['Document']['type'] === 'text') //if a text
 			{
 				//$imagesdiv .="<embed id='txt".$pointdocument['Document']['id']."' style='width:500px; height:300px;' src='/senderos/app/webroot/text/".$pointdocument['Document']['route']."' />";
-				$imagesdiv .="<div id='txt".$pointdocument['Document']['id']."' style='background-color: white; width:100%; height:300px; overflow-y: scroll;'>".$pointdocument['Document']['htmltext']."</div>";
+				$imagesdiv .="<div id='txt".$pointdocument['Document']['id']."' style='background-color: white; width:100%; height:400px; overflow-y: scroll;'>".$pointdocument['Document']['htmltext']."</div>";
 			}
 			else
 			{
