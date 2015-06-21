@@ -58,12 +58,14 @@ if($trailread == 'yes')
 
 ?>
 
+<script> var currdiam = 'none'; var currback = 'none'; var currfont = 'none'; </script>
+
 <div class="actions">
 	<ul>
 
 		<li title = "Delete this trail"><?php
 		if($traildelete === 'yes')
-			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Trail.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Trail.id')));
+			echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Trail.id')), null, sprintf(__('Are you sure you want to delete %s?', true), $this->Form->value('Trail.name')));
 		/*else
 			echo "---";*/
 		?></li>
@@ -73,7 +75,7 @@ if($trailread == 'yes')
 	</ul>
 </div> <!-- actions -->
 
-<div class="trails form">
+<div class="trails form" style="width:55%">
 <?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
 		<legend><?php __('Edit Trail'); ?></legend>
@@ -83,8 +85,8 @@ if($trailread == 'yes')
 
         <?php
         	echo $this->Form->input('id', array('type' => 'hidden'));
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
+		echo $this->Form->input('name', array('style' => 'width:50%'));
+		echo $this->Form->input('description', array('style' => 'width:50%'));
 		echo $this->Form->input('station_id');
         	echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Select a map image:', "onchange" => "previewMap();"));
 	?>
@@ -106,19 +108,19 @@ if($trailread == 'yes')
 	<!-- map and tools div -->
 	<div id="mapdiv">
 		<!-- map container -->
-		<div id="borderBox" style="position:relative;border:1px solid black;width:700px;height:700px;overflow:hidden;">
+		<div id="borderBox" style="position:relative;border:1px solid black;width:800px;height:700px;overflow:hidden;">
 
 		<!-- map div -->
-		<div id="mapLayer" style="width:700px;height:700px;top:0px;left:0px;position:absolute;cursor: default; background-image: url('/senderos/app/webroot/img/<?php echo $trail['Trail']['image']; ?>'); background-size: 700px 700px;" ></div><!-- /map div -->
+		<div id="mapLayer" style="width:800px;height:700px;top:0px;left:0px;position:absolute;cursor: default; background-image: url('/senderos/app/webroot/img/<?php echo $trail['Trail']['image']; ?>'); background-size: 800px 700px;" ></div><!-- /map div -->
 
 		<!-- points layer -->
-		<div id="pointsLayer" style="position: absolute;height: 700px;width: 700px; background-size: 700px 700px;pointer-events: none;">
+		<div id="pointsLayer" style="position: absolute;height: 700px;width: 100%; background-size: 800px 700px;pointer-events: none;">
 		
 
 		<?php foreach ($trail['Point'] as $point): ?>
 
 			<!-- point_ -->
-			<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer; <?php echo $point['style']; ?>" onmouseover="point_action(<?php echo $point['id']; ?>,event);"><?php echo $point['pnumber']; ?></div><!-- /point_ -->
+			<div id="point_<?php echo $point['id']; ?>" class="point" style="position: absolute;top: <?php echo $point['px_y']; ?>px; left: <?php echo $point['px_x']; ?>px; pointer-events: all; cursor: pointer; <?php echo $point['style']; ?>" onmouseover="point_action(<?php echo $point['id']; ?>,event); setcurrent('point_<?php echo $point['id']; ?>_style');"><?php echo $point['pnumber']; ?></div><!-- /point_ -->
 
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_id" value="<?php echo $point['id']; ?>"/>
 			<input type="hidden" id="point_<?php echo $point['id']; ?>_pnumber" value="<?php echo $point['pnumber']; ?>"/>
@@ -177,6 +179,13 @@ if($trailread == 'yes')
 
 	<script type="text/javascript">
 		initMap();
+		//window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
+		document.getElementById("mapLayer").oncontextmenu = function() {
+		     return false;  
+		} 
+		document.getElementById("pointsLayer").oncontextmenu = function() {
+		     return false;  
+		} 
 	</script>
 	
 	
@@ -241,16 +250,44 @@ function hide2(div)
 </div>
 
 
+<script>
+
+function validateCoords(textinput)
+{
+	var newchar = textinput.value[textinput.value.length - 1];
+
+	if(undefined != newchar)
+	{
+		if(isNaN(newchar))
+			textinput.value = textinput.value.substring(0, textinput.value.length-1);
+
+		if(newchar == '-' && textinput.value.length == 0)
+		{
+			textinput.value = '-' + textinput.value;
+			//textinput.value = textinput.value.replace(/-/g,'');
+		}
+		if(newchar == '.')
+		{
+			if(textinput.value.split(newchar).length == 1 && textinput.value.length > 1)
+				textinput.value = textinput.value + '.';
+		}
+	}
+	
+}
+
+</script>
+
+
 <div id="save_point" style="display:none">
-	<div class="points form">
+	<div class="points form" style="position: absolute; left:25%">
 		<?php echo $this->Form->create('Point');?>
 			<fieldset>
 				<legend><?php __('Save Point'); ?></legend>
 			<?php
 				echo $this->Form->input('pnumber',  array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
 				echo $this->Form->input('name');
-				echo $this->Form->input('cordx', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
-				echo $this->Form->input('cordy', array("onkeyup" => "if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"));
+				echo $this->Form->input('cordx', array("onkeyup" => "validateCoords(this)"));
+				echo $this->Form->input('cordy', array("onkeyup" => "validateCoords(this)"));
 				echo $this->Form->input('description');
 				//echo $this->Form->input('trail_id',array('value' => 'hidden'));
 				echo "<div class='input text required'>\n
@@ -264,7 +301,60 @@ function hide2(div)
 
 			?>
 
-			
+		
+<script>
+
+	function setcurrent(point_style)
+	{
+		point_style = document.getElementById(point_style).value.split(';');
+
+		currdiam = point_style[1].split(':')[1];
+		currdiam = currdiam.replace('px','');
+		currdiam = currdiam.replace(' ','');
+		currback = point_style[2].split(':')[1];
+		currback = currback.replace(' ','');
+		currfont = point_style[3].split(':')[1];
+		currfont = currfont.replace(' ','');
+
+		//setselects();
+		scroll_top();
+
+	}
+
+	function setselects(select)
+	{
+		if(select == 1)
+		{
+			//document.getElementById('diameter').value = currdiam;
+			//diameter = "width: "+currdiam+"px; height: "+currdiam+"px;";
+			currdiam = document.getElementById('diameter').value;
+			background= "background-color: "+currback+";";
+			font= "color: "+currfont+";";
+		}
+		if(select == 2)
+		{
+			//document.getElementById('background').value = currdiam;
+			diameter = "width: "+currdiam+"px; height: "+currdiam+"px;";
+			currback = document.getElementById('background').value;
+			font= "color: "+currfont+";";
+		}
+		if(select == 3)
+		{
+			//document.getElementById('font').value = currdiam;
+			diameter = "width: "+currdiam+"px; height: "+currdiam+"px;";
+			background= "background-color: "+currback+";";
+			currfont = document.getElementById('font').value;
+		}
+
+		document.getElementById('PointStyle').value = diameter+background+font+centerit;
+	}
+
+
+	
+
+</script>
+
+	
 
 			<div style="text-align:left;">Style:
 			<div id="pointstyling" >
@@ -272,20 +362,24 @@ function hide2(div)
 				</div> <!-- the point -->
 				<div id="stylechooser" >
 					Diameter:<br>
-					<select id='diameter' onchange="stylepoint(this, 'diameter');">
+					<select id='diameter' onchange="stylepoint(this, 'diameter'); setselects(1);">
+						<option value='25' selected disabled>Choose diameter</option>
 						<option value='10'>10</option>
 						<option value='15'>15</option>
 						<option value='20'>20</option>
-						<option value='25' selected>25</option>
+						<option value='25'>25</option>
 						<option value='30'>30</option>
 						<option value='35'>35</option>
 						<option value='40'>40</option>
 						<option value='45'>45</option>
 						<option value='50'>50</option>
 					</select><br>
+
+
 					Background color:<br>
-					<select id='background' onchange="stylepoint(this, 'background');">
-						<option value='green' selected>Green</option>
+					<select id='background' onchange="stylepoint(this, 'background'); setselects(2);">
+						<option value='green' selected disabled>Choose background</option>
+						<option value='green'>Green</option>
 						<option value='blue'>Blue</option>
 						<option value='violet'>Violet</option>
 						<option value='red'>Red</option>
@@ -298,13 +392,14 @@ function hide2(div)
 						<option value='brown'>Brown</option>
 					</select><br>
 					Font color:<br>
-					<select id='font' onchange="stylepoint(this, 'font');">
+					<select id='font' onchange="stylepoint(this, 'font');  setselects(3);">
+						<option value='white' selected disabled>Choose font color</option>
 						<option value='green'>Green</option>
 						<option value='blue'>Blue</option>
 						<option value='violet'>Violet</option>
 						<option value='red'>Red</option>
 						<option value='pink'>Pink</option>
-						<option value='white' selected>White</option>
+						<option value='white'>White</option>
 						<option value='gray'>Gray</option>
 						<option value='black'>Black</option>
 						<option value='yellow'>Yellow</option>
@@ -348,7 +443,7 @@ function hide2(div)
 
 
 <div id="save_document" style="display:none">
-	<div class="documents form">
+	<div class="documents form" style="position: absolute; left:15%; width: 70%;">
 		<form action="/senderos/documents/add" id="DocumentAddForm" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 			<div style="display:none;">
 				<input name="_method" value="POST" type="hidden">
@@ -360,11 +455,11 @@ function hide2(div)
 				<input name="data[Document][id]" id="DocumentId" type="hidden">
 				<div id="choosename" style="text-align:left;">
 					<label for="DocumentName">Name</label>
-					<input name="data[Document][name]" maxlength="100" id="DocumentName" type="text">
+					<input name="data[Document][name]" maxlength="100" id="DocumentName" type="text" style="width: 70%;">
 				</div>
 				<div id="choosedescription" style="text-align:left;">
 				<label for="DocumentDescription">Description</label>
-				<input name="data[Document][description]" maxlength="500" id="DocumentDescription" type="text">
+				<input name="data[Document][description]" maxlength="500" id="DocumentDescription" type="text" style="width: 70%;">
 				</div>
 				<div style="text-align:left;">
 					<label for="DocumentType">Type</label><br>
@@ -400,7 +495,7 @@ function hide2(div)
 <!-- <select name="data[Document][visitors]" id="DocumentVisitors"> -->
 
 				<?php
-				echo "<div style='text-align:left;padding:0; margin:0;'>Visitors:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;'>"; //visitors div
+				echo "<div style='text-align:left;padding:0; margin:0;'>Visitors:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;width: 70%;'>"; //visitors div
 
 				$availability = ";";
 
@@ -417,7 +512,7 @@ function hide2(div)
 				echo "</div>"; //end visitors div
 
 
-				echo "<div style='text-align:left;padding:0; margin:0;'>Languages:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;'>"; //languages div
+				echo "<div style='text-align:left;padding:0; margin:0;'>Languages:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;width: 70%;'>"; //languages div
 
 				$availability = ";";
 
