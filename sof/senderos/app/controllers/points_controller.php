@@ -69,14 +69,14 @@ var $paginate = array(
 			$this->Session->setFlash(__('Invalid point', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
+		/*if (!empty($this->data)) {
 			if ($this->Point->save($this->data)) {
 				$this->Session->setFlash(__('The point has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The point could not be saved. Please, try again.', true));
 			}
-		}
+		}*/
 		if (empty($this->data)) {
 			$this->data = $this->Point->read(null, $id);
 		}
@@ -308,7 +308,7 @@ var $paginate = array(
 		}
 		if (!empty($this->data)) {
 			if ($this->Point->save($this->data)) {
-				echo 'The point has been saved with id:'.$this->Point->getLastInsertId().'';
+				echo 'The point has been saved';// with id:'.$this->Point->getLastInsertId().'';
 			} else {
 				echo 'The point could not be saved. Please, try again.';
 			}
@@ -631,6 +631,9 @@ var $paginate = array(
 	function documents($id = null)
 	{
 		$this->layout = 'ajax';	//avoids rendering default layout
+
+		$this->set('point_id', $id);
+
 		$this->set('what', $_GET['what']);
 		$this->set('pointdocuments',$this->Point->DocumentsPoint->findAllByPointId($id));
 		
