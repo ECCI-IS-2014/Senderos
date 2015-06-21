@@ -58,17 +58,17 @@
 		</div><!-- accordeon container -->
 	</div> <!-- leftdiv container -->
 
-	<div id="centraldiv">
+	<div id="centraldiv" style="width: 50%">
 
 		<!--<div id="mapcontainer" class="draggablecontainer" >-->
-		<div id="mapcontainer" style="position:relative;border:1px solid white;width:95%;height:700px;overflow:hidden;">
+		<div id="mapcontainer" style="position:relative;border:1px solid white;width:800px;height:700px;overflow:hidden;">
 
 			<!--<div id="maplayer" class="draggablediv" style="background-image: url('/senderos/app/webroot/img/<?php echo $trail['Trail']['image']; ?>');" >
 			</div> <!-- maplayer div -->
-			<div id="maplayer" style="width:100%;height:700px;top:0px;left:0px;position:absolute;cursor: default; background-image: url('/senderos/app/webroot/img/<?php echo $trail['Trail']['image']; ?>'); background-size: 100% 700px;" ></div>
+			<div id="maplayer" style="width:800px;height:700px;top:0px;left:0px;position:absolute;cursor: default; background-image: url('/senderos/app/webroot/img/<?php echo $trail['Trail']['image']; ?>'); background-size: 800px 700px;" ></div>
 			
 			<!--<div id="pointslayer" class="draggablediv2">-->
-			<div id="pointslayer" style="position: absolute;height: 700px;width: 95%; background-size: 100% 700px;pointer-events: none;">
+			<div id="pointslayer" style="position: absolute;height: 700px;width: 800px; background-size: 100% 700px;pointer-events: none;">
 				<?php foreach ($trail['Point'] as $point): ?>
 
 					<!-- point_{point_id} -->
@@ -157,7 +157,7 @@
 
 	</div> <!-- centraldiv container -->
 
-	<div id="rightdiv">
+	<div id="rightdiv" style="width: 20%;">
 	<?php if($trail != null)
 	{
 	?>
