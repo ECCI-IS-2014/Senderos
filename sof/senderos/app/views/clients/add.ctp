@@ -16,7 +16,7 @@ echo $this->Form->create('Client');
 		<h1 title= "You MUST type a name of the owner of the account"> <?php echo $this->Form->input('name');?></h1>
 		<h1 title= "You MUST type the first lastname of the owner of the account"> <?php echo $this->Form->input('lastname');?></h1>
 		<!--//echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Client'), 'title'=>'Rol', 'label'=>'Rol '));-->
-		<?php if($this->Session->read('Auth.Client.id') != null)
+		<?php if($this->Session->read('Auth.Client.id') != null && $this->Session->read('Auth.Client.role') == 'admin')
 		{ ?>
             <?php echo $this->Form->input('role', array('options' => array('admin' => 'Administrator', 'cust' => 'Restricted'), 'title'=>'You MUST choose a role', 'label'=>'Role '));?>
 		<?php }
