@@ -140,9 +140,9 @@ $languages = $this->requestAction('/languages/getlanguages');
 				<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 				<table style="background-color: transparent; border:none;"><tr>
 					<td style="background-color: transparent; border:none;">
-						<div class="submit">
-							<input type="button" value="Submit" onclick="editThis();" style="font size: 110%; width: auto; min-width: 0px; border: 1px solid #2D6324; border-radius: 8px; text-decoration: none; font-weight: normal; padding: 4px 8px; background: #62AF56 -moz-linear-gradient(center top , #A8EA9C, #62AF56) repeat scroll 0% 0%; color: #000; text-shadow: 0px 1px 0px #8CEE7C; cursor: pointer;"></input>
-					    	</div>
+						<div>
+							<input class="button special" value="Submit" onclick="editThis();"></input>
+					    </div>
 					</td>
 					<td style="background-color: transparent; border:none;">
 						<div id="waitdiv" style="height:50%; width:50%; display:none;">

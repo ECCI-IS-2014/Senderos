@@ -157,7 +157,7 @@
 
 	</div> <!-- centraldiv container -->
 
-	<div id="rightdiv" style="width: 20%;">
+	<div id="rightdiv" style="width: 15%;">
 	<?php if($trail != null)
 	{
 	?>

@@ -481,7 +481,6 @@ input[type=submit]:hover,
 div.actions ul li a:hover,
 td.actions a:hover {
 	background: #EEEBA5;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f7f7e1), to(#eeeca9));
     text-decoration:none;
 }
 
@@ -746,6 +745,8 @@ div.code-coverage-results span.result-good {
 
 .button.special {
     background-color: #7BC143;
+    height: 4em;
+    width: 40px;
     box-shadow: none !important;
 }
 
