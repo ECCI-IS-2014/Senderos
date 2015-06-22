@@ -102,17 +102,7 @@ class Client extends AppModel {
                 'rule' => array('equals','new_password'),
                 'message' => 'Both passwords must match.'
             )
-        ),
-		'country_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+        )
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -134,6 +124,7 @@ class Client extends AppModel {
         return $this->data[$this->name][$otherfield] === $this->data[$this->name][$fname];
     }
 
+    /*
     var $belongsTo = array(
         'Country' => array(
             'className' => 'Country',
@@ -142,7 +133,7 @@ class Client extends AppModel {
             'fields' => '',
             'order' => ''
         )
-    );
+    ); */
 
     var $hasMany = array(
         'Restriction' => array(
