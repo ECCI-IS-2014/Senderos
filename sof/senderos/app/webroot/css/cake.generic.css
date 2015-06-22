@@ -148,7 +148,7 @@ ul, li {
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 2.5em 1.5em 3em 1.5em;
+	padding: 1em 1.5em 3em 1.5em;
 	overflow: auto;
 }
 #footer {
@@ -161,7 +161,7 @@ ul, li {
 /** containers **/
 div.form
 {
-    font-size: smaller;
+    font-size: small;
     float:left;
     width:45%;
     border-left:0px solid #666;
@@ -294,7 +294,7 @@ form {
 fieldset {
 	border: 1px solid #ccc;
 	margin-bottom: 1em;
-	padding: 16px 20px;
+	padding: 0px 15px;
 }
 fieldset legend {
 	background:#fff;
@@ -317,8 +317,8 @@ fieldset fieldset div {
 }
 form div {
 	clear: both;
-	margin-bottom: 1em;
-	padding: .5em;
+	margin-bottom: 0em;
+	padding: .3em;
 	vertical-align: text-top;
 }
 form .input {
@@ -344,9 +344,9 @@ label {
 }
 input, textarea {
 	clear: both;
-	font-size: 140%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	font-size: 110%;
+	font-family: 'Questrial', sans-serif;
+	padding: 0.2em;
 	width:98%;
 }
 select {
@@ -712,6 +712,7 @@ div.code-coverage-results span.result-good {
     text-align: center;
     color: gray;
 }
+
 .button {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -729,6 +730,7 @@ div.code-coverage-results span.result-good {
     cursor: pointer;
     display: inline-block;
     font-size: xx-small;
+    font-family: 'Questrial', arial, sans-serif;
     font-weight: 800;
     height: 3.125em;
     letter-spacing: 0.1em;

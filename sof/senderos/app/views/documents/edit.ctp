@@ -12,7 +12,7 @@ $languages = $this->requestAction('/languages/getlanguages');
 ?>
 
 
-<div id="save_document" style="display:block; padding-left:25%;">
+<div id="save_document" style="display:block; padding-left:30%;">
 	<div class="documents form" style="width: 50%;">
 		<form action="/senderos/documents/add" id="DocumentAddForm" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 			<div style="display:none;">
@@ -25,13 +25,12 @@ $languages = $this->requestAction('/languages/getlanguages');
 				<input name="data[Document][id]" id="DocumentId" type="hidden" value="<?php echo $this->data['Document']['id']; ?>">
 				<div id="choosename" style="text-align:left;">
 					<label for="DocumentName">Name</label>
-					<input name="data[Document][name]" maxlength="100" id="DocumentName" type="text" style="width: 70%;" value="<?php echo $this->data['Document']['name']; ?>">
+					<input name="data[Document][name]" maxlength="100" id="DocumentName" type="text" style="width: 55%;" value="<?php echo $this->data['Document']['name']; ?>">
 				</div>
 				<div id="choosedescription" style="text-align:left;">
 				<label for="DocumentDescription">Description</label>
-				<input name="data[Document][description]" maxlength="500" id="DocumentDescription" type="text" style="width: 70%;"  value="<?php echo $this->data['Document']['description']; ?>">
+				<input name="data[Document][description]" maxlength="500" id="DocumentDescription" type="text" style="width: 55%;"  value="<?php echo $this->data['Document']['description']; ?>">
 				</div>
-
 
 				<input name="data[Document][type]" maxlength="100" id="DocumentType" type="hidden" style="width: 90%;" value="<?php echo $this->data['Document']['type']; ?>">
 				
@@ -46,7 +45,6 @@ $languages = $this->requestAction('/languages/getlanguages');
 					echo "</iframe>";
 					echo "</div><!-- editorcontainer -->";
 
-			//fake div
 					echo "<div style='display: none;'>";
 					echo "<input name='data[Document][archivo]' id='DocumentArchivo".$this->data['Document']['id']."' type='file' style='visibilty:hidden;' />";
 					echo "</div>";//end efake div
@@ -56,7 +54,9 @@ $languages = $this->requestAction('/languages/getlanguages');
 
 				if($this->data['Document']['type'] === 'images')
 				{
-					echo "<img id='img".$this->data['Document']['id']."' src='/senderos/app/webroot/images/".$this->data['Document']['route']."' width='200px' height='150px' /><br>";
+				    echo "<div id='imagenedit'>";
+					echo "<img id='img".$this->data['Document']['id']."' src='/senderos/app/webroot/images/".$this->data['Document']['route']."' width='200px' height='150px''/><br>";
+				    echo "</div>";
 				}
 				if($this->data['Document']['type'] === 'video')
 				{
@@ -73,7 +73,7 @@ $languages = $this->requestAction('/languages/getlanguages');
 					echo "</object><br>";
 				}
 
-				echo "<div id='filediv".$this->data['Document']['id']."' style='display: block; width: 100px; height: 20px; overflow: hidden;cursor: pointer;' title='Change file'>";
+				echo "<div id='filediv".$this->data['Document']['id']."' style='display: block; margin-left:5px; width: 100px; height: 20px; overflow: hidden;cursor: pointer;' title='Change file'>";
 				echo "<a href='javascript: void(0)' style='width: 110px; height: 30px; position: relative; top: -5px; left: -5px;cursor: pointer;'>Change</a>";
 				echo "<input name='data[Document][archivo]' id='DocumentArchivo".$this->data['Document']['id']."' type='file'";
 				echo " onchange=\"previewimage('img".$this->data['Document']['id']."','DocumentArchivo".$this->data['Document']['id']."')\"";
@@ -85,7 +85,7 @@ $languages = $this->requestAction('/languages/getlanguages');
 				?>
 
 				<?php
-				echo "<div style='text-align:left;padding:0; margin:0;'>Visitors:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;width: 70%;'>"; //visitors div
+				echo "<div style='text-align:left;padding:0; margin:0;'>Visitors:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;width: 100%;'>"; //visitors div
 
 				$availability = ";";
 
@@ -109,7 +109,7 @@ $languages = $this->requestAction('/languages/getlanguages');
 				echo "</div>"; //end visitors div
 
 
-				echo "<div style='text-align:left;padding:0; margin:0;'>Languages:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;width: 70%;'>"; //languages div
+				echo "<div style='text-align:left;padding:0; margin-top:1em;'>Languages:</div><div style='height: 60px; overflow-x: hidden; overflow-y: scroll;width: 100%;'>"; //languages div
 
 				$availability = ";";
 
@@ -138,7 +138,7 @@ $languages = $this->requestAction('/languages/getlanguages');
 
 				
 				<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
-				<table style="background-color: transparent; border:none;"><tr>
+				<table style="background-color: transparent; border:none; margin-top:1em;"><tr>
 					<td style="background-color: transparent; border:none;">
 						<div>
 							<input class="button special" value="Submit" onclick="editThis();"></input>
