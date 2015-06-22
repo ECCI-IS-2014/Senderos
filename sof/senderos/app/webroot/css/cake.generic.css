@@ -712,7 +712,6 @@ div.code-coverage-results span.result-good {
     text-align: center;
     color: gray;
 }
-
 .button {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -729,15 +728,14 @@ div.code-coverage-results span.result-good {
     color: #fff;
     cursor: pointer;
     display: inline-block;
-    font-size: 0.5em;
+    font-size: xx-small;
     font-weight: 800;
     height: 3.125em;
     letter-spacing: 0.1em;
     line-height: 3.125em;
-    padding: 0 2.75em;
+    padding: 0 1.5em;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -745,8 +743,8 @@ div.code-coverage-results span.result-good {
 
 .button.special {
     background-color: #7BC143;
-    height: 4em;
-    width: 40px;
+    height: 3em;
+    width: 4.5em;
     box-shadow: none !important;
 }
 
