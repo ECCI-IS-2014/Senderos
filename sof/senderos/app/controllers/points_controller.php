@@ -108,7 +108,7 @@ var $paginate = array(
 		$this->loadModel('DocumentsLanguage');
 		$this->loadModel('DocumentsPoint');
 		
-		debug($documents);
+		//debug($documents);
 		
 		foreach($documents as $document):
 				$doc_id = $document['DocumentsPoint']['document_id'];
