@@ -26,7 +26,6 @@ echo $this->Form->create('Client');
         <?php } ?>
 		<h1 title= "You MUST type a password"> <?php echo $this->Form->input('password');?></h1>
 		<?php echo $this->Form->input('password_confirm', array('label' => 'Confirm Password ', 'title' => 'You MUST retype the password', 'type'=>'password'));?>
-		<h1 title= "You MUST choose a country"> <?php echo $this->Form->input('country_id');?></h1>
 	</fieldset>
 <?php echo $this->Form->end(__('Done', true));?>
 </div>

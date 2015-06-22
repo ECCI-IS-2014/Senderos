@@ -19,7 +19,6 @@
 			<th><?php echo $this->Paginator->sort('lastname');?></th>
 			<th><?php echo $this->Paginator->sort('role');?></th>
 			<!-- <th><?php echo $this->Paginator->sort('password');?></th> -->
-			<th><?php echo $this->Paginator->sort('country_id');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -37,9 +36,6 @@
 		<td><?php echo $client['Client']['lastname']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['role']; ?>&nbsp;</td>
 		<!-- <td><?php echo $client['Client']['password']; ?>&nbsp;</td> -->
-		<td>
-			<?php echo $client['Country']['name'];?>
-		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $client['Client']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $client['Client']['id'])); ?>

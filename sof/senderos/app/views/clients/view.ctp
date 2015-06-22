@@ -32,10 +32,5 @@
 			<?php echo $client['Client']['role']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Country'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $client['Country']['name'];?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
