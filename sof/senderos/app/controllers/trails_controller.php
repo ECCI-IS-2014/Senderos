@@ -88,7 +88,7 @@ var $paginate = array(
                 //debug($this->data);
                 //debug($this->data['Trail']);
                 if($this->data['Trail']['archivo']['error'] == 0 &&  $this->data['Trail']['archivo']['size'] > 0){
-                    echo('helo');
+                    //echo('helo');
 					// Informacion del tipo de archivo subido $this->data['Trail']['archivo']['type']
 					//$destino = WWW_ROOT.'uploads'.DS;
 					$destino = WWW_ROOT.'img'.DS;
