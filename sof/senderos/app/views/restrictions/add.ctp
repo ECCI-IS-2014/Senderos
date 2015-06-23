@@ -15,14 +15,12 @@
             <tr>
                 <th>Client</th>
                 <th>Station</th>
-                <th>Trail id</th>
-                <th>All trails</th>
+                <th>Trails</th>
             </tr>
             <tr>
                 <td><?php echo $this->Form->input('client_id');?></td>
                 <td><?php echo $this->Form->input('station_id');?></td>
-                <td><?php echo $this->Form->input('allt', array('label' => 'All trails?','default'=>'1' ,'options' => array('false','true')));?></td>
-                <td><?php echo $this->Form->input('trail_id');?></td>
+                <td><?php echo $this->Form->input('trail_id',array('type'=>'select','multiple'=>'checkbox'));?></td>
             </tr>
         </table>
     </fieldset>
@@ -32,7 +30,7 @@
 
 <script>
 $( document ).ready(function() {
-     $('#RestrictionTrailId').prop('disabled', 'disabled');
+   /*  $('#RestrictionTrailId').prop('disabled', 'disabled');
     $("#RestrictionAllt").click(function()
     {
         if($("#RestrictionAllt").val()=="1")
@@ -45,25 +43,27 @@ $( document ).ready(function() {
             $('#RestrictionTrailId').prop('disabled', false);
         }
 
+    });*/
+
+    $("#RestrictionStationId").change(function()
+    {
+        $.ajax({
+                    url: '/senderos/trails/getByStation/'+$("#RestrictionStationId").val(),
+                        cache: false,
+                        type: 'GET',
+                        dataType: 'HTML',
+                    success: function (data){
+                       $(".checkbox").remove();
+                       $("[name='data[Restriction][trail_id]']").after(data);
+                    }
+        });
     });
 });
+
+
+
 </script>
 
 
 
-
-<?php
-$this->Js->get('#RestrictionStationId')->event('change',
-$this->Js->request(array(
-                    'controller'=>'trails',
-                    'action'=>'getByStation'
-                    ),
-            array(
-                'update'=>'#RestrictionTrailId',
-                'async' => true,
-                'method' => 'post',
-                'dataExpression'=>true,
-                'data'=> $this->Js->serializeForm(array('isForm' => true,'inline' => true))
-                )));
-?>
 

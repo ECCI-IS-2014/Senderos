@@ -14,8 +14,8 @@
             <tr>
                 <th>Client</th>
                 <th>Station</th>
-                <th>All trails</th>
-                <th>Trail id</th>
+                <th>Permission in all trails?</th>
+                <th>Trail Name</th>
                 <th class="actions"><?php __('Actions');?></th>
             </tr>
 
@@ -24,7 +24,7 @@
                 <td><?php echo $restriction['Client']['username']; ?></td>
                 <td><?php echo $restriction['Station']['name']; ?></td>
                 <td><?php if ($restriction['Restriction']['allt'] ==1 ){echo 'TRUE';} else {echo 'FALSE';} ?></td>
-                <td><?php if( $restriction['Restriction']['allt'] == 0 ) {echo $restriction['Trail']['name']; }else { echo 'NA'; } ?></td>
+                <td><?php echo $restriction['Trail']['name']; ?></td>
                 <td class="actions">
                     <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $restriction['Restriction']['id'])); ?>
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $restriction['Restriction']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $restriction['Restriction']['id'])); ?>

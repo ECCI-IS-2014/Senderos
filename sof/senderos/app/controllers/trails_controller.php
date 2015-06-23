@@ -217,8 +217,8 @@ var $paginate = array(
 		}
 	}*/
 
-	    public function getByStation() {
-        $station_id = $this->data['Restriction']['station_id'];
+	    public function getByStation($station_id) {
+        //$station_id = $this->data['Restriction']['station_id'];
         $seltrails = $this->Trail->find('list', array(
             'conditions' => array('Trail.station_id' => $station_id)
         ));

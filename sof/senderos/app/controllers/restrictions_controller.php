@@ -13,13 +13,18 @@ class RestrictionsController extends AppController {
 
     function add() {
         if (!empty($this->data)) {
-            $this->Restriction->create();
-            if ($this->Restriction->save($this->data)) {
+            for ($i=0; $i<sizeof($this->data['Restriction']['trail_id']); $i++) {
+                $this->Restriction->create();
+                $this->Restriction->save(Array('Restriction' => Array('trail_id' => $this->data['Restriction']['trail_id'][$i] ,'client_id' => $this->data['Restriction']['client_id'],'station_id'=>$this->data['Restriction']['station_id'],'allt'=>'1')));
+            }
+            $this->Session->setFlash(__('The restriction has been saved'.$this->data['Restriction']['trail_id'][0], true));
+            $this->redirect(array('action' => 'index'));
+            /*if ($this->Restriction->save($this->data)) {
                 $this->Session->setFlash(__('The restriction has been saved', true));
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The restriction could not be saved. Please, try again.', true));
-            }
+                $this->Session->setFlash(__('The restriction could not be saved. Please, try again.'.$this->data[Restriction][trail_id][0], true));
+            }*/
         }
         //$this->set('restrictions', $this->Restriction->find('all', array('order' => array('Restriction.model ASC'), 'conditions' => array('Restriction.client_id' => $this->Client->id))));
         $this->set('restrictions', $this->Restriction->find('all'));//, array('order' => array('Restriction.model ASC'))));
