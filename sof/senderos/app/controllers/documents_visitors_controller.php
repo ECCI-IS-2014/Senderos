@@ -38,7 +38,7 @@ class DocumentsVisitorsController extends AppController {
 		}
         $dovi = $this->DocumentsVisitor->findById($id);
         if (!$dovi) {
-            $this->Session->setFlash(__('Invalid association', true));
+            //$this->Session->setFlash(__('Invalid association', true));
             $this->redirect(array('action' => 'index'));
         }
 		if (!empty($this->data)) {

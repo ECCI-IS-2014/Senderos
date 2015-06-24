@@ -106,7 +106,7 @@ var $paginate = array(
         }
         $do = $this->Document->findById($id);
         if (!$do) {
-            $this->Session->setFlash(__('Invalid document', true));
+            //$this->Session->setFlash(__('Invalid document', true));
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {

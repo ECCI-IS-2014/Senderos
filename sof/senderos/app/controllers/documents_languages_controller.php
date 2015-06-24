@@ -38,7 +38,7 @@ class DocumentsLanguagesController extends AppController {
 		}
         $dola = $this->DocumentsLanguage->findById($id);
         if (!$dola) {
-            $this->Session->setFlash(__('Invalid association', true));
+            //$this->Session->setFlash(__('Invalid association', true));
             $this->redirect(array('action' => 'index'));
         }
 		if (!empty($this->data)) {

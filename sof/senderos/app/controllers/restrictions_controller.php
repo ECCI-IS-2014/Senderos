@@ -43,7 +43,7 @@ class RestrictionsController extends AppController {
         }
         $re = $this->Restriction->findById($id);
         if (!$re) {
-            $this->Session->setFlash(__('Invalid restriction', true));
+            //$this->Session->setFlash(__('Invalid restriction', true));
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {

@@ -38,7 +38,7 @@ class DocumentsPointsController extends AppController {
 		}
         $dopo = $this->DocumentsPoint->findById($id);
         if (!$dopo) {
-            $this->Session->setFlash(__('Invalid association', true));
+            //$this->Session->setFlash(__('Invalid association', true));
             $this->redirect(array('action' => 'index'));
         }
 		if (!empty($this->data)) {
