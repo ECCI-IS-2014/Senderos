@@ -69,6 +69,11 @@ var $paginate = array(
 			$this->Session->setFlash(__('Invalid point', true));
 			$this->redirect(array('action' => 'index'));
 		}
+        $po = $this->Poi->findById($id);
+        if (!$po) {
+            $this->Session->setFlash(__('Invalid point', true));
+            $this->redirect(array('action' => 'index'));
+        }
 		/*if (!empty($this->data)) {
 			if ($this->Point->save($this->data)) {
 				$this->Session->setFlash(__('The point has been saved', true));
@@ -625,8 +630,6 @@ var $paginate = array(
 		
 		echo $response;
 	}
-
-	
 
 	function documents($id = null)
 	{
