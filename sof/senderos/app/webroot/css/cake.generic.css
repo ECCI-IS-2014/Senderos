@@ -58,7 +58,7 @@ h2 {
 	background:#fff;
     font-weight: bold;
     font-family: 'Questrial', arial, sans-serif;
-	font-size: 190%;
+	font-size: 135%;
 }
 h3 {
 	color: #478e67;
@@ -171,14 +171,14 @@ div.index,
 div.view {
     font-size: smaller;
     float:left;
-	width:65%;
+	width:50%;
 	border-left:0px solid #666;
 	padding:10px 2%;
 }
 
 div.actions {
 	float:left;
-	width:10%;
+	width:15%;
 	padding:10px 1.5%;
 }
 div.actions h3 {
@@ -294,7 +294,7 @@ form {
 fieldset {
 	border: 1px solid #ccc;
 	margin-bottom: 1em;
-	padding: 0px 15px;
+	padding: 7px 15px;
 }
 fieldset legend {
 	background:#fff;
@@ -385,6 +385,7 @@ input[type=submit] {
 }
 form .submit input[type=submit] {
 	background: #7BC143;
+    width: 60px;
     -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -464,6 +465,7 @@ input[type=submit],
 div.actions ul li a,
 td.actions a {
     font-size: small;
+    width:60%;
 	font-weight:normal;
 	padding: 4px 8px;
 	background:#e6e49f;
@@ -770,4 +772,23 @@ div.code-coverage-results span.result-good {
     margin: 1.2em;
     background: rgb(54, 92, 10);
     background: rgba(54, 92, 10, .7);
+}
+
+#infomessages{
+    background-color: rgba(127, 198, 68, 0.25);
+    color: darkslategray;
+    text-align: justify;
+    font-size: small;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 4px;
+}
+
+div.infohelp {
+    float:right;
+    width:15%;
+    margin-right:30px;
+    padding:10px 1.5%;
 }
