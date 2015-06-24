@@ -88,10 +88,11 @@
 				if($found && $existlan && $existvis)
 				{
 				?>
-						<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
-							<!--<div style="float:left;">-->
-							<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'trails', 'action' => 'stationtrails', $station['Station']['id'])); ?>
-
+						<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="hideothers(this); document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
+					<!--<div style="float:left;">-->
+					<!--<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>-->
+					<?php echo $station['Station']['name']; ?>
+					
 							<div id="station_<?php echo $station['Station']['id']?>_arrow" class="menuarrow" onclick="this.innerHTML = (this.innerHTML=='&#x25B2;')? '&#x25BC;': '&#x25B2;';">
 							&#x25BC;</div>
 
