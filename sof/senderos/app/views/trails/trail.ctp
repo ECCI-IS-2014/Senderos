@@ -34,27 +34,110 @@
             print '</select>';
         ?></div>
 		<div id="accordeon">
-			<?php foreach($stations as $station): ?>
+			
+			
+			<!-- para lo del filtro del menu de la derecha -->
+			
+			
+			<?php
 
-				<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="hideothers(this); document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
-					<!--<div style="float:left;">-->
-					<!--<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>-->
-					<?php echo $station['Station']['name']; ?>
 
-					<div id="station_<?php echo $station['Station']['id']?>_arrow" class="menuarrow" onclick="this.innerHTML = (this.innerHTML=='&#x25B2;')? '&#x25BC;': '&#x25B2;';">
-					&#x25BC;</div>
 
-				</div> <!-- station_{}-->
+			$existlan = false;
+			$lan_availability = '';
+			foreach($languagesavailable as $lanav):
+				if($existlan) $lan_availability .= ', ';
+				$existlan = true;
+				$lan_availability .= $lanav['languages']['name'];
+			endforeach;
 
-				<div id="station_<?php echo $station['Station']['id']?>_trails" style="display:none;">
-					<?php foreach($station['Trail'] as $stationtrail): ?>
-						<div class="trailitem">
-						<?php echo $this->Html->link($stationtrail['name'], array('controller' => 'trails', 'action' => 'trail', $stationtrail['id'])); ?>
-						</div>
-					<?php endforeach ?>
-				</div> <!-- station_{}_trails-->
+			/*if($existinfo)
+				echo "There is information available in ".$availability."<br>";*/
 
-			<?php endforeach; ?>
+			$existvis = false;
+			$vis_availability = '';
+			foreach($visitorsavailable as $visav):
+				if($existvis) $vis_availability .= ', ';
+				$existvis = true;
+				$vis_availability .= $visav['visitors']['role'];
+			endforeach;
+
+			/*if($existinfo)
+				echo "There is information available for ".$availability."<br>";*/
+
+
+
+
+
+			$existoptions = false;
+
+			foreach($stations as $station):
+
+				$found = false;
+	
+				foreach($myquery as $rec):
+					if($rec['trails']['station_id'] == $station['Station']['id'])
+					{
+							$existoptions = true;
+							$found = true;
+							break;
+					}
+				endforeach;
+
+
+				if($found && $existlan && $existvis)
+				{
+				?>
+						<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
+							<!--<div style="float:left;">-->
+							<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'trails', 'action' => 'stationtrails', $station['Station']['id'])); ?>
+
+							<div id="station_<?php echo $station['Station']['id']?>_arrow" class="menuarrow" onclick="this.innerHTML = (this.innerHTML=='&#x25B2;')? '&#x25BC;': '&#x25B2;';">
+							&#x25BC;</div>
+
+						</div> <!-- station_{}-->
+
+						<div id="station_<?php echo $station['Station']['id']?>_trails" style="display:none;">
+							<?php 
+				
+							foreach($station['Trail'] as $stationtrail): 
+								$found2 = false;
+								foreach($myquery as $rec2):
+									if($rec2['trails']['name'] === $stationtrail['name'])
+									{
+											$found2 = true;
+											break;
+									}
+								endforeach;
+				
+								if($found2)
+								{ ?>
+									<div class="trailitem">
+									<?php echo $this->Html->link($stationtrail['name'], array('controller' => 'trails', 'action' => 'trail', $stationtrail['id'])); ?>
+									</div>
+								<?php }
+							endforeach ?>
+						</div> <!-- station_{}_trails-->
+				<?php }
+
+			endforeach;
+
+
+			if(!$existoptions)
+				echo "Choose language and visitor to see options in this panel.<br>";
+
+			if($existlan)
+				echo "<br>For visitor '".$vis_role."' there is information available in ".$lan_availability.".<br>";
+
+			if($existvis)
+				echo "<br>For language '".$lan_name."' there is information available for ".$vis_availability.".<br>";
+
+			?>
+			
+			
+			<!-- fin para lo del filtro del menu de la derecha -->
+			
+			
 		</div><!-- accordeon container -->
 	</div> <!-- leftdiv container -->
 
@@ -173,7 +256,7 @@
     ?>
     <div class="infohelpvisitor">
         <?php
-            echo $this->Html->image('infoicon.png', array('alt' => "Información", 'style'=> "width:15px;height:15px;margin:3px;"));
+            echo $this->Html->image('infoicon.png', array('alt' => "InformaciÃ³n", 'style'=> "width:15px;height:15px;margin:3px;"));
         ?>
     <div id="infomessages">First, select the language and the visitor type, then select a station.</div>
     </div>
