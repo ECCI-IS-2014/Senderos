@@ -10,7 +10,12 @@ $point_id = 'none';
 
 ?>
 <div class="actions">
-<div style = "text-align: justify">In order to create a new document, you have to do it from the trail of the point that you want it to be associated to.</div>
+</div>
+<div class="infohelp">
+<?php
+    echo $this->Html->image('infoicon.png', array('alt' => "Información", 'style'=> "width:15px;height:15px;margin:3px;"));
+?>
+<div id="infomessages">In order to create a new document, you have to do it from the trail you want the point be associated to.</div>
 	<ul> <!--
 		<li><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Document', true), array('action' => 'add'));} ?></li>
 	    -->
