@@ -124,15 +124,19 @@
 			endforeach;
 
 
-			if(!$existoptions)
-				echo "Choose language and visitor to see options in this panel.<br>";
-
+			
 			if($existlan)
-				echo "<br>For visitor '".$vis_role."' there is information available in ".$lan_availability.".<br>";
+				echo "<br>There is information for '".$vis_role."' available in ".$lan_availability.".<br>";
 
 			if($existvis)
-				echo "<br>For language '".$lan_name."' there is information available for ".$vis_availability.".<br>";
+				echo "<br>There is information in '".$lan_name."' available for ".$vis_availability.".<br>";
 
+			if((!$existoptions))
+				echo "<br>Change language and visitor to see options in this panel.<br>";
+			
+			
+			
+			
 			?>
 			
 			
