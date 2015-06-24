@@ -46,7 +46,7 @@ class VisitorsController extends AppController {
 		}
         $vi = $this->Visitor->findById($id);
         if (!$vi) {
-            $this->Session->setFlash(__('Invalid visitor', true));
+            //$this->Session->setFlash(__('Invalid visitor', true));
             $this->redirect(array('action' => 'index'));
         }
 		if (!empty($this->data)) {

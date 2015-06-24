@@ -132,7 +132,7 @@ var $paginate = array(
         }
         $tr = $this->Trail->findById($id);
         if (!$tr) {
-            $this->Session->setFlash(__('Invalid trail', true));
+            //$this->Session->setFlash(__('Invalid trail', true));
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {
