@@ -8,6 +8,8 @@
 
 <?php 
 
+if($edit_trail==1){
+
 $result = '';
 
 $trailcreate = 'no';
@@ -583,6 +585,15 @@ function validateCoords(textinput)
 	?>
 
 </div>
+
+<?php }
+else{ ?>
+
+<h2>You're not authorized to view this page</h2>
+
+<?php
+}
+?>
 
 <!--<script>
 	// attach handlers once iframe is loaded
