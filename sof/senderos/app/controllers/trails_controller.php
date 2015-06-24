@@ -115,6 +115,17 @@ var $paginate = array(
 	}
 
 	function edit($id = null) {
+        $this->loadModel('Restriction');
+        $res_trail = $this->Restriction->field('client_id',array('trail_id' => $id));
+        $cli_id = $this->Session->read("Auth.Client.id");
+
+        if($_SESSION['role'] === 'restricted' && $res_trail != $cli_id) {
+            $this->set('edit_trail',false);
+        }else{
+            $this->set('edit_trail',true);
+        }
+
+	
         if (!$id && empty($this->data)) {
             $this->Session->setFlash(__('Invalid trail', true));
             $this->redirect(array('action' => 'index'));
