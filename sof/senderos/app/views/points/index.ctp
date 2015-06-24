@@ -24,6 +24,14 @@ $trail_id = 'none';
     <li title = "Create a new trail"><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('New Trail', true), array('controller' => 'trails', 'action' => 'add'));} ?></li>
 	</ul>
 </div>
+
+<div class="infohelp">
+<?php
+    echo $this->Html->image('infoicon.png', array('alt' => "Información", 'style'=> "width:15px;height:15px;margin:3px;"));
+?>
+<div id="infomessages">In order to create a new point, you have to do it from the trail you want the point be associated to.</div>
+</div>
+
 <div class="points index">
 	<h2><?php __('Points');?></h2>
 	<table cellpadding="0" cellspacing="0">
