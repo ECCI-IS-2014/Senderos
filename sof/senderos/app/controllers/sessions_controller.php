@@ -33,5 +33,19 @@ class SessionsController extends AppController {
         }
 
         $_SESSION[$var] = $value;
+        
+        
+        //para lo del filtro del menu de la derecha
+        if($var === 'role')
+    	{
+    		$this->loadModel('Visitor');
+    		$visitor =  $this->Visitor->findAllByRole($_SESSION['role']);
+    		$_SESSION['client_id'] = $visitor[0]['Visitor']['id'];
+    
+    	}
+	
+	    //fin para lo del filtro ....
+        
+        
     }
 }
