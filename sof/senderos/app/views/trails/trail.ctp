@@ -168,6 +168,17 @@
         </div>
     <?php
     }
+    else
+    {
+    ?>
+    <div class="infohelpvisitor">
+        <?php
+            echo $this->Html->image('infoicon.png', array('alt' => "Información", 'style'=> "width:15px;height:15px;margin:3px;"));
+        ?>
+    <div id="infomessages">First, select the language and the visitor type, then select a station.</div>
+    </div>
+    <?php
+    }
     ?>
 	</div> <!-- rightdiv container -->
 
