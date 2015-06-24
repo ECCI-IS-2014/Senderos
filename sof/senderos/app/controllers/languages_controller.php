@@ -71,6 +71,11 @@ class LanguagesController extends AppController
             $this->Session->setFlash(__('Invalid language', true));
             $this->redirect(array('action' => 'index'));
         }
+        $la = $this->Language->findById($id);
+        if (!$la) {
+            $this->Session->setFlash(__('Invalid language', true));
+            $this->redirect(array('action' => 'index'));
+        }
         if(!empty($this->data))
         {
             if($this->Language->save($this->data))

@@ -36,6 +36,11 @@ class DocumentsPointsController extends AppController {
 			$this->Session->setFlash(__('Invalid association', true));
 			$this->redirect(array('action' => 'index'));
 		}
+        $dopo = $this->DocumentsPoint->findById($id);
+        if (!$dopo) {
+            $this->Session->setFlash(__('Invalid association', true));
+            $this->redirect(array('action' => 'index'));
+        }
 		if (!empty($this->data)) {
 			if ($this->DocumentsPoint->save($this->data)) {
 				$this->Session->setFlash(__('The association has been saved', true));

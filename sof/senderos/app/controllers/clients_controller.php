@@ -89,6 +89,11 @@ class ClientsController extends AppController {
             $this->Session->setFlash(__('Invalid client', true));
             $this->redirect(array('action' => 'index'));
         }
+        $cl = $this->Client->findById($id);
+        if (!$cl) {
+            $this->Session->setFlash(__('Invalid client', true));
+            $this->redirect(array('action' => 'index'));
+        }
         if (!empty($this->data)) {
             $this->Client->id=$id;
             if ($this->data['Client']['password'] == $this->data['Client']['password_confirm']) {

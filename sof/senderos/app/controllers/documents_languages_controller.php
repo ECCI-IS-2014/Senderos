@@ -36,6 +36,11 @@ class DocumentsLanguagesController extends AppController {
 			$this->Session->setFlash(__('Invalid association', true));
 			$this->redirect(array('action' => 'index'));
 		}
+        $dola = $this->DocumentsLanguage->findById($id);
+        if (!$dola) {
+            $this->Session->setFlash(__('Invalid association', true));
+            $this->redirect(array('action' => 'index'));
+        }
 		if (!empty($this->data)) {
 			if ($this->DocumentsLanguage->save($this->data)) {
 				$this->Session->setFlash(__('The association has been saved', true));

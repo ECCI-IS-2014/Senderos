@@ -83,6 +83,11 @@ class StationsController extends AppController {
 			$this->Session->setFlash(__('Invalid station', true));
 			$this->redirect(array('action' => 'index'));
 		}
+        $st = $this->Station->findById($id);
+        if (!$st) {
+            $this->Session->setFlash(__('Invalid station', true));
+            $this->redirect(array('action' => 'index'));
+        }
 		if (!empty($this->data)) {
 			if ($this->Station->save($this->data)) {
 				$this->Session->setFlash(__('The station has been saved', true));

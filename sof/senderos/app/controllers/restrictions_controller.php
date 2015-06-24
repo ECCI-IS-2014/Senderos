@@ -36,6 +36,11 @@ class RestrictionsController extends AppController {
             $this->Session->setFlash(__('Invalid restriction', true));
             $this->redirect(array('action' => 'index'));
         }
+        $re = $this->Restriction->findById($id);
+        if (!$re) {
+            $this->Session->setFlash(__('Invalid restriction', true));
+            $this->redirect(array('action' => 'index'));
+        }
         if (!empty($this->data)) {
             if ($this->Restriction->save($this->data)) {
                 $this->Session->setFlash(__('The restriction has been saved', true));

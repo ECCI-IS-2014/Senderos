@@ -119,6 +119,11 @@ var $paginate = array(
             $this->Session->setFlash(__('Invalid trail', true));
             $this->redirect(array('action' => 'index'));
         }
+        $tr = $this->Trail->findById($id);
+        if (!$tr) {
+            $this->Session->setFlash(__('Invalid trail', true));
+            $this->redirect(array('action' => 'index'));
+        }
         if (!empty($this->data)) {
             if ($this->Trail->save($this->data)) {
                 if($this->data['Trail']['archivo']['error'] == 0 &&  $this->data['Trail']['archivo']['size'] > 0){
