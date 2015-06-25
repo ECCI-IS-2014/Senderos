@@ -6,6 +6,18 @@
     <li><?php echo $this->Html->link(__('New Country', true), array('controller' => 'countries', 'action' => 'add')); ?> </li> -->
 </ul>
 </div>
+
+<div class="infohelp">
+    <a href="#" class="tooltip">
+        <?php
+            echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
+        ?>
+        <span>
+            You can grant permissions to a client over a station or a given trail.
+        </span>
+    </a>
+</div>
+
 <div class="restrictions index">
 <?php echo $this->Form->create('Restriction');?>
 	<fieldset>
