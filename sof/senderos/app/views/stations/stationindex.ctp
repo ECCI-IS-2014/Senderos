@@ -36,7 +36,6 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort($str_name);?></th>
-			<th><?php echo $this->Paginator->sort($str_name);?></th>
 			<th><?php echo $this->Paginator->sort($str_location);?></th>
 			<th><?php echo $this->Paginator->sort($str_description);?></th>
 			<th class="actions"><?php __('Actions');?></th>
@@ -86,12 +85,11 @@
 		{
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $station['Station']['name']; ?>&nbsp;</td>
-		<td><?php echo $station['Station']['description']; ?>&nbsp;</td>
-		<td><?php echo $station['Station']['location']; ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>
-		</td>
+        <?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>
+        </td>
+        <td><?php echo $station['Station']['location']; ?>&nbsp;</td>
+		<td><?php echo $station['Station']['description']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php 
 			if($stationread === 'yes')

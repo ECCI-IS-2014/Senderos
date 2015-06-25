@@ -38,6 +38,17 @@ $station_id = 'none';
 	</ul>
 </div>
 
+<div class="infohelp">
+    <a href="#" class="tooltip">
+        <?php
+            echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
+        ?>
+        <span>
+            If you edit a trail, you can also add or edit points and documents associated to that trail.
+        </span>
+    </a>
+</div>
+
 <div class="trails index">
 	<h2><?php __($str_trails);?></h2>
 	<table cellpadding="0" cellspacing="0">
