@@ -41,8 +41,6 @@
 			
 			<?php
 
-
-
 			$existlan = false;
 			$lan_availability = '';
 			foreach($languagesavailable as $lanav):
@@ -132,11 +130,20 @@
 				echo "<br>There is information in '".$lan_name."' available for ".$vis_availability.".<br>";
 
 			if((!$existoptions))
-				echo "<br>Change language and visitor to see options in this panel.<br>";
-			
-			
-			
-			
+			{
+			?>
+                <div class="infohelpv">
+                    <a href="#" class="tooltipv">
+                    <?php
+                        echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:left;"));
+                    ?>
+                    <span>
+                        First, select the language and the visitor type, then select a station.
+                    </span>
+                    </a>
+                </div>
+            <?php
+            }
 			?>
 			
 			
@@ -259,12 +266,16 @@
     else
     {
     ?>
-    <div class="infohelpvisitor">
-        <?php
-            echo $this->Html->image('infoicon.png', array('alt' => "Información", 'style'=> "width:15px;height:15px;margin:3px;"));
-        ?>
-    <div id="infomessages">First, select the language and the visitor type, then select a station.</div>
-    </div>
+    <!--div class="nfohelpvisitor">
+        <a href="#" class="tooltip">
+            <?php
+                echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
+            ?>
+            <span>
+                First, select the language and the visitor type, then select a station.
+            </span>
+        </a>
+    </div-->
     <?php
     }
     ?>

@@ -780,10 +780,10 @@ div.infohelp {
     padding:10px 1.5%;
 }
 
-div.infohelpvisitor {
+div.infohelpv {
     float:right;
     width:100%;
-    margin-right:30px;
+    margin-left:10px;
     padding:10px 1.5%;
 }
 
@@ -800,11 +800,43 @@ a.tooltip span
 {
     border-radius:4px;
     text-align: justify;
-    z-index:10;display:none; padding:14px 20px;
-    margin-top:25px; margin-left:-140px;
-    width:300px; line-height:16px;
+    z-index:10;display:none;
+    padding:14px 20px;
+    margin-top:25px;
+    margin-left:-140px;
+    width:300px;
+    line-height:16px;
 }
-a.tooltip:hover span{
+a.tooltip:hover span
+{
+    display:inline;
+    position:absolute;
+    color:#111;
+    background:rgba(127, 198, 68, 0.25);;
+}
+
+a.tooltipv
+{
+    outline:none;
+    font-size: small;
+}
+a.tooltipv:hover
+{
+    text-decoration:none;
+}
+a.tooltipv span
+{
+    border-radius:4px;
+    text-align: justify;
+    z-index:10;display:none;
+    padding:14px 20px;
+    margin-top:25px;
+    margin-left:-20px;
+    width:170px;
+    line-height:16px;
+}
+a.tooltipv:hover span
+{
     display:inline;
     position:absolute;
     color:#111;

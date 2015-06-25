@@ -32,7 +32,7 @@
                                                                         'http://www.ots.ac.cr/',
                                                                         array('target' => '_blank', 'escape' => false));
                         ?>
-                        <?php echo $this->Html->link($this->Html->image('senderos2.png', array('alt' => "Inicio", 'title' => 'Inicio','style'=> "float:right;width:12em;height:4.5em;padding:0.9em;")),
+                        <?php echo $this->Html->link($this->Html->image('senderos2.png', array('alt' => "Inicio", 'title' => 'Home','style'=> "float:right;width:12em;height:4.5em;padding:0.9em;")),
                                                     					array('controller'=>'pages','action' => 'home'),
                                                      					array('target' => '_self', 'escape' => false));
                         ?>
