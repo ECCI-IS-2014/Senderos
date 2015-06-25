@@ -168,7 +168,16 @@ class TrailsController extends AppController {
 				$this->Session->setFlash(__('The trail could not be saved. Please, try again.', true));
 			}
 		}
-		$stations = $this->Trail->Station->find('list');
+        $this->loadModel('Restriction');
+        $all = $this->Restriction->field('allt',array('client_id'=>$this->Session->read("Auth.Client.id")));
+        if($_SESSION['role'] === 'restricted' && $all == 1){
+            $stat = $this->Restriction->field('station_id',array('client_id'=>$this->Session->read("Auth.Client.id")));
+            $stations = $this->Trail->Station->find('list',array('conditions'=>array(
+                'Station.id'=> $stat
+            )));
+        }else {
+            $stations = $this->Trail->Station->find('list');
+        }
 		$this->set(compact('stations'));
 		
 		if($_SESSION['role'] === 'restricted')
@@ -176,16 +185,33 @@ class TrailsController extends AppController {
 			$this->loadModel('Restriction');
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
+		
+        if($_SESSION['role'] === 'restricted' && $all == 0){
+            $this->set('rest',false);
+        }else{
+            $this->set('rest',true);
+        }
 	}
 
 	function edit($id = null) {
         $this->loadModel('Restriction');
-        $res_trail = $this->Restriction->field('client_id',array('trail_id' => $id));
         $cli_id = $this->Session->read("Auth.Client.id");
-
-        if($_SESSION['role'] === 'restricted' && $res_trail != $cli_id) {
-            $this->set('edit_trail',false);
-        }else{
+        if($_SESSION['role'] === 'restricted'){
+            $stat = $this->Trail->field('station_id',array('id'=>$id));
+            $all = $this->Restriction->field('allt',array('client_id'=>$cli_id,'station_id' => $stat,'trail_id'=>$id));
+             if($all == 0 && $all != null) {
+                $this->set('edit_trail', true);
+            }
+            else{
+                    $a = $this->Restriction->field('allt',array('client_id'=>$cli_id,'station_id' => $stat));
+                    if($a == 1){
+                        $this->set('edit_trail',true);
+                    }else{
+                        $this->set('edit_trail',false);
+                    }
+            }
+        }
+        else{
             $this->set('edit_trail',true);
         }
 

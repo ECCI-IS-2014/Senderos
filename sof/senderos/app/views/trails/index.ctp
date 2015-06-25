@@ -43,9 +43,9 @@ $station_id = 'none';
         <?php
             echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
         ?>
-        <span>
+        <span><i>
             If you edit a trail, you can also add or edit points and documents associated to that trail.
-        </span>
+        </i></span>
     </a>
 </div>
 
@@ -123,7 +123,7 @@ if($trail['Station']['id'] !== $station_id)
 		}
 
 		echo "<tr><td colspan=3 style='background-color: white;'>";
-		echo "Station: ".$this->Html->link($trail['Station']['name'], array('controller' => 'stations', 'action' => 'view', $trail['Station']['id']));
+		echo "<b>Station: </b>".$this->Html->link($trail['Station']['name'], array('controller' => 'stations', 'action' => 'view', $trail['Station']['id']));
 		echo '</td>';
                 $station_id = $trail['Station']['id'];
 
@@ -138,7 +138,8 @@ if($trail['Station']['id'] !== $station_id)
 
 	<tr class="altrow">
 
-		<td><?php echo $trail['Trail']['name']; ?>&nbsp;</td>
+		<!--<td><i><?php echo $trail['Trail']['name']; ?>&nbsp;<i></td>-->
+		<td><i><?php echo $this->Html->link($trail['Trail']['name'], array('controller' => 'stations', 'action' => 'view', $trail['Station']['id'])); ?></i></td>
 		<td><?php echo $trail['Trail']['description']; ?>&nbsp;</td>
 		<!--<td><?php echo $trail['Trail']['image']; ?>&nbsp;</td>-->
 		<!--<td>

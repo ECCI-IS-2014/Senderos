@@ -79,6 +79,16 @@ class StationsController extends AppController {
 	}
 
 	function edit($id = null) {
+        $this->loadModel('Restriction');
+        $cli_id = $this->Session->read("Auth.Client.id");
+        $res_stat = $this->Restriction->field('id', array('station_id'=>$id, 'client_id'=>$cli_id));
+        $this->set('res_stat',$res_stat);
+        if($_SESSION['role'] === 'restricted' && empty($res_stat)) {
+            $this->set('edit_stat',false);
+        }else{
+            $this->set('edit_stat',true);
+        }
+
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid station', true));
 			$this->redirect(array('action' => 'index'));

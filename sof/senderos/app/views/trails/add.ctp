@@ -1,5 +1,6 @@
 
 <?php
+	if($rest==1){
         $add = 0;
 
         if($_SESSION['role'] === 'restricted'){
@@ -38,5 +39,12 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 </div>
 
 <?php 
+}
+}else{
+?>
+
+<h2>You're not authorized to view this page</h2>
+
+<?php
 }
 ?>
