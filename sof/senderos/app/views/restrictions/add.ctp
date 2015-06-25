@@ -13,7 +13,8 @@
             echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
         ?>
         <span>
-            To grant permissions to a client, you have to select the client and check the station's trails she/he will manage.
+            To grant permissions to a client, you have to select the client and check the station's trails she/he will manage.<br>
+            She/he must be a "restricted" client to grant permissions.
         </span>
     </a>
 </div>

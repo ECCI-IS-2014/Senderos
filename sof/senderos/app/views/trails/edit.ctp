@@ -77,6 +77,17 @@ if($trailread == 'yes')
 	</ul>
 </div> <!-- actions -->
 
+<div class="infohelp">
+    <a href="#" class="tooltip">
+        <?php
+            echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
+        ?>
+        <span>
+            If you edit this trail, you can also add or edit the points and documents associated to this trail.
+        </span>
+    </a>
+</div>
+
 <div class="trails form" style="width:55%">
 <?php echo $this->Form->create('Trail', array('type' => 'file'));?>
 	<fieldset>
