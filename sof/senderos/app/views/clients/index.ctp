@@ -9,12 +9,18 @@
 	</ul>
 </div>
 <?php } ?>
+
 <div class="infohelp">
-<?php
-    echo $this->Html->image('infoicon.png', array('alt' => "Información", 'style'=> "width:15px;height:15px;margin:3px;"));
-?>
-<div id="infomessages">First, you have to create a client, then grant permissions.</div>
+    <a href="#" class="tooltip">
+        <?php
+            echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:15px;height:15px;float:right;"));
+        ?>
+        <span>
+            First, you have to create a client, then grant permissions.
+        </span>
+    </a>
 </div>
+
 <div class="clients index">
 	<h2><?php __('Clients');?></h2>
 	<table cellpadding="0" cellspacing="0">

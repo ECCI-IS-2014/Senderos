@@ -26,10 +26,14 @@ $trail_id = 'none';
 </div>
 
 <div class="infohelp">
-<?php
-    echo $this->Html->image('infoicon.png', array('alt' => "Información", 'style'=> "width:15px;height:15px;margin:3px;"));
-?>
-<div id="infomessages">In order to create a new point, you have to do it from the trail you want the point be associated to.</div>
+    <a href="#" class="tooltip">
+        <?php
+            echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
+        ?>
+        <span>
+            To create a new point, you have to do it from the trail you want the point be associated to.
+        </span>
+    </a>
 </div>
 
 <div class="points index">

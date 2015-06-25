@@ -774,22 +774,9 @@ div.code-coverage-results span.result-good {
     background: rgba(54, 92, 10, .7);
 }
 
-#infomessages{
-    background-color: rgba(127, 198, 68, 0.25);
-    color: darkslategray;
-    text-align: justify;
-    font-size: small;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 5%;
-    padding-right: 5%;
-    border-radius: 4px;
-}
-
 div.infohelp {
     float:right;
     width:15%;
-    margin-right:30px;
     padding:10px 1.5%;
 }
 
@@ -798,4 +785,28 @@ div.infohelpvisitor {
     width:100%;
     margin-right:30px;
     padding:10px 1.5%;
+}
+
+a.tooltip
+{
+    outline:none;
+    font-size: small;
+}
+a.tooltip:hover
+{
+    text-decoration:none;
+}
+a.tooltip span
+{
+    border-radius:4px;
+    text-align: justify;
+    z-index:10;display:none; padding:14px 20px;
+    margin-top:25px; margin-left:-140px;
+    width:300px; line-height:16px;
+}
+a.tooltip:hover span{
+    display:inline;
+    position:absolute;
+    color:#111;
+    background:rgba(127, 198, 68, 0.25);;
 }
