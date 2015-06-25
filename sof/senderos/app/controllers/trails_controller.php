@@ -159,7 +159,16 @@ var $paginate = array(
 				$this->Session->setFlash(__('The trail could not be saved. Please, try again.', true));
 			}
 		}
-		$stations = $this->Trail->Station->find('list');
+        $this->loadModel('Restriction');
+        $all = $this->Restriction->field('allt',array('client_id'=>$this->Session->read("Auth.Client.id")));
+        if($_SESSION['role'] === 'restricted' && $all == 1){
+            $stat = $this->Restriction->field('station_id',array('client_id'=>$this->Session->read("Auth.Client.id")));
+            $stations = $this->Trail->Station->find('list',array('conditions'=>array(
+                'Station.id'=> $stat
+            )));
+        }else {
+            $stations = $this->Trail->Station->find('list');
+        }
 		$this->set(compact('stations'));
 		
 		if($_SESSION['role'] === 'restricted')
@@ -167,6 +176,12 @@ var $paginate = array(
 			$this->loadModel('Restriction');
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
+		
+        if($_SESSION['role'] === 'restricted' && $all == 0){
+            $this->set('rest',false);
+        }else{
+            $this->set('rest',true);
+        }
 	}
 
 	function edit($id = null) {
