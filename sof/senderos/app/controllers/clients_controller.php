@@ -44,8 +44,6 @@ class ClientsController extends AppController {
                 $this->Session->setFlash(__('Passwords do not match', true));
             }
         }
-		$countries = $this->Client->Country->find('list', array('fields' => array('Country.name')));
-		$this->set(compact('countries'));
 	}
 
 	function edit($id = null) {
