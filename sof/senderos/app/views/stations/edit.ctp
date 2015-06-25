@@ -1,4 +1,5 @@
 <?php
+if($edit_stat==1){
 
 $result = '';
 
@@ -70,5 +71,6 @@ if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 </div>
 
 <?php
+}
 }
 ?>
