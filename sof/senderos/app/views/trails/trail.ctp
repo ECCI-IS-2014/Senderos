@@ -33,20 +33,21 @@
 
             print '</select>';
         ?></div>
-		<div id="accordeon">
-			
-			
-			<!-- para lo del filtro del menu de la derecha -->
-			
-			
-			<?php
+				<div id="accordeon">
 
+
+			<!-- para lo del filtro del menu de la derecha -->
+
+
+			<?php
+            //debug($languagesavailable);
 			$existlan = false;
 			$lan_availability = '';
 			foreach($languagesavailable as $lanav):
 				if($existlan) $lan_availability .= ', ';
 				$existlan = true;
-				$lan_availability .= $lanav['languages']['name'];
+				$lan_availability .= $lanav['Language']['name'];
+				//debug($lanav);
 			endforeach;
 
 			/*if($existinfo)
@@ -57,7 +58,7 @@
 			foreach($visitorsavailable as $visav):
 				if($existvis) $vis_availability .= ', ';
 				$existvis = true;
-				$vis_availability .= $visav['visitors']['role'];
+				$vis_availability .= $visav['Visitor']['role'];
 			endforeach;
 
 			/*if($existinfo)
@@ -65,16 +66,16 @@
 
 
 
-
+            //debug($myquery);
 
 			$existoptions = false;
 
 			foreach($stations as $station):
 
 				$found = false;
-	
+
 				foreach($myquery as $rec):
-					if($rec['trails']['station_id'] == $station['Station']['id'])
+					if($rec['Trail']['station_id'] == $station['Station']['id'])
 					{
 							$existoptions = true;
 							$found = true;
@@ -90,25 +91,25 @@
 					<!--<div style="float:left;">-->
 					<!--<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>-->
 					<?php echo $station['Station']['name']; ?>
-					
+
 							<div id="station_<?php echo $station['Station']['id']?>_arrow" class="menuarrow" onclick="this.innerHTML = (this.innerHTML=='&#x25B2;')? '&#x25BC;': '&#x25B2;';">
 							&#x25BC;</div>
 
 						</div> <!-- station_{}-->
 
 						<div id="station_<?php echo $station['Station']['id']?>_trails" style="display:none;">
-							<?php 
-				
-							foreach($station['Trail'] as $stationtrail): 
+							<?php
+
+							foreach($station['Trail'] as $stationtrail):
 								$found2 = false;
 								foreach($myquery as $rec2):
-									if($rec2['trails']['name'] === $stationtrail['name'])
+									if($rec2['Trail']['name'] === $stationtrail['name'])
 									{
 											$found2 = true;
 											break;
 									}
 								endforeach;
-				
+
 								if($found2)
 								{ ?>
 									<div class="trailitem">
@@ -122,7 +123,7 @@
 			endforeach;
 
 
-			
+            //debug($vis_role);
 			if($existlan)
 				echo "<br>There is information for '".$vis_role."' available in ".$lan_availability.".<br>";
 
@@ -145,11 +146,11 @@
             <?php
             }
 			?>
-			
-			
+
+
 			<!-- fin para lo del filtro del menu de la derecha -->
-			
-			
+
+
 		</div><!-- accordeon container -->
 	</div> <!-- leftdiv container -->
 

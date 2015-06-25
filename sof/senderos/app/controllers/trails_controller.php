@@ -4,7 +4,7 @@ class TrailsController extends AppController {
 	var $name = 'Trails';
 
 
-var $paginate = array(
+	var $paginate = array(
         'limit' => 25,
         'order' => array(
             'Trail.station_id' => 'asc'
@@ -50,61 +50,71 @@ var $paginate = array(
         $this->set('trail', $trail);
         $this->loadModel('Station');
         $this->set('stations',$this->Station->find('all'));
-        
-        
-        
-        
+
         //para lo del filtro del menu de la derecha
-        
-	if(isset($_SESSION['language']) && isset($_SESSION['client_id']))
-	{
-			  $myquery=$this->Trail->query('select name, station_id from trails where id in (select trail_id from points where id in (select point_id from documents_points where document_id in (select document_id from documents_languages where language_id = '.$_SESSION['language'].') and document_id in (select document_id from documents_visitors where visitor_id = '.$_SESSION['client_id'].')));');
+
+        if(isset($_SESSION['language']) && isset($_SESSION['client_id']))
+        {
+			  $myquery=$this->Trail->query('SELECT Trail.name, Trail.station_id FROM trails Trail WHERE Trail.id IN (SELECT Point.trail_id FROM points Point WHERE Point.id IN (SELECT DocumentsPoint.point_id FROM documents_points DocumentsPoint WHERE DocumentsPoint.document_id IN (SELECT DocumentsLanguage.document_id FROM documents_languages DocumentsLanguage WHERE DocumentsLanguage.language_id = '.$_SESSION['language'].') AND DocumentsPoint.document_id IN (SELECT DocumentsVisitor.document_id FROM documents_visitors DocumentsVisitor WHERE DocumentsVisitor.visitor_id = '.$_SESSION['client_id'].')))');
 			  $this->set('myquery',$myquery);
 
-			  $myquery=$this->Trail->query('select distinct(name) from languages where id in (select language_id from documents_languages where document_id in (select document_id from documents_visitors where visitor_id = '.$_SESSION['client_id'].'));');
+			  $myquery=$this->Trail->query('SELECT DISTINCT Language.name FROM languages Language WHERE Language.id IN (SELECT DocumentsLanguage.language_id FROM documents_languages DocumentsLanguage WHERE DocumentsLanguage.document_id IN (SELECT DocumentsVisitor.document_id FROM documents_visitors DocumentsVisitor WHERE DocumentsVisitor.visitor_id = '.$_SESSION['client_id'].'))');
 			  $this->set('languagesavailable',$myquery);
 
-			  $myquery=$this->Trail->query('select distinct(role) from visitors where id in (select visitor_id from documents_visitors where document_id in (select document_id from documents_languages where language_id = '.$_SESSION['language'].'));');
+			  $myquery=$this->Trail->query('SELECT DISTINCT Visitor.role FROM visitors Visitor WHERE Visitor.id IN (SELECT DocumentsVisitor.visitor_id FROM documents_visitors DocumentsVisitor WHERE DocumentsVisitor.document_id IN (SELECT DocumentsLanguage.document_id FROM documents_languages DocumentsLanguage WHERE DocumentsLanguage.language_id = '.$_SESSION['language'].'))');
 			  $this->set('visitorsavailable',$myquery);
 
-			  $myquery=$this->Trail->query('select name from languages where id = '.$_SESSION['language'].'');
-			  $this->set('lan_name',$myquery[0]['languages']['name']);
+			  $myquery=$this->Trail->query('SELECT Language.name FROM languages Language WHERE Language.id = '.$_SESSION['language'].'');
+			  $this->set('lan_name',$myquery[0]['Language']['name']);
 
-			  $myquery=$this->Trail->query('select role from visitors where id = '.$_SESSION['client_id'].'');
-			  $this->set('vis_role',$myquery[0]['visitors']['role']);
+			  $myquery=$this->Trail->query('SELECT Visitor.role FROM visitors Visitor WHERE Visitor.id = '.$_SESSION['client_id'].'');
+			  $this->set('vis_role',$myquery[0]['Visitor']['role']);
 
-	}
-	else if(isset($_SESSION['language']) && !isset($_SESSION['client_id']))
-	{
-			  $myquery=$this->Trail->query('select name, station_id from trails where id in (select trail_id from points where id in (select point_id from documents_points where document_id in (select document_id from documents_languages where language_id = '.$_SESSION['language'].')));');
-			  $this->set('myquery',$myquery);
+        }
+        else if(isset($_SESSION['language']) && !isset($_SESSION['client_id']))
+        {
+              $myquery=$this->Trail->query('SELECT Trail.name, Trail.station_id FROM trails Trail WHERE Trail.id IN (SELECT Point.trail_id FROM points Point WHERE Point.id IN (SELECT DocumentsPoint.point_id FROM documents_points DocumentsPoint WHERE DocumentsPoint.document_id IN (SELECT DocumentsLanguage.document_id FROM documents_languages DocumentsLanguage WHERE DocumentsLanguage.language_id = '.$_SESSION['language'].')))');
+              $this->set('myquery',$myquery);
 
-			  $myquery=$this->Trail->query('select distinct(role) from visitors where id in (select visitor_id from documents_visitors where document_id in (select document_id from documents_languages where language_id = '.$_SESSION['language'].'));');
-			  $this->set('visitorsavailable',$myquery);
+			  /*$myquery=$this->Trail->query('select name, station_id from trails where id in (select trail_id from points where id in (select point_id from documents_points where document_id in (select document_id from documents_languages where language_id = '.$_SESSION['language'].')));');
+			  $this->set('myquery',$myquery);*/
 
-			  $myquery=$this->Trail->query('select name from languages where id = '.$_SESSION['language'].'');
-			  $this->set('lan_name',$myquery[0]['languages']['name']);
+              $myquery=$this->Trail->query('SELECT DISTINCT Visitor.role FROM visitors Visitor WHERE Visitor.id IN (SELECT DocumentsVisitor.visitor_id FROM documents_visitors DocumentsVisitor WHERE DocumentsVisitor.document_id IN (SELECT DocumentsLanguage.document_id FROM documents_languages DocumentsLanguage WHERE DocumentsLanguage.language_id = '.$_SESSION['language'].'))');
+              $this->set('visitorsavailable',$myquery);
 
-	}
-	else if(!isset($_SESSION['language']) && isset($_SESSION['client_id']))
-	{
-			  $myquery=$this->Trail->query('select name, station_id from trails where id in (select trail_id from points where id in (select point_id from documents_points where document_id in (select document_id from documents_visitors where visitor_id = '.$_SESSION['client_id'].')));');
-			  $this->set('myquery',$myquery);
+			  /*$myquery=$this->Trail->query('select distinct(role) from visitors where id in (select visitor_id from documents_visitors where document_id in (select document_id from documents_languages where language_id = '.$_SESSION['language'].'));');
+			  $this->set('visitorsavailable',$myquery);*/
 
-			  $myquery=$this->Trail->query('select distinct(name) from languages where id in (select language_id from documents_languages where document_id in (select document_id from documents_visitors where visitor_id = '.$_SESSION['client_id'].'));');
-			  $this->set('languagesavailable',$myquery);
+              $myquery=$this->Trail->query('SELECT Language.name FROM languages Language WHERE Language.id = '.$_SESSION['language'].'');
+              $this->set('lan_name',$myquery[0]['Language']['name']);
 
-			  $myquery=$this->Trail->query('select role from visitors where id = '.$_SESSION['client_id'].'');
-			  $this->set('vis_role',$myquery[0]['visitors']['role']);
-	}
-	else{}
-	//fin para lo del filtro ....
-        
-        
-        
-        
-        
-        
+			  /*$myquery=$this->Trail->query('select name from languages where id = '.$_SESSION['language'].';');
+			  $this->set('lan_name',$myquery[0]['languages']['name']);*/
+
+        }
+        else if(!isset($_SESSION['language']) && isset($_SESSION['client_id']))
+        {
+              $myquery=$this->Trail->query('SELECT Trail.name, Trail.station_id FROM trails Trail WHERE Trail.id IN (SELECT Point.trail_id FROM points Point WHERE Point.id IN (SELECT DocumentsPoint.point_id FROM documents_points DocumentsPoint WHERE DocumentsPoint.document_id IN (SELECT DocumentsVisitor.document_id FROM documents_visitors DocumentsVisitor WHERE DocumentsVisitor.visitor_id = '.$_SESSION['client_id'].')))');
+              $this->set('myquery',$myquery);
+
+			  /*$myquery=$this->Trail->query('select name, station_id from trails where id in (select trail_id from points where id in (select point_id from documents_points where document_id in (select document_id from documents_visitors where visitor_id = '.$_SESSION['client_id'].')));');
+			  $this->set('myquery',$myquery);*/
+
+              $myquery=$this->Trail->query('SELECT DISTINCT Language.name FROM languages Language WHERE Language.id IN (SELECT DocumentsLanguage.language_id FROM documents_languages DocumentsLanguage WHERE DocumentsLanguage.document_id IN (SELECT DocumentsVisitor.document_id FROM documents_visitors DocumentsVisitor WHERE DocumentsVisitor.visitor_id = '.$_SESSION['client_id'].'))');
+              $this->set('languagesavailable',$myquery);
+
+			  /*$myquery=$this->Trail->query('select distinct(name) from languages where id in (select language_id from documents_languages where document_id in (select document_id from documents_visitors where visitor_id = '.$_SESSION['client_id'].'));');
+			  $this->set('languagesavailable',$myquery);*/
+
+              $myquery=$this->Trail->query('SELECT Visitor.role FROM visitors Visitor WHERE Visitor.id = '.$_SESSION['client_id'].'');
+              $this->set('vis_role',$myquery[0]['Visitor']['role']);
+
+			  /*$myquery=$this->Trail->query('select role from visitors where id = '.$_SESSION['client_id'].';');
+			  $this->set('vis_role',$myquery[0]['visitors']['role']);*/
+	    }
+	    //fin para lo del filtro ....
+
+
         if($_SESSION['role'] === 'restricted')
         {
             $this->loadModel('Restriction');
@@ -112,7 +122,6 @@ var $paginate = array(
 
         }
     }
-
 
     function view($id = null) {
 		if (!$id) {
