@@ -186,12 +186,23 @@ var $paginate = array(
 
 	function edit($id = null) {
         $this->loadModel('Restriction');
-        $res_trail = $this->Restriction->field('client_id',array('trail_id' => $id));
         $cli_id = $this->Session->read("Auth.Client.id");
-
-        if($_SESSION['role'] === 'restricted' && $res_trail != $cli_id) {
-            $this->set('edit_trail',false);
-        }else{
+        if($_SESSION['role'] === 'restricted'){
+            $stat = $this->Trail->field('station_id',array('id'=>$id));
+            $all = $this->Restriction->field('allt',array('client_id'=>$cli_id,'station_id' => $stat,'trail_id'=>$id));
+             if($all == 0 && $all != null) {
+                $this->set('edit_trail', true);
+            }
+            else{
+                    $a = $this->Restriction->field('allt',array('client_id'=>$cli_id,'station_id' => $stat));
+                    if($a == 1){
+                        $this->set('edit_trail',true);
+                    }else{
+                        $this->set('edit_trail',false);
+                    }
+            }
+        }
+        else{
             $this->set('edit_trail',true);
         }
 
