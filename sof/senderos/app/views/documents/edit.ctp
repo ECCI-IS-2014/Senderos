@@ -142,6 +142,7 @@ $languages = $this->requestAction('/languages/getlanguages');
 					<td style="background-color: transparent; border:none;">
 						<div>
 							<input class="button special" value="Submit" onclick="editThis();"></input>
+							<input class="button special" value="Cancel" onclick="window.location.href = window.history.back(1);"></input>
 					    </div>
 					</td>
 					<td style="background-color: transparent; border:none;">
