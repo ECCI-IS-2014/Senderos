@@ -156,7 +156,7 @@ function setselects(select)
 			<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 			<div class="submit">
 			<input id="savePoint" type="button" value="Submit" onclick="editThis(<?php echo $this->data['Point']['id']; ?>);" style="font size: 110%; width: auto; min-width: 0px; border: 1px solid #2D6324; border-radius: 8px; text-decoration: none; font-weight: normal; padding: 4px 8px; background: #62AF56 -moz-linear-gradient(center top , #A8EA9C, #62AF56) repeat scroll 0% 0%; color: #000; text-shadow: 0px 1px 0px #8CEE7C; cursor: pointer;"></input>
-			<input id="savePoint" type="button" value="Cancel" onclick="window.location.href = window.history.back(1);" style="font size: 110%; width: auto; min-width: 0px; border: 1px solid #2D6324; border-radius: 8px; text-decoration: none; font-weight: normal; padding: 4px 8px; background: #62AF56 -moz-linear-gradient(center top , #A8EA9C, #62AF56) repeat scroll 0% 0%; color: #000; text-shadow: 0px 1px 0px #8CEE7C; cursor: pointer;"></input>
+			<input type="button" value="Cancel" onclick="window.location.href = window.history.back(1);" style="font size: 110%; width: auto; min-width: 0px; border: 1px solid #2D6324; border-radius: 8px; text-decoration: none; font-weight: normal; padding: 4px 8px; background: #62AF56 -moz-linear-gradient(center top , #A8EA9C, #62AF56) repeat scroll 0% 0%; color: #000; text-shadow: 0px 1px 0px #8CEE7C; cursor: pointer;"></input>
 			<!--<input class="button special" value="Cancel" onclick="window.location.href = window.history.back(1);"></input>-->
 		    </div>
 		    
