@@ -785,7 +785,12 @@ div.infohelpv {
     float:right;
     width:100%;
     margin-left:10px;
-    padding:10px 1.5%;
+    margin-top:10px;
+    padding:10px 0.5%;
+}
+
+div.infohelpv a img{
+    padding-left:5px;
 }
 
 a.tooltip
@@ -830,9 +835,9 @@ a.tooltipv span
     border-radius:4px;
     text-align: justify;
     z-index:10;display:none;
-    padding:14px 20px;
+    padding:5px 10px;
     margin-top:25px;
-    margin-left:-20px;
+    margin-left:-1px;
     width:170px;
     line-height:16px;
 }
