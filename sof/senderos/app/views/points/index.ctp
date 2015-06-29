@@ -15,6 +15,7 @@
 
 
 $trail_id = 'none';
+$station_id = 'none';
 
 ?>
 <div class="actions">
@@ -70,6 +71,22 @@ $trail_id = 'none';
 
 
 <?php
+if($point['Trail']['station_id'] !== $station_id)
+{
+		if($i > 0)
+		{
+			echo "<tr><td colspan=4 style='background-color: white; border-bottom: 1px solid #FFF;'></td></tr>";
+		}
+
+		echo "<tr><td colspan=4 style='background-color: white;'>";
+		echo "<b>Station: </b>".$this->Html->link($point['Trail']['station_id'], array('controller' => 'stations', 'action' => 'view', $point['Trail']['station_id']));
+
+		echo '</tr>';
+}
+?>
+
+
+<?php
 if($point['Trail']['id'] !== $trail_id)
 {
 
@@ -79,9 +96,11 @@ if($point['Trail']['id'] !== $trail_id)
 		}
 
 		echo "<tr><td colspan=4 style='background-color: white;'>";
-		echo "Trail: ".$this->Html->link($point['Trail']['name'], array('controller' => 'trails', 'action' => 'edit', $point['Trail']['id']));
+		//echo "<b>Station: </b>".$this->Html->link($point['Trail']['station_id'], array('controller' => 'stations', 'action' => 'view', $point['Trail']['station_id']));
+		echo "<b>Trail: </b>".$this->Html->link($point['Trail']['name'], array('controller' => 'trails', 'action' => 'edit', $point['Trail']['id']));
 		echo '</td>';
                 $trail_id = $point['Trail']['id'];
+                $station_id = $point['Trail']['station_id'];
 
 		$i++;
 
@@ -93,7 +112,7 @@ if($point['Trail']['id'] !== $trail_id)
 
 
 	<tr<?php echo $class;?>>
-		<td><?php echo $point['Point']['pnumber']; ?>&nbsp;</td>
+		<td><i><?php echo $point['Point']['pnumber']; ?>&nbsp;</i></td>
 		<td><?php echo $point['Point']['name']; ?>&nbsp;</td>
 		<td><?php echo $point['Point']['cordx']; ?>&nbsp;</td>
 		<td><?php echo $point['Point']['cordy']; ?>&nbsp;</td>
