@@ -69,7 +69,7 @@ var $paginate = array(
 			$this->Session->setFlash(__('Invalid point', true));
 			$this->redirect(array('action' => 'index'));
 		}
-        $po = $this->Poi->findById($id);
+        $po = $this->Point->findById($id);
         if (!$po) {
             //$this->Session->setFlash(__('Invalid point', true));
             $this->redirect(array('action' => 'index'));
