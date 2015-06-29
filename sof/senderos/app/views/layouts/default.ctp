@@ -28,7 +28,7 @@
 	<div id="container">
 				<div id="header">
         		    <nav id="nav">
-        		        <?php echo $this->Html->link($this->Html->image('oet.png', array('alt' => "Inicio", 'class'=>'oetlogo','title' => 'www.ots.ac.cr','style'=> "float:left;width:3.6em;height:3em;padding:0.5em;")),
+        		        <?php echo $this->Html->link($this->Html->image('oet.png', array('alt' => "Inicio", 'class'=>'oetlogo','title' => 'www.ots.ac.cr','style'=> "float:left;width:12.5em;height:3em;padding:0.5em;")),
                                                                         'http://www.ots.ac.cr/',
                                                                         array('target' => '_blank', 'escape' => false));
                         ?>
