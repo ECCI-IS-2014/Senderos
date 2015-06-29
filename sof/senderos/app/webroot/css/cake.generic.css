@@ -443,7 +443,8 @@ p.error em {
 /**  Actions  **/
 div.actions ul {
 	margin: 0;
-	padding: 0;
+	padding:0;
+    float:right;
 }
 div.actions li {
 	margin:0 0 0.5em 0;
@@ -465,7 +466,7 @@ input[type=submit],
 div.actions ul li a,
 td.actions a {
     font-size: small;
-    width:55%;
+    width:100%;
 	font-weight:normal;
 	padding: 2px 2px;
 	background:#e6e49f;
