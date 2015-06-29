@@ -245,6 +245,11 @@
     color:white;
 }
 
+#accordeon p
+{
+    font-size:small;
+}
+
 .stationitem{
 	position: relative;
 	background-color: #7BC143;
