@@ -139,7 +139,7 @@ if($trail['Station']['id'] !== $station_id)
 	<tr class="altrow">
 
 		<!--<td><i><?php echo $trail['Trail']['name']; ?>&nbsp;<i></td>-->
-		<td><i><?php echo $this->Html->link($trail['Trail']['name'], array('controller' => 'stations', 'action' => 'view', $trail['Station']['id'])); ?></i></td>
+		<td><i><?php echo $this->Html->link($trail['Trail']['name'], array('controller' => 'trails', 'action' => 'view', $trail['Trail']['id'])); ?></i></td>
 		<td><?php echo $trail['Trail']['description']; ?>&nbsp;</td>
 		<!--<td><?php echo $trail['Trail']['image']; ?>&nbsp;</td>-->
 		<!--<td>
