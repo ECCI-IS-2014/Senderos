@@ -41,13 +41,14 @@ $point_id = 'none';
 			$class = ' class="altrow"';
 		//}
             $canDelete = 0;
+            $canEdit = 0;
             if( $_SESSION['role'] === 'restricted'){
 				foreach($restrictions as $restriction):
 					foreach($dopos as $dopo):
 						if(  // caso 1: tiene permisos especificos sobre el sendero
 							$dopo['Document']['id'] == $document['Document']['id'] &&
 							$dopo['Point']['trail_id'] == $restriction['Trail']['id']
-					    ){ $canDelete = 1; break; }
+					    ){ $canDelete = 1; $canEdit = 1; break; }
 						foreach($stations as $station):
 							foreach($trails as $trail):
 								if( // caso 2: tiene permisos sobre todos los senderos de la estacion a la que pertenece el documento
@@ -57,7 +58,7 @@ $point_id = 'none';
 								   $station['Station']['id'] ==  $restriction['Restriction']['station_id'] &&
 								   $restriction['Restriction']['allt'] == 1
 								 ){
-									$canDelete = 1;
+									$canDelete = 1; $canEdit = 1;
 								}
 							endforeach;
 						endforeach;
@@ -128,7 +129,7 @@ if($current_point !== $point_id)
 		<!--<td><?php echo $current_point_name; ?>&nbsp;</td>-->
 		<td class="actions">
 			<!--<?php echo $this->Html->link(__('View', true), array('action' => 'view', $document['Document']['id'])); ?>
-			--><?php if($this->Session->read('Auth.Client.id') != null){echo $this->Html->link(__('Edit', true), array('action' => 'edit', $document['Document']['id']));} ?>
+			--><?php if($this->Session->read('Auth.Client.id') != null && $canEdit==1){echo $this->Html->link(__('Edit', true), array('action' => 'edit', $document['Document']['id']));} ?>
 			<?php if($this->Session->read('Auth.Client.role') == 'admin' || $canDelete==1){echo $this->Html->link(__('Delete', true), array('action' => 'delete', $document['Document']['id']), null, sprintf(__('Are you sure you want to delete %s?', true), $document['Document']['name']));} ?>
 		</td>
 	</tr>

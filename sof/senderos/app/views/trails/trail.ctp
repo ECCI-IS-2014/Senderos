@@ -33,14 +33,10 @@
 
             print '</select>';
         ?></div>
-				<div id="accordeon">
-
-
+		<div id="accordeon">
 			<!-- para lo del filtro del menu de la derecha -->
-
-
 			<?php
-            //debug($languagesavailable);
+
 			$existlan = false;
 			$lan_availability = '';
 			foreach($languagesavailable as $lanav):
@@ -86,8 +82,9 @@
 
 				if($found && $existlan && $existvis)
 				{
+				    echo "<p>Select a station and a trail</p>";
 				?>
-						<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="hideothers(this); document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
+					<div id="station_<?php echo $station['Station']['id']?>" class="stationitem" onclick="hideothers(this); document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display = !document.getElementById('station_<?php echo $station['Station']['id']?>_trails').style.display? 'none': '';">
 					<!--<div style="float:left;">-->
 					<!--<?php echo $this->Html->link($station['Station']['name'], array('controller' => 'stations', 'action' => 'view', $station['Station']['id'])); ?>-->
 					<?php echo $station['Station']['name']; ?>
@@ -122,35 +119,88 @@
 
 			endforeach;
 
-
-            //debug($vis_role);
-			if($existlan)
-				echo "<br>There is information for '".$vis_role."' available in ".$lan_availability.".<br>";
-
-			if($existvis)
-				echo "<br>There is information in '".$lan_name."' available for ".$vis_availability.".<br>";
-
-			if((!$existoptions))
-			{
-			?>
+            if(($_SESSION['language'] == null) && ($_SESSION['client_id'] == null))
+            {
+            ?>
                 <div class="infohelpv">
                     <a href="#" class="tooltipv">
                     <?php
                         echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:left;"));
                     ?>
                     <span>
-                        First, select the language and the visitor type, then select a station.
+                        Select a language and a visitor type, then you will be able to select a station.
                     </span>
                     </a>
                 </div>
             <?php
             }
+
+            if((($_SESSION['language'] != null) || ($_SESSION['client_id'] != null)) && (!$existlan && !$existvis))
+            {
+            ?>
+                <div class="infohelpv">
+                    <?php
+                        if($_SESSION['language'] != null)
+                        {
+                    ?>
+                        <a href="#" class="tooltipv">
+                            <?php
+                                echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:left;"));
+                                echo "<span>There is not information available in ".$lan_name.".</span>";
+                            ?>
+                        </a>
+                    <?php
+                        }
+                        if($_SESSION['client_id'] != null)
+                        {
+                    ?>
+                        <a href="#" class="tooltipv">
+                            <?php
+                                echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:left;"));
+                                echo "<span>There is not information available for ".$vis_role.".</span>";
+                            ?>
+                        </a>
+                    <?php
+                        }
+                    ?>
+                </div>
+            <?php
+            }
+
+            if($existlan || $existvis)
+            {
+            ?>
+                <div class="infohelpv">
+                    <?php
+                        if($existlan && (!$existvis))
+                        {
+                    ?>
+                        <a href="#" class="tooltipv">
+                            <?php
+                                echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:left;"));
+                                echo "<span>There is information available for ".$vis_role." in ".$lan_availability.".</span>";
+                            ?>
+                        </a>
+                    <?php
+                        }
+                        if($existvis && (!$existlan))
+                        {
+                    ?>
+                        <a href="#" class="tooltipv">
+                            <?php
+                                echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:left;"));
+                                echo "<span>There is information available in ".$lan_name." for ".$vis_availability.".</span>";
+                            ?>
+                        </a>
+                    <?php
+                        }
+                    ?>
+                </div>
+            <?php
+            }
 			?>
 
-
 			<!-- fin para lo del filtro del menu de la derecha -->
-
-
 		</div><!-- accordeon container -->
 	</div> <!-- leftdiv container -->
 
@@ -262,21 +312,6 @@
 		    <p><h2><?php echo $trail['Trail']['name']; ?></h2></p>
 		    <p><?php echo $trail['Trail']['description']; ?></p>
         </div>
-    <?php
-    }
-    else
-    {
-    ?>
-    <!--div class="nfohelpvisitor">
-        <a href="#" class="tooltip">
-            <?php
-                echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
-            ?>
-            <span>
-                First, select the language and the visitor type, then select a station.
-            </span>
-        </a>
-    </div-->
     <?php
     }
     ?>

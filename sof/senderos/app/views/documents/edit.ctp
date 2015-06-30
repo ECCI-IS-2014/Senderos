@@ -9,6 +9,7 @@
 <?php
 $visitors = $this->requestAction('/visitors/getvisitors');
 $languages = $this->requestAction('/languages/getlanguages');
+if($edit_doc==1){
 ?>
 
 
@@ -223,7 +224,14 @@ function editThis()
 
 </script>
 
+<?php }
+else{ ?>
 
+<h2>You're not authorized to view this page</h2>
+
+<?php
+}
+?>
 
 <script>
 

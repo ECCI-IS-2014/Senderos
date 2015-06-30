@@ -100,6 +100,35 @@ var $paginate = array(
 	}
 
     function edit($id = null) {
+        $this->loadModel('Restriction');
+        $this->loadModel();
+        $cli_id = $this->Session->read("Auth.Client.id");
+        if($_SESSION['role'] === 'restricted'){
+            //Cargo Modelos
+            $this->loadModel('DocumentsPoint');
+            $this->loadModel('Station');
+            $this->loadModel('Trail');
+            $this->loadModel('Point');
+            $po_id = $this->DocumentsPoint->field('point_id',array('document_id'=>$id));
+            $tr_id = $this->Point->field('trail_id',array('id'=>$po_id));
+            $st_id = $this->Trail->field('station_id',array('id'=>$tr_id));
+            $all = $this->Restriction->field('allt',array('client_id'=>$cli_id,'station_id' => $st_id,'trail_id'=>$tr_id));
+            if($all == 0 && $all != null) {
+                $this->set('edit_doc', true);
+            }
+            else{
+                $a = $this->Restriction->field('allt',array('client_id'=>$cli_id,'station_id' => $st_id));
+                if($a == 1){
+                    $this->set('edit_doc',true);
+                }else{
+                    $this->set('edit_doc',false);
+                }
+            }
+        }
+        else{
+            $this->set('edit_doc',true);
+        }
+
         if (!$id && empty($this->data)) {
             $this->Session->setFlash(__('Invalid document', true));
             $this->redirect(array('action' => 'index'));
