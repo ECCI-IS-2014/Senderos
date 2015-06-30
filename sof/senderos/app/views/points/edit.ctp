@@ -1,3 +1,4 @@
+<?php if($edit_stat==1){ ?>
 <?php echo $html->css('pointscss'); ?>
 <?php echo $html->css('menu7'); ?>
 <?php echo $html->css('documentscss'); ?>
@@ -256,3 +257,4 @@ window.onload = function() {
 };
 
 </script>
+<?php }?>
