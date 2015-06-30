@@ -38,7 +38,6 @@
                 <td><?php if ($restriction['Restriction']['allt'] ==1 ){echo 'TRUE';} else {echo 'FALSE';} ?></td>
                 <td><?php echo $restriction['Trail']['name']; ?></td>
                 <td class="actions">
-                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $restriction['Restriction']['id'])); ?>
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $restriction['Restriction']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $restriction['Restriction']['id'])); ?>
                 </td>
             </tr>

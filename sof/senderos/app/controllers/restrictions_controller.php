@@ -14,11 +14,26 @@ class RestrictionsController extends AppController {
     function add() {
         if (!empty($this->data)) {
             for ($i=0; $i<sizeof($this->data['Restriction']['trail_id']); $i++) {
-                $this->Restriction->create();
-                $this->Restriction->save(Array('Restriction' => Array('trail_id' => $this->data['Restriction']['trail_id'][$i] ,'client_id' => $this->data['Restriction']['client_id'],'station_id'=>$this->data['Restriction']['station_id'],'allt'=>'1')));
+                if($this->data['Restriction']['trail_id'][$i]!=-1)
+                {
+                    $row = $this->Restriction->find('first', array('conditions' => array('Restriction.client_id' => $this->data['Restriction']['client_id'],'Restriction.station_id'=>$this->data['Restriction']['station_id'],'Restriction.trail_id'=>$this->data['Restriction']['trail_id'][$i])));
+                    if($row==null)
+                    {
+                        $this->Restriction->create();
+                        $this->Restriction->save(Array('Restriction' => Array('trail_id' => $this->data['Restriction']['trail_id'][$i], 'client_id' => $this->data['Restriction']['client_id'], 'station_id' => $this->data['Restriction']['station_id'], 'allt' => 0)));
+                    }
+                }
+                else{
+                    $row = $this->Restriction->find('first', array('conditions' => array('Restriction.client_id' => $this->data['Restriction']['client_id'], 'Restriction.station_id' => $this->data['Restriction']['station_id'], 'Restriction.trail_id' => NULL)));
+                    if ($row == null) {
+                        $this->Restriction->query("INSERT INTO restrictions (client_id,station_id,trail_id,allt) values("+$this->data['Restriction']['client_id']+","+$this->data['Restriction']['station_id']+","+1000+","+1+")");
+                    }
+
+                }
             }
-            $this->Session->setFlash(__('The restriction has been saved'.$this->data['Restriction']['trail_id'][0], true));
-            $this->redirect(array('action' => 'index'));
+
+            $this->Session->setFlash(__('Restriction Saved'.sizeof($this->data['Restriction']['trail_id']), true));
+            $this->redirect(array('controller'=>'restrictions','action' => 'index'));
             /*if ($this->Restriction->save($this->data)) {
                 $this->Session->setFlash(__('The restriction has been saved', true));
                 $this->redirect(array('action' => 'index'));

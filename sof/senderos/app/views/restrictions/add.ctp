@@ -57,26 +57,46 @@ $( document ).ready(function() {
         }
 
     });*/
+    /*var list = $("input[id^='RestrictionTrailId']").map(function(){return $(this).attr("value");}).get();
+    var concat_list = list.toString();*/
+
+
+            $.ajax({
+                        url: '/senderos/trails/getByStation/'+$("#RestrictionClientId").val()+'/'+$("#RestrictionStationId").val(),
+                            cache: false,
+                            type: 'GET',
+                            dataType: 'HTML',
+                        success: function (data){
+                           $(".checkbox").remove();
+                           $("[name='data[Restriction][trail_id]']").after(data);
+                        }
+            });
+
+
+
+
 
     $("#RestrictionStationId").change(function()
     {
-        $.ajax({
-                    url: '/senderos/trails/getByStation/'+$("#RestrictionStationId").val(),
-                        cache: false,
-                        type: 'GET',
-                        dataType: 'HTML',
-                    success: function (data){
-                       $(".checkbox").remove();
-                       $("[name='data[Restriction][trail_id]']").after(data);
-                    }
-        });
+            /*var list = $("input[id^='RestrictionTrailId']").map(function(){return $(this).attr("value");}).get();
+            var concat_list = list.toString();
+
+                    alert(concat_list);*/
+                    $.ajax({
+                                url: '/senderos/trails/getByStation/'+$("#RestrictionClientId").val()+'/'+$("#RestrictionStationId").val(),
+                                    cache: false,
+                                    type: 'GET',
+                                    dataType: 'HTML',
+                                success: function (data){
+                                   $(".checkbox").remove();
+                                   $("[name='data[Restriction][trail_id]']").after(data);
+                                }
+                    });
     });
 });
 
 
 
 </script>
-
-
 
 

@@ -2,7 +2,7 @@
 class TrailsController extends AppController {
 
 	var $name = 'Trails';
-
+    var $uses = array('Trail', 'Restriction');
 
 	var $paginate = array(
         'limit' => 25,
@@ -323,13 +323,53 @@ class TrailsController extends AppController {
 		}
 	}*/
 
-	    public function getByStation($station_id) {
-        //$station_id = $this->data['Restriction']['station_id'];
-        $seltrails = $this->Trail->find('list', array(
-            'conditions' => array('Trail.station_id' => $station_id)
-        ));
+	    public function getByStation($client_id,$station_id) {
+                    $seltrails = $this->Trail->find('list', array(
+                'conditions' => array('Trail.station_id' => $station_id)
+            ));
 
-        $this->set('seltrails',$seltrails);
+            $this->set('seltrails',$seltrails);
+
+        $trails_id_number = array();
+
+
+
+            foreach ($seltrails as $key => $value):
+            array_push($trails_id_number,$key);
+            endforeach;
+
+            $this->set('trails_id_number',$trails_id_number);
+
+        $client_permissions = array();
+        for($i = 0; $i<sizeof($trails_id_number); $i++)
+        {
+           /*Contiene los ids de los trails donde el cliente seleccionado posee permisos*/
+            $last_record = $this->Restriction->find('first', array(
+                'conditions' => array('Restriction.client_id' => $client_id,'Restriction.station_id'=>$station_id,'Restriction.trail_id'=>$trails_id_number[$i]),'fields'=>array('trail_id')
+            ));
+            if($last_record!=NULL) {
+                array_push($client_permissions, $last_record);
+            }
+
+        }
+            $clients_per = array();
+            for($n = 0; $n<sizeof($client_permissions); $n++)
+            {
+                   // echo($client_permissions[$n]['Restriction']['trail_id']);
+                    array_push($clients_per, $client_permissions[$n]["Restriction"]["trail_id"]);
+
+            }
+
+            if($this->Restriction->find('first', array('conditions' => array('Restriction.client_id' => $client_id,'Restriction.station_id'=>$station_id,'Restriction.trail_id'=>null),'fields'=>array('trail_id')))!=null)
+            {
+                array_push($clients_per, -1);
+            }
+
+
+            $this->set('client_permissions',$client_permissions);
+            $this->set('clients_per',$clients_per);
+
+
         $this->layout = 'ajax';
         
     }
