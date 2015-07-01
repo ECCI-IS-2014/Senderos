@@ -4,6 +4,15 @@ class RestrictionsController extends AppController {
     var $uses = array('Restriction', 'Client', 'Station', 'Trail');
 	public $helpers = array('Js');
 
+	var $paginate = array(
+        'limit' => 25,
+        'order' => array(
+            'Restriction.station_id' => 'asc',
+            'Restriction.client_id' => 'asc',
+            'Restriction.trail_id' => 'asc'
+        )
+    );
+	
     function index() {
         $this->Restriction->recursive = 0;
         $this->set('restrictions', $this->paginate());

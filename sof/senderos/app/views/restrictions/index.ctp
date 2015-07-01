@@ -1,3 +1,8 @@
+<?php
+$trail_id = 'none';
+$client_id = 'none';
+?>
+
 <div class="actions">
 <ul>
     <li><?php echo $this->Html->link(__('New Permission', true), array('action' => 'add')); ?></li>
@@ -35,6 +40,47 @@
 
             <?php foreach ($restrictions as $restriction): ?>
             <tr>
+			
+			<?php
+            if($restriction['Station']['id'] !== $station_id)
+            {
+
+            		if($i > 0)
+            		{
+            			echo "<tr><td colspan=3 style='background-color: white; border-bottom: 1px solid #FFF;'></td></tr>";
+            		}
+
+            		echo "<tr><td colspan=3 style='background-color: white;'>";
+            		echo "<b>Station: </b>".$this->Html->link($restriction['Station']['name'], array('controller' => 'stations', 'action' => 'view', $restriction['Station']['id']));
+            		echo '</td>';
+                    $station_id = $restriction['Station']['id'];
+
+            		$i++;
+
+            		echo '</tr>';
+            }
+            ?>
+
+            <?php
+                        if($restriction['Client']['id'] !== $client_id)
+                        {
+
+                        		if($i > 0)
+                        		{
+                        			echo "<tr><td colspan=3 style='background-color: white; border-bottom: 1px solid #FFF;'></td></tr>";
+                        		}
+
+                        		echo "<tr><td colspan=3 style='background-color: white;'>";
+                        		echo "<b>Client: </b>".$this->Html->link($restriction['Client']['name'], array('controller' => 'Client', 'action' => 'view', $restriction['Client']['id']));
+                        		echo '</td>';
+                                $client_id = $restriction['Client']['id'];
+
+                        		$i++;
+
+                        		echo '</tr>';
+                        }
+            ?>
+			
                 <td><?php echo $restriction['Client']['username']; ?></td>
                 <td><?php echo $restriction['Station']['name']; ?></td>
                 <td><?php if ($restriction['Restriction']['allt'] ==1 ){echo 'TRUE';} else {echo 'FALSE';} ?></td>
