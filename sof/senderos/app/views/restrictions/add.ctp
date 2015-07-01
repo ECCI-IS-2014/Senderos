@@ -13,8 +13,14 @@
             echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:17px;height:17px;float:right;"));
         ?>
         <span>
-            To grant permissions to a client, you have to select the client and check the station's trails she/he will manage.<br>
-            She/he must be a "restricted" client to grant permissions.
+            <strong>How to grant a permission over a station?</strong><br>
+            You have to select the restricted user and the name of the station, then check the 'Station Permissions' option.
+            In this way, the user can do all the actions related to that station.<br><br>
+            <strong>How to grant a permission over a given trail?</strong><br>
+            You have to select the restricted user and the name of the station, then check all the trails you want the user to have access to.
+            In this way, the user can only do the actions related to those trails.<br><br>
+            <strong>How to remove a permission?</strong><br>
+            Go to the 'List Permissions' option and then click on the 'Delete' button.
         </span>
     </a>
 </div>

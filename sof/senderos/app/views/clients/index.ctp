@@ -16,7 +16,11 @@
             echo $this->Html->image('infoicon.png', array('alt' => "Informacion", 'style'=> "width:15px;height:15px;float:right;"));
         ?>
         <span>
-            First, you have to create a client, then grant permissions.
+            In addition to create new users you can also grant them permissions.<br><br>
+            <strong>What is a permission?</strong><br>
+            A permission over a given station or trail allows a restricted user to edit and delete them, but not to create new ones.
+            Also, the user would be allowed to create, edit, and delete all the elements associated to the given trail or station.
+            <br><br>Grant new permissions by clicking the "New Permission" button.
         </span>
     </a>
 </div>
