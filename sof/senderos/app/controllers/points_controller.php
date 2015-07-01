@@ -64,6 +64,61 @@ var $paginate = array(
 		}
 	}
 
+    function edit($id = null) {
+        $cli_id = $this->Session->read("Auth.Client.id");
+
+        $this->loadModel('Restriction');
+        $canDelete = 0;
+        $point = $this->Point->findById($id);
+        $restrictions = $this->Restriction->findAllByClientId($cli_id);
+        if($_SESSION['role'] === 'restricted'){
+            foreach($restrictions as $restriction):
+                if( $restriction['Station']['id'] == $point['Trail']['station_id'] &&
+                    ($restriction['Trail']['id'] == $point['Trail']['id'] || $restriction['Restriction']['allt'] == 1 )
+                ){
+                    $canDelete = 1;
+
+                }
+            endforeach;
+        }
+        //$cli_id = $this->Session->read("Auth.Client.id");
+        if($_SESSION['role'] === 'restricted' && $canDelete == 0) {
+            $this->set('edit_stat',false);
+        }else{
+            $this->set('edit_stat',true);
+        }
+
+        if (!$id && empty($this->data)) {
+            $this->Session->setFlash(__('Invalid point', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        $po = $this->Point->findById($id);
+        if (!$po) {
+            //$this->Session->setFlash(__('Invalid point', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        /*if (!empty($this->data)) {
+            if ($this->Point->save($this->data)) {
+                $this->Session->setFlash(__('The point has been saved', true));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The point could not be saved. Please, try again.', true));
+            }
+        }*/
+        if (empty($this->data)) {
+            $this->data = $this->Point->read(null, $id);
+        }
+        $trails = $this->Point->Trail->find('list');
+        $this->set(compact('trails'));
+
+        if($_SESSION['role'] === 'restricted')
+        {
+            $this->loadModel('Restriction');
+            $this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
+        }
+    }
+
+    /*
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid point', true));
@@ -73,7 +128,7 @@ var $paginate = array(
         if (!$po) {
             //$this->Session->setFlash(__('Invalid point', true));
             $this->redirect(array('action' => 'index'));
-        }
+        } */
 		/*if (!empty($this->data)) {
 			if ($this->Point->save($this->data)) {
 				$this->Session->setFlash(__('The point has been saved', true));
@@ -82,7 +137,7 @@ var $paginate = array(
 				$this->Session->setFlash(__('The point could not be saved. Please, try again.', true));
 			}
 		}*/
-		if (empty($this->data)) {
+		/*if (empty($this->data)) {
 			$this->data = $this->Point->read(null, $id);
 		}
 		$trails = $this->Point->Trail->find('list');
@@ -93,7 +148,7 @@ var $paginate = array(
 			$this->loadModel('Restriction');
 			$this->set('restrictions',$this->Restriction->findAllByClientId($_SESSION['client_id']));
 		}
-	}
+	}*/
 
 	function delete($id = null) {
 	

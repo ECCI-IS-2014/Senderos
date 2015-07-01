@@ -263,6 +263,17 @@ END;
 
 /
 
+CREATE OR REPLACE TRIGGER rest
+BEFORE INSERT ON restrictions
+FOR EACH ROW
+BEGIN
+   IF (:new.trail_id IS null) THEN
+   :new.allt := 1;
+   END IF;
+END;
+
+/
+
 commit;
 
 -----------------------------------------------------------------------
