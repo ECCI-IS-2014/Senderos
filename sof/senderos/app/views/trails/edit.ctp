@@ -422,10 +422,8 @@ function validateCoords(textinput)
 			</div>
 
 			<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
-			<div class="submit">
-			<input id="savePoint" type="submit" value="Submit" style="float:left;border: 0px solid #2D6324; padding: 4px 8px;"></input>
-		    </div>
-		    
+			    <input id="savePoint" type="submit" value="Submit" style="width:auto;float:left;border: 0px solid #2D6324; padding: 4px 8px;"></input>
+			    <input type="submit" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;display:inline;"/>
 		    <?php } ?>
 		    
 
@@ -548,9 +546,8 @@ function validateCoords(textinput)
 				<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 				<table style="background-color: transparent; border:none;"><tr>
 					<td style="background-color: transparent; border:none;">
-						<div class="submit">
-							<input type="submit" value="Submit" onclick="saveDocument();" style="border: 0px solid #2D6324; padding: 4px 8px;"></input>
-					    </div>
+							<input type="submit" value="Submit" onclick="saveDocument();" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;"></input>
+					    	<input type="submit" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;display:inline;"/>
 					</td>
 					<td style="background-color: transparent; border:none;">
 						<div id="waitdiv" style="height:50%; width:50%; display:none;">
