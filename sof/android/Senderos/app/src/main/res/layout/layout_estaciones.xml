@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#bf0c030f"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/label_listaEstaciones"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal" />
+
+    <ListView
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:id="@+id/list_Estaciones"
+            android:clickable="true"
+            android:background="#f6fef5ff"
+            android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
