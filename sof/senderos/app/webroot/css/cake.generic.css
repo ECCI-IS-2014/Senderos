@@ -380,7 +380,7 @@ div.radio label {
 }
 input[type=submit] {
 	display: inline;
-	font-size: 110%;
+	font-size: 100%;
 	width: auto;
 }
 form .submit input[type=submit] {
@@ -392,7 +392,7 @@ form .submit input[type=submit] {
 	color: white;
 }
 form .submit input[type=submit]:hover {
-	background:#8FD853;
+	background:#6CC417;
 }
 
 /** Notices and Errors **/
