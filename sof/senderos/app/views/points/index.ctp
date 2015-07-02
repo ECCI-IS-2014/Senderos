@@ -56,19 +56,20 @@ $station_id = 'none';
 		//if ($i++ % 2 == 0) {
 			$class = ' class="altrow"';
 		//}
-            $canDelete = 0;
+            $canDelete = 0; $canRead = 0;
             if($_SESSION['role'] === 'restricted'){
             foreach($restrictions as $restriction):
             if( $restriction['Station']['id'] == $point['Trail']['station_id'] &&
             ($restriction['Trail']['id'] == $point['Trail']['id'] || $restriction['Restriction']['allt'] == 1 )
             ){
-            $canDelete = 1;
+            $canDelete = 1; $canRead = 1;
 
             }
             endforeach;
             }
 	?>
 
+<?php if($canRead == 1 || $_SESSION['role'] === 'administrator'){?>
 
 <?php
 if($point['Trail']['station_id'] !== $station_id)
@@ -126,6 +127,7 @@ if($point['Trail']['id'] !== $trail_id)
 			<?php if($this->Session->read('Auth.Client.role')== 'admin' || $canDelete==1){echo $this->Html->link(__('Delete', true), array('action' => 'delete', $point['Point']['id']), null, sprintf(__('Are you sure you want to delete %s?', true), $point['Point']['name']));} ?>
 		</td>
 	</tr>
+<?php } ?>
 <?php endforeach; ?>
 	</table>
 	<!--p>
