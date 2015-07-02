@@ -68,7 +68,7 @@ $station_id = 'none';
 		//}
 		
 		$trailcreate = 'no';
-		$trailread = 'yes';
+		$trailread = 'no';
 		$trailupdate = 'no';
 		$traildelete = 'no';
 
@@ -88,6 +88,7 @@ $station_id = 'none';
 
                     if($restriction['Station']['id'] == $trail['Station']['id'] && $restriction['Restriction']['allt'] == 1){
                         $trailcreate = 'yes';
+                        $trailread = 'yes';
                     }
                 }
             endforeach;
@@ -102,7 +103,7 @@ $station_id = 'none';
 		else
 		{
 			$trailcreate = 'no';
-			$trailread = 'yes';
+			$trailread = 'no';
 			$trailupdate = 'no';
 			$traildelete = 'no';
 		}
