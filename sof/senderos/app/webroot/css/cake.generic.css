@@ -650,6 +650,7 @@ div.code-coverage-results span.result-good {
 /**Barra de idiomas*/
 
 #languages{
+    width:65%;
     text-align: center;
     font-size: small;
     color: gray;
@@ -657,6 +658,7 @@ div.code-coverage-results span.result-good {
 }
 
 #visitors{
+    width:65%;
     text-align: center;
     font-size: small;
     color: gray;

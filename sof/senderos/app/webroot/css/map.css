@@ -242,7 +242,7 @@
 
 #accordeon a
 {
-    color:white;
+    color:black;
 }
 
 #accordeon p
@@ -252,10 +252,10 @@
 
 .stationitem{
 	position: relative;
-	background-color: #7BC143;
-    color:white;
+	background-color: #E6E6E6;
+    color:black;
     font-size: smaller;
-    width: 85%;
+    width: 65%;
 	padding-top: 2.5%;
 	padding-bottom: 2.5%;
 	padding-left: 2.5%;
@@ -269,15 +269,15 @@
 	position: absolute;
 	top: 10%;
 	right: 5%;
-	color: white;
+	color: slategray;
 	padding-right: 2.5%;
 	cursor: pointer;
 }
 
 .trailitem{
-	background-color: forestgreen;
+	background-color: #D8D8D8;
     font-size: smaller;
-	width: 82.5%;
+	width: 62.5%;
 	padding-top: 2.5%;
 	padding-bottom: 2.5%;
 	padding-left: 5%;
