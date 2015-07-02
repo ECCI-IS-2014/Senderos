@@ -204,20 +204,12 @@ if($trailread == 'yes')
 	
 	<?php 
 	}
-	?>
 
-
+    if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
+        echo $this->Form->end(__('Submit', true));
+        echo "<input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='border: 0px solid #2D6324; padding: 4px 8px;display:inline;float:right;'/>";
+    ?>
 	</fieldset>
-	
-<?php 
-
-if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
-	echo $this->Form->end(__('Submit', true));
-    echo "<input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='display:inline;float:right;'/>";
-
-?>
-
-
 <script>
 document.getElementsByClassName('submit')[0].appendChild(document.getElementById('hiddencancel'));
 document.getElementById('hiddencancel').style.display ='block';
@@ -431,7 +423,7 @@ function validateCoords(textinput)
 
 			<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 			<div class="submit">
-			<input id="savePoint" type="button" value="Submit"></input>
+			<input id="savePoint" type="submit" value="Submit" style="float:left;border: 0px solid #2D6324; padding: 4px 8px;"></input>
 		    </div>
 		    
 		    <?php } ?>
@@ -557,8 +549,8 @@ function validateCoords(textinput)
 				<table style="background-color: transparent; border:none;"><tr>
 					<td style="background-color: transparent; border:none;">
 						<div class="submit">
-							<input type="button" value="Submit" onclick="saveDocument();"></input>
-					    	</div>
+							<input type="submit" value="Submit" onclick="saveDocument();" style="border: 0px solid #2D6324; padding: 4px 8px;"></input>
+					    </div>
 					</td>
 					<td style="background-color: transparent; border:none;">
 						<div id="waitdiv" style="height:50%; width:50%; display:none;">
@@ -571,11 +563,6 @@ function validateCoords(textinput)
 				
 				
 			</fieldset>
-			<!-- <div id="submit_button">
-				<div class="submit">
-					<input value="Submit" type="submit">
-				</div>
-			</div> -->
 		</form>
 	</div> <!-- documents form -->
 </div> <!-- save_document -->

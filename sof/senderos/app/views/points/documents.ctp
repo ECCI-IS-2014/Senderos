@@ -132,7 +132,7 @@ foreach($pointdocuments as $pointdocument):
 
 			$imagesbuilder .= "</table>";
 
-			$imagesbuilder .= "<center><a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='save changes'>save</a></center>";
+			$imagesbuilder .= "<center><a class='docsave' style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='Save Changes'>Submit</a><input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='width:auto;border: 0px solid #2D6324; padding: 4px 8px;margin-left:5px;display:inline;'/></center>";
 
 			$imagesbuilder .= "</form>";
 			$imagesbuilder .= "</div>";
@@ -226,7 +226,7 @@ foreach($pointdocuments as $pointdocument):
 
 			$videosbuilder .= "</table>";
 
-			$videosbuilder .= "<center><a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='save changes'>save</a></center>";
+			$videosbuilder .= "<center><a class='docsave' style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='Save Changes'>Submit</a><input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='width:auto;border: 0px solid #2D6324; padding: 4px 8px;margin-left:5px;display:inline;'/></center>";
 
 			$videosbuilder .= "</form>";
 			$videosbuilder .= "</div>";
@@ -324,7 +324,7 @@ foreach($pointdocuments as $pointdocument):
 
 			$soundsbuilder .= "</table>";
 
-			$soundsbuilder .= "<center><a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='save changes'>save</a></center>";
+			$soundsbuilder .= "<center><a class='docsave' style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='Save Changes'>Submit</a><input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='width:auto;border: 0px solid #2D6324; padding: 4px 8px;margin-left:5px;display:inline;'/></center>";
 
 			$soundsbuilder .= "</form>";
 			$soundsbuilder .= "</div>";
@@ -422,7 +422,7 @@ foreach($pointdocuments as $pointdocument):
 
 			$textsbuilder .= "</table>";
 
-			$textsbuilder .= "<center><a style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='save changes'>save</a></center>";
+			$textsbuilder .= "<center><a class='docsave' style='cursor:pointer;' onclick='editDocument(".$pointdocument['Document']['id'].");' title='Save Changes'>Submit</a><input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='width:auto;border: 0px solid #2D6324; padding: 4px 8px;margin-left:5px;display:inline;'/></center>";
 
 			$textsbuilder .= "</form>";
 			$textsbuilder .= "</div>";
