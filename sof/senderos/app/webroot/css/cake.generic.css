@@ -469,21 +469,19 @@ td.actions a {
     width:100%;
 	font-weight:normal;
 	padding: 2px 2px;
-	background:#e6e49f;
-	color:#333;
-	border:0px solid #aaac62;
+	background:#7BC143;
+	color:white;
 	-webkit-border-radius:8px;
 	-moz-border-radius:8px;
 	border-radius:4px;
 	text-decoration:none;
     text-align: center;
-	text-shadow: #fff 0px 1px 0px;
 	min-width: 0;
 }
 input[type=submit]:hover,
 div.actions ul li a:hover,
 td.actions a:hover {
-	background: #EEEBA5;
+	background: #6CC417;
     text-decoration:none;
 }
 
