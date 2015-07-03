@@ -49,7 +49,7 @@
 		}
 		
 		$stationcreate = 'no';
-		$stationread = 'yes';
+		$stationread = 'no';
 		$stationupdate = 'no';
 		$stationdelete = 'no';
 		
@@ -63,6 +63,8 @@
 					$stationdelete = 'yes';
 					
 					$result .= "<br>Found a restriction on ".$station['Station']['id'].": C=".$stationcreate.", R=".$stationread.", U=".$stationupdate.", D=".$stationdelete."";
+				}else if($restriction['Restriction']['allt'] == 0 && $restriction['Restriction']['station_id'] == $station['Station']['id'] && $restriction['Restriction']['allt'] != null){
+				    $stationread = 'yes';
 				}
 			endforeach;
 		}
@@ -76,7 +78,7 @@
 		else
 		{
 			$stationcreate = 'no';
-			$stationread = 'yes';
+			$stationread = 'no';
 			$stationupdate = 'no';
 			$stationdelete = 'no';
 		}

@@ -19,6 +19,7 @@
 @import url("http://fonts.googleapis.com/css?family=Questrial");
 
 * {
+    font-family: 'Questrial', arial, sans-serif;
 	margin:0;
 	padding:0;
 }
@@ -380,19 +381,21 @@ div.radio label {
 }
 input[type=submit] {
 	display: inline;
-	font-size: 110%;
+	font-size: 100%;
 	width: auto;
 }
 form .submit input[type=submit] {
 	background: #7BC143;
     width: 60px;
+    border: 0px solid #2D6324;
+    padding: 4px 8px;
     -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	color: white;
 }
 form .submit input[type=submit]:hover {
-	background:#8FD853;
+	background:#6CC417;
 }
 
 /** Notices and Errors **/
@@ -468,22 +471,21 @@ td.actions a {
     font-size: small;
     width:100%;
 	font-weight:normal;
-	padding: 2px 2px;
-	background:#e6e49f;
-	color:#333;
-	border:0px solid #aaac62;
+    border: 0px solid #2D6324;
+    padding: 2px 2px;
+	background:#7BC143;
+	color:white;
 	-webkit-border-radius:8px;
 	-moz-border-radius:8px;
 	border-radius:4px;
 	text-decoration:none;
     text-align: center;
-	text-shadow: #fff 0px 1px 0px;
 	min-width: 0;
 }
 input[type=submit]:hover,
 div.actions ul li a:hover,
 td.actions a:hover {
-	background: #EEEBA5;
+	background: #6CC417;
     text-decoration:none;
 }
 
@@ -648,6 +650,7 @@ div.code-coverage-results span.result-good {
 /**Barra de idiomas*/
 
 #languages{
+    width:65%;
     text-align: center;
     font-size: small;
     color: gray;
@@ -655,6 +658,7 @@ div.code-coverage-results span.result-good {
 }
 
 #visitors{
+    width:65%;
     text-align: center;
     font-size: small;
     color: gray;
@@ -728,7 +732,6 @@ div.code-coverage-results span.result-good {
     background-color: transparent;
     border-radius: 3px;
     border: 0;
-    box-shadow: inset 0 0 0 2px #fff;
     color: #fff;
     cursor: pointer;
     display: inline-block;
@@ -750,7 +753,6 @@ div.code-coverage-results span.result-good {
     background-color: #7BC143;
     height: 3em;
     width: 4.5em;
-    box-shadow: none !important;
 }
 
 .button.special:hover {
@@ -847,4 +849,28 @@ a.tooltipv:hover span
     position:absolute;
     color:#111;
     background:rgba(127, 198, 68, 0.25);;
+}
+
+.docsave {
+    font-family: 'Questrial', arial, sans-serif;
+    font-size: small;
+    width:100%;
+    font-weight:normal;
+    padding: 4px 8px;
+    background:#7BC143;
+    color:white;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:4px;
+    text-decoration:none;
+    text-align: center;
+    min-width: 0;
+}
+
+.docsave:hover {
+    font-family: 'Questrial', arial, sans-serif;
+    padding: 4px 8px;
+    background: #6CC417;
+    text-decoration:none;
+    color:white;
 }

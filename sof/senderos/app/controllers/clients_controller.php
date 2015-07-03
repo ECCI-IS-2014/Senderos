@@ -65,8 +65,6 @@ class ClientsController extends AppController {
             //unset($this->data['Client']['password']);
             //unset($this->data['Client']['password_confirm']);
 		}
-		$countries = $this->Client->Country->find('list');
-		$this->set(compact('countries'));
 	}
 
 	function delete($id = null) {

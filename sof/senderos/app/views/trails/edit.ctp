@@ -204,21 +204,12 @@ if($trailread == 'yes')
 	
 	<?php 
 	}
-	?>
 
-
+    if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
+        echo $this->Form->end(__('Submit', true));
+        echo "<input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='border: 0px solid #2D6324; padding: 4px 8px;display:inline;float:right;'/>";
+    ?>
 	</fieldset>
-	
-<?php 
-
-if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
-	echo $this->Form->end(__('Submit', true));
-	
-	echo "<input type='button' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='display:none;font size: 110%; width: auto; min-width: 0px; border: 1px solid #2D6324; border-radius: 8px; text-decoration: none; font-weight: normal; padding: 4px 8px; background: #62AF56 -moz-linear-gradient(center top , #A8EA9C, #62AF56) repeat scroll 0% 0%; color: #000; text-shadow: 0px 1px 0px #8CEE7C; cursor: pointer; float:right;'/>";
-
-?>
-
-
 <script>
 document.getElementsByClassName('submit')[0].appendChild(document.getElementById('hiddencancel'));
 document.getElementById('hiddencancel').style.display ='block';
@@ -431,10 +422,8 @@ function validateCoords(textinput)
 			</div>
 
 			<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
-			<div class="submit">
-			<input id="savePoint" type="button" value="Submit"></input>
-		    </div>
-		    
+			    <input id="savePoint" type="submit" value="Submit" style="width:auto;float:left;border: 0px solid #2D6324; padding: 4px 8px;"></input>
+			    <input type="submit" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;display:inline;"/>
 		    <?php } ?>
 		    
 
@@ -557,9 +546,8 @@ function validateCoords(textinput)
 				<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 				<table style="background-color: transparent; border:none;"><tr>
 					<td style="background-color: transparent; border:none;">
-						<div class="submit">
-							<input type="button" value="Submit" onclick="saveDocument();"></input>
-					    	</div>
+							<input type="submit" value="Submit" onclick="saveDocument();" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;"></input>
+					    	<input type="submit" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;display:inline;"/>
 					</td>
 					<td style="background-color: transparent; border:none;">
 						<div id="waitdiv" style="height:50%; width:50%; display:none;">
@@ -572,11 +560,6 @@ function validateCoords(textinput)
 				
 				
 			</fieldset>
-			<!-- <div id="submit_button">
-				<div class="submit">
-					<input value="Submit" type="submit">
-				</div>
-			</div> -->
 		</form>
 	</div> <!-- documents form -->
 </div> <!-- save_document -->
