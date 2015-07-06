@@ -19,8 +19,10 @@ if($_SESSION['role'] === 'administrator')
 	<h1 title = "You MUST type a name for the new station"><?php echo $this->Form->input('name');?></h1>
 	<h1 title = "You MUST type a location for the new station"><?php echo $this->Form->input('location');?></h1>
 	<h1 title = "You MUST type a description for the new station"><?php echo $this->Form->input('description');?></h1>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+    </fieldset>
+<?php echo $this->Form->end(__('Submit', true));
+      echo "<input type='button' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-left:3px;padding: 4px 8px;width:auto;display:inline;float:left;'/>";
+?>
 </div>
 
 <?php 

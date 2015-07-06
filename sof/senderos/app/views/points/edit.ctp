@@ -156,8 +156,8 @@ function setselects(select)
 
 			<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 			<div class="submit">
-			<input id="savePoint" type="submit" value="Submit" onclick="editThis(<?php echo $this->data['Point']['id']; ?>);" style="border: 0px solid #2D6324; padding: 4px 8px;"></input>
-			<input type="submit" value="Cancel" onclick="window.location.href = window.history.back(1);" style="border: 0px solid #2D6324; padding: 4px 8px;"></input>
+			<input id="savePoint" type="button" value="Submit" onclick="editThis(<?php echo $this->data['Point']['id']; ?>);" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-left:3px;padding: 4px 8px;width:auto;display:inline;float:left;"></input>
+			<input type="button" value="Cancel" onclick="window.location.href = window.history.back(1);" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-top:3px;margin-left:3px;padding: 4px 8px;width:auto;display:inline;float:left;"></input>
 		    </div>
 		    
 		    <?php } ?>

@@ -35,7 +35,9 @@ if($_SESSION['role'] === 'restricted' || $_SESSION['role'] === 'administrator')
 	<h1 title = "Upload the map for the new trail"><?php echo $this->Form->input('archivo', array('type' => 'file', 'label'=>'Choose a map image:'));?></h1>
 	<h1 title = "You MUST choose a station for the new trail"><?php echo $this->Form->input('station_id');?></h1>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<?php echo $this->Form->end(__('Submit', true));
+      echo "<input type='button' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-left:3px;padding: 4px 8px;width:auto;display:inline;float:left;'/>";
+?>
 </div>
 
 <?php 

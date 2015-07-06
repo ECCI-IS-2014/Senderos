@@ -207,7 +207,7 @@ if($trailread == 'yes')
 
     if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
         echo $this->Form->end(__('Submit', true));
-        echo "<input type='submit' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='border: 0px solid #2D6324; padding: 4px 8px;display:inline;float:right;'/>";
+        echo "<input type='button' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;padding: 4px 8px;width:auto;display:inline;float:right;'/>";
     ?>
 	</fieldset>
 <script>
@@ -422,10 +422,9 @@ function validateCoords(textinput)
 			</div>
 
 			<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
-			    <input id="savePoint" type="submit" value="Submit" style="width:auto;float:left;border: 0px solid #2D6324; padding: 4px 8px;"></input>
-			    <input type="submit" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;display:inline;"/>
+			    <input id="savePoint" type="button" value="Submit" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-top:3px;margin-left:3px;padding: 4px 8px;width:auto;display:inline;font-family: Questrial;"></input>
+			    <input type="button" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-top:3px;margin-left:3px;padding: 4px 8px;width:auto;display:inline;font-family: Questrial;"/>
 		    <?php } ?>
-		    
 
 			</fieldset>
 		<!--<?php 
@@ -546,8 +545,8 @@ function validateCoords(textinput)
 				<?php if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted'){ ?>
 				<table style="background-color: transparent; border:none;"><tr>
 					<td style="background-color: transparent; border:none;">
-							<input type="submit" value="Submit" onclick="saveDocument();" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;"></input>
-					    	<input type="submit" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="width:auto;border: 0px solid #2D6324; padding: 4px 8px;display:inline;"/>
+							<input type="button" value="Submit" onclick="saveDocument();" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-top:3px;margin-left:3px;padding: 4px 8px;width:auto;display:inline;font-family: Questrial;"></input>
+					    	<input type="button" id="hiddencancel" value="Cancel" onclick=\"window.location.href = window.history.back(1);\" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-top:3px;margin-left:3px;padding: 4px 8px;width:auto;display:inline;font-family: Questrial;"/>
 					</td>
 					<td style="background-color: transparent; border:none;">
 						<div id="waitdiv" style="height:50%; width:50%; display:none;">

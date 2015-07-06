@@ -33,5 +33,7 @@ echo $this->Form->create('Client');
 		<!-- <h1 title= "You MUST type a password"> <?php echo $this->Form->input('password');?></h1>
 		<?php echo $this->Form->input('password_confirm', array('label' => 'Confirm Password ', 'title' => 'You MUST retype the password', 'type'=>'password'));?> -->
 	</fieldset>
-<?php echo $this->Form->end(__('Done', true));?>
+<?php echo $this->Form->end(__('Submit', true));
+      echo "<input type='button' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-left:3px;padding: 4px 8px;width:auto;display:inline;float:left;'/>";
+?>
 </div>

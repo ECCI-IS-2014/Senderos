@@ -142,8 +142,8 @@ if($edit_doc==1){
 				<table style="background-color: transparent; border:none; margin-top:1em;"><tr>
 					<td style="background-color: transparent; border:none;">
 						<div>
-							<input class="button special" value="Submit" onclick="editThis();"></input>
-							<input class="button special" value="Cancel" onclick="window.location.href = window.history.back(1);"></input>
+							<input type="button" value="Submit" onclick="editThis();" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-left:3px;padding: 4px 8px;width:auto;display:inline;font-family: Questrial;"></input>
+							<input type="button" value="Cancel" onclick="window.location.href = window.history.back(1);" style="font-size:small;color:white;background-color:#7BC143;border-radius:3px;border: 0px solid #2D6324;margin-left:3px;padding: 4px 8px;width:auto;display:inline;font-family: Questrial;"></input>
 					    </div>
 					</td>
 					<td style="background-color: transparent; border:none;">

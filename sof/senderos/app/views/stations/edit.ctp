@@ -65,7 +65,7 @@ if($stationread == 'yes')
 
 if($_SESSION['role'] === 'administrator' || $_SESSION['role'] === 'restricted')
 	echo $this->Form->end(__('Submit', true));
-
+    echo "<input type='button' id='hiddencancel' value='Cancel' onclick=\"window.location.href = window.history.back(1);\" style='color:white;background-color:#7BC143;font-size:small;margin-left:3px;border-radius:3px;border: 0px solid #2D6324;padding: 4px 8px;width:auto;display:inline;float:left;'/>";
 ?>
 
 </div>
